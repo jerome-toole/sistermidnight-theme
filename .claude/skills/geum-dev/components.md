@@ -381,9 +381,7 @@ acf_register_block_type([
 ]);
 ```
 
-## Verify
-
-After scaffolding:
+## Testing Component
 
 ```bash
 # Clear log
@@ -392,8 +390,11 @@ After scaffolding:
 # Build assets
 npm run build
 
-# Load page with component
-curl -sL http://geum.test -o /dev/null
+# Verification
+Use browser MCP to:
+1. Navigate to `/_dev/components/{name}`
+2. Confirm component markup is visible and working
+3. Check console for errors
 
 # Check for errors
 cat ../../debug.log

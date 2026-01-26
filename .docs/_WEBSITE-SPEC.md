@@ -11,6 +11,8 @@ Community-owned music venue & radio station in Catford, Lewisham. Fundraising fo
 
 ## Sources:
 - Colors: @.docs/figma-tokens.md - set up in @assets/theme-config.json
+- Front Page Design: @.docs/front-page.png
+- Standard Page Design: @.docs/page.png
 
 ---
 
