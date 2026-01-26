@@ -71,10 +71,20 @@
 - Updated aspect ratio to 4/3 and increased gap spacing
 - ACF fields: `heading`, `subheading`, `content`, `button_1` (link), `media_type`, `image`, `video`, `media_side`
 
+### 2.5 Video Embed (2026-01-26)
+- [x] Embeds YouTube videos (via oEmbed field in media-content)
+- [x] Poster image shows before play (image field always visible)
+- [x] YouTube loads after play click (data-src swap on click)
+- [x] Responsive sizing (16/9 aspect ratio)
+- Added `image` param to make() signature
+- Added aspect-ratio CSS for standalone use
+- Updated examples with poster image demos
+- Used via media-content block (not a standalone ACF block)
+
 ## In Progress
 
 None
 
 ## Next Up
 
-### 2.5 Video Embed (review existing)
+### 3.1 Press Links (new block)
