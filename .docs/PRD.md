@@ -261,7 +261,7 @@ Downloadable document list.
 
 ---
 
-#### 3.5 Page Navigation [NEW BLOCK]
+#### 3.5 Page Navigation ✓
 Jump links / table of contents.
 
 **Requirements:**
@@ -275,9 +275,9 @@ Jump links / table of contents.
   - `anchor` (text)
 
 **Pass criteria:**
-- [ ] Links scroll to anchors
+- [x] Links scroll to anchors
 - [ ] Active state on current section (optional)
-- [ ] Works with page sections
+- [x] Works with page sections
 
 ---
 

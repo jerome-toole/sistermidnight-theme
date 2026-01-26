@@ -116,10 +116,19 @@
 - Component at components/document-links/
 - Supports PDF, DOC, DOCX, XLS, XLSX, ZIP
 
+### 3.5 Page Navigation (2026-01-26)
+- [x] Links scroll to anchors (CSS scroll-behavior: smooth)
+- [x] Sticky option (sticky class modifier)
+- [x] Works with page sections
+- [x] Block preview works in editor
+- ACF fields: `links` (repeater: label, anchor), `sticky` (true_false)
+- Component at components/page-navigation/
+- Auto-prepends # to anchor values
+
 ## In Progress
 
 None
 
 ## Next Up
 
-### 3.5 Page Navigation (new block)
+### 3.6 FAQ Accordion (review)
