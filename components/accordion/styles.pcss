@@ -1,12 +1,13 @@
 .accordion {
-    --accordion--items--border-y: var(--border-width--s) solid hsla(var(--color-off-white--hsl), 0.15);
-    --accordion--btn--size: 2.1875rem; /* 35px */
-    --accordion--icon--size: 0.75rem; /* 12px */
+    --accordion--btn--size: 2.5rem;
+    --accordion--icon--size: 0.875rem;
+
+    padding-block: var(--space-lg);
 
     :where(.accordion__header) {
         @apply margin-trim;
 
-        margin-bottom: var(--block--header--margin-bottom);
+        margin-bottom: var(--space-md);
     }
 
     :where(.accordion__heading) {
@@ -14,61 +15,48 @@
     }
 
     :where(.accordion__items) {
-        border-top: var(--accordion--items--border-y);
+        border-top: var(--border--1);
     }
 }
 
 .accordion__item {
     border-bottom: var(--border--1);
 
-    + .accordion__item {
-        margin-top: space(20);
-    }
-
     :where(.accordion__item__heading) {
-        @apply content-width-2xs;
-
         padding: 0;
         margin: 0;
+        font-family: var(--font-rework), system-ui, sans-serif;
+        font-size: var(--type-base);
+        font-weight: 500;
     }
 
     :where(.accordion__item__header) {
         @apply button-reset;
-        @apply btn--ghost;
 
         display: grid;
         width: 100%;
         align-items: center;
         justify-content: space-between;
-        padding-bottom: spaceFluid(16, 20);
+        padding-block: spaceFluid(16, 20);
         margin: 0;
         background-color: transparent;
         color: var(--color-foreground);
-        column-gap: space(12);
+        column-gap: space(16);
+        cursor: pointer;
         grid-template-areas: 'content button';
         grid-template-columns: 1fr var(--accordion--btn--size);
         text-align: left;
 
         @media (hover: hover) {
             &:hover {
-                &::before {
-                    background-color: var(--btn--background-color--hover);
-                }
-
                 &::after {
-                    background-color: var(--btn--color-hover);
+                    background-color: var(--color-orange);
                 }
             }
         }
 
-        &:focus-within:focus-visible {
-            &::before {
-                background-color: var(--btn--background-color--hover);
-            }
-
-            &::after {
-                background-color: var(--btn--color-hover);
-            }
+        &:focus-visible {
+            @apply focus--1;
         }
 
         &[aria-expanded='true'] {
@@ -77,27 +65,19 @@
             }
         }
 
-        &::before,
         &::after {
             display: block;
             width: var(--accordion--btn--size);
             height: var(--accordion--btn--size);
+            background-color: var(--color-foreground);
+            border-radius: 50%;
             content: '';
             grid-area: button;
-        }
-
-        &::before {
-            border-radius: var(--border-radius--s);
-        }
-
-        &::after {
-            background-color: var(--color-hb-warm-grey);
-            content: '';
             mask-image: url('/images/icons/chevron-down.svg');
             mask-position: center;
             mask-repeat: no-repeat;
             mask-size: var(--accordion--icon--size);
-            transition: transition(transform);
+            transition: transition(transform, background-color);
         }
     }
 
@@ -107,8 +87,10 @@
         :where(.accordion__item__panel-inner) {
             @apply margin-trim;
 
-            max-width: var(--container-xs);
-            padding-bottom: spaceFluid(20, 24);
+            max-width: 65ch;
+            padding-bottom: spaceFluid(20, 32);
+            font-size: var(--type-base);
+            line-height: 1.6;
         }
     }
 }

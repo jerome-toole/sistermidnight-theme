@@ -125,10 +125,20 @@
 - Component at components/page-navigation/
 - Auto-prepends # to anchor values
 
+### 3.6 FAQ Accordion (2026-01-26)
+- [x] Expand/collapse works (Disclosure helper)
+- [x] Matches design styling (updated to Sister Midnight aesthetic)
+- [x] Accessible keyboard navigation (focus-visible, aria-expanded)
+- [x] Block discoverable as "FAQ" in editor (keywords added)
+- Updated styles: removed old color variables, circular chevron icon, orange hover
+- Updated ACF block title to "Accordion / FAQ" with keywords
+- Fixed typo in template (textwarm-black class removed)
+- Component at components/accordion/
+
 ## In Progress
 
 None
 
 ## Next Up
 
-### 3.6 FAQ Accordion (review)
+### 4.1 Newsletter Signup (new block)

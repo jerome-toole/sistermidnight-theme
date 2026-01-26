@@ -281,13 +281,13 @@ Jump links / table of contents.
 
 ---
 
-#### 3.6 FAQ Accordion [REVIEW]
-Already exists - review and style.
+#### 3.6 FAQ Accordion ✓
+Already exists - reviewed and styled.
 
 **Pass criteria:**
-- [ ] Expand/collapse works
-- [ ] Matches design styling
-- [ ] Accessible keyboard navigation
+- [x] Expand/collapse works
+- [x] Matches design styling
+- [x] Accessible keyboard navigation
 
 ---
 

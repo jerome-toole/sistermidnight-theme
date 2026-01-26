@@ -14,17 +14,17 @@
  */
 acf_register_block_type([
     'name' => 'accordion', // Name/key, alphanumeric characters and dashes only.
-    'title' => 'Accordion', // Label in block editor.
-    'description' => 'An accordion block', // A short description.
+    'title' => 'Accordion / FAQ', // Label in block editor.
+    'description' => 'Expandable accordion for FAQs and collapsible content.', // A short description.
     'category' => 'theme-blocks', // Core: common | formatting | layout | widgets | embed.
     'icon' => 'arrow-down-alt2', // https://developer.wordpress.org/resource/dashicons/
 
-    // Optional keywords to help users search for the block
-    // 'keywords' => [
-    //     'quote',
-    //     'mention',
-    //     'cite',
-    // ],
+    'keywords' => [
+        'faq',
+        'accordion',
+        'questions',
+        'collapse',
+    ],
 
     // The post types that can use this block.
     // 'post_types' => [

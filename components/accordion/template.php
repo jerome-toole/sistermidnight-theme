@@ -13,7 +13,7 @@
                         <?= \Geum\Components\Button::make(...$item['button']); ?>
 
                         <div <?= attributes($item['panel_attributes']); ?>>
-                            <div class="accordion__item__panel-inner textwarm-black">
+                            <div class="accordion__item__panel-inner">
                                 <?= wp_kses_post($item['content']) ?>
                             </div>
                         </div>
