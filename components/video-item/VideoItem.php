@@ -27,6 +27,7 @@ class VideoItem extends ComponentBase
         string $heading = '',
         string $content = '',
         string $video = '',
+        ?array $image = null,
         ...$others
     ): ?static {
         return static::createFromArgs(static::mergeArgs(get_defined_vars()));
