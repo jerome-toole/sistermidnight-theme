@@ -98,10 +98,18 @@
 - ACF fields: `heading` (text), `team_members` (repeater: name, role, image, bio)
 - Component at components/team-grid/
 
+### 3.3 Values List (2026-01-26)
+- [x] Numbers display prominently (large display font, 0.2 opacity)
+- [x] Multi-column layout on desktop (1-2 columns responsive)
+- [x] Scroll animation support (animate class)
+- [x] Block preview works in editor
+- ACF fields: `heading` (text), `intro` (textarea), `values` (repeater: title, description)
+- Component at components/values-list/
+
 ## In Progress
 
 None
 
 ## Next Up
 
-### 3.3 Values List (new block)
+### 3.4 Document Links (new block)

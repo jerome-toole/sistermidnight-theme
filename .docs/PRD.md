@@ -218,7 +218,7 @@ Grid of team member cards.
 
 ---
 
-#### 3.3 Values List [NEW BLOCK]
+#### 3.3 Values List ✓
 Numbered principles/values display.
 
 **Requirements:**
@@ -234,9 +234,9 @@ Numbered principles/values display.
   - `description` (textarea)
 
 **Pass criteria:**
-- [ ] Numbers display prominently
-- [ ] Multi-column layout on desktop
-- [ ] Matches manifesto section design
+- [x] Numbers display prominently
+- [x] Multi-column layout on desktop
+- [x] Matches manifesto section design
 
 ---
 
