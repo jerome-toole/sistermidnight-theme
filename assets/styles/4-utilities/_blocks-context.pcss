@@ -6,18 +6,23 @@
 
     margin-bottom: var(--blocks--margin-bottom);
 
-    // Block spacing
-    > * + * {
-        margin-top: var(--block--margin-top);
-    }
-
-// Prose elements get max-width constraint
+    // Prose elements get max-width constraint
     > :where(p, ul, ol, h1, h2, h3, h4, h5, h6) {
         max-width: var(--prose--max-width, 65ch);
+
+        @media (width >= theme('screens.md')) {
+            grid-column: 2 / 8;
+        }
     }
 
     // WordPress block-specific spacing
     > :where([class*='wp-block']) {
+        &:not(:first-child) {
+            margin-top: var(--block--margin-top);
+        }
+
+        margin-top: var(--block--margin-top);
+
         &:first-child {
             margin-top: 0;
         }

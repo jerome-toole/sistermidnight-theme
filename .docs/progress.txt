@@ -35,7 +35,7 @@
 - Typography preview section at /_dev/globals
 - Two-font system: SisterMidnight (h1, h2, hero), Rework (h3-h6, body)
 - Type utilities: type-hero, type-h1..h6, type-base, type-small, type-meta
-- Colors: white, paper, warm-warm-grey, warm-black, midnight-blue, deep-blue, orange, burnt-orange, pastel-yellow, pastel-red, pastel-green, teal-green, dark-olive
+- Colors: white, paper, warm-grey, warm-black, midnight-blue, deep-blue, orange, burnt-orange, pastel-yellow, pastel-red, pastel-green, teal-green, dark-olive
 
 ### 2.1 Homepage Hero (2026-01-26)
 - [x] SVG illustration placeholder (stars, leaves, moon, dancing figures)

@@ -3,14 +3,37 @@
     "title": "Block - Homepage Hero",
     "fields": [
         {
-            "key": "field_homepage_hero_heading",
-            "label": "Heading",
-            "name": "heading",
-            "type": "text",
-            "instructions": "Main headline for the hero section",
+            "key": "field_homepage_hero_line_1",
+            "label": "Line 1 (Headline)",
+            "name": "line_1",
+            "type": "textarea",
+            "instructions": "Main headline - displays largest. Use line breaks for multiple lines.",
             "required": 0,
             "default_value": "",
-            "placeholder": "A New Music Venue for Lewisham"
+            "placeholder": "A New Music Venue\nfor Lewisham",
+            "rows": 2
+        },
+        {
+            "key": "field_homepage_hero_line_2",
+            "label": "Line 2 (Subheadline)",
+            "name": "line_2",
+            "type": "textarea",
+            "instructions": "Secondary text - displays smaller. Use line breaks for multiple lines.",
+            "required": 0,
+            "default_value": "",
+            "placeholder": "Designed. Built. Danced in.\nPerformed In. Run and Owned",
+            "rows": 2
+        },
+        {
+            "key": "field_homepage_hero_line_3",
+            "label": "Line 3 (Emphasis)",
+            "name": "line_3",
+            "type": "textarea",
+            "instructions": "Emphasis text - displays large. Use line breaks for multiple lines.",
+            "required": 0,
+            "default_value": "",
+            "placeholder": "By You",
+            "rows": 2
         },
         {
             "key": "field_homepage_hero_cta",

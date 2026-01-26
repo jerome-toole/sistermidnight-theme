@@ -6,7 +6,7 @@ $object = \Geum\WordPress\PageObject::get();
 
 site_main_open(object: $object);
 
-if (! has_block('acf/page-header')) {
+if (! has_block('acf/page-header') && ! has_block('acf/homepage-hero')) {
     echo \Geum\Components\PageHeader::make(object: $object);
 }
 

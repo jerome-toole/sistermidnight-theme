@@ -16,19 +16,13 @@ class HomepageHero extends ComponentBase
 
     protected static function transform(array $args): array
     {
-        if (! empty($args['heading'])) {
-            $args['heading'] = [
-                'heading' => $args['heading'],
-                'el' => 'h1',
-                'classes' => ['homepage-hero__heading', 'is-style-type-hero'],
-            ];
-        }
-
         if (! empty($args['cta'])) {
             $args['cta'] = array_merge($args['cta'], [
                 'classes' => ['btn', 'homepage-hero__cta'],
             ]);
         }
+
+        $args['cta'] = null; // Temporarily disable CTA button
 
         return $args;
     }

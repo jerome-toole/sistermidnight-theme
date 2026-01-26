@@ -3,12 +3,12 @@
     "title": "Block - Instagram Feed",
     "fields": [
         {
-            "key": "field_instagram_feed_heading",
-            "label": "Heading",
-            "name": "heading",
+            "key": "field_instagram_feed_profile_url",
+            "label": "Profile URL",
+            "name": "profile_url",
             "aria-label": "",
-            "type": "text",
-            "instructions": "Optional section heading",
+            "type": "url",
+            "instructions": "Link to Instagram profile for \"see more\" link",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -17,10 +17,7 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "e.g. Follow us on Instagram",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "placeholder": "https://instagram.com/sistermidnight"
         },
         {
             "key": "field_instagram_feed_posts",

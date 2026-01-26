@@ -15,7 +15,7 @@
                 "foreground": "var(--color-warm-black)",
                 "block_editor": true
             },
-            "warm-warm-grey": {
+            "warm-grey": {
                 "color": "#B7AEA6",
                 "foreground": "var(--color-warm-black)"
             },

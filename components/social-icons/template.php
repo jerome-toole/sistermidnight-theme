@@ -3,14 +3,13 @@
         <?php foreach ($this->networks as $key => $network) { ?>
             <?php $value = $network['network']['value']; ?>
             <li class="social-icons__icon social-icons__icon--<?= esc_attr($value) ?>">
-                <a target="_blank" rel="noopener noreferrer" href="<?= esc_url($network['url']) ?>">
+                <a class="mask-icon" target="_blank" rel="noopener noreferrer" href="<?= esc_url($network['url']) ?>" style="--mask-icon: url('<?= staticUrl("images/social/$value.svg") ?>')">
+
                     <?php if (! empty($network['title'])) { ?>
                         <span class="screen-reader-text">
                             <?= wp_kses_post($network['title']); ?>
                         </span>
                     <?php } ?>
-
-                    <?= \Geum\SVG::get("social/$value.svg"); ?>
                 </a>
             </li>
         <?php } ?>

@@ -9,10 +9,6 @@ $container_classes = [
 ?>
 
 <div class="<?= classes($container_classes, $this->classes) ?>" <?= attributes($this->attributes) ?>>
-    <?php if (! empty($this->heading)) { ?>
-        <h2 class="instagram-feed__heading"><?= esc_html($this->heading) ?></h2>
-    <?php } ?>
-
     <div class="instagram-feed__grid">
         <?php foreach ($this->posts as $post) {
             $image = $post['image'] ?? null;
@@ -42,4 +38,10 @@ $container_classes = [
             </a>
         <?php } ?>
     </div>
+
+    <?php if (! empty($this->profile_url)) { ?>
+        <a class="instagram-feed__link" href="<?= esc_url($this->profile_url) ?>" target="_blank" rel="noopener">
+            <?= esc_html__('see more on insta', 'geum') ?> →
+        </a>
+    <?php } ?>
 </div>

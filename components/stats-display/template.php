@@ -1,26 +1,22 @@
 <?php
-$container_classes = [
-    'stats-display',
-    'wp-block',
-    'animate',
-];
-
-if ($this->is_compact) {
-    $container_classes[] = 'stats-display--compact';
-}
+$target = ! empty($this->target) ? floatval($this->target) : 0;
+$numeric_value = floatval(preg_replace('/[^0-9.]/', '', $this->value ?? '0'));
+$percentage = $target > 0 ? min(100, ($numeric_value / $target) * 100) : 85;
 ?>
 
-<div class="<?= classes($container_classes, $this->classes) ?>" <?= attributes($this->attributes) ?>>
-    <div class="stats-display__grid">
-        <?php foreach ($this->stats as $index => $stat) : ?>
-            <div class="stats-display__item animate-element" style="--animate--key: <?= $index ?>;">
-                <?php if (! empty($stat['value'])) : ?>
-                    <span class="stats-display__value"><?= esc_html($stat['value']) ?></span>
-                <?php endif; ?>
-                <?php if (! empty($stat['label'])) : ?>
-                    <span class="stats-display__label"><?= esc_html($stat['label']) ?></span>
-                <?php endif; ?>
-            </div>
-        <?php endforeach; ?>
+<div class="<?= classes(['stats-display', 'wp-block', 'animate'], $this->classes) ?>" <?= attributes($this->attributes) ?>>
+    <div class="stats-display__circle" style="--ring-percent: <?= $percentage ?>;">
+        <svg class="stats-display__ring" viewBox="0 0 200 200">
+            <circle class="stats-display__ring-bg" cx="100" cy="100" r="90" />
+            <circle class="stats-display__ring-progress" cx="100" cy="100" r="90" />
+        </svg>
+        <div class="stats-display__content">
+            <?php if (! empty($this->value)) { ?>
+                <span class="stats-display__value"><?= esc_html($this->value) ?></span>
+            <?php } ?>
+            <?php if (! empty($this->label)) { ?>
+                <span class="stats-display__label"><?= esc_html($this->label) ?></span>
+            <?php } ?>
+        </div>
     </div>
 </div>

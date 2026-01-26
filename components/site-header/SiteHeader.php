@@ -36,14 +36,6 @@ class SiteHeader extends ComponentBase
     {
         $args['site_name'] = \get_bloginfo('name');
 
-        if ($logo = \get_field('logo', 'option')) {
-            $args['logo'] = $logo;
-        }
-
-        if ($radio_url = \get_field('radio_url', 'option')) {
-            $args['radio_url'] = $radio_url;
-        }
-
         return $args;
     }
 }

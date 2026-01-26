@@ -3,12 +3,12 @@
     "title": "Block - Stats Display",
     "fields": [
         {
-            "key": "field_stats_display_stats",
-            "label": "Stats",
-            "name": "stats",
+            "key": "field_stats_display_value",
+            "label": "Value",
+            "name": "value",
             "aria-label": "",
-            "type": "repeater",
-            "instructions": "Add value/label pairs to display",
+            "type": "text",
+            "instructions": "",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -16,64 +16,19 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "field_stats_display_value",
-            "min": 1,
-            "max": 6,
-            "layout": "table",
-            "button_label": "Add Stat",
-            "rows_per_page": 20,
-            "sub_fields": [
-                {
-                    "key": "field_stats_display_value",
-                    "label": "Value",
-                    "name": "value",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "e.g. £351,725",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": "",
-                    "parent_repeater": "field_stats_display_stats"
-                },
-                {
-                    "key": "field_stats_display_label",
-                    "label": "Label",
-                    "name": "label",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "e.g. raised to date",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": "",
-                    "parent_repeater": "field_stats_display_stats"
-                }
-            ]
+            "default_value": "",
+            "placeholder": "e.g. £351,725",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         },
         {
-            "key": "field_stats_display_compact",
-            "label": "Compact Display",
-            "name": "compact",
+            "key": "field_stats_display_label",
+            "label": "Label",
+            "name": "label",
             "aria-label": "",
-            "type": "true_false",
-            "instructions": "Use smaller text and spacing",
+            "type": "text",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -81,11 +36,33 @@
                 "class": "",
                 "id": ""
             },
-            "message": "",
-            "default_value": 0,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
+            "default_value": "",
+            "placeholder": "e.g. Raised",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_stats_display_target",
+            "label": "Target",
+            "name": "target",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Ring shows % of target reached",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "e.g. 500000",
+            "min": 0,
+            "max": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [

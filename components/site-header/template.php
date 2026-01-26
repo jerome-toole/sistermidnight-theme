@@ -1,16 +1,7 @@
-<header class="<?= classes('site-header', $this->classes) ?>" <?= attributes($this->attributes) ?>>
+<header class="<?= classes('site-header color-context-deep-blue', $this->classes) ?>" <?= attributes($this->attributes) ?>>
     <div class="site-header__bar">
         <a href="<?= esc_url(home_url('/')) ?>" class="site-header__logo">
-            <?php if (! empty($this->logo['url'])) { ?>
-                <img
-                    src="<?= esc_url($this->logo['url']) ?>"
-                    alt="<?= esc_attr($this->site_name) ?>"
-                    width="<?= esc_attr($this->logo['width'] ?? '') ?>"
-                    height="<?= esc_attr($this->logo['height'] ?? '') ?>"
-                />
-            <?php } else { ?>
-                <?= esc_html($this->site_name) ?>
-            <?php } ?>
+            Sister Midnight
         </a>
 
         <nav class="site-header__nav" aria-label="<?= esc_attr__('Primary navigation', 'geum') ?>">
@@ -19,18 +10,11 @@
                 menu_id: 'main-menu-desktop',
                 classes: ['site-header__menu'],
             ); ?>
-
-            <?php if (! empty($this->radio_url)) { ?>
-                <a
-                    href="<?= esc_url($this->radio_url) ?>"
-                    class="site-header__radio-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <?= esc_html__('SMFM Radio', 'geum') ?>
-                </a>
-            <?php } ?>
         </nav>
+
+        <?= \Geum\Components\SocialIcons::make(
+            classes: ['site-header__social'],
+        ); ?>
 
         <button
             class="site-header__burger js-site-header-toggle"
@@ -51,16 +35,9 @@
                 classes: ['site-header__menu', 'site-header__menu--mobile'],
             ); ?>
 
-            <?php if (! empty($this->radio_url)) { ?>
-                <a
-                    href="<?= esc_url($this->radio_url) ?>"
-                    class="site-header__radio-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <?= esc_html__('SMFM Radio', 'geum') ?>
-                </a>
-            <?php } ?>
+            <?= \Geum\Components\SocialIcons::make(
+                classes: ['site-header__social', 'site-header__social--mobile'],
+            ); ?>
         </div>
     </div>
 </header>

@@ -13,24 +13,6 @@
                 ); ?>
             </div>
 
-            <div class="site-footer__brand">
-                <a href="<?= esc_url(home_url('/')) ?>" class="site-footer__logo">
-                    <?= \Geum\Image::get('logo-alt.svg', [
-                        'alt' => esc_attr($this->site_name),
-                    ]); ?>
-                </a>
-
-                <?php if (! empty($this->radio_url)) { ?>
-                    <a
-                        href="<?= esc_url($this->radio_url) ?>"
-                        class="site-footer__radio-link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <?= esc_html__('SMFM Radio', 'geum') ?>
-                    </a>
-                <?php } ?>
-            </div>
 
             <div class="site-footer__links">
                 <?= \Geum\Components\Menu::make(
@@ -54,7 +36,7 @@
         <?php } ?>
 
         <div class="site-footer__illustration" aria-hidden="true">
-            <?= \Geum\Image::get('footer-figures.svg'); ?>
+            <?= \Geum\Image::get('dancing-footer.svg'); ?>
         </div>
     </div>
 </footer>

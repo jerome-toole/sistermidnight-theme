@@ -16,13 +16,6 @@ class StatsDisplay extends ComponentBase
 
     protected static function validate(array $args): bool
     {
-        return ! empty($args['stats']);
-    }
-
-    protected static function transform(array $args): array
-    {
-        $args['is_compact'] = ! empty($args['compact']);
-
-        return $args;
+        return ! empty($args['value']);
     }
 }

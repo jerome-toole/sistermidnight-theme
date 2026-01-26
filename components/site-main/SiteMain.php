@@ -91,12 +91,6 @@ class SiteMain extends ComponentBase
             if ($args['object'] instanceof \WP_Post) {
                 $args['inner_el'] = 'article';
             }
-
-            if (! has_block('acf/page-header')) {
-                $args['header'] = \Geum\Components\PageHeader::make(
-                    object: $args['object'],
-                );
-            }
         }
 
         if (empty($args['id']) && empty($args['attributes']['id'])) {

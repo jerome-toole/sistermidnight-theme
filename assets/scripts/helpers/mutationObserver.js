@@ -20,30 +20,30 @@
  *
  */
 export function mutationObserver(node, options = {}) {
-  const observer = new MutationObserver(observerFn)
-  const { callback, ...opts } = options
-  observer.observe(node, opts)
+    const observer = new MutationObserver(observerFn);
+    const { callback, ...opts } = options;
+    observer.observe(node, opts);
 
-  function observerFn(entries) {
-    for (const entry of entries) {
-      // Callback pattern
-      if (options.callback) options.callback({ entry, entries, observer })
-      // Event listener pattern
-      else {
-        node.dispatchEvent(
-          new CustomEvent('mutate', {
-            detail: { entry, entries, observer },
-          })
-        )
-      }
+    function observerFn(entries) {
+        for (const entry of entries) {
+            // Callback pattern
+            if (options.callback) options.callback({ entry, entries, observer });
+            // Event listener pattern
+            else {
+                node.dispatchEvent(
+                    new CustomEvent('mutate', {
+                        detail: { entry, entries, observer },
+                    })
+                );
+            }
+        }
     }
-  }
 
-  return {
-    disconnect() {
-      const records = observer.takeRecords()
-      observer.disconnect()
-      if (records.length > 0) observerFn(records)
-    }
-  }
+    return {
+        disconnect() {
+            const records = observer.takeRecords();
+            observer.disconnect();
+            if (records.length > 0) observerFn(records);
+        },
+    };
 }

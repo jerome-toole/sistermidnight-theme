@@ -1,0 +1,20 @@
+.wp-block-group {
+    @apply margin-trim;
+
+    &.is-layout-grid {
+        display: grid;
+
+        @media (width < theme('screens.lg')) {
+            grid-template-columns: 1fr;
+        }
+
+        @media (width >= theme('screens.lg')) {
+            column-gap: var(--col-gap);
+            row-gap: var(--row-gap);
+
+            > * {
+                margin-block: 0;
+            }
+        }
+    }
+}

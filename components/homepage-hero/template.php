@@ -1,20 +1,33 @@
-<section class="<?= classes('homepage-hero', 'wp-block', 'color-context-paper', $this->classes) ?>" <?= attributes($this->attributes) ?>>
-    <div class="homepage-hero__illustration">
-        <?php
-        $svg_path = get_template_directory().'/public/build/images/hero-illustration.svg';
-if (file_exists($svg_path)) {
-    echo file_get_contents($svg_path);
-}
-?>
-    </div>
-
-    <div class="homepage-hero__content content-width-md">
-        <?php if (! empty($this->heading)) { ?>
-            <?= \Geum\Components\Heading::make(...$this->heading); ?>
+<section class="<?= classes('homepage-hero', 'section', $this->classes) ?>" <?= attributes($this->attributes) ?>>
+    <div class="homepage-hero__mobile-text">
+        <?php if (! empty($this->line_1)) { ?>
+            <h1 class="homepage-hero__line-1"><?= nl2br(esc_html($this->line_1)) ?></h1>
         <?php } ?>
-
-        <?php if (! empty($this->cta)) { ?>
-            <?= \Geum\Components\Link::make(...$this->cta); ?>
+        <?php if (! empty($this->line_2)) { ?>
+            <p class="homepage-hero__line-2"><?= nl2br(esc_html($this->line_2)) ?></p>
+        <?php } ?>
+        <?php if (! empty($this->line_3)) { ?>
+            <p class="homepage-hero__line-3"><?= nl2br(esc_html($this->line_3)) ?></p>
         <?php } ?>
     </div>
+
+    <div class="homepage-hero__graphic">
+        <?= \Geum\SVG::get(\Geum\Asset::path('build/images/homepage-header.svg'), ['asset' => false]); ?>
+
+        <div class="homepage-hero__text">
+            <?php if (! empty($this->line_1)) { ?>
+                <h1 class="homepage-hero__line-1"><?= nl2br(esc_html($this->line_1)) ?></h1>
+            <?php } ?>
+            <?php if (! empty($this->line_2)) { ?>
+                <p class="homepage-hero__line-2"><?= nl2br(esc_html($this->line_2)) ?></p>
+            <?php } ?>
+            <?php if (! empty($this->line_3)) { ?>
+                <p class="homepage-hero__line-3"><?= nl2br(esc_html($this->line_3)) ?></p>
+            <?php } ?>
+        </div>
+    </div>
+
+    <?php if (! empty($this->cta)) { ?>
+        <?= \Geum\Components\Link::make(...$this->cta); ?>
+    <?php } ?>
 </section>

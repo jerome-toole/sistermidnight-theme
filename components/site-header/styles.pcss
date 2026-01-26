@@ -3,7 +3,7 @@
 @layer base {
     :root {
         --site-header--height: space(60);
-        --site-header--top: var(--wp-admin-bar--height, 0px);
+        --site-header--top: var(--wp-admin--admin-bar--height, 0px);
         --site-header--menu--duration: 250ms;
         --site-header--menu--ease: ease-in-out;
 
@@ -21,7 +21,6 @@
     left: 0;
     right: 0;
     z-index: var(--z-index-site-header);
-    background-color: var(--color-off-white);
 
     @media (width >= theme('screens.site-header')) {
         --site-header--spacing: space(32);
@@ -52,25 +51,10 @@
     font-size: rem(18px);
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--color-warm-black);
     text-decoration: none;
 
     @media (width >= theme('screens.site-header')) {
         font-size: rem(22px);
-    }
-
-    img {
-        height: auto;
-        max-height: space(32);
-
-        @media (width >= theme('screens.site-header')) {
-            max-height: space(40);
-        }
-    }
-
-    &:hover,
-    &:focus {
-        color: var(--color-warm-black);
     }
 }
 
@@ -84,28 +68,23 @@
     }
 }
 
-.site-header__radio-link {
-    font-family: var(--font-rework);
-    font-size: rem(14px);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-warm-black);
-    text-decoration: none;
-    padding: space(8) space(16);
-    border: 1px solid var(--color-warm-black);
-    transition: background-color var(--transition--duration) var(--transition--ease),
-        color var(--transition--duration) var(--transition--ease);
 
-    &:hover,
-    &:focus {
-        background-color: var(--color-warm-black);
-        color: var(--color-off-white);
+.site-header__social {
+    display: none;
+
+    @media (width >= theme('screens.site-header')) {
+        display: flex;
+        align-items: center;
+        gap: space(16);
     }
 
-    .site-header__panel-content & {
-        display: inline-block;
+    &--mobile {
+        display: flex;
         margin-top: space(24);
+
+        @media (width >= theme('screens.site-header')) {
+            display: none;
+        }
     }
 }
 
