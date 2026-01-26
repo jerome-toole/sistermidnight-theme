@@ -1,0 +1,49 @@
+{
+    "key": "group_component_gallery",
+    "title": "Block - Gallery",
+    "fields": [
+        {
+            "key": "field_gallery_heading",
+            "label": "Heading",
+            "name": "heading",
+            "type": "text",
+            "instructions": "Section heading"
+        },
+        {
+            "key": "field_gallery_images",
+            "label": "Images",
+            "name": "images",
+            "type": "repeater",
+            "instructions": "Gallery images",
+            "layout": "block",
+            "button_label": "Add Image",
+            "min": 1,
+            "sub_fields": [
+                {
+                    "key": "field_gallery_image",
+                    "label": "Image",
+                    "name": "image",
+                    "type": "image",
+                    "return_format": "array",
+                    "preview_size": "medium"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/gallery"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "show_in_rest": 0
+}

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" fill="currentColor">
+  <!-- Placeholder for dancing figures illustration -->
+  <!-- Replace with actual SVG artwork -->
+  <g opacity="0.15">
+    <!-- Figure 1 - dancing person -->
+    <circle cx="80" cy="40" r="20"/>
+    <path d="M80 60 L80 120 M60 80 L100 80 M80 120 L60 160 M80 120 L100 160"/>
+
+    <!-- Figure 2 - jumping person -->
+    <circle cx="180" cy="35" r="20"/>
+    <path d="M180 55 L180 100 M155 70 L205 85 M180 100 L155 140 M180 100 L205 145"/>
+
+    <!-- Figure 3 - arms up -->
+    <circle cx="280" cy="50" r="20"/>
+    <path d="M280 70 L280 130 M250 50 L310 50 M280 130 L260 170 M280 130 L300 170"/>
+
+    <!-- Figure 4 - leaning -->
+    <circle cx="380" cy="45" r="20"/>
+    <path d="M380 65 L390 125 M355 80 L405 95 M390 125 L365 165 M390 125 L415 160"/>
+
+    <!-- Figure 5 - wide stance -->
+    <circle cx="480" cy="40" r="20"/>
+    <path d="M480 60 L480 110 M450 75 L510 75 M480 110 L440 165 M480 110 L520 165"/>
+
+    <!-- Figure 6 - one arm up -->
+    <circle cx="580" cy="45" r="20"/>
+    <path d="M580 65 L580 125 M555 90 L610 60 M580 125 L560 170 M580 125 L600 170"/>
+
+    <!-- Figure 7 - celebratory -->
+    <circle cx="680" cy="35" r="20"/>
+    <path d="M680 55 L680 115 M650 45 L710 45 M680 115 L655 160 M680 115 L705 160"/>
+
+    <!-- Figure 8 - dynamic pose -->
+    <circle cx="760" cy="50" r="20"/>
+    <path d="M760 70 L755 130 M730 85 L785 75 M755 130 L730 175 M755 130 L780 170"/>
+  </g>
+</svg>

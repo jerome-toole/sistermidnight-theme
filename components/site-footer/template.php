@@ -1,77 +1,60 @@
-<?php
-use Geum\Components\Image;
-
-?>
-
 <footer class="<?= classes('site-footer', $this->classes) ?>" <?= attributes($this->attributes) ?>>
-    <div class="site-footer__inner content-width-fluid-lg">
-        <div class="site-footer__top alignwide">
-            <div class="site-footer__logo">
-                <?= \Geum\Components\Link::make(
-                    url: home_url('/'),
-                    content: \Geum\Image::get('logo-alt.svg', [
-                        'alt' => get_bloginfo('name'),
-                    ]),
-                    content_filter: false,
+    <div class="site-footer__inner">
+        <div class="site-footer__main">
+            <div class="site-footer__contact">
+                <?php if ($this->footer_text_top) { ?>
+                    <div class="site-footer__text">
+                        <?= wp_kses_post($this->footer_text_top); ?>
+                    </div>
+                <?php } ?>
+
+                <?= \Geum\Components\SocialIcons::make(
+                    title: __('Visit our %s page', 'geum'),
                 ); ?>
             </div>
 
-            <?php if ($top_text = get_field('footer_text_top', 'option')) { ?>
-                <div class="site-footer__top-text">
-                    <?= wp_kses_post($top_text); ?>
-                </div>
-            <?php } ?>
+            <div class="site-footer__brand">
+                <a href="<?= esc_url(home_url('/')) ?>" class="site-footer__logo">
+                    <?= \Geum\Image::get('logo-alt.svg', [
+                        'alt' => esc_attr($this->site_name),
+                    ]); ?>
+                </a>
 
-            <?= \Geum\Components\Menu::make(
-                theme_location: 'footer-1',
-                max_depth: 1,
-                classes: [
-                    'site-footer__menu',
-                    'site-footer__menu-1',
-                ],
-                heading: true,
-            ); ?>
+                <?php if (! empty($this->radio_url)) { ?>
+                    <a
+                        href="<?= esc_url($this->radio_url) ?>"
+                        class="site-footer__radio-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <?= esc_html__('SMFM Radio', 'geum') ?>
+                    </a>
+                <?php } ?>
+            </div>
 
-            <?= \Geum\Components\Menu::make(
-                theme_location: 'footer-2',
-                max_depth: 1,
-                classes: [
-                    'site-footer__menu',
-                    'site-footer__menu-2',
-                ],
-                heading: true,
-            ); ?>
-
-            <div class="site-footer__right">
-                <?= \Geum\Components\SocialIcons::make(
-                    // translators: 1: Social network name.
-                    title: __('Visit our %s page', 'geum'),
+            <div class="site-footer__links">
+                <?= \Geum\Components\Menu::make(
+                    theme_location: 'footer-1',
+                    max_depth: 1,
+                    classes: ['site-footer__menu'],
                 ); ?>
 
-                <?php if (! empty($this->content['images'])) { ?>
-                    <div class="site-footer__images flex-grid">
-                        <?php foreach ($this->content['images'] as $image) { ?>
-                            <?php if (! empty($image['link_args'])) { ?>
-                                <?= \Geum\Components\Link::make(...$image['link_args']); ?>
-                            <?php } else { ?>
-                                <div class="site-footer__image img-fit">
-                                    <?= Image::make(...$image['image']); ?>
-                                </div>
-                            <?php } ?>
-                        <?php } ?>
+                <?php if ($this->footer_text_bottom) { ?>
+                    <div class="site-footer__copyright">
+                        <?= wp_kses_post($this->footer_text_bottom); ?>
                     </div>
                 <?php } ?>
             </div>
         </div>
 
-        <div class="site-footer__bottom">
-            <div class="site-footer__bottom__inner alignwide">
-                <?php if ($bottom_text = get_field('footer_text_bottom', 'option')) { ?>
-                    <div class="site-footer__bottom-text">
-                        <?= wp_kses_post($bottom_text); ?>
-                    </div>
-                <?php } ?>
+        <?php if ($this->footer_legal_text) { ?>
+            <div class="site-footer__legal">
+                <?= wp_kses_post($this->footer_legal_text); ?>
             </div>
+        <?php } ?>
+
+        <div class="site-footer__illustration" aria-hidden="true">
+            <?= \Geum\Image::get('footer-figures.svg'); ?>
         </div>
     </div>
 </footer>

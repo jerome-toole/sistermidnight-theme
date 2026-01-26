@@ -6,6 +6,11 @@ Community-owned music venue & radio station website for Sister Midnight in Catfo
 
 **Target audience**: Local music community, potential members/investors, press
 
+## Sources:
+- Colors: @.docs/figma-tokens.md - set up in @assets/theme-config.json
+- Front Page Design: @.docs/front-page.png
+- Standard Page Design: @.docs/page.png
+
 ---
 
 ## Task Breakdown
@@ -19,8 +24,8 @@ Boilerplate at @components/site-header/.
 
 **Requirements:**
 - Logo (from site settings)
-- Primary navigation menu
-- Radio link (external, new tab)
+- Primary navigation menu ✓ _menu created, assigned to `header` location_
+- Radio link (external, new tab) ✓ _added to Primary menu_
 - Mobile menu (burger)
 - Optional announcement banner slot
 
@@ -39,17 +44,17 @@ Build site footer with navigation, social, legal text.
 Boilerplate at @components/site-footer/.
 
 **Requirements:**
-- Footer navigation menu
+- Footer navigation menu ✓ _menu created, assigned to `footer-1` location_
 - Social icons (from site settings)
 - Legal text (FCA registration)
 - Copyright line
 - Dancing figures illustration
 
 **Pass criteria:**
-- [ ] All site settings fields render
-- [ ] Social icons link correctly
-- [ ] Legal text displays
-- [ ] Illustration positioned per design
+- [x] All site settings fields render
+- [x] Social icons link correctly
+- [x] Legal text displays
+- [x] Illustration positioned per design
 
 ---
 
@@ -60,6 +65,7 @@ Test at /_dev/globals route.
 
 **Requirements:**
 - Font stack setup (check .docs for specs)
+- Color setup @assets/theme-config.json
 - Heading scale (h1-h6)
 - Body text styles
 - Link styles (including within color contexts)
@@ -68,6 +74,7 @@ Test at /_dev/globals route.
 **Pass criteria:**
 - [ ] Fonts load correctly
 - [ ] Heading hierarchy is clear
+- [ ] Colors match the design
 
 ---
 
@@ -80,7 +87,7 @@ Full-width hero with SVG illustration and floating CTA.
 - SVG illustration display (svg in theme)
 - Main heading
 - Floating CTA button
-- Background color (beige)
+- Background color (off-white)
 
 **ACF Fields:**
 - `heading` (text)
@@ -332,7 +339,7 @@ Instagram posts grid (static for now).
 
 ### Phase 5: Pages
 
-#### 5.1 Homepage
+#### 5.1 Homepage ✓ _page created (ID 23), set as front page_
 Assemble homepage using blocks.
 
 **Sections:**
@@ -349,7 +356,7 @@ Assemble homepage using blocks.
 
 ---
 
-#### 5.2 About Page
+#### 5.2 About Page ✓ _page created (ID 24)_
 Article template with team, manifesto, history.
 
 **Sections:**
@@ -366,7 +373,7 @@ Article template with team, manifesto, history.
 
 ---
 
-#### 5.3 Membership Page
+#### 5.3 Membership Page ✓ _page created (ID 25)_
 Share offer / investment information.
 
 **Sections:**
@@ -385,7 +392,7 @@ Share offer / investment information.
 
 ---
 
-#### 5.4 Venue Page
+#### 5.4 Venue Page ✓ _page created (ID 26)_
 Venue information and gallery.
 
 **Sections:**
@@ -400,7 +407,7 @@ Venue information and gallery.
 
 ---
 
-#### 5.5 Contact Page
+#### 5.5 Contact Page ✓ _page created (ID 27)_
 Contact information and newsletter.
 
 **Sections:**
@@ -414,7 +421,7 @@ Contact information and newsletter.
 
 ---
 
-#### 5.6 404 Page
+#### 5.6 404 Page ✓ _page exists (ID 10)_
 Not found page.
 
 **Requirements:**
@@ -427,7 +434,7 @@ Not found page.
 
 ---
 
-#### 5.7 Search Results
+#### 5.7 Search Results ✓ _page exists (ID 9)_
 Search results page.
 
 **Requirements:**

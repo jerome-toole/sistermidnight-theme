@@ -21,8 +21,8 @@ Colors defined in `assets/theme-config.json`. Use CSS custom properties:
 
 ```pcss
 .component {
-    color: var(--color-neutral);
-    background: var(--color-neutral);
+    color: var(--color-off-white);
+    background: var(--color-off-white);
 }
 ```
 
@@ -36,8 +36,8 @@ Colors defined in `assets/theme-config.json`. Use CSS custom properties:
 Set background + foreground + link colors:
 
 ```php
-<section class="color-context-neutral">
-    <!-- Background: neutral, text: white, links: white -->
+<section class="color-context-off-white">
+    <!-- Background: off-white, text: white, links: white -->
 </section>
 ```
 

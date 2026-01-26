@@ -78,7 +78,7 @@
         width: 100%;
         height: 100%;
         min-height: 80px;
-        background: linear-gradient(135deg, var(--color-white) 25%, var(--color-beige) 100%);
+        background: linear-gradient(135deg, var(--color-white) 25%, var(--color-off-white) 100%);
     }
 </style>
 
@@ -369,16 +369,16 @@
         <small><code class="style-guide__code">.color-context-{color}</code> <code class="style-guide__code">.has-{color}-background-color</code></small>
         <p style="margin: 0.5rem 0;">Sets background color, foreground color, focus color, and link colors based on the color's configuration.</p>
         <div class="style-guide__demo" style="padding: 0; overflow: hidden; border-radius: var(--border-radius--m);">
-            <div class="color-context-stone" style="padding: 1.5rem;">
-                <strong>.color-context-stone</strong>
+            <div class="color-context-warm-black" style="padding: 1.5rem;">
+                <strong>.color-context-warm-black</strong>
                 <p style="margin: 0.5rem 0 0;">Text with <a href="#">a link</a> inherits correct colors.</p>
             </div>
             <div class="color-context-white" style="padding: 1.5rem;">
                 <strong>.color-context-white</strong>
                 <p style="margin: 0.5rem 0 0;">Text with <a href="#">a link</a> inherits correct colors.</p>
             </div>
-            <div class="color-context-beige" style="padding: 1.5rem;">
-                <strong>.color-context-beige</strong>
+            <div class="color-context-off-white" style="padding: 1.5rem;">
+                <strong>.color-context-off-white</strong>
                 <p style="margin: 0.5rem 0 0;">Text with <a href="#">a link</a> inherits correct colors.</p>
             </div>
         </div>
@@ -391,12 +391,12 @@
         <p style="margin: 0.5rem 0;">Sets only the foreground color (text, links, focus) without changing background.</p>
         <div class="style-guide__demo">
             <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
-                <div class="foreground-from-stone bg-stone">
-                    <strong>.foreground-from-stone</strong>
+                <div class="foreground-from-warm-black bg-warm-black">
+                    <strong>.foreground-from-warm-black</strong>
                     <p style="margin: 0;">With <a href="#">a link</a></p>
                 </div>
-                <div class="foreground-from-neutral bg-neutral">
-                    <strong>.foreground-from-neutral</strong>
+                <div class="foreground-from-off-white bg-off-white">
+                    <strong>.foreground-from-off-white</strong>
                     <p style="margin: 0;">With <a href="#">a link</a></p>
                 </div>
                 <div class="foreground-from-red bg-red">
@@ -488,12 +488,12 @@
         <small><code class="style-guide__code">.margin-trim</code> <code class="style-guide__code">.margin-trim-first</code> <code class="style-guide__code">.margin-trim-last</code></small>
         <div class="style-guide__demo">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                <div style="border: 2px solid var(--color-stone); padding: 0.5rem;">
+                <div style="border: 2px solid var(--color-warm-black); padding: 0.5rem;">
                     <p><strong>Without .margin-trim:</strong></p>
                     <p style="margin: 1rem 0;">Paragraph with margins</p>
                     <p style="margin: 1rem 0;">Another paragraph</p>
                 </div>
-                <div class="margin-trim" style="border: 2px solid var(--color-stone); padding: 0.5rem;">
+                <div class="margin-trim" style="border: 2px solid var(--color-warm-black); padding: 0.5rem;">
                     <p><strong>With .margin-trim:</strong></p>
                     <p style="margin: 1rem 0;">Paragraph with margins</p>
                     <p style="margin: 1rem 0;">Another paragraph</p>

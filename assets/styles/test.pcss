@@ -55,7 +55,7 @@
 	}
 
 	& .nested-child {
-		color: neutral;
+		color: off-white;
 
 		& .deeply-nested {
 			font-weight: bold;
@@ -65,7 +65,7 @@
 
 /* Test interact mixin */
 .test-interact {
-	color: neutral;
+	color: off-white;
 
 	@media (hover: hover) {
 		&:hover {
@@ -84,7 +84,7 @@
 /* Test button-reset utility */
 .test-button-reset {
 	@apply button-reset;
-	background: lightneutral;
+	background: lightoff-white;
 }
 
 /* Test btn--unstyled utility */
@@ -115,9 +115,9 @@
 /* Test that custom properties are available */
 .test-custom-properties {
 	/* Color custom properties */
-	color: var(--color-stone);
+	color: var(--color-warm-black);
 	background: var(--color-background);
-	border-color: hsl(var(--color-stone--hsl));
+	border-color: hsl(var(--color-warm-black--hsl));
 
 	/* Spacing custom properties */
 	margin: space(16);

@@ -1,0 +1,76 @@
+@import 'swiper/css' layer(vendor);
+
+
+media-gallery {
+    display: block;
+    padding-block: var(--space--layout);
+    overflow: clip;
+
+    .media-gallery__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: space(4);
+        margin-bottom: spaceFluid(24, 40);
+    }
+
+    .media-gallery__heading {
+        margin: 0;
+    }
+
+    .media-gallery__nav {
+        display: flex;
+        gap: spaceFluid(32, 40);
+    }
+
+    .media-gallery__prev,
+    .media-gallery__next {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font-size: rem(25);
+        color: inherit;
+        transition: opacity 0.2s;
+
+        &:hover {
+            opacity: 0.6;
+        }
+
+        &.swiper-button-disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        :where(.media-gallery__prev .btn__icon) {
+            rotate: 180deg;
+        }
+    }
+
+    .media-gallery__swiper {
+        overflow: visible;
+        width: 100%;
+    }
+
+    .swiper-wrapper {
+        align-items: flex-end;
+    }
+
+    .media-gallery__slide {
+        height: auto;
+        margin: 0;
+    }
+
+    .media-gallery__image {
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+        }
+    }
+}

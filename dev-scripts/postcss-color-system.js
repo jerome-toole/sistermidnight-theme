@@ -103,7 +103,7 @@ function resolveColorConfig(colorName, theme = 'base') {
 
 /**
  * Get foreground color value for a named color
- * @param {string} colorName - Color name (e.g., 'stone', 'neutral')
+ * @param {string} colorName - Color name (e.g., 'warm-black', 'off-white')
  * @returns {string|null} - Foreground color value or null
  */
 export function getForegroundColor(colorName) {

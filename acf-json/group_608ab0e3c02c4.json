@@ -7,7 +7,7 @@
             "label": "Footer Text - Top",
             "name": "footer_text_top",
             "type": "wysiwyg",
-            "instructions": "",
+            "instructions": "Contact information displayed in the footer (e.g., email, address).",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -26,7 +26,7 @@
             "label": "Footer Text - Bottom",
             "name": "footer_text_bottom",
             "type": "wysiwyg",
-            "instructions": "",
+            "instructions": "Copyright text (use [year] shortcode for dynamic year).",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -34,18 +34,18 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Company Name © [year]",
+            "default_value": "© [year] Sister Midnight",
             "tabs": "all",
             "toolbar": "basic_formatting",
             "media_upload": 0,
             "delay": 0
         },
         {
-            "key": "field_619cd38d2deef",
-            "label": "Footer Images",
-            "name": "footer_images",
-            "type": "repeater",
-            "instructions": "",
+            "key": "field_608ab0eae9601",
+            "label": "Legal Text",
+            "name": "footer_legal_text",
+            "type": "wysiwyg",
+            "instructions": "FCA registration and legal disclaimer text.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -53,52 +53,11 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "",
-            "min": 0,
-            "max": 0,
-            "layout": "table",
-            "button_label": "Add Image",
-            "sub_fields": [
-                {
-                    "key": "field_619cd39c2def0",
-                    "label": "Image",
-                    "name": "image",
-                    "type": "image",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array",
-                    "preview_size": "medium",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": "",
-                    "mime_types": ""
-                },
-                {
-                    "key": "field_619cd3a52def1",
-                    "label": "Link",
-                    "name": "link",
-                    "type": "link",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array"
-                }
-            ]
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic_formatting",
+            "media_upload": 0,
+            "delay": 0
         }
     ],
     "location": [
@@ -119,5 +78,5 @@
     "active": true,
     "description": "Options Page",
     "show_in_rest": 0,
-    "modified": 1659441122
+    "modified": 1737878400
 }

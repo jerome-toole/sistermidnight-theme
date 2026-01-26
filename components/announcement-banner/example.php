@@ -28,7 +28,7 @@ use Geum\Components\AnnouncementBanner;
         <?= AnnouncementBanner::make(
             show: true,
             message: 'New products arriving soon - stay tuned!',
-            background_color: 'stone',
+            background_color: 'warm-black',
         ); ?>
     </div>
 </section>
