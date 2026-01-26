@@ -3,33 +3,33 @@
  *
  */
 export function resizeObserver(node, options = {}) {
-  const observer = new ResizeObserver(observerFn)
-  const { callback, ...opts } = options
+    const observer = new ResizeObserver(observerFn);
+    const { callback } = options;
 
-  function observerFn(entries) {
-    for (const entry of entries) {
-      // Callback pattern
-      if (callback) callback({ entry, entries, observer })
-      // Event listener pattern
-      else {
-        node.dispatchEvent(
-          new CustomEvent('resize-obs', {
-            detail: { entry, entries, observer },
-          })
-        )
-      }
+    function observerFn(entries) {
+        for (const entry of entries) {
+            // Callback pattern
+            if (callback) callback({ entry, entries, observer });
+            // Event listener pattern
+            else {
+                node.dispatchEvent(
+                    new CustomEvent('resize-obs', {
+                        detail: { entry, entries, observer },
+                    })
+                );
+            }
+        }
     }
-  }
 
-  observer.observe(node)
+    observer.observe(node);
 
-  return {
-    unobserve(node) {
-      observer.unobserve(node)
-    },
+    return {
+        unobserve(node) {
+            observer.unobserve(node);
+        },
 
-    disconnect() {
-      observer.disconnect()
-    }
-  }
+        disconnect() {
+            observer.disconnect();
+        },
+    };
 }

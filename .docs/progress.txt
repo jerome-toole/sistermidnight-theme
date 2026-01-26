@@ -177,3 +177,13 @@ Testing, accessibility audit, SEO setup.
 ### PRD Checkboxes Updated (2026-01-26)
 Updated PRD pass criteria checkboxes for Phases 1-4 to reflect completed work.
 All component code complete; remaining tasks are content assembly (Phase 5) and QA (Phase 6).
+
+### Code Quality Fixes (2026-01-26)
+Fixed JS lint errors across multiple files:
+- Dialog.js: unused params (_e), template literal
+- quicktags.js: unused param (_id)
+- resizeObserver.js: unused destructured opts
+- vite.config.js: unused import (basename)
+- Disclosure.js: forEach implicit returns (4 instances)
+- dynamicElements.js: forEach implicit returns (2 instances)
+Build and lint pass (only biome schema version info + acceptable cookie warning remain).

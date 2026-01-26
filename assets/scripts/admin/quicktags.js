@@ -1,7 +1,7 @@
 /* global acf */
 
 if ('acf' in window && 'add_filter' in acf) {
-    acf.add_filter('wysiwyg_quicktags_settings', function addQuicktagsSettings(qtInit, id, field) {
+    acf.add_filter('wysiwyg_quicktags_settings', function addQuicktagsSettings(qtInit, _id, field) {
         if (field[0]) {
             const editorWrap = field[0].querySelector('[data-toolbar]');
 

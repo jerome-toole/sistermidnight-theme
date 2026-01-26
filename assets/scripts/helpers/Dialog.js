@@ -64,7 +64,7 @@ export default class Dialog {
         this.setScrollbarWidth();
     }
 
-    open(e) {
+    open(_e) {
         if (this.options.modal) {
             if (!this.options.allowBodyScroll) this.fixBody();
 
@@ -89,7 +89,7 @@ export default class Dialog {
         }
     }
 
-    close(e) {
+    close(_e) {
         this.el.close();
     }
 
@@ -123,7 +123,7 @@ export default class Dialog {
         // Use this to stop elements jumping when dialog is opened
         document.documentElement.style.setProperty(
             '--scrollbar-width',
-            window.innerWidth - document.documentElement.clientWidth + 'px'
+            `${window.innerWidth - document.documentElement.clientWidth}px`
         );
     }
 

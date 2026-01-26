@@ -123,7 +123,9 @@ export default class Disclosure {
 
         this.options.setInertAttribute && this.el.setAttribute('inert', true);
 
-        this.triggerElements.forEach((trigger) => trigger.setAttribute('aria-expanded', 'false'));
+        this.triggerElements.forEach((trigger) => {
+            trigger.setAttribute('aria-expanded', 'false');
+        });
 
         if (this.options.updateChildTabIndexes === true) {
             this.focusableItems.hideAllFromKeyboard();
@@ -184,7 +186,9 @@ export default class Disclosure {
             this.animation.cancel();
         }
 
-        this.triggerElements.forEach((trigger) => trigger.setAttribute('aria-expanded', 'true'));
+        this.triggerElements.forEach((trigger) => {
+            trigger.setAttribute('aria-expanded', 'true');
+        });
 
         if (this.options.updateChildTabIndexes === true) {
             this.focusableItems.resetTabIndex();
@@ -253,7 +257,7 @@ export default class Disclosure {
      */
     setUpElements() {
         // Bail early - invalid target element passed.
-        if (!this.el || !(this.el instanceof HTMLElement)) {
+        if (!(this.el && this.el instanceof HTMLElement)) {
             console.error('Invalid target element', this.el, this);
             return false;
         }
@@ -375,7 +379,9 @@ export default class Disclosure {
 
         if (this.options.collapseOnFocusout === true) {
             this.el.removeEventListener('focusout', this);
-            this.triggerElements.forEach((trigger) => trigger.removeEventListener('blur', this));
+            this.triggerElements.forEach((trigger) => {
+                trigger.removeEventListener('blur', this);
+            });
         }
 
         if (this.options.collapseOnEscape === true) {
@@ -422,7 +428,9 @@ export default class Disclosure {
 
         if (this.options.collapseOnFocusout === true) {
             this.el.addEventListener('focusout', this);
-            this.triggerElements.forEach((trigger) => trigger.addEventListener('blur', this));
+            this.triggerElements.forEach((trigger) => {
+                trigger.addEventListener('blur', this);
+            });
         }
 
         if (this.options.collapseOnEscape === true) {

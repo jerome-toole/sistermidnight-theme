@@ -1,4 +1,4 @@
-import { basename, resolve } from 'node:path';
+import { resolve } from 'node:path';
 import fg from 'fast-glob';
 import laravel from 'laravel-vite-plugin';
 import { defineConfig } from 'vite';
