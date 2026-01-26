@@ -21,7 +21,7 @@ class PageHeader extends ComponentBase
     {
         return [
             'image_position' => 'inset',
-            'background' => 'warm-black',
+            'background' => 'paper',
             'show_breadcrumbs' => true,
         ];
     }
@@ -160,9 +160,13 @@ class PageHeader extends ComponentBase
             ];
         }
 
-        if (! empty($args['background']) && $args['background'] !== 'none') {
-            $args['classes'][] = 'has-'.$args['background'].'-background-color';
-            $args['classes'][] = 'has-background';
+        // Use background_color from block settings if set, otherwise fall back to background prop
+        // buildComponentClasses will handle background_color, so only add classes for background if no background_color
+        if (empty($args['background_color'])) {
+            if (! empty($args['background']) && $args['background'] !== 'none') {
+                $args['classes'][] = 'has-'.$args['background'].'-background-color';
+                $args['classes'][] = 'has-background';
+            }
         }
 
         if (! empty($args['type'])) {

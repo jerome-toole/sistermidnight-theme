@@ -117,6 +117,34 @@
             "max_size": "",
             "mime_types": "",
             "preview_size": "medium"
+        },
+        {
+            "key": "field_page_header_overlay",
+            "label": "Image Overlay Opacity",
+            "name": "image_overlay_opacity",
+            "aria-label": "",
+            "type": "range",
+            "instructions": "Darkens the background image for better text readability.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63ef6f1307200",
+                        "operator": "!=empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "prepend": "",
+            "append": "%"
         }
     ],
     "location": [

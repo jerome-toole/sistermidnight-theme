@@ -35,17 +35,13 @@ acf_register_block_type([
     // An array of block features to support.
     'supports' => [
         'anchor' => true,
-        'align' => false, // Block alignment choices. 'false' to hide all.
-        // 'align_text' => true,
-        // 'align_content' => 'matrix',
+        'align' => false,
         'color' => [
-            'background' => false,
+            'background' => true,
             'text' => false,
             'gradients' => false,
-            // 'link' => false,
         ],
-        'multiple' => false, // Allows multiple instances of this block in one post. Default: true.
-        // 'lock' => false, // Allows users to lock or unlock this block. Default: true.
+        'multiple' => false,
     ],
 
     // Handle rendering the block
