@@ -62,10 +62,19 @@
 - [x] Block preview works in editor
 - ACF fields: `stats` (repeater: value, label), `compact` (true_false)
 
+### 2.4 Media Content / Feature Section (2026-01-26)
+- [x] Layout matches homepage sections (2-column grid)
+- [x] Column order reversible (media_side: left/right)
+- [x] Works with video embeds (via video-item component)
+- [x] CTA buttons with arrow style
+- Added keywords (feature, section) for block discoverability
+- Updated aspect ratio to 4/3 and increased gap spacing
+- ACF fields: `heading`, `subheading`, `content`, `button_1` (link), `media_type`, `image`, `video`, `media_side`
+
 ## In Progress
 
 None
 
 ## Next Up
 
-### 2.4 Media Content / Feature Section (review existing)
+### 2.5 Video Embed (review existing)
