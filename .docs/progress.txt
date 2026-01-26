@@ -89,10 +89,19 @@
 - ACF fields: `heading` (text), `links` (repeater: date, publication, url)
 - Component at components/press-links/
 
+### 3.2 Team Grid (2026-01-26)
+- [x] Grid responsive (1-2-3 columns via CSS custom property)
+- [x] Cards display all content (name, role, bio)
+- [x] Works without images (placeholder div)
+- [x] Block preview works in editor
+- [x] Scroll animation support (animate class)
+- ACF fields: `heading` (text), `team_members` (repeater: name, role, image, bio)
+- Component at components/team-grid/
+
 ## In Progress
 
 None
 
 ## Next Up
 
-### 3.2 Team Grid (new block)
+### 3.3 Values List (new block)

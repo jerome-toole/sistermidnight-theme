@@ -195,7 +195,7 @@ List of press coverage with dates.
 
 ---
 
-#### 3.2 Team Grid [NEW BLOCK]
+#### 3.2 Team Grid ✓
 Grid of team member cards.
 
 **Requirements:**
@@ -212,9 +212,9 @@ Grid of team member cards.
   - `image` (image)
 
 **Pass criteria:**
-- [ ] Grid responsive (1-2-3 columns)
-- [ ] Cards display all content
-- [ ] Works without images
+- [x] Grid responsive (1-2-3 columns)
+- [x] Cards display all content
+- [x] Works without images
 
 ---
 
