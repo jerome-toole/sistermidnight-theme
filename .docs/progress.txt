@@ -37,10 +37,19 @@
 - Type utilities: type-hero, type-h1..h6, type-base, type-small, type-meta
 - Colors: white, paper, warm-warm-grey, warm-black, midnight-blue, deep-blue, orange, burnt-orange, pastel-yellow, pastel-red, pastel-green, teal-green, dark-olive
 
+### 2.1 Homepage Hero (2026-01-26)
+- [x] SVG illustration placeholder (stars, leaves, moon, dancing figures)
+- [x] Heading displays with type-hero style
+- [x] Floating CTA button (fixed position, bottom right)
+- [x] Background color (paper via color-context)
+- [x] Block preview works in editor
+- ACF fields: `heading` (text), `cta` (link)
+- **Note:** SVG is placeholder - needs real artwork from design
+
 ## In Progress
 
 None
 
 ## Next Up
 
-### 2.1 Homepage Hero
+### 2.2 Page Header (review)
