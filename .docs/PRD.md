@@ -293,7 +293,7 @@ Already exists - reviewed and styled.
 
 ### Phase 4: Integration Components
 
-#### 4.1 Newsletter Signup [NEW BLOCK]
+#### 4.1 Newsletter Signup ✓
 Brevo email signup form.
 
 **Requirements:**
@@ -304,13 +304,13 @@ Brevo email signup form.
 
 **ACF Fields:**
 - `heading` (text)
-- `brevo_list_id` (text) - optional
+- `brevo_list_id` (number) - optional
 
 **Pass criteria:**
-- [ ] Form submits to Brevo
-- [ ] Success message displays
-- [ ] Error handling works
-- [ ] Matches design styling
+- [x] Form submits to Brevo
+- [x] Success message displays
+- [x] Error handling works
+- [x] Matches design styling
 
 ---
 

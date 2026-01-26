@@ -135,10 +135,22 @@
 - Fixed typo in template (textwarm-black class removed)
 - Component at components/accordion/
 
+### 4.1 Newsletter Signup (2026-01-26)
+- [x] Form submits to Brevo (REST API endpoint at /wp-json/theme/v1/newsletter)
+- [x] Success message displays
+- [x] Error handling works (validation, API errors, connection errors)
+- [x] Matches design styling (input-group pattern with btn--arrow)
+- [x] Block preview works in editor
+- ACF fields: `heading` (text), `brevo_list_id` (number - optional override)
+- Site settings: `brevo_api_key`, `brevo_default_list_id` (in Newsletter Settings group)
+- Component at components/newsletter-signup/
+- Module at Theme/Modules/Newsletter/ for Brevo API integration
+- JS handles form submission via fetch with loading/success/error states
+
 ## In Progress
 
 None
 
 ## Next Up
 
-### 4.1 Newsletter Signup (new block)
+### 4.2 Instagram Feed (new block)
