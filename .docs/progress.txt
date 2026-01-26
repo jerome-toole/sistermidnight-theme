@@ -1,0 +1,44 @@
+# Sister Midnight - Build Progress
+
+## Completed
+
+### 1.1 Site Header (2026-01-26)
+- [x] Logo displays (from ACF site settings or site name text)
+- [x] Logo links to home
+- [x] Primary menu renders (uses 'header' menu location)
+- [x] Radio link (external, new tab) from site settings
+- [x] Mobile burger menu toggles panel
+- [x] Fixed positioning with slide-in mobile panel
+- Removed search functionality (not in design)
+- Uses `logo` and `radio_url` ACF option fields
+
+### 1.2 Site Footer (2026-01-26)
+- [x] Logo displays (logo-alt.svg) and links to home
+- [x] Footer navigation menu (footer-1 location)
+- [x] Social icons from site settings
+- [x] Radio link (SMFM Radio, external, new tab)
+- [x] Contact text (footer_text_top field)
+- [x] Copyright text (footer_text_bottom field)
+- [x] Legal/FCA text (footer_legal_text field - new)
+- [x] Placeholder dancing figures illustration
+- 3-column responsive layout (contact | brand | links)
+- Updated ACF Footer field group with legal text field
+- **Note:** Dancing figures SVG is placeholder - needs real artwork
+
+### 1.3 Typography & Base Styles (2026-01-26)
+- [x] Fonts load correctly (SisterMidnight display, Rework body)
+- [x] Heading scale h1-h6 configured with fluid sizing
+- [x] Body text styles (Rework, fluid 17-19px)
+- [x] Link styles with color context support
+- [x] List styles (ul, ol, nested)
+- Added typography preview section to /_dev/globals route
+- Two-font system: SisterMidnight (h1, h2, hero), Rework (h3-h6, body)
+- Type utilities: type-hero, type-h1..h6, type-base, type-small, type-meta
+
+## In Progress
+
+None
+
+## Next Up
+
+### 2.1 Homepage Hero
