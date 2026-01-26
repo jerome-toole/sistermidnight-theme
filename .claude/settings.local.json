@@ -21,7 +21,8 @@
       "mcp__chrome-devtools__click",
       "Bash(composer install:*)",
       "mcp__chrome-devtools__resize_page",
-      "Bash(npm run fix:*)"
+      "Bash(npm run fix:*)",
+      "mcp__chrome-devtools__list_pages"
     ]
   }
 }

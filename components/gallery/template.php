@@ -21,11 +21,11 @@ $image_count = count($this->images ?? []);
             <?php if ($image_count > 1) { ?>
                 <div class="media-gallery__nav">
                     <button type="button" class="media-gallery__prev btn btn--ghost" aria-label="Previous slide">
-                        <span class="btn__icon" style="--btn--icon: url('<?= staticUrl('images/icons/arrow.svg') ?>')"></span>
+                        <span class="btn__icon" style="--btn--icon: url('<?= staticUrl('images/icons/chevron-right.svg') ?>')"></span>
                     </button>
 
                     <button type="button" class="media-gallery__next btn btn--ghost" aria-label="Next slide">
-                        <span class="btn__icon" style="--btn--icon: url('<?= staticUrl('images/icons/arrow.svg') ?>')"></span>
+                        <span class="btn__icon" style="--btn--icon: url('<?= staticUrl('images/icons/chevron-right.svg') ?>')"></span>
                     </button>
                 </div>
             <?php } ?>

@@ -169,15 +169,18 @@ abstract class ComponentBase
      * @param  mixed  $acf_fields  The ACF field values.
      * @param  string|null  $content  Inner block content.
      * @param  bool  $is_preview  Whether this is a preview render.
-     * @param  int|null  $post_id  The current post ID.
+     * @param  mixed  $post_id_or_block  Post ID (ACF <6.0) or WP_Block instance (ACF 6.0+).
+     * @param  mixed  $context  Additional context (ACF 6.0+).
      */
     public static function fromBlock(
         array $block,
         mixed $acf_fields = null,
         ?string $content = null,
         bool $is_preview = false,
-        ?int $post_id = null
+        mixed $post_id_or_block = null,
+        mixed $context = null
     ): ?static {
+        $post_id = is_int($post_id_or_block) ? $post_id_or_block : null;
         $args = Component::generateArgsFromBlock($block, $acf_fields, $content, $is_preview, $post_id);
 
         // Merge ACF fields into args

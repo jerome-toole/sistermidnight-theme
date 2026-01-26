@@ -1,6 +1,14 @@
 .wp-block-group {
     @apply margin-trim;
 
+    &.has-background {
+        padding-block: var(--space--layout);
+    }
+
+    &.alignfull {
+        @apply page-grid;
+    }
+
     &.is-layout-grid {
         display: grid;
 

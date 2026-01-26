@@ -56,21 +56,19 @@ media-gallery {
     }
 
     .swiper-wrapper {
-        align-items: flex-end;
+        align-items: stretch;
     }
 
     .media-gallery__slide {
-        height: auto;
+        width: auto;
+        height: 400px;
         margin: 0;
-    }
 
-    .media-gallery__image {
         img {
             display: block;
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4/5;
-            object-fit: cover;
+            width: auto;
+            height: 100%;
+            max-width: none;
         }
     }
 }

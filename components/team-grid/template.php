@@ -6,27 +6,22 @@ if (empty($this->items)) {
     return;
 }
 
-$container_classes = [
-    'team-grid',
-    'wp-block',
-    'animate',
-];
 ?>
 
-<section class="<?= classes($container_classes, $this->classes) ?>" <?= attributes($this->attributes) ?>>
+<section class="<?= classes('team-grid', 'wp-block', 'animate', 'section', $this->classes) ?>" <?= attributes($this->attributes) ?>>
     <?php if (! empty($this->heading)) { ?>
-        <h2 class="team-grid__heading"><?= esc_html($this->heading) ?></h2>
+        <div class="section__header">
+            <h2 class="team-grid__heading"><?= esc_html($this->heading) ?></h2>
+        </div>
     <?php } ?>
 
-    <div class="team-grid__grid">
+    <div class="team-grid__grid grid-simple">
         <?php foreach ($this->items as $index => $member) { ?>
             <div class="team-grid__item animate-element" style="--animate--key: <?= $index ?>;">
                 <?php if (! empty($member['image'])) { ?>
                     <div class="team-grid__image">
                         <?= Image::picture($member['image'], 'medium_large'); ?>
                     </div>
-                <?php } else { ?>
-                    <div class="team-grid__image team-grid__image--placeholder"></div>
                 <?php } ?>
 
                 <div class="team-grid__content">

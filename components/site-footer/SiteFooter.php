@@ -60,7 +60,7 @@ class SiteFooter extends ComponentBase
                     // Pre-create link args for images with links
                     if (! empty($link)) {
                         $image_data['link_args'] = array_merge($link, [
-                            'classes' => ['site-footer__image', 'img-fit'],
+                            'classes' => ['site-footer__image'],
                             'content' => \Geum\Components\Image::make(...$image),
                             'content_filter' => false,
                         ]);

@@ -17,5 +17,8 @@ acf_register_block_type([
         'anchor' => true,
         'align' => false,
     ],
-    'render_callback' => fn (...$args) => print \Geum\Components\Gallery::fromBlock(...$args),
+    'render_callback' => function ($block, $content, $is_preview, $post_id) {
+        $args = \Geum\Component::generateArgsFromBlock($block, get_fields());
+        echo \Geum\Components\Gallery::make(...$args);
+    },
 ]);

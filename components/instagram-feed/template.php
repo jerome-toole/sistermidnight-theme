@@ -2,14 +2,10 @@
 
 use Geum\Components\Image;
 
-$container_classes = [
-    'instagram-feed',
-    'wp-block',
-];
 ?>
 
-<div class="<?= classes($container_classes, $this->classes) ?>" <?= attributes($this->attributes) ?>>
-    <div class="instagram-feed__grid">
+<div class="<?= classes('instagram-feed', 'wp-block', 'alignwide', $this->classes) ?>" <?= attributes($this->attributes) ?>>
+    <div class="instagram-feed__grid grid-simple [--cols:2] md:[--cols:3]">
         <?php foreach ($this->posts as $post) {
             $image = $post['image'] ?? null;
             $url = $post['url'] ?? null;
@@ -32,7 +28,7 @@ $container_classes = [
             >
                 <?= Image::make(
                     id: $image_id,
-                    size: 'medium',
+                    size: 'large',
                     classes: ['instagram-feed__image'],
                 ); ?>
             </a>

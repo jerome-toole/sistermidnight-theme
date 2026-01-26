@@ -8,8 +8,8 @@ class Gallery extends HTMLElement {
 
 		this.swiper = new Swiper(swiperEl, {
 			modules: [Navigation, Keyboard, Mousewheel],
-			slidesPerView: 1.15,
-			spaceBetween: 24,
+			slidesPerView: 'auto',
+			spaceBetween: 16,
 			speed: 500,
 			grabCursor: true,
 			keyboard: {
@@ -26,12 +26,7 @@ class Gallery extends HTMLElement {
 			},
 			breakpoints: {
 				768: {
-					slidesPerView: 1.5,
-					spaceBetween: 32,
-				},
-				1024: {
-					slidesPerView: 2,
-					spaceBetween: 48,
+					spaceBetween: 24,
 				},
 			},
 		});

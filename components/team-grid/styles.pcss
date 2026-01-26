@@ -1,9 +1,4 @@
 :where(.team-grid) {
-    --animate--item--delay: 100ms;
-    --animate--duration: 500ms;
-    --animate--animation: animate--fade-in--translate;
-    --animate--translateY: 20px;
-
     padding-block: var(--space-lg);
 }
 
@@ -12,18 +7,14 @@
 }
 
 :where(.team-grid__grid) {
-    --grid--columns: 1;
-
-    @apply flex-grid;
-
-    gap: var(--space-xl) var(--space-lg);
+    --cols: 1;
 
     @media (min-width: theme('screens.md')) {
-        --grid--columns: 2;
+        --cols: 2;
     }
 
     @media (min-width: theme('screens.lg')) {
-        --grid--columns: 3;
+        --cols: 3;
     }
 }
 
