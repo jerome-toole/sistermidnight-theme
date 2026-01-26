@@ -2,62 +2,27 @@
 
 ## Overview
 
-**Title**: <!-- e.g., Acme Corp -->
-**Live URL**: <!-- e.g., https://acme.com -->
-**Staging URL**: <!-- e.g., https://staging.acme.com -->
+**Title**: Sister Midnight
+**Live URL**: https://www.sistermidnight.org
+**Staging URL**: TBD
 **PHP Version**: 8.2+
 
-<!-- Brief description of the website's purpose and target audience -->
+Community-owned music venue & radio station in Catford, Lewisham. Fundraising for a 250-capacity venue opening 2026. Target audience: local music community, potential members/investors, press.
+
+## Sources:
+- Colors: @.docs/figma-tokens.md - set up in @assets/theme-config.json
 
 ---
 
 ## Required Plugins
 
-<!-- All plugins auto-update. Add/remove as needed. -->
-
 - **ACF Pro** - Custom fields and Gutenberg blocks
 - **Yoast SEO** - SEO management
+- **Brevo** - Newsletter/mailing list
 
 ---
 
 ## Content Types
-
-<!--
-  Each content type includes:
-  - Basic config (URL, dashicon, supports, taxonomies)
-  - Archive routing (if applicable)
-  - Custom fields (if any)
-
-  Format:
-  ### slug
-  Description.
-
-  - URL: /url-structure/%postname%/
-  - Dashicon: dashicons-xxx
-  - Supports: title, editor, thumbnail, excerpt, etc.
-  - Taxonomies: category, post_tag, custom-tax
-
-  **Archive** (/archive-url/)
-  - Template: Listing
-  - Route: decorate:post_type:slug
-
-  **Fields:**
-  - **field_name** (type) - Description
--->
-
-### news_article
-News articles and blog posts.
-
-- URL: /news/%postname%/
-- Dashicon: dashicons-admin-post
-- Supports: title, editor, thumbnail, excerpt
-- Taxonomies: category, post_tag
-
-**Archive** (/news/)
-- Template: Listing
-- Route: decorate:post_type:news_article
-
----
 
 ### page
 Static pages.
@@ -68,97 +33,40 @@ Static pages.
 - Taxonomies: none
 - Has archive: no
 
-<!-- Example custom content type:
-### event
-Events and workshops.
-
-- URL: /events/%postname%/
-- Dashicon: dashicons-calendar-alt
-- Supports: title, editor, thumbnail, excerpt
-- Taxonomies: location, event_type
-
-**Archive** (/events/)
-- Template: Listing
-- Route: decorate:post_type:event
-
-**Fields:**
-- **start_date** (date_picker) - Event start date
-- **end_date** (date_picker) - Event end date
-- **venue** (text) - Venue name
--->
-
 ---
 
 ## Taxonomies
 
-<!--
-  Each taxonomy includes:
-  - Basic config (post types, hierarchical)
-  - Archive routing (if applicable)
-
-  Format:
-  ### slug
-  Description.
-
-  - Post types: news_article, event
-  - Hierarchical: yes/no
-
-  **Archive** (/archive-url/%slug%/)
-  - Template: Listing
-  - Route: decorate:taxonomy:slug
--->
-
-### category
-Post categories.
-
-- Post types: news_article
-- Hierarchical: yes
-
-**Archive** (/news/category/%slug%/)
-- Template: Listing
-- Route: decorate:taxonomy:category
-
----
-
-### post_tag
-Post tags.
-
-- Post types: news_article
-- Hierarchical: no
-
-**Archive** (/news/tag/%slug%/)
-- Template: Listing
-- Route: decorate:taxonomy:post_tag
-
-<!-- Example custom taxonomy:
-### location
-Event locations.
-
-- Post types: event
-- Hierarchical: yes
-
-**Archive** (/events/location/%slug%/)
-- Template: Listing
-- Route: decorate:taxonomy:location
--->
+None required.
 
 ---
 
 ## Standalone Routes
 
-<!--
-  Pages and routes not tied to content type archives.
-
-  Format:
-  ### Page Name (URL)
-  - Template: Default | Article | Listing | etc.
-  - Route: decorate:search | decorate:404 | route (for owned routes)
-  - Fields:
-    - **field_name** (type) - Description
--->
-
 ### Homepage (/)
 - Template: Default
+- Sections:
+  - Homepage Hero (SVG illustration, heading, floating CTA)
+  - Membership pitch (2-col: text + stats widget)
+  - Video embed
+  - Press section (2-col: image + links)
+  - Instagram feed + newsletter signup (2-col)
+
+### About Us (/about/)
+- Template: Article
+- Sections: intro, team, manifesto, venue teaser, history
+
+### Membership (/invest/)
+- Template: Article
+- Sections: stats, CTA, explanation, documents, FAQ
+
+### Venue (/venue/)
+- Template: Article
+- Sections: gallery, announcement, building info, features
+
+### Contact (/contact/)
+- Template: Default
+- Sections: contact emails, newsletter form
 
 ### Search Results (/search/)
 - Template: Default
@@ -168,128 +76,190 @@ Event locations.
 - Template: Default
 - Route: decorate:404
 
-<!-- Example standalone pages:
-### About (/about/)
-- Template: Article
-
-### Contact (/contact/)
-- Template: Default
-- Fields:
-  - **address** (textarea) - Physical address
-  - **phone** (text) - Contact phone number
-  - **email** (email) - Contact email
-
-### Account (/account/)
-- Template: Default
-- Route: route (owned)
--->
-
 ---
 
 ## Site Settings
 
-<!--
-  Global settings stored in ACF options page.
-
-  Format:
-  - **field_name** (type) - Description
-  - **field_name** (type, option: value) - With options
-  - **field_name** (group)
-    - **nested_field** (type)
-
-  Common types: text, textarea, wysiwyg, image, file, gallery, select,
-  checkbox, radio, true_false, link, page_link, post_object, relationship,
-  taxonomy, user, google_map, date_picker, color_picker, group, repeater
--->
-
 - **logo** (image, return: array) - Site logo
-- **logo_alt** (image, return: array) - Alternative logo (e.g., white version)
-- **footer_text** (textarea) - Footer copyright text
+- **logo_alt** (image, return: array) - Alternative logo (white version)
+- **footer_legal_text** (textarea) - FCA registration text
+- **footer_copyright** (text) - Copyright line
 - **social_links** (repeater)
-  - **platform** (select: facebook, twitter, instagram, linkedin, youtube)
+  - **platform** (select: facebook, instagram, twitter)
   - **url** (url)
+- **radio_url** (url) - Link to SMFM radio site
+- **membership_form_url** (url) - Tally form URL for share purchases
 
 ---
 
 ## Menus
 
-<!--
-  Format:
-  - **menu_location** - Description of where it appears
--->
-
 - **primary** - Main navigation in site header
-- **footer** - Footer navigation links
-
-<!-- Example:
-- **mobile** - Mobile-specific navigation menu
-- **social** - Social media links in footer
--->
+- **footer** - Footer navigation links (if needed)
 
 ---
 
 ## Components
 
-<!--
-  Each component includes:
-  - Name and block status
-  - Description
-  - Full ACF field group definition
+### Homepage Hero [Block]
 
-  Block status: [Block] = ACF Gutenberg block, [Partial] = PHP partial only
--->
-
-### Page Header [Block]
-
-Full-width hero section with heading, optional background image, and CTA.
+Homepage-specific hero with SVG illustration and floating CTA.
 
 **Fields:**
 - **heading** (text) - Main heading
-- **subheading** (textarea) - Supporting text
-- **background_image** (image, return: array)
-- **background_overlay** (true_false, default: true) - Dark overlay on image
-- **cta** (group)
-  - **link** (link) - Button link
-  - **style** (select: primary, secondary, default: primary)
-  - Conditional: show if `link` is not empty
+- **illustration** (image, return: array) - SVG/illustration asset (set in code)
+- **cta** (link) - Floating CTA button
 
-### Card [Block]
+### Page Header [Block] - Already built
 
-Content card with image, title, excerpt, and link.
+Full-width hero section with heading for inner pages.
 
 **Fields:**
-- **image** (image, return: array)
-- **title** (text)
-- **excerpt** (textarea)
-- **link** (link)
-- **style** (select: default, featured, minimal)
+- **heading** (text) - Main heading
+- **subheading** (textarea) - Supporting text (optional)
+- **image** (image, return: array) - Background image (optional)
 
-<!-- Add more components following the same format -->
+### Page Navigation [Block]
+
+Manual jump links/TOC for page sections.
+
+**Fields:**
+- **links** (repeater)
+  - **label** (text) - Link text
+  - **anchor** (text) - Target anchor ID (without #)
+
+### Team Grid [Block]
+
+Grid of team member cards.
+
+**Fields:**
+- **heading** (text) - Section heading
+- **team_members** (repeater)
+  - **name** (text) - Member name
+  - **role** (text) - Role/title
+  - **bio** (textarea) - Biography
+  - **image** (image, return: array) - Image (optional)
+
+### Values List [Block]
+
+Numbered values/principles display.
+
+**Fields:**
+- **heading** (text) - Section heading
+- **intro** (textarea) - Intro text
+- **values** (repeater)
+  - **title** (text) - Value title
+  - **description** (textarea) - Value description
+
+### FAQ Accordion [Block] - Already built
+
+Expandable Q&A list.
+
+**Fields:**
+- **heading** (text) - Section heading
+- **items** (repeater)
+  - **question** (text) - Question
+  - **answer** (wysiwyg) - Answer
+
+### Image Gallery [Block] - Already built
+
+Image carousel/gallery.
+
+**Fields:**
+- **images** (gallery, return: array) - Gallery images
+- **layout** (select: carousel, grid)
+
+### Press Links [Block]
+
+List of press coverage with dates.
+
+**Fields:**
+- **heading** (text) - Section heading
+- **links** (repeater)
+  - **date** (date_picker) - Publication date
+  - **publication** (text) - Publication name
+  - **url** (url) - Article URL
+
+### Video Embed [Block] - there is a version already built, review it
+
+Embedded video player.
+
+**Fields:**
+- **video_url** (url) - Video URL (YouTube/Vimeo)
+- **poster_image** (image, return: array) - Poster/thumbnail
+
+### Stats Display [Block]
+
+Fundraising progress or key stats. Manual entry for now, future Airtable sync via cron.
+
+**Fields:**
+- **stats** (repeater)
+  - **value** (text) - Stat value (e.g., "£365,050")
+  - **label** (text) - Stat label (e.g., "Raised")
+
+### Document Links [Block]
+
+List of downloadable documents.
+
+**Fields:**
+- **heading** (text) - Section heading
+- **documents** (repeater)
+  - **title** (text) - Document title
+  - **file** (file, return: array) - PDF file
+
+### Contact Info [Block] - already built - info-box
+
+Contact details display.
+
+
+### Newsletter Signup [Block]
+
+Email signup form via Brevo.
+
+**Fields:**
+- **heading** (text) - Form heading
+- **brevo_list_id** (text) - Brevo list ID (optional, use default if empty)
+-
+
+### Instagram Feed [Block]
+
+Instagram posts grid. Static ACF for now, will become server-side cached dynamic feed.
+
+**Fields:**
+- **heading** (text) - Section heading (optional)
+- **posts** (repeater)
+  - **image** (image, return: array) - Post image
+  - **url** (url) - Link to Instagram post
+  - **caption** (textarea) - Post caption (optional)
+
+### Feature Section [Block] - already built - media-content rename the block
+
+### Timeline - History section with dates/events (already exists, will be added)
 
 ---
 
 ## Integrations
 
-<!-- Third-party services and APIs -->
-
-<!-- Example:
-- **Google Maps** - Embedded maps on contact page
-  - API Key location: Theme Options > API Keys
-- **Mailchimp** - Newsletter signup
-  - List ID: abc123
-  - Connected forms: Footer newsletter, Blog sidebar
-- **HubSpot** - CRM integration
-  - Forms submit to HubSpot via API
--->
+- **Sister Midnight FM** - External radio site (radio.sistermidnight.org)
+  - Linked from header banner and nav
+- **Tally** - External form for share purchases
+  - URL stored in site settings
+- **Brevo** - Mailing list signup
+  - Newsletter signup form integration
 
 ---
 
 ## Other Functionality
 
-<!-- Custom features, cron jobs, CLI commands, special behaviors -->
+- **PDF hosting** - Share offer documents, business plan, society rules
+- **External link handling** - Radio links open in new tab
+- **Anchor navigation** - Jump links on About page
 
-<!-- Example:
-- **Event expiry** - Events automatically unpublished 24h after end date (wp-cron)
-- **Import CLI** - `wp import-events` pulls events from external API
-- **Member area** - Password-protected pages for logged-in users
--->
+---
+
+## Future Considerations
+
+- **Events** - Content type to be added later
+- **Updates** - Content type to be added later
+- **Airtable integration** - Stats Display block will fetch from Airtable via cron
+- **Instagram Feed** - Will become server-side cached dynamic feed
