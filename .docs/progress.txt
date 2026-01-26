@@ -54,10 +54,18 @@
 - Changed default background from warm-black to paper
 - ACF fields: `heading` (text), `subheading` (wysiwyg), `primary_call_to_action` (link), `image` (image), `image_overlay_opacity` (range)
 
+### 2.3 Stats Display (2026-01-26)
+- [x] Stats display prominently (large display font)
+- [x] Supports multiple stats (repeater, max 6)
+- [x] Animates on scroll (uses animate component)
+- [x] Compact display option
+- [x] Block preview works in editor
+- ACF fields: `stats` (repeater: value, label), `compact` (true_false)
+
 ## In Progress
 
 None
 
 ## Next Up
 
-### 2.3 Stats Display (new block)
+### 2.4 Media Content / Feature Section (review existing)
