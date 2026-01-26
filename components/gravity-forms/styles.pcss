@@ -46,7 +46,7 @@
         .gform_fields {
             grid-template-columns: repeat(12, minmax(0, 1fr)); /* Fix grid blowout */
 
-            @media only screen and (max-width: 641px) {
+            @media (max-width: theme('screens.sm')) {
                 input:not([type='radio']):not([type='checkbox']):not([type='image']):not([type='file']) {
                     line-height: inherit;
                 }

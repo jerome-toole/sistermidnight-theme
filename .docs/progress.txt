@@ -187,3 +187,10 @@ Fixed JS lint errors across multiple files:
 - Disclosure.js: forEach implicit returns (4 instances)
 - dynamicElements.js: forEach implicit returns (2 instances)
 Build and lint pass (only biome schema version info + acceptable cookie warning remain).
+
+### 6.1 Responsive Breakpoint Standardization (2026-01-26)
+Fixed hardcoded pixel breakpoints to use theme() references for consistency:
+- components/homepage-hero/styles.pcss: 768px → theme('screens.md') (3 instances)
+- components/instagram-feed/styles.pcss: 640px → theme('screens.sm'), 1024px → theme('screens.lg')
+- components/gravity-forms/styles.pcss: 641px → theme('screens.sm')
+All breakpoints now use Tailwind theme values for maintainability.
