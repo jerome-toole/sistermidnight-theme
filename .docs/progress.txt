@@ -147,10 +147,19 @@
 - Module at Theme/Modules/Newsletter/ for Brevo API integration
 - JS handles form submission via fetch with loading/success/error states
 
+### 4.2 Instagram Feed (2026-01-26)
+- [x] Grid displays images (responsive 2/3/4 columns)
+- [x] Images link to Instagram (target="_blank" with rel="noopener")
+- [x] Responsive grid layout
+- [x] Block preview works in editor
+- ACF fields: `heading` (text), `posts` (repeater: image, url, caption)
+- Component at components/instagram-feed/
+- Static feed (manual entry); dynamic feed is future scope
+
 ## In Progress
 
 None
 
 ## Next Up
 
-### 4.2 Instagram Feed (new block)
+### Phase 5: Pages

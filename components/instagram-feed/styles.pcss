@@ -1,0 +1,46 @@
+:where(.instagram-feed) {
+    padding-block: var(--space-lg);
+}
+
+:where(.instagram-feed__heading) {
+    margin-block-end: var(--space-md);
+}
+
+:where(.instagram-feed__grid) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xs);
+}
+
+:where(.instagram-feed__item) {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    transition: opacity 150ms ease;
+}
+
+:where(.instagram-feed__item:hover) {
+    opacity: 0.85;
+}
+
+:where(.instagram-feed__image) {
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+        object-fit: cover;
+    }
+}
+
+@media (min-width: 640px) {
+    :where(.instagram-feed__grid) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    :where(.instagram-feed__grid) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

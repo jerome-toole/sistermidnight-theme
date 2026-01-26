@@ -314,7 +314,7 @@ Brevo email signup form.
 
 ---
 
-#### 4.2 Instagram Feed [NEW BLOCK]
+#### 4.2 Instagram Feed ✓
 Instagram posts grid (static for now).
 
 **Requirements:**
@@ -331,9 +331,9 @@ Instagram posts grid (static for now).
   - `caption` (textarea) - optional
 
 **Pass criteria:**
-- [ ] Grid displays images
-- [ ] Images link to Instagram
-- [ ] Responsive grid layout
+- [x] Grid displays images
+- [x] Images link to Instagram
+- [x] Responsive grid layout
 
 ---
 
