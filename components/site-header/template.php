@@ -2,14 +2,8 @@
     <div class="site-header__bar">
         <?= \Geum\Components\Link::make(
             url: home_url('/'),
-            classes: ['site-header__logo', 'img-fit'],
-            title: \Geum\Image::get('logo-alt.svg', [
-                'alt' => get_bloginfo('name'),
-                'loading' => false,
-                'attributes' => [
-                    'data-spai-eager' => class_exists('\\ShortPixelAI') ? 'true' : null,
-                ],
-            ]),
+            classes: ['site-header__logo', 'type-h3'],
+            title: 'Howard Blake',
             content_filter: '',
         ); ?>
 
@@ -28,6 +22,7 @@
                     type="button">
                     <span class="btn__icon" data-show-collapsed style="--btn--icon: url('<?= staticUrl('images/icons/search.svg') ?>')"><span class="sr-only"><?= __('Open search', 'geum'); ?></span></span>
                     <span class="btn__icon" data-show-expanded style="--btn--icon: url('<?= staticUrl('images/icons/close.svg') ?>')"><span class="sr-only"><?= __('Close search', 'geum'); ?></span></span>
+                    <span class="sr-only"><?= __('Search', 'geum'); ?></span>
                 </button>
 
                 <div class="site-header__search-desktop" id="site-header-search-desktop" hidden>
@@ -35,8 +30,16 @@
                 </div>
             </div>
 
-            <?php if (! empty($this->content['call_to_action_1'])) { ?>
-                <?= \Geum\Components\Link::make(...$this->content['call_to_action_1']); ?>
+
+            <?php if (! empty($this->call_to_action_1)) { ?>
+                <?php if (! empty($this->call_to_action_1)) { ?>
+                    <?= \Geum\Components\Link::make(
+                        ...array_merge(
+                            $this->call_to_action_1,
+                            ['classes' => ['max-site-header:hidden', 'site-header__call-to-action']]
+                        )
+                    ); ?>
+                <?php } ?>
             <?php } ?>
         </nav>
 
@@ -78,8 +81,13 @@
                 classes: ['site-header__navigation'],
             ); ?>
 
-            <?php if (! empty($this->content['call_to_action_1'])) { ?>
-                <?= \Geum\Components\Link::make(...$this->content['call_to_action_1']); ?>
+            <?php if (! empty($this->call_to_action_1)) { ?>
+                <?= \Geum\Components\Link::make(
+                    ...array_merge(
+                        $this->call_to_action_1,
+                        ['classes' => ['site-header:hidden', 'site-header__call-to-action']]
+                    )
+                ); ?>
             <?php } ?>
         </div>
     </div>

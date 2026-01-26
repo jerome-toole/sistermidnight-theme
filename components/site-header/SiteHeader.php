@@ -36,10 +36,7 @@ class SiteHeader extends ComponentBase
     protected static function transform(array $args): array
     {
         if ($header_call_to_action_1 = get_field('header_call_to_action_1', 'option')) {
-            $args['content']['call_to_action_1'] = $header_call_to_action_1;
-            $args['content']['call_to_action_1']['classes'] = [
-                'site-header__call-to-action-1',
-            ];
+            $args['call_to_action_1'] = $header_call_to_action_1;
         }
 
         return $args;

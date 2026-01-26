@@ -1,9 +1,6 @@
 import debounce from 'lodash.debounce';
 import isElementVisible from '../../../assets/scripts/helpers/isElementVisible.js';
 
-const OFFSET_SELECTOR = '[data-header-offset]';
-const ADMIN_BAR_SELECTOR = '#wpadminbar';
-
 export default class SiteHeader {
     constructor(element) {
         this.el = element;
@@ -21,19 +18,14 @@ export default class SiteHeader {
     }
 
     init() {
-        this.calculateOffset();
-
-        const debouncedResize = debounce(() => {
-            this.calculateOffset();
-            if (!this.isMobileMode()) {
-                this.closeAllPanels();
-            }
-        }, 50);
-
-        window.addEventListener('resize', debouncedResize);
-
-        const observer = new MutationObserver(debounce(() => this.calculateOffset(), 50));
-        observer.observe(document.body, { childList: true, subtree: true });
+        window.addEventListener(
+            'resize',
+            debounce(() => {
+                if (!this.isMobileMode()) {
+                    this.closeAllPanels();
+                }
+            }, 50)
+        );
 
         this.menuTogglerEls.forEach((toggle) => {
             toggle.addEventListener('click', () => this.toggleMenu());
@@ -52,22 +44,6 @@ export default class SiteHeader {
                 this.closeAllPanels();
             }
         });
-    }
-
-    calculateOffset() {
-        let offset = 0;
-
-        const adminBar = document.querySelector(ADMIN_BAR_SELECTOR);
-        if (adminBar) {
-            offset += adminBar.offsetHeight;
-        }
-
-        document.querySelectorAll(OFFSET_SELECTOR).forEach((el) => {
-            offset += el.offsetHeight;
-        });
-
-        document.documentElement.style.setProperty('--site-header--top', `${offset}px`);
-        this.el.classList.add('site-header--positioned');
     }
 
     toggleMenu() {

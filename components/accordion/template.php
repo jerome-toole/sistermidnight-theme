@@ -1,7 +1,7 @@
-<section class="<?= classes('accordion', 'wp-block', $this->classes) ?>" <?= attributes($this->attributes) ?>>
-    <div class="accordion__inner content-width-sm">
+<section class="<?= classes($this->classes) ?>" <?= attributes($this->attributes) ?>>
+    <div class="accordion__inner">
         <?php if (! empty($this->heading)) { ?>
-            <div class="accordion__header">
+            <div class="accordion__header section__header">
                 <?= \Geum\Components\Heading::make(...$this->heading); ?>
             </div>
         <?php } ?>
@@ -12,8 +12,8 @@
                     <div class="accordion__item">
                         <?= \Geum\Components\Button::make(...$item['button']); ?>
 
-                        <div <?= \Geum\Helpers::buildAttributes($item['panel_attributes']); ?>>
-                            <div class="accordion__item__panel-inner">
+                        <div <?= attributes($item['panel_attributes']); ?>>
+                            <div class="accordion__item__panel-inner text-slate">
                                 <?= wp_kses_post($item['content']) ?>
                             </div>
                         </div>

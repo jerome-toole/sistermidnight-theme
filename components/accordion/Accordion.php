@@ -32,6 +32,8 @@ class Accordion extends ComponentBase
 
     protected static function transform(array $args): array
     {
+        $args['classes'] = array_merge(['accordion', 'section'], $args['classes'] ?? []);
+
         if (! empty($args['heading'])) {
             $args['heading'] = [
                 'heading' => $args['heading'],
