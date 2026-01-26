@@ -162,4 +162,16 @@ None
 
 ## Next Up
 
-### Phase 5: Pages
+### Phase 5: Pages (Content Assembly)
+Pages need blocks added via WordPress admin - not code tasks.
+
+### Phase 6: Polish & QA
+Testing, accessibility audit, SEO setup.
+
+---
+
+## Notes
+
+### PRD Checkboxes Updated (2026-01-26)
+Updated PRD pass criteria checkboxes for Phases 1-4 to reflect completed work.
+All component code complete; remaining tasks are content assembly (Phase 5) and QA (Phase 6).

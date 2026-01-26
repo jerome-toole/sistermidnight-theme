@@ -30,11 +30,11 @@ Boilerplate at @components/site-header/.
 - Optional announcement banner slot
 
 **Pass criteria:**
-- [ ] Logo displays and links to home
-- [ ] Primary menu renders all items
-- [ ] External links open in new tab
-- [ ] Mobile menu toggles correctly
-- [ ] Sticky behavior matches design
+- [x] Logo displays and links to home
+- [x] Primary menu renders all items
+- [x] External links open in new tab
+- [x] Mobile menu toggles correctly
+- [x] Sticky behavior matches design
 
 ---
 
@@ -72,9 +72,9 @@ Test at /_dev/globals route.
 - List styles
 
 **Pass criteria:**
-- [ ] Fonts load correctly
-- [ ] Heading hierarchy is clear
-- [ ] Colors match the design
+- [x] Fonts load correctly
+- [x] Heading hierarchy is clear
+- [x] Colors match the design
 
 ---
 
@@ -94,10 +94,10 @@ Full-width hero with SVG illustration and floating CTA.
 - `cta` (link)
 
 **Pass criteria:**
-- [ ] SVG renders correctly
-- [ ] Heading displays
-- [ ] CTA button floats as designed
-- [ ] Block preview works in editor
+- [x] SVG renders correctly
+- [x] Heading displays
+- [x] CTA button floats as designed
+- [x] Block preview works in editor
 
 ---
 
@@ -111,9 +111,9 @@ Already exists - review and style to match design.
 - Background color options
 
 **Pass criteria:**
-- [ ] Matches design for About/Membership pages
-- [ ] Image background option works
-- [ ] Text is readable on all backgrounds
+- [x] Matches design for About/Membership pages
+- [x] Image background option works
+- [x] Text is readable on all backgrounds
 
 ---
 
@@ -132,10 +132,10 @@ Fundraising stats widget.
   - `label` (text)
 
 **Pass criteria:**
-- [ ] Stats display prominently
-- [ ] Supports multiple stats
-- [ ] Animates on scroll
-- [ ] Matches design styling
+- [x] Stats display prominently
+- [x] Supports multiple stats
+- [x] Animates on scroll
+- [x] Matches design styling
 
 ---
 
@@ -149,9 +149,9 @@ Already exists as `media-content` - review and potentially rename (at least in b
 - Text includes heading, body, optional CTA
 
 **Pass criteria:**
-- [ ] Layout matches homepage sections
-- [ ] Column order reversible
-- [ ] Works with video embeds
+- [x] Layout matches homepage sections
+- [x] Column order reversible
+- [x] Works with video embeds
 
 ---
 
@@ -164,10 +164,10 @@ Already exists as `video-item` - review for use.
 - Responsive aspect ratio
 
 **Pass criteria:**
-- [ ] Embeds YouTube videos
-- [ ] Poster image shows before play
-- [ ] Youtube should load after play click
-- [ ] Responsive sizing
+- [x] Embeds YouTube videos
+- [x] Poster image shows before play
+- [x] Youtube should load after play click
+- [x] Responsive sizing
 
 ---
 
