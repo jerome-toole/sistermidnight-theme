@@ -2,7 +2,6 @@
 
 namespace Geum\Components;
 
-use Geum\Component;
 use Geum\ComponentBase;
 
 /**
@@ -35,8 +34,14 @@ class SiteHeader extends ComponentBase
      */
     protected static function transform(array $args): array
     {
-        if ($header_call_to_action_1 = get_field('header_call_to_action_1', 'option')) {
-            $args['call_to_action_1'] = $header_call_to_action_1;
+        $args['site_name'] = \get_bloginfo('name');
+
+        if ($logo = \get_field('logo', 'option')) {
+            $args['logo'] = $logo;
+        }
+
+        if ($radio_url = \get_field('radio_url', 'option')) {
+            $args['radio_url'] = $radio_url;
         }
 
         return $args;
