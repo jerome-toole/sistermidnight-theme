@@ -46,10 +46,18 @@
 - ACF fields: `heading` (text), `cta` (link)
 - **Note:** SVG is placeholder - needs real artwork from design
 
+### 2.2 Page Header (2026-01-26)
+- [x] Matches design for About/Membership pages
+- [x] Image background option works (with overlay opacity)
+- [x] Text readable on all backgrounds (via color context system)
+- [x] WordPress block editor background color picker enabled
+- Changed default background from warm-black to paper
+- ACF fields: `heading` (text), `subheading` (wysiwyg), `primary_call_to_action` (link), `image` (image), `image_overlay_opacity` (range)
+
 ## In Progress
 
 None
 
 ## Next Up
 
-### 2.2 Page Header (review)
+### 2.3 Stats Display (new block)
