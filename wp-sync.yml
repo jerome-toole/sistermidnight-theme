@@ -17,11 +17,11 @@ push:
     db_backup: false
 
 environments:
-    # staging:
-    # host: user@host
-    # port: 722
-    # path: /home/.../public_html
+    staging:
+        host: smstage@185.219.237.45
+        port: 2223
+        path: /home/smstage/site/public_html
 
-    production:
-        host: user@host
-        path: /home/.../public_html
+    # production:
+    #     host: user@host
+    #     path: /home/.../public_html
