@@ -121,9 +121,11 @@
 - [x] Sticky option (sticky class modifier)
 - [x] Works with page sections
 - [x] Block preview works in editor
+- [x] Active state on current section (IntersectionObserver)
 - ACF fields: `links` (repeater: label, anchor), `sticky` (true_false)
 - Component at components/page-navigation/
 - Auto-prepends # to anchor values
+- Added scripts.js for scroll-based active link highlighting
 
 ### 3.6 FAQ Accordion (2026-01-26)
 - [x] Expand/collapse works (Disclosure helper)

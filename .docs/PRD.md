@@ -276,7 +276,7 @@ Jump links / table of contents.
 
 **Pass criteria:**
 - [x] Links scroll to anchors
-- [ ] Active state on current section (optional)
+- [x] Active state on current section (optional)
 - [x] Works with page sections
 
 ---
