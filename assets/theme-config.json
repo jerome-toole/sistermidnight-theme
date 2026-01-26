@@ -1,58 +1,120 @@
 {
     "colors": {
         "base": {
-            "neutral": {
-                "color": "#FBFAF7"
-            },
-            "beige": {
-                "color": "#F1F0EB"
-            },
             "white": {
-                "color": "#fff",
-                "foreground": "var(--color-black)",
+                "color": "#FEFAF9",
+                "foreground": "var(--color-warm-black)",
                 "block_editor": true
             },
-            "slate": {
-                "color": "#4B5157",
-                "foreground": "var(--color-white)",
-                "properties": {
-                    "--link--color": "var(--color-white)",
-                    "--link--color-hover": "var(--color-white)"
-                }
+            "off-white": {
+                "color": "#FEFAF9",
+                "foreground": "var(--color-warm-black)"
             },
-            "stone": {
-                "color": "#CBCBCA"
+            "paper": {
+                "color": "#EAE6E0",
+                "foreground": "var(--color-warm-black)",
+                "block_editor": true
+            },
+            "warm-grey": {
+                "color": "#B7AEA6",
+                "foreground": "var(--color-warm-black)"
             },
             "warm-black": {
-                "color": "#212121"
-            },
-            "grey": {
-                "color": "#6A6A6A",
+                "color": "#312825",
                 "foreground": "var(--color-white)",
                 "properties": {
                     "--link--color": "var(--color-white)",
-                    "--link--color-hover": "var(--color-white)"
-                }
-            },
-            "red": {
-                "color": "#ad474b",
-                "foreground": "var(--color-white)",
-                "properties": {
-                    "--link--color": "var(--color-white)",
-                    "--link--color-hover": "var(--color-white)"
-                }
+                    "--link--color-hover": "var(--color-orange)"
+                },
+                "block_editor": true
             },
             "black": {
-                "color": "#000"
+                "color": "#000000",
+                "foreground": "var(--color-white)",
+                "properties": {
+                    "--link--color": "var(--color-white)",
+                    "--link--color-hover": "var(--color-orange)"
+                }
+            },
+            "midnight-blue": {
+                "color": "#2A3046",
+                "foreground": "var(--color-white)",
+                "properties": {
+                    "--link--color": "var(--color-white)",
+                    "--link--color-hover": "var(--color-orange)"
+                },
+                "block_editor": true
+            },
+            "deep-blue": {
+                "color": "#1F1C2B",
+                "foreground": "var(--color-white)",
+                "properties": {
+                    "--link--color": "var(--color-white)",
+                    "--link--color-hover": "var(--color-orange)"
+                },
+                "block_editor": true
+            },
+            "orange": {
+                "color": "#D14C24",
+                "foreground": "var(--color-white)",
+                "properties": {
+                    "--link--color": "var(--color-white)",
+                    "--link--color-hover": "var(--color-white)"
+                },
+                "block_editor": true
+            },
+            "burnt-orange": {
+                "color": "#B57325",
+                "foreground": "var(--color-white)",
+                "properties": {
+                    "--link--color": "var(--color-white)",
+                    "--link--color-hover": "var(--color-white)"
+                }
+            },
+            "pastel-yellow": {
+                "color": "#ECD89E",
+                "foreground": "var(--color-warm-black)",
+                "block_editor": true
+            },
+            "pastel-red": {
+                "color": "#B06057",
+                "foreground": "var(--color-white)",
+                "properties": {
+                    "--link--color": "var(--color-white)",
+                    "--link--color-hover": "var(--color-white)"
+                },
+                "block_editor": true
+            },
+            "pastel-green": {
+                "color": "#D8DFC8",
+                "foreground": "var(--color-warm-black)",
+                "block_editor": true
+            },
+            "teal-green": {
+                "color": "#1CAA7F",
+                "foreground": "var(--color-white)",
+                "properties": {
+                    "--link--color": "var(--color-white)",
+                    "--link--color-hover": "var(--color-white)"
+                },
+                "block_editor": true
+            },
+            "dark-olive": {
+                "color": "#53490A",
+                "foreground": "var(--color-white)",
+                "properties": {
+                    "--link--color": "var(--color-white)",
+                    "--link--color-hover": "var(--color-pastel-yellow)"
+                }
             },
             "foreground": {
                 "namedColor": "warm-black"
             },
             "background": {
-                "namedColor": "neutral"
+                "namedColor": "paper"
             },
             "error": {
-                "namedColor": "red"
+                "namedColor": "pastel-red"
             }
         }
     }
