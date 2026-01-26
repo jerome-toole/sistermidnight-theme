@@ -1,0 +1,41 @@
+{
+    "key": "group_component_homepage_hero",
+    "title": "Block - Homepage Hero",
+    "fields": [
+        {
+            "key": "field_homepage_hero_heading",
+            "label": "Heading",
+            "name": "heading",
+            "type": "text",
+            "instructions": "Main headline for the hero section",
+            "required": 0,
+            "default_value": "",
+            "placeholder": "A New Music Venue for Lewisham"
+        },
+        {
+            "key": "field_homepage_hero_cta",
+            "label": "Call to Action",
+            "name": "cta",
+            "type": "link",
+            "instructions": "Floating CTA button (appears fixed at bottom right)",
+            "required": 0,
+            "return_format": "array"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/homepage-hero"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "show_in_rest": 0
+}

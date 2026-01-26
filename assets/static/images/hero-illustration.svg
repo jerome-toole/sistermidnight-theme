@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" fill="currentColor">
+  <!-- Placeholder for hero illustration -->
+  <!-- Replace with actual SVG artwork (stars, leaves, moon, dancing figures) -->
+  <g opacity="0.85">
+    <!-- Stars -->
+    <path d="M100 50 L105 65 L120 65 L108 75 L113 90 L100 80 L87 90 L92 75 L80 65 L95 65 Z"/>
+    <path d="M700 40 L703 50 L713 50 L705 57 L708 67 L700 60 L692 67 L695 57 L687 50 L697 50 Z"/>
+    <path d="M400 20 L404 33 L418 33 L407 42 L411 55 L400 46 L389 55 L393 42 L382 33 L396 33 Z"/>
+    <path d="M200 80 L202 87 L210 87 L204 92 L206 99 L200 94 L194 99 L196 92 L190 87 L198 87 Z"/>
+    <path d="M600 70 L602 77 L610 77 L604 82 L606 89 L600 84 L594 89 L596 82 L590 77 L598 77 Z"/>
+
+    <!-- Crescent moon -->
+    <path d="M650 120 A40 40 0 1 1 650 200 A30 30 0 1 0 650 120"/>
+
+    <!-- Decorative leaves/botanical elements -->
+    <ellipse cx="150" cy="180" rx="15" ry="40" transform="rotate(-30 150 180)"/>
+    <ellipse cx="170" cy="200" rx="12" ry="35" transform="rotate(10 170 200)"/>
+    <ellipse cx="130" cy="210" rx="10" ry="30" transform="rotate(-50 130 210)"/>
+
+    <ellipse cx="650" cy="250" rx="15" ry="40" transform="rotate(30 650 250)"/>
+    <ellipse cx="630" cy="270" rx="12" ry="35" transform="rotate(-10 630 270)"/>
+    <ellipse cx="670" cy="280" rx="10" ry="30" transform="rotate(50 670 280)"/>
+
+    <!-- Dancing figures silhouettes -->
+    <g transform="translate(250, 200)">
+      <circle cx="0" cy="0" r="15"/>
+      <path d="M0 15 L0 55 M-20 30 L20 35 M0 55 L-15 90 M0 55 L18 88" stroke-width="4" stroke="currentColor" fill="none"/>
+    </g>
+
+    <g transform="translate(350, 190)">
+      <circle cx="0" cy="0" r="15"/>
+      <path d="M0 15 L5 60 M-18 25 L22 40 M5 60 L-10 95 M5 60 L25 92" stroke-width="4" stroke="currentColor" fill="none"/>
+    </g>
+
+    <g transform="translate(450, 195)">
+      <circle cx="0" cy="0" r="15"/>
+      <path d="M0 15 L-3 55 M-25 20 L20 20 M-3 55 L-20 90 M-3 55 L15 88" stroke-width="4" stroke="currentColor" fill="none"/>
+    </g>
+
+    <g transform="translate(550, 205)">
+      <circle cx="0" cy="0" r="15"/>
+      <path d="M0 15 L0 50 M-15 35 L25 25 M0 50 L-18 85 M0 50 L20 82" stroke-width="4" stroke="currentColor" fill="none"/>
+    </g>
+
+    <!-- Additional decorative dots -->
+    <circle cx="80" cy="150" r="4"/>
+    <circle cx="720" cy="160" r="4"/>
+    <circle cx="300" cy="60" r="3"/>
+    <circle cx="500" cy="50" r="3"/>
+    <circle cx="180" cy="120" r="5"/>
+    <circle cx="620" cy="100" r="5"/>
+  </g>
+</svg>
