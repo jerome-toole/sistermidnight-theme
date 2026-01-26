@@ -41,6 +41,7 @@ class MediaContent extends ComponentBase
         ?string $media_side = null,
         ?bool $reverse = null,
         ?string $media = null,
+        ?array $button_1 = null,
         ...$others
     ): ?static {
         return static::createFromArgs(static::mergeArgs(get_defined_vars()));
@@ -57,6 +58,7 @@ class MediaContent extends ComponentBase
         if (! empty($args['button_1'])) {
             $args['button_1']['classes'] = [
                 'btn',
+                'btn--arrow',
             ];
         }
 

@@ -1,10 +1,10 @@
 .media-content {
-    --media-content--aspect-ratio: 16 / 9;
+    --media-content--aspect-ratio: 4 / 3;
     --media-content--outer-padding-y: var(--block--padding-y);
     --media-content--outer-padding-x: var(--block--padding-x);
     --media-content--inner-padding-y: 0px;
     --media-content--content--max-width: 28.125rem; /* 450px */
-    --media-content--gap: spaceFluid(16, 24);
+    --media-content--gap: spaceFluid(24, 48);
 
     @media (min-width: theme('screens.md')) {
         --media-content--inner-padding-y: var(--block--padding-y);
@@ -16,8 +16,6 @@
         place-items: center;
 
         @media (min-width: theme('screens.md')) {
-            --media-content--aspect-ratio: 4 / 3;
-
             gap: var(--media-content--gap, 0);
             grid-template-areas: 'media content .';
             grid-template-columns: 50% 1fr 0fr;

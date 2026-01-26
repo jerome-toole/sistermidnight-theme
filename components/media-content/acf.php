@@ -19,12 +19,13 @@ acf_register_block_type([
     'category' => 'theme-blocks', // Core: common | formatting | layout | widgets | embed.
     'icon' => 'id', // https://developer.wordpress.org/resource/dashicons/
 
-    // Optional keywords to help users search for the block
-    // 'keywords' => [
-    //     'quote',
-    //     'mention',
-    //     'cite',
-    // ],
+    'keywords' => [
+        'feature',
+        'section',
+        'media',
+        'image',
+        'video',
+    ],
 
     // The post types that can use this block.
     // 'post_types' => [

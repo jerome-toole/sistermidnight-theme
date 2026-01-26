@@ -29,6 +29,10 @@ $sample_id = ! empty($attachments) ? $attachments[0]->ID : null;
                 image: ['id' => $sample_id],
                 media_type: 'image',
                 media_side: 'left',
+                button_1: [
+                    'title' => 'Learn More',
+                    'url' => '#',
+                ],
             ); ?>
         <?php } else { ?>
             <p><em>No images in media library for this example.</em></p>
@@ -47,6 +51,33 @@ $sample_id = ! empty($attachments) ? $attachments[0]->ID : null;
                 image: ['id' => $sample_id],
                 media_type: 'image',
                 media_side: 'right',
+                button_1: [
+                    'title' => 'Get Started',
+                    'url' => '#',
+                ],
+            ); ?>
+        <?php } else { ?>
+            <p><em>No images in media library for this example.</em></p>
+        <?php } ?>
+    </div>
+</section>
+
+<section class="component-example-section">
+    <h2 class="component-example-section__title">Media Content - With Background</h2>
+    <p class="component-example-section__description">Feature section with background color.</p>
+    <div class="component-example-section__preview">
+        <?php if ($sample_id) { ?>
+            <?= MediaContent::make(
+                heading: 'Featured Section',
+                content: '<p>A feature section with a colored background demonstrating the color context system.</p>',
+                image: ['id' => $sample_id],
+                media_type: 'image',
+                media_side: 'left',
+                button_1: [
+                    'title' => 'Discover More',
+                    'url' => '#',
+                ],
+                classes: ['has-paper-background-color', 'has-background'],
             ); ?>
         <?php } else { ?>
             <p><em>No images in media library for this example.</em></p>
