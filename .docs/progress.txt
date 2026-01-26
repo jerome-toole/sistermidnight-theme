@@ -81,10 +81,18 @@
 - Updated examples with poster image demos
 - Used via media-content block (not a standalone ACF block)
 
+### 3.1 Press Links (2026-01-26)
+- [x] Dates format correctly (j M Y format, sorted newest first)
+- [x] Links open articles (target="_blank" with rel="noopener")
+- [x] Matches design styling (list with date/publication layout)
+- [x] Block preview works in editor
+- ACF fields: `heading` (text), `links` (repeater: date, publication, url)
+- Component at components/press-links/
+
 ## In Progress
 
 None
 
 ## Next Up
 
-### 3.1 Press Links (new block)
+### 3.2 Team Grid (new block)

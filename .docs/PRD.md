@@ -173,7 +173,7 @@ Already exists as `video-item` - review for use.
 
 ### Phase 3: Content Components
 
-#### 3.1 Press Links [NEW BLOCK]
+#### 3.1 Press Links ✓
 List of press coverage with dates.
 
 **Requirements:**
@@ -189,9 +189,9 @@ List of press coverage with dates.
   - `url` (url)
 
 **Pass criteria:**
-- [ ] Dates format correctly
-- [ ] Links open articles
-- [ ] Matches design styling
+- [x] Dates format correctly
+- [x] Links open articles
+- [x] Matches design styling
 
 ---
 
