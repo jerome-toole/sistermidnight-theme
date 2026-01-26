@@ -31,9 +31,11 @@
 - [x] Body text styles (Rework, fluid 17-19px)
 - [x] Link styles with color context support
 - [x] List styles (ul, ol, nested)
-- Added typography preview section to /_dev/globals route
+- [x] Colors match design (from Figma tokens)
+- Typography preview section at /_dev/globals
 - Two-font system: SisterMidnight (h1, h2, hero), Rework (h3-h6, body)
 - Type utilities: type-hero, type-h1..h6, type-base, type-small, type-meta
+- Colors: white, paper, warm-warm-grey, warm-black, midnight-blue, deep-blue, orange, burnt-orange, pastel-yellow, pastel-red, pastel-green, teal-green, dark-olive
 
 ## In Progress
 
