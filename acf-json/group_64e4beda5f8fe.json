@@ -58,8 +58,8 @@
             },
             "choices": {
                 "none": "None",
-                "darkgreen": "Dark Green",
-                "lightgreen": "Light Green",
+                "neutral": "Dark Green",
+                "neutral": "Light Green",
                 "blue": "Blue",
                 "peach": "Peach"
             },

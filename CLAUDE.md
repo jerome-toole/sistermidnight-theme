@@ -256,8 +256,8 @@ Organized in `assets/styles/` following ITCSS:
 - `foreground-from-{name}` - text color only
 
 ```html
-<section class="color-context-darkgreen">...</section>
-<span class="foreground-from-brand-1">...</span>
+<section class="color-context-neutral">...</section>
+<span class="foreground-from-stone">...</span>
 ```
 
 

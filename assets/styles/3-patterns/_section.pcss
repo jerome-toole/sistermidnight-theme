@@ -1,0 +1,28 @@
+@utility section-header {
+    @apply margin-trim;
+
+    padding-top: space(24, 40);
+    border-top: var(--border--1);
+    margin-bottom: spaceFluid(24, 32);
+
+    .heading,
+    h2,
+    h3 {
+        @apply type-h2;
+    }
+
+    .has-background & {
+        padding-top: 0;
+        border-top: 0;
+    }
+}
+
+
+@utility section {
+    @apply margin-trim;
+
+    .section__header {
+        @apply section-header;
+    }
+}
+

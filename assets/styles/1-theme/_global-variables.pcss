@@ -16,12 +16,12 @@
         --border-width--s: 2px;
         --border-width--m: 4px;
 
-        --border--1: var(--border-width--s) solid var(--color-brand-1);
+        --border--1: 1px solid  var(--color-stone);
 
         // ---------------------------------------------------
         // Focus
         // ---------------------------------------------------
-        --focus--color: var(--color-brand-1);
+        --focus--color: var(--color-warm-black);
         --focus--1--offset: 5px;
         --focus--1--width: 3px;
 
@@ -34,8 +34,8 @@
         // ---------------------------------------------------
         // Box Shadow
         // ---------------------------------------------------
-        --box-shadow--1: 0 3px 9px hsla(var(--color-brand-1--hsl), 0.15);
-        --box-shadow--1--hover: 0 3px 20px 3px hsla(var(--color-brand-1--hsl), 0.15);
+        --box-shadow--1: 0 3px 9px hsla(var(--color-beige--hsl), 0.15);
+        --box-shadow--1--hover: 0 3px 20px 3px hsla(var(--color-beige--hsl), 0.15);
         --box-shadow--2: 0 2px 7px hsla(var(--color-black--hsl), 0.1);
         // --box-shadow--2--hover: 0 2px 7px hsla(var(--color-black--hsl), 0.1);
 
@@ -48,7 +48,7 @@
         // ---------------------------------------------------
         // Grids
         // ---------------------------------------------------
-        --col-gap: spaceFluid(8, 12);
+        --col-gap: spaceFluid(8, 20);
         --row-gap: var(--col-gap);
         --cols: 1;
         --col-min-width: rem(300);
@@ -64,13 +64,16 @@
         // ---------------------------------------------------
         // Horizontal rule styling
         // ---------------------------------------------------
-        --hr--color: var(--color-brand-1);
+        --hr--color: var(--color-warm-black);
         --hr--thickness: 2px;
 
         // ---------------------------------------------------
-        // Rounded corners - default rounding on blocks
+        // Content indentation
         // ---------------------------------------------------
-        --rounded-border-radius: var(--border-radius--m);
-        --rounded-overflow: hidden;
-    }
+        --content-indent: space(20);
+
+        @media (width >= theme('screens.md')) {
+            --content-indent: space(32);
+        }
+    };
 }

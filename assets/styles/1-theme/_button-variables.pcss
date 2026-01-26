@@ -4,19 +4,31 @@
     :root {
         // --btn--font-size: rfs(18, 22);
 
-        --btn--padding-y: 0.5em;
-        --btn--padding-x: 1.5em;
+        --btn--padding-y: 0.15em;
+        --btn--padding-x: 0.525em;
 
         --btn--border-width: var(--border-width--s);
         --btn--border-radius: 999px;
 
-        --btn--background-color: var(--color-brand-2);
-        --btn--border-color: var(--color-brand-2);
-        --btn--color: var(--color-brand-1);
+        --btn--color: var(--color-slate);
+        --btn--background-color: var(--color-beige);
+        --btn--border-color: var(--color-beige);
 
-        --btn--background-color--hover: var(--color-brand-1);
-        --btn--border-color--hover: var(--color-brand-1);
-        --btn--color-hover: foreground-color('brand-1');
+        --btn--color-hover: var(--color-slate);
+        --btn--background-color--hover: hsla(
+            var(--color-beige--h),
+            var(--color-beige--s),
+            calc(var(--color-beige--l) - 5%)
+        );
+        --btn--border-color--hover: hsla(
+            var(--color-beige--h),
+            var(--color-beige--s),
+            calc(var(--color-beige--l) - 5%)
+        );
+
+        --btn--color--selected: var(--color-neutral);
+        --btn--background-color--selected: var(--color-grey);
+        --btn--border-color--selected: var(--color-grey);
 
         --btn--gap: 0.5em;
 

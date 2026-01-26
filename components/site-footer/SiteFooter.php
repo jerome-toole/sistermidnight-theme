@@ -20,7 +20,7 @@ class SiteFooter extends ComponentBase
     protected static function getDefaults(): array
     {
         return [
-            'background_color' => 'brand-2',
+            'background_color' => 'white',
         ];
     }
 

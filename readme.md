@@ -203,8 +203,8 @@ Modules in `Theme/Modules/*/module.php` auto-load via `Geum\Module::init()`. Eac
 
 ### Theme Configuration
 `assets/theme-config.json` defines design tokens used across:
-- CSS variables (`--color-darkgreen`)
-- Tailwind classes (`text-darkgreen`, `bg-lightgreen`)
+- CSS variables (`--color-neutral`)
+- Tailwind classes (`text-neutral`, `bg-neutral`)
 - Block editor color palette
 
 ### Color System
@@ -227,12 +227,12 @@ Color configuration is in `assets/theme-config.json`.
 **Usage:**
 ```html
 <!-- Full color context (bg + text + links) -->
-<section class="color-context-darkgreen">
+<section class="color-context-neutral">
   <p>White text on dark green, links inherit</p>
 </section>
 
 <!-- Just foreground color -->
-<span class="foreground-from-brand-1">Colored text</span>
+<span class="foreground-from-stone">Colored text</span>
 ```
 
 **Config structure** (`assets/theme-config.json`):
@@ -240,7 +240,7 @@ Color configuration is in `assets/theme-config.json`.
 {
   "colors": {
     "base": {
-      "darkgreen": {
+      "neutral": {
         "color": "#1e4545",
         "name": "Dark Green",
         "block_editor": true,
@@ -249,7 +249,7 @@ Color configuration is in `assets/theme-config.json`.
           "--link--color": "var(--color-white)"
         }
       },
-      "brand-1": { "namedColor": "darkgreen" }
+      "stone": { "namedColor": "neutral" }
     }
   }
 }

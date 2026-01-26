@@ -26,7 +26,7 @@ use Geum\Components\Group;
     <div class="component-example-section__preview">
         <?= Group::make(
             content: '<h2>Styled Group</h2><p>Group with background styling applied.</p>',
-            background_color: 'brand-1',
+            background_color: 'stone',
         ); ?>
     </div>
 </section>

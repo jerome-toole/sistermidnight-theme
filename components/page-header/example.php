@@ -38,7 +38,7 @@ use Geum\Components\PageHeader;
         <?= PageHeader::make(
             heading: 'Services',
             subheading: 'What we offer',
-            background: 'brand-2',
+            background: 'white',
             show_breadcrumbs: false,
         ); ?>
     </div>
