@@ -106,10 +106,20 @@
 - ACF fields: `heading` (text), `intro` (textarea), `values` (repeater: title, description)
 - Component at components/values-list/
 
+### 3.4 Document Links (2026-01-26)
+- [x] Files downloadable (download attribute on link)
+- [x] File type/size shown (extracted from ACF file array)
+- [x] Matches design styling (bordered list with icon)
+- [x] Block preview works in editor
+- [x] Falls back to filename if title empty
+- ACF fields: `heading` (text), `documents` (repeater: title, file)
+- Component at components/document-links/
+- Supports PDF, DOC, DOCX, XLS, XLSX, ZIP
+
 ## In Progress
 
 None
 
 ## Next Up
 
-### 3.4 Document Links (new block)
+### 3.5 Page Navigation (new block)

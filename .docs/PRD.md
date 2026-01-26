@@ -240,7 +240,7 @@ Numbered principles/values display.
 
 ---
 
-#### 3.4 Document Links [NEW BLOCK]
+#### 3.4 Document Links ✓
 Downloadable document list.
 
 **Requirements:**
@@ -255,9 +255,9 @@ Downloadable document list.
   - `file` (file)
 
 **Pass criteria:**
-- [ ] Files downloadable
-- [ ] File type/size shown
-- [ ] Matches design styling
+- [x] Files downloadable
+- [x] File type/size shown
+- [x] Matches design styling
 
 ---
 
