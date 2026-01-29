@@ -1,13 +1,21 @@
-:where(.homepage-hero) {
+.homepage-hero {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-block: var(--space-xl) var(--space-3xl);
+    padding-block: space(90);
     text-align: center;
     overflow: hidden;
     color: var(--color-black);
-    padding-top: space(24);
+
+    @media (min-width: theme('screens.md')) {
+        padding-top: space(32);
+        padding-bottom: var(--space--layout);
+    }
+
+    + * {
+        margin-top: 0;
+    }
 }
 
 :where(.homepage-hero__graphic) {
@@ -41,6 +49,8 @@
 }
 
 :where(.homepage-hero__mobile-text) {
+    padding-inline: var(--space--container-padding);
+
     @media (min-width: theme('screens.md')) {
         display: none;
     }
