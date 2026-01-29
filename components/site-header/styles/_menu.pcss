@@ -6,17 +6,18 @@
     }
 
     a {
-        font-family: var(--font-rework);
-        font-size: rem(14px);
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        text-decoration: none;
-        transition: color var(--transition--duration) var(--transition--ease);
+        @apply type-h2;
+        @apply link--2;
+
+        text-underline-offset: 0.3em;
 
         &:hover,
         &:focus {
-            color: var(--color-warm-black);
+            text-decoration: none;
+        }
+
+        @media (width >= theme('screens.site-header')) {
+            font-size: rem(18px);
         }
     }
 
@@ -40,7 +41,6 @@
 
         &.menu-item--current > .menu-item__wrap a {
             text-decoration: underline;
-            text-underline-offset: 4px;
         }
     }
 

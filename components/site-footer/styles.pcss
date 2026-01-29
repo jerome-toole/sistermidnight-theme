@@ -90,7 +90,7 @@
     flex-direction: column;
     gap: space(10);
     align-items: flex-start;
-    margin-bottom: space(16);
+    margin-bottom: space(24);
 
     @media (min-width: theme('screens.md')) {
         flex-direction: row;
@@ -131,13 +131,15 @@
 
 .site-footer__supporters-label {
     @apply type-small;
+    margin-bottom: space(8);
 }
 
 .site-footer__images {
     display: flex;
     flex-wrap: wrap;
-    gap: space(12) space(24);
+    gap: 22px;
     align-items: center;
+    max-width: 600px;
 }
 
 .site-footer__image {

@@ -32,6 +32,6 @@ acf_register_block_type([
     'render_callback' => function ($block, $content, $is_preview, $post_id) {
         $args = \Geum\Component::generateArgsFromBlock($block, get_fields());
 
-        echo \Geum\Components\VideoItem::make(...$args);
+        // echo \Geum\Components\VideoItem::make(...$args);
     },
 ]);

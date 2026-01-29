@@ -12,21 +12,9 @@
         }
     }
 
-    // WordPress block-specific spacing
+    // WordPress block-specific spacing (top-margin only)
     > :where([class*='wp-block']) {
-        &:not(:first-child) {
-            margin-top: var(--block--margin-top);
-        }
-
         margin-top: var(--block--margin-top);
-
-        &:first-child {
-            margin-top: 0;
-        }
-
-        &:last-child {
-            margin-bottom: 0;
-        }
 
         // Pull full-width blocks with backgrounds together
         &:where([class*='has-background'].alignfull) {

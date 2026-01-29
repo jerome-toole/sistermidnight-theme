@@ -17,11 +17,11 @@ class Gutenberg
         // Not to be confused with custom CSS support for TinyMCE (editor-style).
         \add_theme_support('editor-styles');
 
-        // Add the CSS file path to be enqueued by WordPress.
-        // The path to the asset must be relative to the theme root.
+        // Add editor styles from build (no HMR, always uses built CSS)
         $file = \Geum\Asset::extract('editor-styles.css');
+
         if (! empty($file)) {
-            \add_editor_style(\Geum\Paths::assetPath($file, true));
+            \add_editor_style(\Geum\Paths::assetPath('build/'.$file, true));
         }
 
         // Add support for embeds to responsively keep their aspect ratio.
