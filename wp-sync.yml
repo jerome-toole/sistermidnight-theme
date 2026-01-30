@@ -22,6 +22,7 @@ environments:
         port: 2223
         path: /home/smstage/site/public_html
 
-    # production:
-    #     host: user@host
-    #     path: /home/.../public_html
+    production:
+        host: sistermidnight@185.219.237.45
+        port: 2223
+        path: /home/sistermidnight/site/public_html

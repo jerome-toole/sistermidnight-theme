@@ -12,7 +12,7 @@ class Module
     public static function outputHead(): void
     {
         if (wp_get_environment_type() === 'production') {
-            if (is_user_logged_in()) { ?>
+            if (! is_user_logged_in()) { ?>
                 <script defer src="https://cloud.umami.is/script.js" data-website-id="1262ca1b-48b3-4fb0-bab7-4092af9fff94"></script>
             <?php
             }

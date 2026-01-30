@@ -4,6 +4,8 @@ node_modules/**
 .vscode/**
 .docs
 .docs/**
+.claude
+.claude/**
 dev-scripts
 dev-scripts/**
 ./assets
@@ -24,6 +26,7 @@ dev-scripts/**
 .prettierrc
 .stylelintrc
 biome.json
+.biomeignore
 composer.json
 composer.lock
 gulpfile.js

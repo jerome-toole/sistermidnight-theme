@@ -7,7 +7,7 @@
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
 
-    <?= \Geum\Components\CookieNotice::make(); ?>
+    <?php // \Geum\Components\CookieNotice::make();?>
     <?= \Geum\Components\SkipLink::make(); ?>
     <?= \Geum\Components\AnnouncementBanner::make(); ?>
     <?= \Geum\Components\SiteHeader::make(); ?>
