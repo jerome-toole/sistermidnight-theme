@@ -10,6 +10,8 @@ dev-scripts
 dev-scripts/**
 ./assets
 ./assets/**
+auth.json
+auth.json.example
 .babelrc
 .browserslistrc
 .deployignore

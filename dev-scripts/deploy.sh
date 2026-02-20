@@ -91,14 +91,14 @@ eval rsync $RSYNC_OPTS $SSH_OPTS $DRY_RUN \
     "$THEME_DIR/" \
     "$HOST:$REMOTE_THEME_PATH"
 
-# Flush cache (skip on dry run)
+# Flush caches (skip on dry run)
 if [[ -z "$DRY_RUN" ]]; then
     echo ""
-    echo "Flushing WP cache..."
+    echo "Flushing caches..."
     if [[ -n "$PORT" ]]; then
-        ssh -p "$PORT" "$HOST" "cd $REMOTE_PATH && wp cache flush" 2>/dev/null || echo "Cache flush skipped"
+        ssh -p "$PORT" "$HOST" "cd $REMOTE_PATH && wp cache flush && wp scout purge" 2>/dev/null || echo "Cache flush skipped"
     else
-        ssh "$HOST" "cd $REMOTE_PATH && wp cache flush" 2>/dev/null || echo "Cache flush skipped"
+        ssh "$HOST" "cd $REMOTE_PATH && wp cache flush && wp scout purge" 2>/dev/null || echo "Cache flush skipped"
     fi
 fi
 
