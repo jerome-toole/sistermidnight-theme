@@ -3,17 +3,30 @@
     "apiVersion": 3,
     "name": "theme/gallery",
     "title": "Gallery",
-    "description": "Image carousel/slider with captions and credits",
+    "description": "Images with a vertical label, as a masonry grid or a horizontal carousel (block styles).",
     "category": "theme-blocks",
     "icon": "format-gallery",
-    "align": "full",
+    "keywords": ["gallery", "images", "carousel", "slider", "masonry"],
+    "textdomain": "gust",
+    "styles": [
+        { "name": "masonry", "label": "Masonry", "isDefault": true },
+        { "name": "carousel", "label": "Carousel" }
+    ],
     "acf": {
         "blockVersion": 3,
-        "mode": "auto",
+        "mode": "preview",
         "renderCallback": "Gust\\Components\\Gallery::renderBlock"
     },
     "supports": {
         "anchor": true,
-        "align": false
+        "align": false,
+        "mode": false,
+        "jsx": false,
+        "html": false,
+        "color": {
+            "background": false,
+            "text": false,
+            "gradients": false
+        }
     }
 }

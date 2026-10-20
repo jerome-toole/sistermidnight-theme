@@ -3,31 +3,26 @@
     "title": "Block - Gallery",
     "fields": [
         {
-            "key": "field_gallery_heading",
-            "label": "Heading",
-            "name": "heading",
+            "key": "field_gallery_label",
+            "label": "Label",
+            "name": "gallery_label",
             "type": "text",
-            "instructions": "Section heading"
+            "instructions": "Vertical label in the left gutter. Leave empty for none.",
+            "placeholder": "Gallery"
         },
         {
             "key": "field_gallery_images",
             "label": "Images",
-            "name": "images",
-            "type": "repeater",
-            "instructions": "Gallery images",
-            "layout": "block",
-            "button_label": "Add Image",
+            "name": "gallery_images",
+            "type": "gallery",
+            "instructions": "Alt text comes from the media library.",
+            "required": 1,
+            "return_format": "array",
+            "library": "all",
             "min": 1,
-            "sub_fields": [
-                {
-                    "key": "field_gallery_image",
-                    "label": "Image",
-                    "name": "image",
-                    "type": "image",
-                    "return_format": "array",
-                    "preview_size": "medium"
-                }
-            ]
+            "max": "",
+            "insert": "append",
+            "preview_size": "medium"
         }
     ],
     "location": [
@@ -44,6 +39,9 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
+    "hide_on_screen": "",
     "active": true,
-    "show_in_rest": 0
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792830000
 }

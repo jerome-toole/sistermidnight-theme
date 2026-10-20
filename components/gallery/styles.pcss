@@ -1,74 +1,186 @@
-@import 'swiper/css' layer(vendor);
+/* ---------------------------------------------------------------------------
+ * Gallery (block)
+ *
+ * Full-width block with the page gutter as side padding: the vertical label
+ * (left gutter, rotated from md) and the images. Two block styles:
+ *
+ *   masonry   dense 5-column grid, 360px rows (fluid), gap 12; landscape
+ *             images span two columns. Two equal columns below md.
+ *   carousel  native horizontal scroller 420px tall, natural widths, gap 16,
+ *             bleeding to the right edge; prev/next arrows top right.
+ *             Blossom's own stylesheet handles the scroller basics.
+ * ------------------------------------------------------------------------- */
 
+@import '@blossom-carousel/core/style.css' layer(vendor);
 
-media-gallery {
+.gallery {
+    --gallery--padding-block: spaceFluid(48, 126);
+    --gallery--gap: spaceFluid(24, 32);
+    --gallery--grid-gap: space(12);
+    --gallery--row-height: spaceFluid(180, 360);
+    --gallery--carousel-gap: space(16);
+    --gallery--carousel-height: spaceFluid(260, 420);
+    --gallery--arrow-size: space(44);
+    --gallery--arrow-icon-size: space(24);
+
+    padding-block: var(--gallery--padding-block);
+    padding-inline: var(--container-padding);
+}
+
+.gallery__inner {
+    display: grid;
+    gap: var(--gallery--gap);
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+}
+
+.gallery--labelled .gallery__inner {
+    @media (width >= theme('screens.md')) {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+}
+
+.gallery__label {
+    @apply type-h2;
+    @apply vertical-label;
+
+    margin: 0;
+}
+
+.gallery__body {
+    min-width: 0;
+}
+
+.gallery__img {
     display: block;
-    padding-block: var(--space-layout);
-    overflow: clip;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-    .media-gallery__header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: space(4);
-        margin-bottom: spaceFluid(24, 40);
+.gallery__placeholder {
+    opacity: 0.6;
+}
+
+/* ---- Masonry ------------------------------------------------------------- */
+
+.gallery__grid {
+    display: grid;
+    gap: var(--gallery--grid-gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: var(--gallery--row-height);
+    grid-auto-flow: dense;
+
+    @media (width >= theme('screens.md')) {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
     }
+}
 
-    .media-gallery__heading {
-        margin: 0;
-    }
+.gallery__item {
+    min-width: 0;
+    overflow: hidden;
 
-    .media-gallery__nav {
-        display: flex;
-        gap: spaceFluid(32, 40);
-    }
-
-    .media-gallery__prev,
-    .media-gallery__next {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-        border: none;
-        background: transparent;
-        cursor: pointer;
-        font-size: rem(25);
-        color: inherit;
-        transition: opacity 0.2s;
-
-        &:hover {
-            opacity: 0.6;
-        }
-
-        &.swiper-button-disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
-        :where(.media-gallery__prev .btn__icon) {
-            rotate: 180deg;
+    @media (width >= theme('screens.md')) {
+        &.gallery__item--wide {
+            grid-column: span 2;
         }
     }
+}
 
-    .media-gallery__swiper {
-        overflow: visible;
-        width: 100%;
+/* ---- Carousel ------------------------------------------------------------ */
+
+.gallery__carousel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gallery--gap);
+
+    /* The strip runs to the right edge of the viewport */
+    margin-inline-end: calc(-1 * var(--container-padding));
+}
+
+.gallery__nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: space(8);
+    padding-inline-end: var(--container-padding);
+}
+
+.gallery__arrow {
+    --focus--color: var(--color-foreground);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--gallery--arrow-size);
+    height: var(--gallery--arrow-size);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.6;
     }
 
-    .swiper-wrapper {
-        align-items: stretch;
+    &:focus {
+        @apply focus-base;
     }
 
-    .media-gallery__slide {
+    &.gallery__arrow--prev .gallery__arrow-icon {
+        rotate: 180deg;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition: transition(opacity);
+    }
+}
+
+.gallery__arrow-icon {
+    display: block;
+    width: var(--gallery--arrow-icon-size);
+    height: var(--gallery--arrow-icon-size);
+    background-color: currentColor;
+    mask: var(--gallery--icon) center / contain no-repeat;
+}
+
+.gallery__track {
+    --focus--color: var(--color-foreground);
+
+    display: flex;
+    gap: var(--gallery--carousel-gap);
+    margin: 0;
+    padding: 0;
+    padding-inline-end: var(--container-padding);
+    scroll-padding-inline-end: var(--container-padding);
+    list-style: none;
+    overflow-x: auto;
+    overflow-y: clip;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &:focus {
+        @apply focus-base;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
+
+.gallery__slide {
+    flex: none;
+    height: var(--gallery--carousel-height);
+
+    .gallery__img {
         width: auto;
-        height: 400px;
-        margin: 0;
-
-        img {
-            display: block;
-            width: auto;
-            height: 100%;
-            max-width: none;
-        }
+        max-width: none;
+        height: 100%;
     }
 }

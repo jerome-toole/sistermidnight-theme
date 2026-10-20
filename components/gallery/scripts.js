@@ -1,40 +1,41 @@
-import Swiper from 'swiper';
-import { Navigation, Keyboard, Mousewheel } from 'swiper/modules';
+/**
+ * Gallery carousel. Markup: ./template.php.
+ *
+ * The strip is a native horizontal scroller, so it works without JS. For a
+ * carousel-style gallery Blossom is lazy loaded (its own chunk, fetched once,
+ * only when a carousel is on the page) to add drag physics and snap-aware
+ * prev/next. Under reduced motion Blossom is skipped, since its prev/next
+ * always smooth-scroll, and the arrows jump the strip instantly instead.
+ */
 
-class Gallery extends HTMLElement {
-	connectedCallback() {
-		const swiperEl = this.querySelector('.media-gallery__swiper');
-		if (!swiperEl) return;
+import dynamicElements from '../../assets/scripts/helpers/dynamicElements.js';
 
-		this.swiper = new Swiper(swiperEl, {
-			modules: [Navigation, Keyboard, Mousewheel],
-			slidesPerView: 'auto',
-			spaceBetween: 16,
-			speed: 500,
-			grabCursor: true,
-			keyboard: {
-				enabled: true,
-				onlyInViewport: true,
-			},
-			mousewheel: {
-				enabled: true,
-				forceToAxis: true,
-			},
-			navigation: {
-				nextEl: this.querySelector('.media-gallery__next'),
-				prevEl: this.querySelector('.media-gallery__prev'),
-			},
-			breakpoints: {
-				768: {
-					spaceBetween: 24,
-				},
-			},
-		});
-	}
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-	disconnectedCallback() {
-		this.swiper?.destroy();
-	}
+let blossomModule;
+const loadBlossom = () => (blossomModule ??= import('@blossom-carousel/core'));
+
+async function gallery(root) {
+    const track = root.querySelector('[data-gallery-track]');
+    if (!track) return;
+
+    let prev;
+    let next;
+
+    if (reduceMotion) {
+        const step = () => track.clientWidth * 0.8;
+        prev = () => track.scrollBy({ left: -step(), behavior: 'instant' });
+        next = () => track.scrollBy({ left: step(), behavior: 'instant' });
+    } else {
+        const { Blossom } = await loadBlossom();
+        const blossom = Blossom(track, {});
+        blossom.init();
+        prev = () => blossom.prev({ align: 'start' });
+        next = () => blossom.next({ align: 'start' });
+    }
+
+    root.querySelector('[data-gallery-prev]')?.addEventListener('click', prev);
+    root.querySelector('[data-gallery-next]')?.addEventListener('click', next);
 }
 
-customElements.define('media-gallery', Gallery);
+dynamicElements.define('.gallery--carousel', gallery);

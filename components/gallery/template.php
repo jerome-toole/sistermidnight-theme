@@ -2,55 +2,48 @@
 /**
  * Gallery Template
  *
+ * Masonry: a dense grid list. Carousel: a region with prev/next buttons and
+ * a natively scrollable, focusable list that scripts.js hands to Blossom.
+ * In an editor preview the label is always printed (placeholder) and the
+ * images open from an inline toolbar on the body.
+ *
  * @var \Gust\Components\Gallery $this
  */
-
-use Gust\Components\Heading;
-use Gust\Components\Image;
-
-$image_count = count($this->images ?? []);
+$chevron = staticUrl('images/icons/chevron-right.svg');
 ?>
+<div class="<?= classes($this->classes) ?>" <?= attributes($this->attributes) ?>>
+    <div class="gallery__inner">
+        <?php if ($this->label !== '' || $this->is_preview) { ?>
+            <h2 class="gallery__label" <?= $this->inlineText('label', __('Gallery', 'gust')) ?>><?= esc_html($this->label) ?></h2>
+        <?php } ?>
 
-<media-gallery class="<?= classes('wp-block', 'alignfull', $this->classes) ?>" <?= attributes($this->attributes) ?>>
-    <div class="media-gallery__inner content-width-fluid-lg">
-        <div class="media-gallery__header">
-            <?php if (! empty($this->heading)) { ?>
-                <?= Heading::make(...$this->heading); ?>
-            <?php } ?>
+        <div class="gallery__body" <?= $this->inlineToolbar(['images'], __('Images', 'gust')) ?>>
+            <?php if ($this->images === [] && $this->is_preview) { ?>
+                <p class="gallery__placeholder"><?= esc_html__('Add images from the toolbar', 'gust') ?></p>
+            <?php } elseif ($this->style === 'carousel') { ?>
+                <div class="gallery__carousel" role="region" aria-roledescription="carousel" aria-label="<?= esc_attr($this->label !== '' ? $this->label : __('Gallery', 'gust')) ?>">
+                    <div class="gallery__nav">
+                        <button type="button" class="gallery__arrow gallery__arrow--prev" data-gallery-prev aria-label="<?= esc_attr__('Previous images', 'gust') ?>">
+                            <span class="gallery__arrow-icon" style="--gallery--icon: url('<?= esc_url($chevron) ?>')"></span>
+                        </button>
+                        <button type="button" class="gallery__arrow gallery__arrow--next" data-gallery-next aria-label="<?= esc_attr__('Next images', 'gust') ?>">
+                            <span class="gallery__arrow-icon" style="--gallery--icon: url('<?= esc_url($chevron) ?>')"></span>
+                        </button>
+                    </div>
 
-            <?php if ($image_count > 1) { ?>
-                <div class="media-gallery__nav">
-                    <button type="button" class="media-gallery__prev btn btn--ghost" aria-label="Previous slide">
-                        <span class="btn__icon" style="--btn--icon: url('<?= staticUrl('images/icons/chevron-right.svg') ?>')"></span>
-                    </button>
-
-                    <button type="button" class="media-gallery__next btn btn--ghost" aria-label="Next slide">
-                        <span class="btn__icon" style="--btn--icon: url('<?= staticUrl('images/icons/chevron-right.svg') ?>')"></span>
-                    </button>
+                    <ul class="gallery__track" data-gallery-track tabindex="0" aria-label="<?= esc_attr__('Images', 'gust') ?>">
+                        <?php foreach ($this->images as $item) { ?>
+                            <li class="gallery__slide"><?= $item['image'] ?></li>
+                        <?php } ?>
+                    </ul>
                 </div>
+            <?php } else { ?>
+                <ul class="gallery__grid">
+                    <?php foreach ($this->images as $item) { ?>
+                        <li class="<?= classes('gallery__item', $item['landscape'] ? 'gallery__item--wide' : null) ?>"><?= $item['image'] ?></li>
+                    <?php } ?>
+                </ul>
             <?php } ?>
         </div>
-
-        <?php if (! empty($this->images)) { ?>
-            <div class="media-gallery__swiper swiper">
-                <div class="swiper-wrapper">
-                    <?php foreach ($this->images as $item) { ?>
-                        <?php if (! empty($item['image'])) {
-                            $image_id = $item['image']['ID'] ?? $item['image']['id'] ?? null;
-                            ?>
-                            <div class="media-gallery__slide swiper-slide">
-                                <?= Image::make(
-                                    id: $image_id,
-                                    size: 'large',
-                                    classes: ['media-gallery__image'],
-                                    show_caption: true,
-                                    show_credit: true,
-                                ); ?>
-                            </div>
-                        <?php } ?>
-                    <?php } ?>
-                </div>
-            </div>
-        <?php } ?>
     </div>
-</media-gallery>
+</div>

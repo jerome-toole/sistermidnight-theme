@@ -8,12 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@blossom-carousel/core':
+        specifier: ^1.1.9
+        version: 1.1.9
       '@oddbird/popover-polyfill':
         specifier: ^0.7.2
         version: 0.7.2
-      swiper:
-        specifier: ^12.2.0
-        version: 12.2.0
     devDependencies:
       '@biomejs/biome':
         specifier: 2.3.11
@@ -108,6 +108,13 @@ packages:
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
+
+  '@blossom-carousel/core@1.1.9':
+    resolution: {integrity: sha512-vfKVBNe8YiHDYVNTKjyktXCU8UWFGNqs+EPb5XYkdE49tUO58FDSnm0FDlSbk4fBAZJrrcD2wC5fFPGW+rowTg==}
+
+  '@bramus/style-observer@2.0.2':
+    resolution: {integrity: sha512-oRKamZ9Z637pAZgNGJIbNGiFoYQSeA47PpU4K8hXZq9lQcPu35BCqMG9d9J/ab2CB/0XlXq6ToMnVhHF8mLNqg==}
+    engines: {node: '>=12'}
 
   '@esbuild/aix-ppc64@0.27.3':
     resolution: {integrity: sha512-9fJMTNFTWZMh5qwrBItuziu834eOCUcEqymSH7pY+zoMVEZg3gcPuBNxH1EvfVYe9h0x/Ptw8KBzv7qxb7l8dg==}
@@ -809,10 +816,6 @@ packages:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
 
-  swiper@12.2.0:
-    resolution: {integrity: sha512-K8uXsBZU6ME97Ia3xbBge8IRCnR1lOmIILzvY/jGVic7dSTQ530s3uO8RvXbPUtkkXLWIwmZLRPbtDxRWVAFdg==}
-    engines: {node: '>= 4.7.0'}
-
   tailwindcss@4.2.1:
     resolution: {integrity: sha512-/tBrSQ36vCleJkAOsy9kbNTgaxvGbyOamC30PRePTQe/o1MFwEKHQk4Cn7BNGaPtjp+PuUrByJehM1hgxfq4sw==}
 
@@ -925,6 +928,12 @@ snapshots:
 
   '@biomejs/cli-win32-x64@2.3.11':
     optional: true
+
+  '@blossom-carousel/core@1.1.9':
+    dependencies:
+      '@bramus/style-observer': 2.0.2
+
+  '@bramus/style-observer@2.0.2': {}
 
   '@esbuild/aix-ppc64@0.27.3':
     optional: true
@@ -1467,8 +1476,6 @@ snapshots:
 
   source-map@0.6.1:
     optional: true
-
-  swiper@12.2.0: {}
 
   tailwindcss@4.2.1: {}
 

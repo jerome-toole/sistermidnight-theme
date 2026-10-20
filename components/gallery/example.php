@@ -1,39 +1,35 @@
 <?php
 
 /**
- * Gallery Examples
+ * Gallery Component Examples
  *
- * Swiper-powered image carousel.
- * Captions from attachment caption field, credits from 'credit' meta.
+ * Latest eight images from the media library, in both block styles.
  */
 
 use Gust\Components\Gallery;
 
-// Fetch latest 4 and 5 image IDs from the media library
-$latest_4 = get_posts([
+$images = get_posts([
     'post_type' => 'attachment',
     'post_mime_type' => 'image',
-    'posts_per_page' => 4,
+    'posts_per_page' => 8,
     'orderby' => 'date',
     'order' => 'DESC',
     'fields' => 'ids',
 ]);
-$latest_5 = get_posts([
-    'post_type' => 'attachment',
-    'post_mime_type' => 'image',
-    'posts_per_page' => 5,
-    'orderby' => 'date',
-    'order' => 'DESC',
-    'fields' => 'ids',
-]);
+?>
 
-// Basic usage with heading
-echo Gallery::make(
-    heading: 'Gallery',
-    images: array_map(fn ($id) => ['image' => ['ID' => $id]], $latest_4),
-);
+<section class="component-example-section">
+    <h2 class="component-example-section__title">Masonry (default)</h2>
+    <p class="component-example-section__description">Dense grid, landscape images span two columns; two equal columns below md.</p>
+    <div class="component-example-section__preview">
+        <?= Gallery::make(label: 'Gallery', images: $images); ?>
+    </div>
+</section>
 
-// Without heading (nav still shows if multiple images)
-echo Gallery::make(
-    images: array_map(fn ($id) => ['image' => ['ID' => $id]], $latest_5),
-);
+<section class="component-example-section">
+    <h2 class="component-example-section__title">Carousel</h2>
+    <p class="component-example-section__description">Native horizontal scroller with prev/next arrows; Blossom is loaded only on this style.</p>
+    <div class="component-example-section__preview">
+        <?= Gallery::make(label: 'Slider', images: $images, style: 'carousel'); ?>
+    </div>
+</section>

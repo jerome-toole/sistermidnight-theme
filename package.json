@@ -44,7 +44,7 @@
         "wp-pot": "^2.0.0"
     },
     "dependencies": {
-        "@oddbird/popover-polyfill": "^0.7.2",
-        "swiper": "^12.2.0"
+        "@blossom-carousel/core": "^1.1.9",
+        "@oddbird/popover-polyfill": "^0.7.2"
     }
 }
