@@ -55,6 +55,11 @@
     @apply color-context-burnt-sienna;
     @apply type-base;
 
+    /* Warm-sand on burnt-sienna is 3.5:1, which WCAG allows only for large text
+     * (bold >= 19px). type-base bottoms out at 18px, so the label never fluids
+     * below 19px. */
+    font-size: max(19px, var(--text-base));
+
     display: inline-flex;
     align-items: center;
     justify-content: space-between;

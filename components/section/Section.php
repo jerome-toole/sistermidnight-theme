@@ -186,7 +186,7 @@ class Section extends ComponentBase
             id: $id,
             size: 'large',
             sizes: '(min-width: 768px) 440px, 100vw',
-            classes: ['content-section__img'],
+            attributes: ['class' => 'content-section__img'],
         );
     }
 
