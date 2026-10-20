@@ -47,10 +47,20 @@
 }
 
 .site-header__wordmark {
-    @apply type-h3 link link--2 link--foreground;
+    @apply type-h3;
 
     display: inline-block;
+    margin: 0;
     line-height: 1;
+}
+
+/* The wordmark is the <h1> on the hero variant (the front page has no other
+   heading-one); the link inside, or the wordmark itself elsewhere, is the link */
+a.site-header__wordmark,
+.site-header__wordmark-link {
+    @apply link link--2 link--foreground;
+
+    display: inline-block;
 }
 
 /* Inline nav, md and up */

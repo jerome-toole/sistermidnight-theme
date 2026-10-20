@@ -6,9 +6,13 @@
  * right edge). Below md: two rows, brand + Listen on the first, track on the
  * second with overflow ellipsis.
  *
- *   .radio-bar__brand   marque + wordmark (type-h5, type-h6 below md)
+ *   .radio-bar__brand   marque + wordmark (type-h5, fixed 20px)
  *   .radio-bar__track   "Now playing: …", hidden while offline
- *   .radio-bar__listen  external link, type-h6 + arrow
+ *   .radio-bar__listen  external link, type-h5 (fixed 20px) + arrow
+ *
+ * Brand and Listen are pinned to 20px rather than the fluid 18–20px h5 token:
+ * warm-sand on burnt-sienna is 3.47:1, which passes only as bold large text
+ * (>= 19px), so the size must not drop below that at narrow widths.
  * ------------------------------------------------------------------------- */
 
 .radio-bar {
@@ -35,7 +39,7 @@
 }
 
 .radio-bar__brand {
-    @apply type-h6;
+    @apply type-h5;
 
     display: flex;
     grid-area: brand;
@@ -43,12 +47,9 @@
     gap: space(6);
     min-width: 0;
     margin: 0;
+    font-size: rem(20);
     line-height: 1;
     text-transform: uppercase;
-
-    @media (width >= theme('screens.md')) {
-        @apply type-h5;
-    }
 }
 
 .radio-bar__marque {
@@ -79,13 +80,14 @@
 }
 
 .radio-bar__listen {
-    @apply type-h6 link link--2 link--foreground;
+    @apply type-h5 link link--2 link--foreground;
 
     display: inline-flex;
     grid-area: listen;
     align-items: center;
     gap: space(6);
     justify-self: end;
+    font-size: rem(20);
     line-height: 1;
     text-transform: uppercase;
 

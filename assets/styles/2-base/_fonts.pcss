@@ -7,11 +7,14 @@
  *   --font-sans      FOSS Modern Bold    body, labels, buttons
  * ------------------------------------------------------------------------- */
 
+/* A single heavy cut, declared as bold (700) so display text counts as
+   bold for WCAG large-text contrast (bold >= 19px needs 3:1, not 4.5:1).
+   Only one face exists, so nothing is synthesised either way */
 @font-face {
     font-display: fallback;
     font-family: "SisterMidnight";
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     src: url("/fonts/sister-midnight-regular.woff2") format("woff2");
 }
 

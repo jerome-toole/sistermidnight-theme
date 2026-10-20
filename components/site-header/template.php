@@ -3,7 +3,11 @@ $nav_label = __('Primary', 'gust');
 ?>
 <header class="<?= classes($this->classes) ?>" data-site-header <?= attributes($this->attributes) ?>>
     <div class="site-header__bar">
-        <a href="<?= esc_url(home_url('/')) ?>" class="site-header__wordmark"><?= esc_html(get_bloginfo('name')) ?></a>
+        <?php if ($this->variant === 'hero') { ?>
+            <h1 class="site-header__wordmark"><a href="<?= esc_url(home_url('/')) ?>" class="site-header__wordmark-link"><?= esc_html(get_bloginfo('name')) ?></a></h1>
+        <?php } else { ?>
+            <a href="<?= esc_url(home_url('/')) ?>" class="site-header__wordmark"><?= esc_html(get_bloginfo('name')) ?></a>
+        <?php } ?>
 
         <?php if ($this->has_menu) { ?>
             <?= \Gust\Components\Menu::make(
