@@ -366,5 +366,8 @@ fea += "} kern;\n"
 addOpenTypeFeaturesFromString(f, fea)
 
 f["head"].fontRevision = 1.005
+for rec in f["name"].names:
+    if rec.nameID == 5:
+        rec.string = "Version 001.005; fixes by fix-sister-midnight.py"
 f.save(OUT)
 print("saved", OUT, len(pairs), "kern pairs,", len(new_glyphs), "new glyphs")
