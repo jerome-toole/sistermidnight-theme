@@ -1,49 +1,50 @@
-<article class="<?= classes('g-card', 'animate__item', $this->classes) ?>" <?= attributes($this->attributes) ?>>
-    <div class="g-card__inner">
-        <?php if (! empty($this->content['heading']) || ! empty($this->content['text'])) { ?>
-            <div class="g-card__header">
-                <?php if (! empty($this->content['heading'])) { ?>
-                    <?= \Gust\Components\Heading::make(...$this->content['heading']); ?>
-                <?php } ?>
+<?php
 
-                <?php if (! empty($this->content['text'])) { ?>
-                    <div class="g-card__content">
-                        <?= wp_kses_post($this->content['text']); ?>
-                    </div>
-                <?php } ?>
-            </div>
-        <?php } ?>
+use Gust\Components\Button;
+use Gust\Components\Illustration;
 
-        <?php if (! empty($this->content['meta'])) { ?>
-            <div class="g-card__meta">
-                <?= wp_kses_post($this->content['meta']); ?>
-            </div>
-        <?php } ?>
-
-        <?php if (! empty($this->content['labels'])) { ?>
-            <div class="g-card__labels">
-                <div class="g-card__labels__items">
-                    <?php foreach ($this->content['labels'] as $label) {
-                        echo \Gust\Components\Link::make(
-                            title: $label['name'],
-                            url: $label['url'],
-                            classes: ['btn', 'btn--label'],
-                        );
-                    } ?>
-                </div>
-            </div>
-        <?php } ?>
-
-        <?php if ($this->show_read_more && ! empty($this->content['read_more'])) {
-            echo \Gust\Components\Link::make(...$this->content['read_more']);
-        } ?>
-    </div>
-
-    <?php if (! empty($this->content['image'])) { ?>
-        <div class="g-card__image">
-            <div class="g-card__image-inner img-fit">
-                <?= \Gust\Components\Image::make(...$this->content['image']); ?>
-            </div>
+/**
+ * Card Template
+ *
+ * In an editor preview the heading and text are always printed (placeholders)
+ * so they can be edited in place.
+ *
+ * @var \Gust\Components\Card $this
+ */
+?>
+<div class="<?= classes($this->classes) ?>" <?= attributes($this->attributes) ?>>
+    <?php if ($this->illustration) { ?>
+        <div class="card__illustration" <?= $this->inlineToolbar(['illustration'], __('Illustration', 'gust')) ?>>
+            <?= Illustration::make(name: $this->illustration); ?>
         </div>
     <?php } ?>
-</article>
+
+    <div class="card__inner">
+        <?php if ($this->heading !== '' || $this->is_preview) { ?>
+            <h3 class="card__heading" <?= $this->inlineText('heading', __('Card heading', 'gust')) ?>><?= esc_html($this->heading) ?></h3>
+        <?php } ?>
+
+        <?php if ($this->text !== '' || $this->is_preview) { ?>
+            <div class="card__text" <?= $this->inlineToolbar(['text', 'link', 'show_newsletter_form'], __('Card content', 'gust')) ?>>
+                <?php if ($this->text !== '') { ?>
+                    <?= wp_kses_post($this->text); ?>
+                <?php } else { ?>
+                    <p class="card__placeholder"><?= esc_html__('Card text', 'gust') ?></p>
+                <?php } ?>
+            </div>
+        <?php } ?>
+
+        <?php if ($this->link) { ?>
+            <?= Button::make(
+                content: esc_html($this->link['title']),
+                url: $this->link['url'],
+                target: $this->link['target'] ?: null,
+                variant: 'link',
+                arrow: false,
+                classes: ['card__link'],
+            ); ?>
+        <?php } ?>
+
+        <?= $this->form; ?>
+    </div>
+</div>

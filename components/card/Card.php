@@ -2,167 +2,158 @@
 
 namespace Gust\Components;
 
-use Gust\Component;
 use Gust\ComponentBase;
 
 /**
- * Card Component
+ * Card Component (ACF block `theme/card`)
+ *
+ * The paper card (stone-beige, padding 24 / 20) used three ways: an
+ * announcement in the Upcoming grid, the member card and the newsletter card.
+ * Heading (h3), rich text, an optional "Read more" link, an optional small
+ * illustration in the top-right corner and an optional Newsletter Form.
+ *
+ * In the editor the heading is typed in place and the text, link and
+ * newsletter toggle open from an inline toolbar; illustration and size live
+ * in the block inspector.
  *
  * Usage:
  *   use Gust\Components\Card;
  *
- *   echo Card::make();
+ *   echo Card::make(heading: 'Become a Member', text: '<p>…</p>', link: ['url' => '/membership/']);
+ *   echo Card::make(heading: 'Stay in touch', text: '<p>…</p>', illustration: 'disco-ball', show_newsletter_form: true, size: 'sm');
  */
 class Card extends ComponentBase
 {
     protected static string $name = 'card';
 
+    public const SIZES = ['sm', 'lg'];
+
     protected static function getDefaults(): array
     {
         return [
-            'background' => 'stone-beige',
-            'image_size' => 'medium_large',
-            'show_read_more' => true,
-            'heading_class' => 'is-style-type-h4',
+            'size' => 'lg',
+            'show_newsletter_form' => false,
         ];
     }
 
     /**
      * Create a new Card component.
      *
-     * @return static|null Returns null if component should not render.
+     * @param  string  $heading  Card heading (h3).
+     * @param  string  $text  Rich text (HTML).
+     * @param  array|null  $link  ACF link array: url, title, target. Rendered as a "Read more" link.
+     * @param  string|null  $illustration  Illustration name, shown small in the top-right corner.
+     * @param  bool|null  $show_newsletter_form  Render the Newsletter Form under the text.
+     * @param  string|null  $size  One of self::SIZES.
+     * @return static|null Null when there is nothing to show (outside the editor).
      */
     public static function make(
-        array $attributes = [],
+        string $heading = '',
+        string $text = '',
+        ?array $link = null,
+        ?string $illustration = null,
+        ?bool $show_newsletter_form = null,
+        ?string $size = null,
+        bool $is_preview = false,
         array $classes = [],
-        ?string $type = null,
-        ?string $background = null,
-        ?string $image_size = null,
-        ?bool $show_read_more = null,
-        ?string $heading_class = null,
-        array $content = [],
+        array $attributes = [],
         ...$others
     ): ?static {
         return static::createFromArgs(static::mergeArgs(get_defined_vars()));
     }
 
+    protected static function validate(array $args): bool
+    {
+        $args = static::fromBlockFields($args);
+
+        return ! empty($args['is_preview'])
+            || trim((string) ($args['heading'] ?? '')) !== ''
+            || trim(strip_tags((string) ($args['text'] ?? ''))) !== ''
+            || ! empty($args['show_newsletter_form']);
+    }
+
     protected static function transform(array $args): array
     {
-        $args['classes'] ??= [];
+        $args = static::fromBlockFields($args);
 
-        if (! empty($args['object'])) {
-            $object = $args['object'];
+        $args['heading'] = trim((string) ($args['heading'] ?? ''));
+        $args['text'] = trim((string) ($args['text'] ?? ''));
+        $args['show_newsletter_form'] = ! empty($args['show_newsletter_form']);
+        $args['attributes'] ??= [];
 
-            if ($args['object'] instanceof \WP_Post) {
-                $args['content'] = [
-                    'heading' => get_the_title($object->ID),
-                    'url' => get_the_permalink($object->ID),
-                    'text' => get_the_excerpt($object->ID),
-                    'meta' => '',
-                    'labels' => \Theme\Utils\ObjectMeta::getObjectLabels($object->ID, [
-                        'limit' => 1,
-                        'taxonomies' => ['category'],
-                    ]),
-                ];
-
-                if (has_post_thumbnail($object->ID)) {
-                    $args['content']['image'] = ['ID' => get_post_thumbnail_id($object->ID)];
-                }
-
-                if (! has_excerpt($object->ID)) {
-                    if ($page_header_content = get_field('page_header_content', $object->ID)) {
-                        $args['content']['text'] = $page_header_content;
-                    }
-                }
-
-                if ($object->post_type === 'post') {
-                    $args['type'] = 'article';
-                    $args['show_read_more'] = false;
-                    $args['content']['text'] = '';
-                    $args['heading_class'] = 'is-style-type-h4';
-
-                    $metaDate = \Theme\Utils\ObjectMeta::getObjectDate($object);
-                    $metaAuthor = \Theme\Utils\ObjectMeta::getObjectAuthor($object);
-
-                    $args['content']['meta'] .= $metaDate ?? null;
-                    $args['content']['meta'] .= $metaDate && $metaAuthor ? ' ' : null;
-
-                    if (! empty($metaAuthor)) {
-                        $metaAuthor = Link::make(...$metaAuthor);
-                        $args['content']['meta'] .= sprintf(__('by %s', 'gust'), $metaAuthor);
-                    }
-                }
-            } elseif ($args['object'] instanceof \WP_Term) {
-                $args['content'] = [
-                    'heading' => $object->name,
-                    'url' => get_term_link($object->ID),
-                    'text' => $object->description,
-                ];
-            }
-
-            if (! empty($args['content']['url']) && empty($args['content']['read_more']['url'])) {
-                $args['content']['read_more']['url'] = $args['content']['url'];
-            }
-
-            if (empty($args['content']['read_more']['title'])) {
-                $args['content']['read_more']['title'] = __('Read more', 'gust');
-            }
-        } elseif (! empty($args['content'])) {
-            $content = $args['content'];
-
-            if (! empty($content['link'])) {
-                $content['url'] = $content['link']['url'];
-                $content['read_more']['url'] = $content['link']['url'];
-
-                if (empty($content['link']['title'])) {
-                    $args['show_read_more'] = false;
-                } else {
-                    $content['read_more']['title'] = $content['link']['title'];
-                }
-            }
-
-            $args['content'] = $content;
+        if (! in_array($args['size'], self::SIZES, true)) {
+            $args['size'] = 'lg';
         }
 
-        if (! empty($args['content']['read_more'])) {
-            $args['content']['read_more'] = array_merge([
-                'classes' => ['btn', 'g-card__read-more'],
-            ], $args['content']['read_more']);
+        $args['illustration'] = in_array($args['illustration'] ?? '', Illustration::NAMES, true)
+            ? $args['illustration']
+            : '';
+
+        // Link: an ACF link array (url, title, target) or a plain URL string.
+        $link = $args['link'] ?? null;
+
+        if (is_string($link) && $link !== '') {
+            $link = ['url' => $link];
         }
 
-        if (! empty($args['image_fit'])) {
-            $args['attributes']['style']['--g-card--image--object-fit'] = $args['image_fit'];
-        }
+        $args['link'] = is_array($link) && ! empty($link['url'])
+            ? [
+                'url' => $link['url'],
+                'title' => trim((string) ($link['title'] ?? '')) ?: __('Read more', 'gust'),
+                'target' => $link['target'] ?? null,
+            ]
+            : null;
 
-        if (! empty($args['background']) && $args['background'] !== 'none') {
-            $args['classes'][] = 'has-'.$args['background'].'-background-color';
-            $args['classes'][] = 'has-background';
-        }
+        $args['form'] = $args['show_newsletter_form'] ? NewsletterForm::make(classes: ['card__form']) : null;
 
-        $args['content']['heading'] = [
-            'heading' => $args['content']['heading'],
-            'classes' => ['g-card__heading'],
-        ];
+        $args['classes'] = array_merge([
+            'card',
+            'card--'.$args['size'],
+        ], $args['classes'] ?? []);
 
-        if (! empty($args['content']['url'])) {
-            $args['content']['heading']['link'] = $args['content']['url'];
-        }
-
-        if (! empty($args['heading_class'])) {
-            $args['content']['heading']['classes'][] = $args['heading_class'];
-        }
-
-        if (! empty($args['content']['image'])) {
-            $args['content']['image']['size'] = $args['image_size'];
-        }
-
-        $args['classes'][] = ! empty($args['content']['image']) ? 'has-image' : null;
-        $args['classes'][] = ! empty($args['content']['url']) ? 'has-link' : null;
-
-        if (! empty($args['type'])) {
-            $args['classes'][] = 'g-card--type--'.$args['type'];
+        if ($args['illustration']) {
+            $args['classes'][] = 'card--illustrated';
         }
 
         return $args;
+    }
+
+    /** Block fields are prefixed (card_heading…) so their names stay unique for inline editing. */
+    protected static function fromBlockFields(array $args): array
+    {
+        foreach (['heading', 'text', 'link', 'illustration', 'show_newsletter_form', 'size'] as $field) {
+            if (array_key_exists("card_{$field}", $args)) {
+                $args[$field] = $args["card_{$field}"] ?? $args[$field] ?? null;
+                unset($args["card_{$field}"]);
+            }
+        }
+
+        return $args;
+    }
+
+    /**
+     * ACF inline text editing attributes for a block field (name without the
+     * card_ prefix). Empty outside an editor preview: ACF 6.8 sets its
+     * "doing block preview" flag on front-end renders too.
+     */
+    public function inlineText(string $field, string $placeholder): string
+    {
+        if (! $this->is_preview || ! \function_exists('acf_inline_text_editing_attrs')) {
+            return '';
+        }
+
+        return \acf_inline_text_editing_attrs("card_{$field}", ['placeholder' => $placeholder]);
+    }
+
+    /** ACF inline toolbar attributes for a set of block fields (names without the card_ prefix). */
+    public function inlineToolbar(array $fields, string $title): string
+    {
+        if (! $this->is_preview || ! \function_exists('acf_inline_toolbar_editing_attrs')) {
+            return '';
+        }
+
+        $fields = array_map(fn (string $field) => "card_{$field}", $fields);
+
+        return (string) \acf_inline_toolbar_editing_attrs($fields, ['toolbar_title' => $title]);
     }
 }

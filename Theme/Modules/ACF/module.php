@@ -28,6 +28,7 @@ class ACFModule
         \add_filter('acf/load_field/name=section_scatter_illustration_1', [__CLASS__, 'loadIllustrationFieldChoices']);
         \add_filter('acf/load_field/name=section_scatter_illustration_2', [__CLASS__, 'loadIllustrationFieldChoices']);
         \add_filter('acf/load_field/name=section_scatter_illustration_3', [__CLASS__, 'loadIllustrationFieldChoices']);
+        \add_filter('acf/load_field/name=card_illustration', [__CLASS__, 'loadIllustrationFieldChoices']);
 
         \add_filter('acf/load_value/type=link', [__CLASS__, 'filterEmptyLinkField']);
 

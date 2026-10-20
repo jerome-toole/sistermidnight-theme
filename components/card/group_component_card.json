@@ -1,0 +1,150 @@
+{
+    "key": "group_component_card",
+    "title": "Block - Card",
+    "fields": [
+        {
+            "key": "field_card_heading",
+            "label": "Heading",
+            "name": "card_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Editable in place in the editor.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_card_text",
+            "label": "Text",
+            "name": "card_text",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "visual",
+            "toolbar": "Basic Formatting",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_card_link",
+            "label": "Link",
+            "name": "card_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Rendered as a \"Read more\" link under the text. The link text defaults to \"Read more\".",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_card_illustration",
+            "label": "Illustration",
+            "name": "card_illustration",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Small illustration in the top-right corner. Choices are loaded from the Illustration component.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": false,
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_card_size",
+            "label": "Size",
+            "name": "card_size",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Large: padding 24, 108px illustration. Small: padding 20, 86px illustration.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "lg": "Large",
+                "sm": "Small"
+            },
+            "default_value": "lg",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_card_show_newsletter_form",
+            "label": "Show newsletter form",
+            "name": "card_show_newsletter_form",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Renders the newsletter signup form under the text.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "theme/card"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792810000
+}

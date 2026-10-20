@@ -6,6 +6,7 @@
  * The block fills <InnerBlocks /> itself; here `content` is the inner HTML.
  */
 
+use Gust\Components\Card;
 use Gust\Components\Section;
 
 $image = get_posts(['post_type' => 'attachment', 'post_mime_type' => 'image/jpeg', 'numberposts' => 1, 'fields' => 'ids']);
@@ -23,10 +24,8 @@ $two_column = <<<'HTML'
 <div class="wp-block-group"><h3 class="wp-block-heading">Our Values</h3><p>Our core values were co-written with our members, and reflect the principles that we believe a community-owned music venue should uphold. These values form the core of our organisational ethics and will inform the choices we make throughout the lifetime of Sister Midnight.</p></div>
 HTML;
 
-$cards = <<<'HTML'
-<div class="has-stone-beige-background-color has-background" style="padding: 24px"><h3 class="type-title-sm">Become a Member</h3><p>Since 2021, over 1100 members have raised £365,000 to make this happen — and now we need your help to complete the next stage of renovations.</p><p><a href="#">Read more</a></p></div>
-<div class="has-stone-beige-background-color has-background" style="padding: 24px"><h3 class="type-title-sm">Stay in touch</h3><p>We send an occasional newsletter letting you know about our events.</p></div>
-HTML;
+$cards = Card::make(heading: 'Become a Member', text: '<p>Since 2021, over 1100 members have raised £365,000 to make this happen — and now we need your help to complete the next stage of renovations.</p>', link: ['url' => '#', 'title' => 'Read more'])
+    .Card::make(heading: 'Stay in touch', text: '<p>We send an occasional newsletter letting you know about our events.</p>', illustration: 'disco-ball', show_newsletter_form: true, size: 'sm');
 ?>
 
 <section class="component-example-section">
@@ -55,7 +54,7 @@ HTML;
 
 <section class="component-example-section">
     <h2 class="component-example-section__title">Scatter</h2>
-    <p class="component-example-section__description">Staggered cards with three decorative illustrations (Join the party). Cards here are stand-ins until the Card block exists.</p>
+    <p class="component-example-section__description">Staggered Cards with three decorative illustrations (Join the party).</p>
     <div class="component-example-section__preview">
         <?= Section::make(label: 'Join the party', layout: 'scatter', scatter_illustrations: ['sun-wavy', 'record-heart', 'stars'], content: $cards); ?>
     </div>

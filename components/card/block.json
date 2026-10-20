@@ -1,0 +1,28 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "theme/card",
+    "title": "Card",
+    "description": "Paper card with a heading, text, optional link, small illustration and newsletter form. Used for announcements, the member card and the newsletter card.",
+    "category": "theme-blocks",
+    "icon": "index-card",
+    "keywords": ["card", "member", "newsletter", "announcement"],
+    "textdomain": "gust",
+    "acf": {
+        "blockVersion": 3,
+        "mode": "preview",
+        "renderCallback": "Gust\\Components\\Card::renderBlock"
+    },
+    "supports": {
+        "anchor": true,
+        "align": false,
+        "mode": false,
+        "jsx": false,
+        "html": false,
+        "color": {
+            "background": false,
+            "text": false,
+            "gradients": false
+        }
+    }
+}
