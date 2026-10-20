@@ -1,0 +1,68 @@
+/* --------------------------------------------------- */
+/* Content layout
+ *
+ * The "right column" text layout: a 1237px container split into two
+ * halves with a 20–40px gap. Text sits in the second half, the first
+ * half holds an illustration or image (or stays empty).
+ * Single column below md.
+ *
+ *   <div class="content-layout">
+ *       <div class="content-layout__media">…</div>
+ *       <div class="content-layout__text">…</div>
+ *   </div>
+ *
+ * content-layout--reverse swaps the halves from md.
+ */
+/* --------------------------------------------------- */
+
+@layer base {
+    :root {
+        --content-layout--gap: spaceFluid(20, 40);
+        --content-layout--max-width: var(--width-fluid-content);
+    }
+}
+
+@utility content-layout {
+    display: grid;
+    width: 100%;
+    max-width: var(--content-layout--max-width);
+    margin-inline: auto;
+    gap: var(--content-layout--gap);
+    grid-template-columns: minmax(0, 1fr);
+
+    @media (width >= theme("screens.md")) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    > .content-layout__media {
+        grid-column: 1;
+    }
+
+    > .content-layout__text {
+        grid-column: 1;
+
+        @media (width >= theme("screens.md")) {
+            grid-column: 2;
+            grid-row: 1;
+        }
+    }
+
+    &.content-layout--reverse {
+        @media (width >= theme("screens.md")) {
+            > .content-layout__media {
+                grid-column: 2;
+            }
+
+            > .content-layout__text {
+                grid-column: 1;
+            }
+        }
+    }
+
+    /* Media is decorative on small screens: hidden below md unless a component opts in */
+    > .content-layout__media:not(.content-layout__media--always) {
+        @media (width < theme("screens.md")) {
+            display: none;
+        }
+    }
+}

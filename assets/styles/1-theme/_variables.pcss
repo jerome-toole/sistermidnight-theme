@@ -31,6 +31,7 @@
         --width-fluid-sm: min(var(--container-sm), var(--width-fluid-container));
         --width-fluid-md: min(var(--container-md), var(--width-fluid-container));
         --width-fluid-lg: min(var(--container-lg), var(--width-fluid-container));
+        --width-fluid-content: min(var(--container-content), var(--width-fluid-container));
 
         /* --------------------------------------------------- */
         /* Base */
@@ -51,9 +52,10 @@
         /* --------------------------------------------------- */
         /* Focus */
         /* --------------------------------------------------- */
-        --focus--color: var(--color-accent);
-        --base--focus-offset: 5px;
-        --base--focus-width: 3px;
+        /* Follows the colour context: warm-sand on dark, dark-umber on light (colour contexts re-set it) */
+        --focus--color: var(--color-foreground);
+        --base--focus-offset: 3px;
+        --base--focus-width: 2px;
 
         /* --------------------------------------------------- */
         /* Box Shadow */

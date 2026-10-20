@@ -89,6 +89,21 @@ body {
     }
 }
 
+/* Paper texture hook (spec: Design System → Paper texture).
+   body::before is the backdrop overlay above, so the texture goes on body::after.
+   Enable when a tiled texture is exported to assets/static/images/paper.webp:
+
+body::after {
+    position: fixed;
+    z-index: var(--z-index-backdrop);
+    inset: 0;
+    background: url("/images/paper.webp") repeat;
+    content: "";
+    opacity: 0.08;
+    pointer-events: none;
+}
+*/
+
 dialog {
     margin: auto;
 }
