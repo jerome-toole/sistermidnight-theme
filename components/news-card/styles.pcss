@@ -1,0 +1,84 @@
+/* ---------------------------------------------------------------------------
+ * News Card (partial)
+ *
+ * Paper card on stone-beige, padding 24, 32 between image and text, like the
+ * Event Card. Landscape image (531×351, as in the Article Header), then
+ * date / title / excerpt (gap 12). The title link is stretched over the card.
+ * ------------------------------------------------------------------------- */
+
+.news-card {
+    --news-card--padding: space(24);
+    --news-card--image-ratio: 531 / 351;
+
+    @apply color-context-stone-beige;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: space(32);
+    width: 100%;
+    padding: var(--news-card--padding);
+
+    /* Inset ring: the context's focus colour is for the paper, not the page around it */
+    &:has(.news-card__link:focus-visible) {
+        outline: var(--base--focus-width, 2px) solid var(--focus--color);
+        outline-offset: calc(var(--news-card--padding) / -2);
+    }
+}
+
+.news-card__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: var(--news-card--image-ratio);
+    object-fit: cover;
+}
+
+.news-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: space(12);
+}
+
+.news-card__date {
+    @apply type-h6;
+
+    margin: 0;
+    line-height: 1.2;
+}
+
+.news-card__title {
+    @apply type-h4;
+
+    margin: 0;
+    overflow-wrap: break-word;
+}
+
+.news-card__link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.12em;
+    transition: text-decoration-color 0.2s;
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+    }
+
+    &:focus-visible {
+        outline: none;
+    }
+
+    .news-card:hover & {
+        text-decoration-color: currentcolor;
+    }
+}
+
+.news-card__excerpt {
+    @apply type-body;
+
+    margin: 0;
+}

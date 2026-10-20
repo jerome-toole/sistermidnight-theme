@@ -1,0 +1,70 @@
+/* ---------------------------------------------------------------------------
+ * Article header (partial)
+ *
+ * News single top on the page colour (padding 0/104/80): the image (531×351)
+ * centred in the left half of the content layout, the text in the right
+ * half: date / title (gap 15), then 24 below, the excerpt. Stacked below md.
+ * ------------------------------------------------------------------------- */
+
+.article-header {
+    --article-header--padding-bottom: spaceFluid(48, 80);
+    --article-header--image-width: space(531);
+    --article-header--image-ratio: 531 / 351;
+
+    padding-block: 0 var(--article-header--padding-bottom);
+    padding-inline: var(--container-padding);
+}
+
+.article-header__inner {
+    align-items: start;
+}
+
+.article-header__media {
+    display: flex;
+    justify-content: center;
+
+    @media (width < theme('screens.md')) {
+        justify-content: flex-start;
+    }
+}
+
+.article-header__image {
+    display: block;
+    width: 100%;
+    max-width: var(--article-header--image-width);
+    height: auto;
+    aspect-ratio: var(--article-header--image-ratio);
+    object-fit: cover;
+}
+
+.article-header__content {
+    display: flex;
+    flex-direction: column;
+    gap: space(24);
+}
+
+.article-header__intro {
+    display: flex;
+    flex-direction: column;
+    gap: space(15);
+}
+
+.article-header__date {
+    @apply type-h6;
+
+    margin: 0;
+    line-height: 1.2;
+}
+
+.article-header__title {
+    @apply type-h4;
+
+    margin: 0;
+    overflow-wrap: break-word;
+}
+
+.article-header__excerpt {
+    @apply type-body;
+
+    margin: 0;
+}

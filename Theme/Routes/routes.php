@@ -11,6 +11,7 @@
  */
 
 use Gust\Router;
+use Theme\Controllers\NewsController;
 use Theme\Controllers\NotFoundController;
 use Theme\Controllers\SearchController;
 use Theme\Modules\Events\EventsModule;
@@ -29,6 +30,11 @@ Router::decorate404(NotFoundController::class)
 Router::decoratePostType('event', EventsModule::class)
     ->withPage('events')
     ->withSlot('template-content', [EventsModule::class, 'renderArchive']);
+
+// News archive (the posts page)
+Router::decoratePostType('post', NewsController::class)
+    ->withPage('news')
+    ->withSlot('template-content', [NewsController::class, 'renderLoop']);
 
 // Example: Taxonomy archive for 'category' taxonomy
 // Router::decorateTaxonomy('category', ArchiveController::class)

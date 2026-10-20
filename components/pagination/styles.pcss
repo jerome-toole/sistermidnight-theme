@@ -1,89 +1,63 @@
+/* ---------------------------------------------------------------------------
+ * Pagination
+ *
+ * Centred row of paper squares (stone-beige, dark-umber text); the current
+ * page is burnt-sienna with cool-grey text (4.5:1). Previous / next are
+ * paper buttons with their text label.
+ * ------------------------------------------------------------------------- */
+
 .pagination {
-    --flow-space: var(--space-base);
-    --section--margin-bottom: var(--space-base);
+    --pagination--size: space(40);
+    --pagination--gap: space(8);
+
+    margin-block-start: spaceFluid(32, 48);
 }
 
-.nav-links {
-    --pagination--size: 2.1875rem; /* 35px */
-    --col-gap: space(8);
-
-    @apply flex-grid;
-    @apply flex-grid-auto;
-
+.pagination .nav-links {
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    gap: var(--pagination--gap);
 
-    @media (min-width: theme('screens.md')) {
-        --pagination--size: 2.1875rem; /* 35px */
-    }
+    > .page-numbers {
+        @apply type-h6;
 
-    > a,
-    > .current {
-        --btn--background-color: var(--color-warm-sand);
-        --btn--border-color: var(--color-warm-sand);
-        --btn--color: var(--color-foreground);
-
-        --btn--background-color--hover: var(--color-brand-2);
-        --btn--border-color--hover: var(--color-brand-2);
-        --btn--color-hover: var(--color-foreground);
-
-        --btn--size: var(--pagination--size);
-
-        @apply btn;
-        @apply btn--square;
-        @apply type-h5;
-
-        box-shadow: var(--base--shadow);
-        font-size: 0.875rem; /* 14px */
-
-        &:hover,
-        &:focus-visible {
-            box-shadow: var(--base--shadow--hover);
-        }
-    }
-
-    .current {
-        --btn--background-color: var(--color-brand-2);
-        --btn--border-color: var(--color-brand-2);
-        --btn--color: var(--color-foreground);
-
-        --btn--background-color--hover: var(--color-brand-2);
-        --btn--border-color--hover: var(--color-brand-2);
-        --btn--color-hover: var(--color-foreground);
-    }
-
-    .dots {
         display: inline-flex;
-        min-width: var(--pagination--size);
-        min-height: var(--pagination--size);
         align-items: center;
         justify-content: center;
+        min-width: var(--pagination--size);
+        min-height: var(--pagination--size);
+        padding-inline: space(12);
+        line-height: 1;
+        text-decoration: none;
     }
 
-    .next,
-    .prev {
-        --btn--background-color: var(--color-background);
-        --btn--border-color: var(--color-brand-2);
-        --btn--color: var(--color-accent);
+    > a.page-numbers {
+        @apply color-context-stone-beige;
 
-        --btn--background-color--hover: var(--color-brand-2);
-        --btn--border-color--hover: var(--color-brand-2);
-        --btn--color-hover: var(--color-foreground);
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        text-underline-offset: 0.15em;
+        transition: text-decoration-color 0.2s;
 
-        @apply btn--icon;
-        @apply btn--square;
+        &:hover {
+            text-decoration-color: currentcolor;
+        }
 
-        display: inline-block;
-
-        &::after {
-            mask-image: url('/images/icons/chevron-right.svg');
-            mask-size: 0.5625rem; /* 9px */
+        &:focus-visible {
+            outline: var(--base--focus-width, 2px) solid var(--focus--color);
+            outline-offset: -5px; /* inset, on the paper */
         }
     }
 
-    .prev {
-        &::after {
-            transform: rotate(180deg);
-        }
+    > .current {
+        @apply color-context-burnt-sienna;
+
+        color: var(--color-cool-grey);
+    }
+
+    > .dots {
+        padding-inline: 0;
     }
 }
