@@ -58,7 +58,10 @@ class MenuItem extends ComponentBase
 
         $args['classes'] = array_merge($args['classes'] ?? [], $item->classes);
 
-        $args['attributes']['id'] = 'menu-item-'.$item->ID;
+        // Unique per render: the header renders the same menu inline and in its dialog.
+        $uid = \wp_unique_id();
+        $args['attributes']['id'] = 'menu-item-'.$item->ID.'-'.$uid;
+        $sub_menu_id = 'sub-menu-'.$item->ID.'-'.$uid;
 
         $args['link'] = [
             'url' => $item->url,
@@ -66,6 +69,7 @@ class MenuItem extends ComponentBase
             'target' => $item->target ?: '',
             'attributes' => [
                 'title' => $item->attr_title ?: null,
+                'aria-current' => ! empty($item->is_current_item) ? 'page' : null,
             ],
         ];
 
@@ -77,7 +81,7 @@ class MenuItem extends ComponentBase
             $args['display_submenu'] = true;
 
             $args['sub-menu-attributes'] = [
-                'id' => 'sub-menu-'.$item->ID,
+                'id' => $sub_menu_id,
                 'class' => \Gust\Helpers::buildClasses([
                     'sub-menu',
                     'sub-menu--depth-'.$args['depth'],
@@ -94,8 +98,8 @@ class MenuItem extends ComponentBase
                 'classes' => ['sub-menu-toggler'],
                 'attributes' => [
                     'aria-expanded' => 'false',
-                    'aria-controls' => 'sub-menu-'.$item->ID,
-                    'id' => 'sub-menu-'.$item->ID.'-toggler',
+                    'aria-controls' => $sub_menu_id,
+                    'id' => $sub_menu_id.'-toggler',
                 ],
             ];
         }

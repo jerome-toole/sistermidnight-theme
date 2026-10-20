@@ -5,7 +5,7 @@
 **Title**: Sister Midnight
 **Live URL**: https://www.sistermidnight.org
 **Staging URL**: TBD
-**PHP Version**: 8.3+
+**PHP Version**: 8.5+
 
 Community-owned music venue & radio station in Catford, Lewisham. Fundraising for a 250-capacity venue opening 2026. Target audience: local music community, potential members/investors, press.
 
@@ -24,15 +24,15 @@ This spec is the single source of truth for the autonomous build. Agents build f
 
 | Topic          | Decision                                                                                                                                                                                                                                                                                           |
 | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Events | Manual ACF event post type. Calendar and list are **client-rendered** from a cached JSON feed (see Events Calendar). Featured/upcoming cards stay server-rendered. |
+| Events         | Manual ACF event post type. Calendar and list are **client-rendered** from a cached JSON feed (see Events Calendar). Featured/upcoming cards stay server-rendered.                                                                                                                                 |
 | Radio bar      | Live now-playing from Radio.co station `s35e4926a1`, fetched server-side and cached (transient, 30s). Stream: `https://stream.radio.co/s35e4926a1/listen`. Status: `https://public.radio.co/stations/s35e4926a1/status`. Current track: `https://public.radio.co/api/v2/s35e4926a1/track/current`. |
-| Forms | Gravity Forms (existing module) with the **Brevo add-on** for the newsletter list. Newsletter signup renders a GF form by ID from theme options. |
+| Forms          | Gravity Forms (existing module) with the **Brevo add-on** for the newsletter list. Newsletter signup renders a GF form by ID from theme options.                                                                                                                                                   |
 | Mobile         | Inferred from desktop using the rules in each component. Breakpoints: `md` 768, `lg` 1024.                                                                                                                                                                                                         |
 | Old components | Keep and refactor. Rename/replace freely but reuse Gust plumbing.                                                                                                                                                                                                                                  |
 | Ambiguity      | Decide the simplest option consistent with this spec, log it in `.docs/BUILD-DECISIONS.md`.                                                                                                                                                                                                        |
-| Editor | Core blocks + block styles + patterns first; custom ACF blocks only for structured data or controlled markup (Section, Card, Upcoming Events, Gallery, Image Pair, FAQ, Team). ACF inline-editable markup wherever possible. |
-| JS | No frameworks. Carousels use the **Blossom carousel** library (https://www.blossom-carousel.com/, npm `blossom-carousel`). Everything else is vanilla modules per component. |
-| Targets | Lighthouse ≥ 90 as guidance on Front Page, What's On, Event single. WCAG 2.2 AA is a hard requirement. |
+| Editor         | Core blocks + block styles + patterns first; custom ACF blocks only for structured data or controlled markup (Section, Card, Upcoming Events, Gallery, Image Pair, FAQ, Team). ACF inline-editable markup wherever possible.                                                                       |
+| JS             | No frameworks. Carousels use the **Blossom carousel** library (https://www.blossom-carousel.com/, npm `blossom-carousel`). Everything else is vanilla modules per component.                                                                                                                       |
+| Targets        | Lighthouse ≥ 90 as guidance on Front Page, What's On, Event single. WCAG 2.2 AA is a hard requirement.                                                                                                                                                                                             |
 
 ---
 
@@ -203,15 +203,13 @@ Legend: **Partial** = template-only, data from context. **Block** = ACF Gutenber
 - **Block styles** (registered in `core-blocks`, with editor CSS for parity): paragraph "Large", "Small"; heading "Eyebrow"; buttons "Primary", "Link"; image "Framed"; columns "Text right" (content in the right half); group backgrounds limited to palette colours flagged `block_editor` in `theme-config.json`.
 - **Allowed blocks** stay as in `config.json`.
 - **Block patterns** (registered in `patterns/`, category "Sister Midnight") so editors start from a working composition:
-  - *Illustration and text*: Section (illustration left) with heading + paragraphs + button in the right column
-  - *Two-column text*: Section (two-column) with two groups each of heading (h3) + paragraphs
-  - *Image and text*: Section (image left) with heading + paragraphs
-  - *Headed FAQ*: heading + FAQ block
-  - *Join the party*: Section (scatter) with Member Card + Newsletter Card
-  - *Event page body*: text Section + Image Pair + FAQ
+    - _Illustration and text_: Section (illustration left) with heading + paragraphs + button in the right column
+    - _Two-column text_: Section (two-column) with two groups each of heading (h3) + paragraphs
+    - _Image and text_: Section (image left) with heading + paragraphs
+    - _Headed FAQ_: heading + FAQ block
+    - _Join the party_: Section (scatter) with Member Card + Newsletter Card
+    - _Event page body_: text Section + Image Pair + FAQ
 - **Editor parity** is a deliverable: every block style and custom block has editor CSS so the editor approximates the front end.
-
-
 
 ### Site Header [Partial]
 
@@ -331,11 +329,12 @@ List view: chronological list grouped by month, each row = date, title, venue, l
 ### Gallery [Block] `gallery`
 
 One block, two block styles the editor can switch between:
+
 - **Masonry** (default): rows of mixed-width images (row 1: 268 / 533 / 243 / 238; row 2: 247 / 247 / 551 / 238), height 360, gap 12. CSS grid with `grid-auto-flow: dense`, span from aspect ratio (landscape = 2 cols).
 - **Carousel**: horizontal strip 420px tall, natural widths, gap 16, prev/next arrows top-right. Blossom carousel (https://www.blossom-carousel.com/, npm `blossom-carousel`) initialised by the block's `scripts.js` only when the style is active; arrows wired to its prev/next API.
-**Fields:** **label** (text, vertical gutter label), **images** (gallery)
-**Mobile:** masonry → 2 equal columns; carousel unchanged.
-**A11y:** image alt from media library; carousel region `aria-roledescription="carousel"`, arrow buttons named, keyboard scroll native, `prefers-reduced-motion` → no smooth scrolling.
+  **Fields:** **label** (text, vertical gutter label), **images** (gallery)
+  **Mobile:** masonry → 2 equal columns; carousel unchanged.
+  **A11y:** image alt from media library; carousel region `aria-roledescription="carousel"`, arrow buttons named, keyboard scroll native, `prefers-reduced-motion` → no smooth scrolling.
 
 ### Image Pair [Block] `image-pair`
 

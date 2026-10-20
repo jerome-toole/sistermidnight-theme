@@ -1,32 +1,52 @@
-<header class="<?= classes('site-header color-context-dark-umber', $this->classes) ?>" data-site-header <?= attributes($this->attributes) ?>>
+<?php
+$nav_label = __('Primary', 'gust');
+?>
+<header class="<?= classes($this->classes) ?>" data-site-header <?= attributes($this->attributes) ?>>
     <div class="site-header__bar">
-        <a href="<?= esc_url(home_url('/')) ?>" class="site-header__logo">
-            <?= esc_html(get_bloginfo('name')) ?>
-        </a>
+        <a href="<?= esc_url(home_url('/')) ?>" class="site-header__wordmark"><?= esc_html(get_bloginfo('name')) ?></a>
 
-        <div class="site-header__buttons">
-            <button
-                class="site-header__toggle site-header__burger btn btn--ghost"
-                popovertarget="site-header-nav"
-                type="button">
-                <?= \Gust\Components\Burger::make(attributes: ['aria-hidden' => 'true']); ?>
-                <span class="sr-only"><?= __('Menu', 'gust') ?></span>
-                <span class="site-header__toggle-closed" aria-hidden="true"><?= __('Menu', 'gust') ?></span>
-                <span class="site-header__toggle-open" aria-hidden="true"><?= __('Close', 'gust') ?></span>
-            </button>
-        </div>
-
-        <?php /* Inline from the site-header breakpoint up, a popover panel below it */ ?>
-        <nav class="site-header__nav site-header__panel" id="site-header-nav" aria-label="<?= esc_attr__('Primary navigation', 'gust') ?>" popover data-scroll-lock>
+        <?php if ($this->has_menu) { ?>
             <?= \Gust\Components\Menu::make(
-                theme_location: 'header',
-                menu_id: 'main-menu',
-                classes: ['site-header__navigation'],
+                theme_location: \Gust\Components\SiteHeader::MENU_LOCATION,
+                classes: ['site-header__nav'],
+                attributes: ['aria-label' => $nav_label],
             ); ?>
 
-            <?= \Gust\Components\SocialIcons::make(
-                classes: ['site-header__social'],
+            <?= \Gust\Components\Button::make(
+                content: __('Menu', 'gust'),
+                classes: ['site-header__toggle'],
+                attributes: [
+                    'data-site-header-open' => '',
+                    'aria-haspopup' => 'dialog',
+                    'command' => 'show-modal',
+                    'commandfor' => $this->dialog_id,
+                ],
             ); ?>
-        </nav>
+        <?php } ?>
     </div>
+
+    <?php if ($this->has_menu) { ?>
+        <dialog class="site-header__dialog color-context-dark-umber" id="<?= esc_attr($this->dialog_id) ?>" aria-label="<?= esc_attr__('Menu', 'gust') ?>">
+            <div class="site-header__dialog-bar">
+                <a href="<?= esc_url(home_url('/')) ?>" class="site-header__wordmark"><?= esc_html(get_bloginfo('name')) ?></a>
+
+                <?= \Gust\Components\Button::make(
+                    content: __('Close', 'gust'),
+                    classes: ['site-header__toggle'],
+                    attributes: [
+                        'data-site-header-close' => '',
+                        'autofocus' => '',
+                        'command' => 'close',
+                        'commandfor' => $this->dialog_id,
+                    ],
+                ); ?>
+            </div>
+
+            <?= \Gust\Components\Menu::make(
+                theme_location: \Gust\Components\SiteHeader::MENU_LOCATION,
+                classes: ['site-header__menu'],
+                attributes: ['aria-label' => $nav_label],
+            ); ?>
+        </dialog>
+    <?php } ?>
 </header>

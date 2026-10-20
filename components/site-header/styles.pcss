@@ -1,304 +1,157 @@
 /* ---------------------------------------------------------------------------
  * Site header
  *
- * A sticky header whose nav is inline from the site-header breakpoint up, and
- * a popover panel below the bar under it. The mobile search is a second
- * popover panel. Popovers do the work with no JS: the toggles get
- * aria-expanded, Escape and a click outside close them, opening one closes
- * the other, and focus goes back to the toggle. Panels wipe open with
- * @starting-style; data-scroll-lock stops the page scrolling behind them
- * (4-utilities/_scroll-lock.pcss).
+ * Wordmark left, primary nav right (type-h5, inline from md up). Below md the
+ * nav lives in a full-screen native <dialog> (column list, type-h4) opened by
+ * a "Menu" button; scripts.js wires the clicks where needed.
  *
- * scripts/SiteHeader.js adds the rest: it sets [data-site-header-hidden]
- * while the user scrolls down and removes it when they scroll up, so the
- * header peeks back. It also closes panels on a link click, when focus leaves
- * them, and when the viewport grows past the breakpoint. Without JS the header
- * just stays put. Keyboard focus or an open panel always brings a hidden
- * header back.
- *
- * Toggle contents show by panel state: .site-header__toggle-closed while the
- * toggle's panel is closed, .site-header__toggle-open while it's open.
+ * Variants:
+ *   .site-header--default  dark-umber context, in the page flow
+ *   .site-header--hero     no background, absolutely positioned over the Hero
+ *                          (it takes the Hero's colour context)
  * ------------------------------------------------------------------------- */
 
-@import './styles/_menu.pcss';
+.site-header {
+    --site-header--padding: space(16);
+    --site-header--nav-gap: space(18);
+    /* Read by scripts.js: the dialog closes once the nav shows inline */
+    --site-header--breakpoint: theme('screens.md');
 
-@layer base {
-    :root {
-        --site-header--height: space(70);
-        /* The fixed admin bar. Under 600px it scrolls away with the page. */
-        --site-header--top: var(--wp-admin--admin-bar--height, 0px);
-        --site-header--menu--duration: 250ms;
-        --site-header--menu--ease: ease-in-out;
+    position: relative;
+    z-index: var(--z-index-site-header);
 
-        @media (width < 600px) {
-            --site-header--top: 0px;
-        }
+    @media (width >= theme('screens.md')) {
+        --site-header--padding: space(24);
+    }
 
-        @media (width >= theme('screens.site-header')) {
-            --site-header--height: space(74);
-        }
+    &:where(.site-header--hero) {
+        position: absolute;
+        inset: var(--wp-admin--admin-bar--height, 0px) 0 auto;
     }
 }
 
-.site-header {
-    --site-header--spacing: space(12);
-    --site-header--icon-size: 18px;
-    --site-header--logo-width: space(80);
-    --site-header--transition-duration: 300ms;
+.site-header__bar,
+.site-header__dialog-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: space(24);
 
-    --link--color: var(--color-foreground);
-    --link--color-hover: var(--color-foreground);
-    --link--text-decoration: none;
-    --link--text-decoration--hover: underline;
-
-    --menu-item--gap: space(24);
-    --menu-item--arrow-size: 0.8125rem;
-
-    position: sticky;
-    top: var(--site-header--top);
-    z-index: var(--z-index-site-header);
-    background-color: var(--color-background);
-
-    @media (width >= theme('screens.site-header')) {
-        --site-header--spacing: space(20);
-        --site-header--logo-width: space(96);
-        --menu-item--arrow-size: 0.625rem;
-        --menu-item--gap: space(32);
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-        transition: translate var(--site-header--transition-duration) var(--ease-out-quart);
-    }
-
-    /* Scrolled away, unless keyboard focus is in it or a panel is open */
-    &[data-site-header-hidden]:not(:has(:focus-visible, :where(:popover-open, .\:popover-open))) {
-        translate: 0 -100%;
+    @media (width >= theme('screens.md')) {
+        align-items: flex-start;
     }
 }
 
 .site-header__bar {
-    display: flex;
-    width: 100%;
-    height: var(--site-header--height);
-    align-items: center;
-    padding-right: var(--container-padding);
-    padding-left: var(--container-padding);
-    gap: var(--site-header--spacing);
-    justify-content: space-between;
-
-    @media (width >= theme('screens.site-header')) {
-        @apply content-width-fluid-lg;
-
-        padding-right: 0;
-        padding-left: 0;
-    }
+    padding: var(--site-header--padding);
 }
 
-.site-header__logo {
-    margin-right: auto;
-    font-family: var(--font-display);
-    font-size: rem(18);
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    text-transform: uppercase;
+.site-header__wordmark {
+    @apply type-h3 link link--2 link--foreground;
 
-    @media (width >= theme('screens.site-header')) {
-        font-size: rem(22);
-    }
+    display: inline-block;
+    line-height: 1;
 }
 
-.site-header__social {
-    display: flex;
-    align-items: center;
-    gap: space(16);
-}
-
-.site-header__buttons {
-    display: flex;
-    align-items: center;
-    gap: space(20);
-
-    @media (width >= theme('screens.site-header')) {
-        display: none;
-    }
-
-    .btn {
-        line-height: 1.25;
-    }
-}
-
-.site-header__burger {
-    flex: 0 0 auto;
-    margin-right: calc(var(--burger--padding) * -0.5);
-}
-
-.site-header__search-toggler {
-    --btn--icon-size: rem(18px);
-
-    position: relative;
-    flex: 0 0 auto;
-}
-
-/* Toggle contents by the state of the toggle's panel */
-.site-header:not(:has(.site-header__nav:where(:popover-open, .\:popover-open))) .site-header__burger .site-header__toggle-open,
-.site-header:has(.site-header__nav:where(:popover-open, .\:popover-open)) .site-header__burger .site-header__toggle-closed,
-.site-header:not(:has(.site-header__search-panel:where(:popover-open, .\:popover-open)))
-    .site-header__toggle.site-header__search-toggler
-    .site-header__toggle-open,
-.site-header:has(.site-header__search-panel:where(:popover-open, .\:popover-open))
-    .site-header__toggle.site-header__search-toggler
-    .site-header__toggle-closed {
-    display: none;
-}
-
-/* The burger crosses while the menu is open */
-.site-header:has(.site-header__nav:where(:popover-open, .\:popover-open)) .site-header__burger .burger {
-    .burger__line--1 {
-        transform: rotate(45deg);
-    }
-
-    .burger__line--2 {
-        opacity: 0;
-    }
-
-    .burger__line--3 {
-        transform: rotate(-45deg);
-    }
-}
-
-/* Mobile: a panel filling the viewport below the bar */
-.site-header__panel {
-    @media (width < theme('screens.site-header')) {
-        position: fixed;
-        inset: var(--site-header__panel--top, calc(var(--site-header--top) + var(--site-header--height))) 0 0;
-        width: auto;
-        height: auto;
-        max-width: none;
-        max-height: none;
-        margin: 0;
-        padding: var(--container-padding);
-        border: 0;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        background-color: var(--color-background);
-        color: var(--color-foreground);
-        /* Outside the open state so the layout holds while the panel closes */
-        flex-direction: column;
-
-        &:where(:popover-open, .\:popover-open) {
-            display: flex;
-        }
-
-        /*
-         * Wipe down from the bar, then fade the contents in. display and
-         * overlay keep it in the top layer until the closing transition ends.
-         */
-        @media (prefers-reduced-motion: no-preference) {
-            clip-path: inset(0 0 100%);
-            transition:
-                clip-path var(--site-header--menu--duration) var(--site-header--menu--ease),
-                display var(--site-header--menu--duration) allow-discrete,
-                overlay var(--site-header--menu--duration) allow-discrete;
-
-            & > * {
-                opacity: 0;
-                translate: 0 10px;
-                transition:
-                    opacity calc(var(--site-header--menu--duration) + 100ms) var(--site-header--menu--ease),
-                    translate calc(var(--site-header--menu--duration) + 100ms) var(--site-header--menu--ease);
-            }
-
-            &:where(:popover-open, .\:popover-open) {
-                clip-path: inset(0);
-
-                & > * {
-                    opacity: 1;
-                    translate: 0 0;
-                }
-            }
-
-            @starting-style {
-                &:where(:popover-open, .\:popover-open) {
-                    clip-path: inset(0 0 100%);
-
-                    & > * {
-                        opacity: 0;
-                        translate: 0 10px;
-                    }
-                }
-            }
-        }
-    }
-}
-
+/* Inline nav, md and up */
 .site-header__nav {
-    @media (width < theme('screens.site-header')) {
-        gap: var(--menu-item--gap);
-        padding-top: space(40);
+    @media (width < theme('screens.md')) {
+        display: none;
     }
 
-    /* Inline: undo the UA popover styles so the closed popover shows in the bar */
-    @media (width >= theme('screens.site-header')) {
-        position: relative;
-        inset: auto;
+    .menu-list {
         display: flex;
-        width: auto;
-        height: auto;
-        align-items: center;
-        margin: 0;
-        padding: 0;
-        border: 0;
-        overflow: visible;
-        background-color: transparent;
-        color: inherit;
-        gap: var(--site-header--spacing);
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: var(--site-header--nav-gap);
     }
 }
 
-.site-header__search-panel {
-    align-items: center;
-    justify-content: center;
+.site-header__nav,
+.site-header__menu {
+    a {
+        @apply link link--2 link--foreground;
+
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .menu-item--current > .menu-item__wrap a {
+        --link--text-decoration: underline;
+    }
 }
 
-.site-header__search-desktop-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
+.site-header__nav a {
+    @apply type-h5;
 
-    @media (width < theme('screens.site-header')) {
+    min-height: space(24);
+}
+
+/* "Menu" and "Close" buttons, below md only */
+.site-header__toggle {
+    @apply type-h5;
+
+    display: inline-flex;
+    align-items: center;
+    min-width: space(44);
+    min-height: space(44);
+    color: var(--color-foreground);
+
+    @media (width >= theme('screens.md')) {
         display: none;
     }
 }
 
-.site-header__search-desktop {
-    position: absolute;
-    right: 100%;
-    display: flex;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    transition:
-        opacity var(--site-header--menu--duration) var(--site-header--menu--ease),
-        visibility var(--site-header--menu--duration);
-    visibility: hidden;
-    background-color: var(--color-neutral);
-    width: 450px;
+/* Full-screen menu dialog, below md */
+.site-header__dialog {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: var(--site-header--padding);
+    border: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
 
-    .header-search {
-        max-width: unset;
+    &[open] {
+        display: flex;
+        flex-direction: column;
+        gap: space(40);
     }
 
-    &:not([hidden]) {
-        display: flex;
+    &::backdrop {
+        background: transparent;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
         opacity: 1;
-        pointer-events: auto;
-        visibility: visible;
+        transition: opacity 200ms ease-out;
+
+        @starting-style {
+            &[open] {
+                opacity: 0;
+            }
+        }
     }
 }
 
-.site-header__search-close {
-    --btn--icon-size: space(18);
+/* The page behind the open menu does not scroll */
+html:has(.site-header__dialog[open]) {
+    overflow: hidden;
+}
 
-    padding: 0;
-    border: 0;
+.site-header__menu {
+    .menu-list {
+        display: grid;
+        gap: space(16);
+    }
+
+    a {
+        @apply type-h4;
+
+        min-height: space(44);
+    }
 }
