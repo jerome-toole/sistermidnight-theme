@@ -182,10 +182,10 @@ for cp in list(range(0x00C0, 0x00DF)) + list(range(0x0100, 0x0180)):
     cx = (x0 + x1) / 2
     if mark == "cedillacomb":
         parts = [(base, 0, 0), (mark, cx + 20, y0 - CEDILLA_GAP)]
-    elif mark == "caroncomb" and cp in (0x013D, 0x0164):
-        # Ľ / Ť: caron is written as an apostrophe beside the stem
+    elif cp == 0x013D:
+        # Ľ: caron is written as an apostrophe beside the stem
         q = bbox("quoteleft")
-        dx = (x0 + 230 if base_ch == "L" else x1 + 10) - q[0]
+        dx = x0 + 330 - q[0]
         parts = [(base, 0, 0), ("quoteleft", dx, y1 - q[3])]
     else:
         parts = [(base, 0, 0), (mark, cx, y1 + MARK_GAP)]
