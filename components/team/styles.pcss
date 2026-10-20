@@ -1,0 +1,209 @@
+/* ---------------------------------------------------------------------------
+ * Team (block)
+ *
+ * Stone-beige section, padded 71 top with the portraits running to the
+ * bottom edge (as in the design); the page gutter as side padding with the
+ * vertical label (rotated from md) in it. The portraits are a native
+ * horizontal scroller with snap points, 260×340, gap 16, bleeding to the
+ * right edge of the viewport.
+ *
+ * Each caption sits in one of the four corners of its portrait. The caption
+ * is a button; its panel (burnt-sienna, cool-grey text) opens below a top
+ * caption or above a bottom caption, on hover, focus-within or when the
+ * button is expanded (scripts.js).
+ * ------------------------------------------------------------------------- */
+
+.team {
+    --team--padding-top: spaceFluid(48, 71);
+    --team--gap: spaceFluid(24, 32);
+    --team--member-width: space(260);
+    --team--member-ratio: 260 / 340;
+    --team--track-gap: space(16);
+    --team--caption-inset: space(24);
+    --team--caption-padding: space(8);
+    --team--panel-gap: space(4);
+    --team--panel-padding: space(10) space(6) space(8);
+
+    padding-block: var(--team--padding-top) 0;
+    padding-inline: var(--container-padding);
+}
+
+.team__inner {
+    display: grid;
+    gap: var(--team--gap);
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+}
+
+.team--labelled .team__inner {
+    @media (width >= theme('screens.md')) {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+}
+
+.team__label {
+    @apply type-h2;
+    @apply vertical-label;
+
+    margin: 0;
+}
+
+.team__body {
+    min-width: 0;
+}
+
+.team__placeholder {
+    opacity: 0.6;
+}
+
+/* ---- Track ---------------------------------------------------------------- */
+
+.team__track {
+    display: flex;
+    gap: var(--team--track-gap);
+    margin: 0;
+
+    /* Runs to the right edge of the viewport */
+    margin-inline-end: calc(-1 * var(--container-padding));
+    padding: 0;
+    padding-inline-end: var(--container-padding);
+    scroll-padding-inline-end: var(--container-padding);
+    list-style: none;
+    overflow-x: auto;
+    overflow-y: clip;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
+
+.team__member {
+    position: relative;
+    flex: none;
+    width: var(--team--member-width);
+    aspect-ratio: var(--team--member-ratio);
+    margin: 0;
+    scroll-snap-align: start;
+}
+
+.team__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team__img--empty {
+    background: var(--color-dark-umber);
+    opacity: 0.15;
+}
+
+/* ---- Caption and panel --------------------------------------------------- */
+
+.team__caption {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: calc(100% - 2 * var(--team--caption-inset));
+    inset-inline: var(--team--caption-inset);
+
+    .team__member--top-left &,
+    .team__member--top-right & {
+        top: var(--team--caption-inset);
+    }
+
+    .team__member--bottom-left &,
+    .team__member--bottom-right & {
+        flex-direction: column-reverse;
+        bottom: var(--team--caption-inset);
+    }
+
+    .team__member--top-right &,
+    .team__member--bottom-right & {
+        align-items: flex-end;
+    }
+}
+
+.team__toggle {
+    @apply type-body;
+
+    --focus--color: var(--color-dark-umber);
+
+    display: block;
+    margin: calc(-1 * var(--team--caption-padding));
+    padding: var(--team--caption-padding);
+    border: 0;
+    background: transparent;
+    color: var(--color-dark-umber);
+    font: inherit;
+    font-weight: 700;
+    text-align: inherit;
+    cursor: pointer;
+
+    &:focus {
+        @apply focus-base;
+    }
+}
+
+.team__toggle--static {
+    cursor: default;
+}
+
+.team__panel {
+    @apply color-context-burnt-sienna;
+
+    display: none;
+    width: 100%;
+    margin-block-start: calc(var(--team--panel-gap) + var(--team--caption-padding));
+    padding: var(--team--panel-padding);
+    color: var(--color-cool-grey);
+
+    .team__member--bottom-left &,
+    .team__member--bottom-right & {
+        margin-block-start: 0;
+        margin-block-end: calc(var(--team--panel-gap) + var(--team--caption-padding));
+    }
+
+    /* Open: hover or keyboard focus (no JS needed), or expanded by scripts.js */
+    .team__member:hover &,
+    .team__member:focus-within &,
+    .team__toggle[aria-expanded='true'] + & {
+        display: block;
+    }
+
+    @media (hover: none) {
+        /* Touch: tap to open only, so a tap never has to fight a sticky hover */
+        .team__member:hover & {
+            display: none;
+        }
+
+        .team__member:focus-within &,
+        .team__toggle[aria-expanded='true'] + & {
+            display: block;
+        }
+    }
+}
+
+.team__name,
+.team__bio {
+    margin: 0;
+}
+
+.team__name {
+    @apply type-body;
+
+    font-weight: 700;
+}
+
+.team__bio {
+    @apply type-small;
+
+    margin-block-start: space(14);
+}

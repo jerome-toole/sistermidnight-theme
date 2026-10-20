@@ -1,0 +1,108 @@
+{
+    "key": "group_component_team",
+    "title": "Block - Team",
+    "fields": [
+        {
+            "key": "field_team_label",
+            "label": "Label",
+            "name": "team_label",
+            "type": "text",
+            "instructions": "Vertical label in the left gutter. Leave empty for none.",
+            "default_value": "The Team",
+            "placeholder": "The Team"
+        },
+        {
+            "key": "field_team_members",
+            "label": "Members",
+            "name": "team_members",
+            "type": "repeater",
+            "required": 1,
+            "layout": "block",
+            "collapsed": "field_team_member_first_name",
+            "button_label": "Add member",
+            "min": 1,
+            "max": 0,
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_team_member_image",
+                    "label": "Image",
+                    "name": "image",
+                    "type": "image",
+                    "instructions": "Portrait, about 260 × 340. Alt text comes from the media library.",
+                    "required": 1,
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "parent_repeater": "field_team_members"
+                },
+                {
+                    "key": "field_team_member_first_name",
+                    "label": "First name",
+                    "name": "first_name",
+                    "type": "text",
+                    "instructions": "The caption on the portrait.",
+                    "required": 1,
+                    "wrapper": {
+                        "width": "50"
+                    },
+                    "parent_repeater": "field_team_members"
+                },
+                {
+                    "key": "field_team_member_caption_position",
+                    "label": "Caption position",
+                    "name": "caption_position",
+                    "type": "select",
+                    "choices": {
+                        "top-left": "Top left",
+                        "top-right": "Top right",
+                        "bottom-left": "Bottom left",
+                        "bottom-right": "Bottom right"
+                    },
+                    "default_value": "top-left",
+                    "return_format": "value",
+                    "wrapper": {
+                        "width": "50"
+                    },
+                    "parent_repeater": "field_team_members"
+                },
+                {
+                    "key": "field_team_member_full_name",
+                    "label": "Full name",
+                    "name": "full_name",
+                    "type": "text",
+                    "instructions": "Shown in the tooltip.",
+                    "parent_repeater": "field_team_members"
+                },
+                {
+                    "key": "field_team_member_bio",
+                    "label": "Bio",
+                    "name": "bio",
+                    "type": "textarea",
+                    "rows": 3,
+                    "new_lines": "",
+                    "parent_repeater": "field_team_members"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "theme/team"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792840000
+}

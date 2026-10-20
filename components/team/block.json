@@ -1,0 +1,28 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "theme/team",
+    "title": "Team",
+    "description": "A scrolling row of portraits with a name caption that opens a short bio.",
+    "category": "theme-blocks",
+    "icon": "groups",
+    "keywords": ["team", "people", "staff", "members"],
+    "textdomain": "gust",
+    "acf": {
+        "blockVersion": 3,
+        "mode": "preview",
+        "renderCallback": "Gust\\Components\\Team::renderBlock"
+    },
+    "supports": {
+        "anchor": true,
+        "align": false,
+        "mode": false,
+        "jsx": false,
+        "html": false,
+        "color": {
+            "background": false,
+            "text": false,
+            "gradients": false
+        }
+    }
+}
