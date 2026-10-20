@@ -55,6 +55,14 @@ class RadioService
         return $response;
     }
 
+    /**
+     * The `radio_enabled` option (true when ACF is unavailable).
+     */
+    public static function isEnabled(): bool
+    {
+        return ! \function_exists('get_field') || \get_field('radio_enabled', 'option') !== false;
+    }
+
     public static function stationId(): string
     {
         $station = \function_exists('get_field') ? (string) \get_field('station_id', 'option') : '';
@@ -82,7 +90,7 @@ class RadioService
             'listen_url' => self::listenUrl($station),
         ];
 
-        if (\function_exists('get_field') && \get_field('radio_enabled', 'option') === false) {
+        if (! self::isEnabled()) {
             return $result;
         }
 
