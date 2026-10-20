@@ -1,0 +1,19 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "theme/gallery",
+    "title": "Gallery",
+    "description": "Image carousel/slider with captions and credits",
+    "category": "theme-blocks",
+    "icon": "format-gallery",
+    "align": "full",
+    "acf": {
+        "blockVersion": 3,
+        "mode": "auto",
+        "renderCallback": "Gust\\Components\\Gallery::renderBlock"
+    },
+    "supports": {
+        "anchor": true,
+        "align": false
+    }
+}

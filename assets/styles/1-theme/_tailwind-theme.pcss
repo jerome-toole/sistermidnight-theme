@@ -1,6 +1,6 @@
-// ----------------------------------------------
-// Tailwind v4 Theme Configuration
-// ----------------------------------------------
+/* ---------------------------------------------- */
+/* Tailwind v4 Theme Configuration */
+/* ---------------------------------------------- */
 
 @theme {
     --spacing: 1px;
@@ -64,16 +64,92 @@
     --color-teal: initial;
     --color-cyan: initial;
     --color-sky: initial;
-    --color-neutral: initial;
+    --color-blue: initial;
     --color-indigo: initial;
     --color-violet: initial;
     --color-purple: initial;
     --color-fuchsia: initial;
     --color-pink: initial;
     --color-rose: initial;
-    --color-warm-black: initial;
+    --color-slate: initial;
     --color-gray: initial;
     --color-zinc: initial;
-    --color-blue: initial;
-    --color-warm-black: initial;
+    --color-neutral: initial;
+    --color-stone: initial;
+
+    /* Animations */
+    --animate-fade-in: fade-in var(--animate--animation-duration, 300ms)
+        var(--animate--animation-timing-function, ease-out) both;
+    --animate-fade-in-translate: fade-in-translate var(--animate--animation-duration, 300ms)
+        var(--animate--animation-timing-function, ease-out) both;
+
+    /* Z-index */
+    --z-index-backdrop: 100;
+    --z-index-cookie-consent: 200;
+    --z-index-site-header: 300;
+    --z-index-modal: 800;
+    --z-index-screen-reader: 1000;
+
+    /* Typography (@font-face rules in 2-base/_fonts.pcss) */
+    --font-display: "SisterMidnight", Impact, serif;
+    --font-sans: "Rework", system-ui, sans-serif;
+    --font-serif: var(--font-display);
+    --font-mono: ui-monospace, Menlo, Monaco, Consolas, monospace;
+
+    /* Type scale. Each size carries its line height and letter spacing;
+       type-* utilities add family and weight. */
+    --text-hero: rfs(30, 48);
+    --text-hero--line-height: 1.3;
+    --text-hero--letter-spacing: 0em;
+    --text-h1: rfs(32, 54);
+    --text-h1--line-height: 1.3;
+    --text-h1--letter-spacing: 0em;
+    --text-h2: rfs(26, 34);
+    --text-h2--line-height: 1.3;
+    --text-h2--letter-spacing: 0em;
+    --text-h3: rfs(20, 24);
+    --text-h3--line-height: 1.3;
+    --text-h3--letter-spacing: 0em;
+    --text-h4: rfs(17, 19);
+    --text-h4--line-height: 1.3;
+    --text-h4--letter-spacing: 0.02em;
+    --text-h5: rfs(14, 16);
+    --text-h5--line-height: 1.3;
+    --text-h5--letter-spacing: 0.02em;
+    --text-h6: rem(16);
+    --text-h6--line-height: 1.3;
+    --text-h6--letter-spacing: 0em;
+    --text-base: rfs(17, 18);
+    --text-base--line-height: 1.3;
+    --text-base--letter-spacing: 0.02em;
+    --text-small: rem(16);
+    --text-small--line-height: 1.375;
+    --text-small--letter-spacing: 0em;
+    --text-label: rem(16);
+    --text-label--line-height: 1.2;
+    --text-label--letter-spacing: 0.02em;
+    --text-label-sm: rem(14);
+    --text-label-sm--line-height: 1.3;
+    --text-label-sm--letter-spacing: 0.02em;
+    --text-meta: rem(16);
+    --text-meta--line-height: 1.2;
+    --text-meta--letter-spacing: 0em;
+    --text-code: rem(14);
+    --text-code--line-height: 1.6;
+    --text-code--letter-spacing: 0em;
+}
+
+/* Only a start state: they animate to the element's own opacity and translate.
+   Used by components/animate (named through a variable) and the animate-* utilities. */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-in-translate {
+    from {
+        opacity: 0;
+        translate: var(--animate--translate, 0 space(16));
+    }
 }

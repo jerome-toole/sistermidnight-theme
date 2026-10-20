@@ -1,12 +1,12 @@
 .cards {
-    --grid--column-gap: spaceFluid(12, 16);
-    --grid--row-gap: var(--grid--column-gap);
+    --col-gap: spaceFluid(12, 16);
+    --row-gap: var(--col-gap);
     --cards--min-width: 14.375rem; /* 230px */
 
     :where(.cards__header) {
         @apply margin-trim;
 
-        margin-bottom: var(--block--header--margin-bottom);
+        margin-bottom: var(--section--header--margin-bottom);
         text-align: center;
     }
 
@@ -20,7 +20,7 @@
         @apply margin-trim;
         @apply content-width-2xs;
 
-        margin: var(--space--base) auto;
+        margin: var(--space-base) auto;
     }
 
     :where(.cards__items) {
@@ -32,7 +32,7 @@
     :where(.cards__footer) {
         @apply margin-trim;
 
-        margin-top: var(--block--footer--margin-top);
+        margin-top: var(--section--footer--margin-top);
     }
 
     :where(.cards__more-link) {
@@ -53,41 +53,35 @@
 
     &.has-background {
         .cards__inner {
-            padding-top: var(--block--padding-y);
-            padding-bottom: var(--block--padding-y);
+            padding-top: var(--section--padding-y);
+            padding-bottom: var(--section--padding-y);
         }
 
         &:not(.alignfull) {
-            padding-right: var(--block--padding-x);
-            padding-left: var(--block--padding-x);
-        }
-    }
-
-    &[class*='cards--columns-'] {
-        .cards__items {
-            grid-template-columns: repeat(var(--grid--columns), minmax(0, 1fr));
+            padding-right: var(--section--padding-x);
+            padding-left: var(--section--padding-x);
         }
     }
 
     &:where(.cards--columns-4) {
         @media (min-width: theme('screens.md')) {
-            --grid--columns: 2;
+            --cols: 2;
         }
 
         @media (min-width: theme('screens.xl')) {
-            --grid--columns: 4;
+            --cols: 4;
         }
     }
 
     &:where(.cards--columns-3) {
         @media (min-width: theme('screens.md')) {
-            --grid--columns: 3;
+            --cols: 3;
         }
     }
 
     &:where(.cards--columns-2) {
         @media (min-width: theme('screens.md')) {
-            --grid--columns: 2;
+            --cols: 2;
         }
 
         .cards__inner {
@@ -96,7 +90,7 @@
     }
 
     &:where(.cards--columns-1) {
-        --grid--columns: 1;
+        --cols: 1;
 
         .cards__inner {
             @apply content-width-md;
@@ -105,7 +99,7 @@
 
     &:where(.cards--slider-on-mobile) {
         @media (width < theme('screens.lg')) {
-            --animate--translateY: 0;
+            --animate--translate: 0 0;
 
             .cards__items {
                 position: relative;
@@ -113,9 +107,9 @@
                 flex-wrap: nowrap;
                 justify-content: flex-start;
                 padding-bottom: space(8);
-                margin-right: calc(-1 * var(--space--container-padding));
+                margin-right: calc(-1 * var(--container-padding));
                 margin-bottom: calc(space(8) * -1);
-                margin-left: calc(-1 * var(--space--container-padding));
+                margin-left: calc(-1 * var(--container-padding));
                 column-gap: 0;
                 overflow-x: auto;
                 scroll-snap-type: x mandatory;
@@ -126,7 +120,7 @@
                     display: block;
                     overflow: hidden;
                     height: 1px;
-                    flex: 0 0 var(--space--container-padding);
+                    flex: 0 0 var(--container-padding);
                     content: '';
                     opacity: 0;
                     pointer-events: none;
@@ -138,7 +132,7 @@
                 min-height: 100%;
                 flex: 0 0 80%;
                 margin-top: 0;
-                margin-right: var(--grid--column-gap);
+                margin-right: var(--col-gap);
                 scroll-snap-align: center;
 
                 @media (min-width: theme('screens.sm')) {
@@ -154,7 +148,7 @@
 
     &:where(.cards--type--icons) {
         @media (min-width: theme('screens.lg')) {
-            --grid--column-gap: spaceFluid(16, 24);
+            --col-gap: spaceFluid(16, 24);
         }
     }
 }

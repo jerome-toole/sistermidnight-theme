@@ -55,7 +55,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/document-links"
+                "value": "theme/document-links"
             }
         ]
     ],

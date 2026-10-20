@@ -1,39 +1,79 @@
+/* ---------------------------------------------------------------------------
+ * Site header
+ *
+ * A sticky header whose nav is inline from the site-header breakpoint up, and
+ * a popover panel below the bar under it. The mobile search is a second
+ * popover panel. Popovers do the work with no JS: the toggles get
+ * aria-expanded, Escape and a click outside close them, opening one closes
+ * the other, and focus goes back to the toggle. Panels wipe open with
+ * @starting-style; data-scroll-lock stops the page scrolling behind them
+ * (4-utilities/_scroll-lock.pcss).
+ *
+ * scripts/SiteHeader.js adds the rest: it sets [data-site-header-hidden]
+ * while the user scrolls down and removes it when they scroll up, so the
+ * header peeks back. It also closes panels on a link click, when focus leaves
+ * them, and when the viewport grows past the breakpoint. Without JS the header
+ * just stays put. Keyboard focus or an open panel always brings a hidden
+ * header back.
+ *
+ * Toggle contents show by panel state: .site-header__toggle-closed while the
+ * toggle's panel is closed, .site-header__toggle-open while it's open.
+ * ------------------------------------------------------------------------- */
+
 @import './styles/_menu.pcss';
 
 @layer base {
     :root {
-        --site-header--height: space(60);
+        --site-header--height: space(70);
+        /* The fixed admin bar. Under 600px it scrolls away with the page. */
         --site-header--top: var(--wp-admin--admin-bar--height, 0px);
         --site-header--menu--duration: 250ms;
         --site-header--menu--ease: ease-in-out;
 
+        @media (width < 600px) {
+            --site-header--top: 0px;
+        }
+
         @media (width >= theme('screens.site-header')) {
-            --site-header--height: space(80);
+            --site-header--height: space(74);
         }
     }
 }
 
 .site-header {
-    --site-header--spacing: space(16);
+    --site-header--spacing: space(12);
+    --site-header--icon-size: 18px;
+    --site-header--logo-width: space(80);
+    --site-header--transition-duration: 300ms;
 
-    /* position: fixed; */
+    --link--color: var(--color-foreground);
+    --link--color-hover: var(--color-foreground);
+    --link--text-decoration: none;
+    --link--text-decoration--hover: underline;
+
+    --menu-item--gap: space(24);
+    --menu-item--arrow-size: 0.8125rem;
+
+    position: sticky;
     top: var(--site-header--top);
-    left: 0;
-    right: 0;
     z-index: var(--z-index-site-header);
+    background-color: var(--color-background);
 
     @media (width >= theme('screens.site-header')) {
-        --site-header--spacing: space(32);
+        --site-header--spacing: space(20);
+        --site-header--logo-width: space(96);
+        --menu-item--arrow-size: 0.625rem;
+        --menu-item--gap: space(32);
     }
 
-    &:has(.js-site-header-toggle[aria-expanded="true"]) {
-        position: fixed;
-
-        ~ .site-main {
-            margin-top: var(--site-header--height);
-        }
+    @media (prefers-reduced-motion: no-preference) {
+        transition: translate var(--site-header--transition-duration) var(--ease-out-quart);
     }
 
+    /* Scrolled away, unless keyboard focus is in it or a panel is open */
+    &[data-site-header-hidden]:not(:has(:focus-visible, :where(:popover-open, .\:popover-open))) {
+        translate: 0 -100%;
+    }
 }
 
 .site-header__bar {
@@ -41,116 +81,224 @@
     width: 100%;
     height: var(--site-header--height);
     align-items: center;
-    padding-inline: var(--space--container-padding);
+    padding-right: var(--container-padding);
+    padding-left: var(--container-padding);
     gap: var(--site-header--spacing);
     justify-content: space-between;
 
     @media (width >= theme('screens.site-header')) {
         @apply content-width-fluid-lg;
-        padding-inline: 0;
+
+        padding-right: 0;
+        padding-left: 0;
     }
 }
 
 .site-header__logo {
-    font-family: var(--font-sistermidnight);
-    font-size: rem(18px);
+    margin-right: auto;
+    font-family: var(--font-display);
+    font-size: rem(18);
     letter-spacing: 0.05em;
-    text-transform: uppercase;
     text-decoration: none;
+    text-transform: uppercase;
 
     @media (width >= theme('screens.site-header')) {
-        font-size: rem(22px);
+        font-size: rem(22);
     }
 }
-
-.site-header__nav {
-    display: none;
-
-    @media (width >= theme('screens.site-header')) {
-        display: flex;
-        align-items: center;
-        gap: var(--site-header--spacing);
-    }
-}
-
 
 .site-header__social {
-    display: none;
+    display: flex;
+    align-items: center;
+    gap: space(16);
+}
+
+.site-header__buttons {
+    display: flex;
+    align-items: center;
+    gap: space(20);
 
     @media (width >= theme('screens.site-header')) {
-        display: flex;
-        align-items: center;
-        gap: space(16);
+        display: none;
     }
 
-    &--mobile {
-        display: flex;
-        margin-top: space(24);
-
-        @media (width >= theme('screens.site-header')) {
-            display: none;
-        }
+    .btn {
+        line-height: 1.25;
     }
 }
 
 .site-header__burger {
-    display: flex;
+    flex: 0 0 auto;
+    margin-right: calc(var(--burger--padding) * -0.5);
+}
+
+.site-header__search-toggler {
+    --btn--icon-size: rem(18px);
+
+    position: relative;
+    flex: 0 0 auto;
+}
+
+/* Toggle contents by the state of the toggle's panel */
+.site-header:not(:has(.site-header__nav:where(:popover-open, .\:popover-open))) .site-header__burger .site-header__toggle-open,
+.site-header:has(.site-header__nav:where(:popover-open, .\:popover-open)) .site-header__burger .site-header__toggle-closed,
+.site-header:not(:has(.site-header__search-panel:where(:popover-open, .\:popover-open)))
+    .site-header__toggle.site-header__search-toggler
+    .site-header__toggle-open,
+.site-header:has(.site-header__search-panel:where(:popover-open, .\:popover-open))
+    .site-header__toggle.site-header__search-toggler
+    .site-header__toggle-closed {
+    display: none;
+}
+
+/* The burger crosses while the menu is open */
+.site-header:has(.site-header__nav:where(:popover-open, .\:popover-open)) .site-header__burger .burger {
+    .burger__line--1 {
+        transform: rotate(45deg);
+    }
+
+    .burger__line--2 {
+        opacity: 0;
+    }
+
+    .burger__line--3 {
+        transform: rotate(-45deg);
+    }
+}
+
+/* Mobile: a panel filling the viewport below the bar */
+.site-header__panel {
+    @media (width < theme('screens.site-header')) {
+        position: fixed;
+        inset: var(--site-header__panel--top, calc(var(--site-header--top) + var(--site-header--height))) 0 0;
+        width: auto;
+        height: auto;
+        max-width: none;
+        max-height: none;
+        margin: 0;
+        padding: var(--container-padding);
+        border: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        background-color: var(--color-background);
+        color: var(--color-foreground);
+        /* Outside the open state so the layout holds while the panel closes */
+        flex-direction: column;
+
+        &:where(:popover-open, .\:popover-open) {
+            display: flex;
+        }
+
+        /*
+         * Wipe down from the bar, then fade the contents in. display and
+         * overlay keep it in the top layer until the closing transition ends.
+         */
+        @media (prefers-reduced-motion: no-preference) {
+            clip-path: inset(0 0 100%);
+            transition:
+                clip-path var(--site-header--menu--duration) var(--site-header--menu--ease),
+                display var(--site-header--menu--duration) allow-discrete,
+                overlay var(--site-header--menu--duration) allow-discrete;
+
+            & > * {
+                opacity: 0;
+                translate: 0 10px;
+                transition:
+                    opacity calc(var(--site-header--menu--duration) + 100ms) var(--site-header--menu--ease),
+                    translate calc(var(--site-header--menu--duration) + 100ms) var(--site-header--menu--ease);
+            }
+
+            &:where(:popover-open, .\:popover-open) {
+                clip-path: inset(0);
+
+                & > * {
+                    opacity: 1;
+                    translate: 0 0;
+                }
+            }
+
+            @starting-style {
+                &:where(:popover-open, .\:popover-open) {
+                    clip-path: inset(0 0 100%);
+
+                    & > * {
+                        opacity: 0;
+                        translate: 0 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.site-header__nav {
+    @media (width < theme('screens.site-header')) {
+        gap: var(--menu-item--gap);
+        padding-top: space(40);
+    }
+
+    /* Inline: undo the UA popover styles so the closed popover shows in the bar */
+    @media (width >= theme('screens.site-header')) {
+        position: relative;
+        inset: auto;
+        display: flex;
+        width: auto;
+        height: auto;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        overflow: visible;
+        background-color: transparent;
+        color: inherit;
+        gap: var(--site-header--spacing);
+    }
+}
+
+.site-header__search-panel {
     align-items: center;
     justify-content: center;
-    padding: space(8);
-    margin-right: calc(space(8) * -1);
-    background: transparent;
-    border: 0;
-    cursor: pointer;
+}
 
-    @media (width >= theme('screens.site-header')) {
+.site-header__search-desktop-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    @media (width < theme('screens.site-header')) {
         display: none;
     }
 }
 
-.site-header__panel {
-    --panel--content-offset: 10px;
-    --panel--content-opacity: 0;
-    --panel--content-duration: calc(var(--site-header--menu--duration) + 100ms);
-
-    position: fixed;
-    top: calc(var(--site-header--top) + var(--site-header--height));
-    right: 0;
-    bottom: 0;
-    left: 0;
+.site-header__search-desktop {
+    position: absolute;
+    right: 100%;
     display: flex;
-    flex-direction: column;
-    background-color: var(--color-background);
-    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    align-items: center;
     opacity: 0;
     pointer-events: none;
     transition:
-        clip-path var(--site-header--menu--duration) var(--site-header--menu--ease),
-        opacity var(--site-header--menu--duration) var(--site-header--menu--ease);
-    z-index: calc(var(--z-index-site-header) - 1);
+        opacity var(--site-header--menu--duration) var(--site-header--menu--ease),
+        visibility var(--site-header--menu--duration);
+    visibility: hidden;
+    background-color: var(--color-neutral);
+    width: 450px;
 
-    @media (width >= theme('screens.site-header')) {
-        display: none;
+    .header-search {
+        max-width: unset;
     }
 
-    &:not([inert]) {
-        --panel--content-offset: 0;
-        --panel--content-opacity: 1;
-
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    &:not([hidden]) {
+        display: flex;
         opacity: 1;
         pointer-events: auto;
+        visibility: visible;
     }
 }
 
-.site-header__panel-content {
-    display: flex;
-    flex-direction: column;
-    padding: space(32) var(--space--container-padding);
-    overflow: auto;
-    opacity: var(--panel--content-opacity);
-    transform: translateY(var(--panel--content-offset));
-    transition:
-        opacity var(--panel--content-duration) var(--site-header--menu--ease),
-        transform var(--panel--content-duration) var(--site-header--menu--ease);
+.site-header__search-close {
+    --btn--icon-size: space(18);
+
+    padding: 0;
+    border: 0;
 }

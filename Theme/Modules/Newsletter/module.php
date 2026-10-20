@@ -2,7 +2,7 @@
 
 namespace Theme\Modules\Newsletter;
 
-class Module
+class NewsletterModule
 {
     public static function init(): void
     {
@@ -44,7 +44,7 @@ class Module
         if (empty($api_key)) {
             return new \WP_REST_Response([
                 'success' => false,
-                'message' => __('Newsletter service not configured.', 'theme'),
+                'message' => __('Newsletter service not configured.', 'gust'),
             ], 500);
         }
 
@@ -56,7 +56,7 @@ class Module
         if (empty($list_id)) {
             return new \WP_REST_Response([
                 'success' => false,
-                'message' => __('Newsletter list not configured.', 'theme'),
+                'message' => __('Newsletter list not configured.', 'gust'),
             ], 500);
         }
 
@@ -71,7 +71,7 @@ class Module
 
         return new \WP_REST_Response([
             'success' => true,
-            'message' => __('Thanks for subscribing!', 'theme'),
+            'message' => __('Thanks for subscribing!', 'gust'),
         ], 200);
     }
 
@@ -91,7 +91,7 @@ class Module
         ]);
 
         if (\is_wp_error($response)) {
-            return new \WP_Error('brevo_error', __('Could not connect to newsletter service.', 'theme'));
+            return new \WP_Error('brevo_error', __('Could not connect to newsletter service.', 'gust'));
         }
 
         $code = \wp_remote_retrieve_response_code($response);
@@ -107,7 +107,7 @@ class Module
             return true; // Treat as success
         }
 
-        $message = $body['message'] ?? __('Subscription failed. Please try again.', 'theme');
+        $message = $body['message'] ?? __('Subscription failed. Please try again.', 'gust');
 
         return new \WP_Error('brevo_error', $message);
     }
@@ -142,7 +142,7 @@ class Module
                     [
                         'param' => 'options_page',
                         'operator' => '==',
-                        'value' => 'site-settings',
+                        'value' => 'acf-options-general',
                     ],
                 ],
             ],

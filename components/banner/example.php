@@ -6,7 +6,7 @@
  * Note: Banner uses array-style args. Requires image attachment ID.
  */
 
-use Geum\Components\Banner;
+use Gust\Components\Banner;
 
 // Get a sample image
 $attachments = get_posts([

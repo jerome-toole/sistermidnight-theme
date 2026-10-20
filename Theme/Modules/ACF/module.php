@@ -2,7 +2,7 @@
 
 namespace Theme\Modules\ACF;
 
-class Module
+class ACFModule
 {
     public static function init(): void
     {
@@ -29,10 +29,9 @@ class Module
     public static function optionPages(): void
     {
         $options_pages = [
-            _x('General', 'ACF options page name', 'geum'),
-            _x('Header', 'ACF options page name', 'geum'),
-            _x('Footer', 'ACF options page name', 'geum'),
-            _x('Banner', 'ACF options page name', 'geum'),
+            _x('General', 'ACF options page name', 'gust'),
+            _x('Header', 'ACF options page name', 'gust'),
+            _x('Footer', 'ACF options page name', 'gust'),
         ];
 
         if (empty($options_pages)) {
@@ -59,10 +58,10 @@ class Module
 
     public static function loadColorFieldChoices(array $field): array
     {
-        $field['choices']['none'] = __('None', 'geum');
+        $field['choices']['none'] = __('None', 'gust');
 
-        if (defined('GEUM_COLOR_PALETTE')) {
-            foreach (GEUM_COLOR_PALETTE as $color) {
+        if (defined('GUST_COLOR_PALETTE')) {
+            foreach (GUST_COLOR_PALETTE as $color) {
                 $field['choices'][$color['slug']] = $color['name'];
             }
         }
@@ -105,7 +104,7 @@ class Module
         unset($toolbars['Full']);
 
         $toolbars['Basic Formatting'] = [
-            1 => \apply_filters('geum/acf/fields/wysiwyg/toolbars/basic', [
+            1 => \apply_filters('gust/acf/fields/wysiwyg/toolbars/basic', [
                 'bold',
                 'italic',
                 'link',
@@ -117,7 +116,7 @@ class Module
         ];
 
         $toolbars['Extended Formatting'] = [
-            1 => \apply_filters('geum/acf/fields/wysiwyg/toolbars/extended', [
+            1 => \apply_filters('gust/acf/fields/wysiwyg/toolbars/extended', [
                 'formatselect',
                 'bold',
                 'italic',

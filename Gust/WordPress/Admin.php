@@ -1,0 +1,313 @@
+<?php
+
+namespace Gust\WordPress;
+
+use Gust\Router;
+
+class Admin
+{
+    public static function init(): void
+    {
+        // Set environment type immediately (needed before modules load)
+        self::setEnvironmentType();
+
+        \add_action('init', [__CLASS__, 'disallowFileEdit']);
+        \add_action('admin_head', [__CLASS__, 'addWPAdminSubmenuGlobalFilter'], 15);
+        \add_action('wp_dashboard_setup', [__CLASS__, 'removeDraftWidget'], 1);
+        \add_filter('get_user_option_admin_color', [__CLASS__, 'adminColor']);
+
+        \add_filter('register_post_type_args', [__CLASS__, 'setPageMenuPosition'], 10, 2);
+        \add_action('admin_menu', [__CLASS__, 'addMenusTopLevelItem']);
+        \add_filter('custom_menu_order', '__return_true');
+        \add_filter('menu_order', [__CLASS__, 'reorderAdminMenu']);
+
+        // Post archive page link to all posts admin screen.
+        \add_action('admin_bar_menu', [__CLASS__, 'addViewAllPostsToArchivePages'], 80);
+
+        // Router page edit link for decorated routes.
+        \add_action('admin_bar_menu', [__CLASS__, 'addEditRouterPageLink'], 81);
+    }
+
+    /**
+     * Give the built-in Pages post type a low menu_position so it sorts
+     * first among post types in the admin menu.
+     */
+    public static function setPageMenuPosition(array $args, string $post_type): array
+    {
+        if ($post_type === 'page') {
+            $args['menu_position'] = -1;
+        }
+
+        return $args;
+    }
+
+    /**
+     * Add a top-level "Menus" item linking directly to nav-menus.php.
+     *
+     * Uses edit_theme_options so roles without Appearance (e.g. Site Manager) can reach it.
+     * A second item with the same slug would get both removed for users who fail either check.
+     */
+    public static function addMenusTopLevelItem(): void
+    {
+        global $menu;
+
+        \add_menu_page('Menus', 'Menus', 'edit_theme_options', 'nav-menus.php', '', 'dashicons-welcome-widgets-menus');
+
+        $menu[] = ['', 'read', 'separator-options', '', 'wp-menu-separator'];
+    }
+
+    /**
+     * Reorder the WP admin menu into three zones:
+     *
+     *  Zone 1 — Content post types (dynamic, ordered by menu_position)
+     *  Zone 2 — Content utilities: Forms, Media, Menus
+     *  Zone 3 — Admin/settings + any unrecognised plugin items
+     */
+    public static function reorderAdminMenu(array $menu_order): array
+    {
+        $separators = ['separator1', 'separator2', 'separator-options', 'separator-last'];
+
+        // Helper: keep only items present in the current menu.
+        $filter = fn (array $slugs) => array_values(array_filter(
+            $slugs,
+            fn ($slug) => in_array($slug, $menu_order, true)
+        ));
+
+        $site_guide_enabled = \Gust\Config::get('site_guide', true);
+
+        // Zone 1: Site Guide + all public post types ordered by menu_position.
+        $post_type_zone = self::getPostTypeSlugs();
+
+        // Zone 2: content utilities.
+        $utility_zone = $filter(['gf_edit_forms', 'upload.php', 'nav-menus.php']);
+
+        // Zone 3: ACF Options in its own group.
+        $options_zone = $filter(['acf-options', 'acf-options-general']);
+
+        // Zone 4: core WP admin items.
+        $admin_zone = $filter(['themes.php', 'plugins.php', 'users.php', 'tools.php', 'options-general.php']);
+
+        // Anything not explicitly placed (e.g. new plugins) goes at the end.
+        $dashboard_zone = $site_guide_enabled ? ['index.php', 'site-guide'] : ['index.php'];
+        $placed = array_merge($dashboard_zone, $post_type_zone, $utility_zone, $options_zone, $admin_zone, $separators);
+        $unknown = array_values(array_diff($menu_order, $placed));
+
+        return array_merge(
+            $dashboard_zone,
+            ['separator1'],
+            $post_type_zone,
+            ['separator2'],
+            $utility_zone,
+            ['separator-options'],
+            $options_zone,
+            ['separator-last'],
+            $admin_zone,
+            $unknown,
+        );
+    }
+
+    /**
+     * Return menu slugs for all public post types, ordered by menu_position.
+     *
+     * Using `public => true` naturally excludes admin-only post types (ACF field groups, etc.)
+     * while including all content post types regardless of how many there are.
+     *
+     * @return string[]
+     */
+    protected static function getPostTypeSlugs(): array
+    {
+        $post_types = \get_post_types(['public' => true, 'show_ui' => true], 'objects');
+
+        uasort($post_types, fn ($a, $b) => ($a->menu_position ?? PHP_INT_MAX) <=> ($b->menu_position ?? PHP_INT_MAX));
+
+        $slugs = [];
+        foreach ($post_types as $pt) {
+            if ($pt->name === 'attachment') {
+                continue;
+            }
+            $slugs[] = $pt->name === 'post' ? 'edit.php' : 'edit.php?post_type='.$pt->name;
+        }
+
+        return $slugs;
+    }
+
+    /**
+     * Prevent users editing plugin and theme files.
+     *
+     * Easier than looping through all defined user roles and reassigning relevant capabilities.
+     *
+     * @return void
+     */
+    public static function disallowFileEdit()
+    {
+        if (defined('DISALLOW_FILE_EDIT') && DISALLOW_FILE_EDIT) {
+            return;
+        }
+
+        define('DISALLOW_FILE_EDIT', true);
+    }
+
+    /**
+     * Sets the environment type from .env file if not already defined.
+     */
+    public static function setEnvironmentType(): void
+    {
+        if (defined('WP_ENVIRONMENT_TYPE')) {
+            return;
+        }
+
+        $env_path = \get_theme_file_path('.env');
+
+        if (! file_exists($env_path)) {
+            return;
+        }
+
+        $env_type = self::getEnvValue($env_path, 'WP_ENVIRONMENT_TYPE');
+
+        if ($env_type) {
+            define('WP_ENVIRONMENT_TYPE', $env_type);
+        }
+    }
+
+    /**
+     * Parse a value from an .env file.
+     */
+    protected static function getEnvValue(string $path, string $key): ?string
+    {
+        $contents = file_get_contents($path);
+
+        if (preg_match('/^'.preg_quote($key, '/').'=(.*)$/m', $contents, $matches)) {
+            return trim($matches[1], " \t\n\r\0\x0B\"'");
+        }
+
+        return null;
+    }
+
+    /**
+     * Filter the 'admin_color' user option when .env file is present (e.g. a local or development environment).
+     *
+     * @link https://developer.wordpress.org/reference/hooks/get_user_option_option/
+     *
+     * @return string The filtered admin_color option.
+     */
+    public static function adminColor($value)
+    {
+        if (\wp_get_environment_type() === 'development') {
+            return 'midnight';
+        }
+
+        return $value;
+    }
+
+    /**
+     * Remove 'quick edit' widget.
+     */
+    public static function removeDraftWidget(): void
+    {
+        \remove_meta_box('dashboard_quick_press', 'dashboard', 'side');
+    }
+
+    /**
+     * Filters the global $submenu to allow adding custom links to the WP admin bar.
+     *
+     * NOTE: Adding a filter to a WP global isn't ideal. However, as there's
+     * no easy way to add custom links to the (sub)menu then this approach
+     * will do for now. Some enhancements to the menu API have been suggested
+     * on trac (see links below), so could be good options in the future.
+     *
+     * @link https://core.trac.wordpress.org/ticket/12718
+     * @link https://core.trac.wordpress.org/ticket/39050
+     */
+    public static function addWPAdminSubmenuGlobalFilter(): void
+    {
+        global $submenu;
+
+        $submenu = \apply_filters('gust/wordpress/admin/submenu', $submenu);
+    }
+
+    /**
+     * Add an 'Edit all {Post Type}' button to the WP admin bar when viewing a post type
+     * archive page on the front-end, which is linked to the admin view all {post-type} screen.
+     * Allows users to quickly get to the full admin list of posts from the archive page.
+     *
+     * @link https://developer.wordpress.org/reference/hooks/admin_bar_menu/
+     *
+     * @param  WP_Admin_Bar  $adminBar  The WP_Admin_Bar instance, passed by reference.
+     */
+    public static function addViewAllPostsToArchivePages($adminBar): void
+    {
+        if (! \current_user_can('edit_posts') || \is_admin()) {
+            return;
+        }
+
+        $queried_object = \Gust\WordPress\PageObject::get();
+
+        // Bail early - not on an template page.
+        if (! \is_post_type_archive() && ! $queried_object instanceof \WP_Post_Type) {
+            return;
+        }
+
+        $adminBar->add_menu([
+            'id' => 'gust-all-posts',
+            'title' => sprintf(
+                // translators: 1: opening html tags. 2: post type name. 3: closing html tags.
+                \_x('%sEdit all %s%s', 'Admin bar edit link', 'gust'),
+                '<span class="ab-icon" aria-hidden="true"></span><span class="ab-label">',
+                $queried_object->label,
+                '</span>'
+            ),
+            'href' => \admin_url('edit.php?post_type='.$queried_object->name),
+            'meta' => [
+                'title' => sprintf(
+                    // translators: post type name.
+                    \_x('View all %s admin page', 'Admin bar edit link title', 'gust'),
+                    $queried_object->label,
+                ),
+                'class' => 'gust-ab-item gust-edit-template',
+            ],
+        ]);
+    }
+
+    /**
+     * Add an 'Edit Page' link to the WP admin bar when viewing a decorated route
+     * that has an associated RouterPage. Allows editors to quickly open the linked page
+     * in the block editor to manage surrounding content.
+     *
+     * @link https://developer.wordpress.org/reference/hooks/admin_bar_menu/
+     *
+     * @param  \WP_Admin_Bar  $adminBar  The WP_Admin_Bar instance, passed by reference.
+     */
+    public static function addEditRouterPageLink(\WP_Admin_Bar $adminBar): void
+    {
+        if (\is_admin() || ! \current_user_can('edit_pages')) {
+            return;
+        }
+
+        $route = Router::current();
+        if (! $route) {
+            return;
+        }
+
+        $page = Router::getPage();
+        if (! $page) {
+            return;
+        }
+
+        if (! \current_user_can('edit_post', $page->ID)) {
+            return;
+        }
+
+        $adminBar->add_menu([
+            'id' => 'gust-edit-router-page',
+            'title' => sprintf(
+                '%sEdit Page%s',
+                '<span class="ab-icon" aria-hidden="true"></span><span class="ab-label">',
+                '</span>'
+            ),
+            'href' => \admin_url("post.php?post={$page->ID}&action=edit"),
+            'meta' => [
+                'class' => 'gust-ab-item gust-edit-router-page',
+            ],
+        ]);
+    }
+}

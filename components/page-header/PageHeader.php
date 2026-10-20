@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * PageHeader Component
  *
  * Usage:
- *   use Geum\Components\PageHeader;
+ *   use Gust\Components\PageHeader;
  *
  *   echo PageHeader::make();
  */
@@ -49,7 +49,7 @@ class PageHeader extends ComponentBase
         if (isset($args['is_preview']) && $args['is_preview']) {
             $args['object'] = \get_post($args['post_id']);
         } else {
-            $args['object'] = \Geum\WordPress\PageObject::get() ?? null;
+            $args['object'] = \Gust\WordPress\PageObject::get() ?? null;
         }
 
         $heading = '';
@@ -60,21 +60,21 @@ class PageHeader extends ComponentBase
             if ($object instanceof \WP_Term) {
                 $heading = $object->name;
             } elseif ($object instanceof \WP_Post_Type) {
-                if ($routerPage = \Geum\Router::getPage()) {
+                if ($routerPage = \Gust\Router::getPage()) {
                     $object = $routerPage;
                 } else {
                     $heading = $object->label;
                 }
             } elseif ($object instanceof \WP_Query && $object->is_404()) {
-                $heading = __('404', 'geum');
+                $heading = __('404', 'gust');
             } elseif ($object instanceof \WP_Query && $object->is_search()) {
-                $heading = __('Search', 'geum');
+                $heading = __('Search', 'gust');
 
                 if (! empty($object->query['s'])) {
-                    $args['subheading'] = sprintf(__("Showing results for '%s'", 'geum'), $object->query['s']);
+                    $args['subheading'] = sprintf(__("Showing results for '%s'", 'gust'), $object->query['s']);
                 }
             } elseif ($object instanceof \WP_User) {
-                $heading = sprintf(__('Posts by %s', 'geum'), $object->data->display_name);
+                $heading = sprintf(__('Posts by %s', 'gust'), $object->data->display_name);
             }
 
             if ($object instanceof \WP_Post) {
@@ -82,14 +82,14 @@ class PageHeader extends ComponentBase
                 $args['image'] = \get_post_thumbnail_id($object);
 
                 if ($object->post_type === 'post') {
-                    $args['meta'] = sprintf(__('Published on %s ', 'geum'), \get_the_date(\get_option('date_format'), $object->ID));
+                    $args['meta'] = sprintf(__('Published on %s ', 'gust'), \get_the_date(\get_option('date_format'), $object->ID));
                     $args['labels'] = \Theme\Utils\ObjectMeta::getObjectLabels($object->ID, ['limit' => 3, 'taxonomies' => ['category']]);
                     $args['background'] = false;
                     $args['image_position'] = 'mini';
                     $args['type'] = 'article';
 
                     if ($author_name = \get_the_author_meta('display_name', $object->post_author)) {
-                        $args['meta'] .= sprintf(__('by %s ', 'geum'), $author_name);
+                        $args['meta'] .= sprintf(__('by %s ', 'gust'), $author_name);
                     }
                 } elseif ($object->post_type === 'page') {
                     if (\is_front_page()) {
@@ -103,7 +103,7 @@ class PageHeader extends ComponentBase
                 }
 
                 if ($heading === 'Auto Draft') {
-                    $heading = __('Post Title', 'geum');
+                    $heading = __('Post Title', 'gust');
                 }
 
                 unset($args['object']);
@@ -122,11 +122,11 @@ class PageHeader extends ComponentBase
 
         if (isset($args['is_preview']) && $args['is_preview']) {
             if (empty($args['heading'])) {
-                $args['heading'] = _x('Add title', 'Placeholder for page header title', 'geum');
+                $args['heading'] = _x('Add title', 'Placeholder for page header title', 'gust');
             }
 
             if (empty($args['subheading'])) {
-                $args['subheading'] = _x('Add subheading', 'Placeholder for page header subheading', 'geum');
+                $args['subheading'] = _x('Add subheading', 'Placeholder for page header subheading', 'gust');
             }
         }
 
@@ -145,7 +145,7 @@ class PageHeader extends ComponentBase
             } else {
                 $args['image'] = Image::make(
                     id: $args['image'],
-                    size: 'geum_super',
+                    size: 'gust_super',
                     sizes: '(min-width: 768px) 50vw, 100vw',
                 );
                 $args['classes'][] = 'has-inset-image';
@@ -160,13 +160,9 @@ class PageHeader extends ComponentBase
             ];
         }
 
-        // Use background_color from block settings if set, otherwise fall back to background prop
-        // buildComponentClasses will handle background_color, so only add classes for background if no background_color
-        if (empty($args['background_color'])) {
-            if (! empty($args['background']) && $args['background'] !== 'none') {
-                $args['classes'][] = 'has-'.$args['background'].'-background-color';
-                $args['classes'][] = 'has-background';
-            }
+        if (! empty($args['background']) && $args['background'] !== 'none') {
+            $args['classes'][] = 'has-'.$args['background'].'-background-color';
+            $args['classes'][] = 'has-background';
         }
 
         if (! empty($args['type'])) {

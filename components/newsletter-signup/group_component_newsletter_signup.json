@@ -40,7 +40,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/newsletter-signup"
+                "value": "theme/newsletter-signup"
             }
         ]
     ],

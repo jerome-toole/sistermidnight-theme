@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "theme/homepage-hero",
+    "title": "Homepage Hero",
+    "category": "theme-blocks",
+    "icon": "star-filled",
+    "keywords": [
+        "hero",
+        "home",
+        "landing"
+    ],
+    "align": "full",
+    "acf": {
+        "blockVersion": 3,
+        "mode": "preview",
+        "postTypes": [
+            "page",
+            "gust-template"
+        ],
+        "renderCallback": "Gust\\Components\\HomepageHero::renderBlock"
+    },
+    "supports": {
+        "anchor": true,
+        "align": false,
+        "color": {
+            "background": false,
+            "text": false,
+            "gradients": false
+        },
+        "multiple": false
+    }
+}

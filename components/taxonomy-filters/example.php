@@ -4,7 +4,7 @@
  * TaxonomyFilters Component Examples
  */
 
-use Geum\Components\TaxonomyFilters;
+use Gust\Components\TaxonomyFilters;
 
 ?>
 

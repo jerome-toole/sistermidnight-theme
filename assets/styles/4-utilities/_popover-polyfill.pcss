@@ -1,0 +1,25 @@
+/* ---------------------------------------------------------------------------
+ * Popover polyfill support
+ *
+ * assets/main.js loads @oddbird/popover-polyfill where popover isn't native.
+ * The polyfill marks open popovers with a .\:popover-open class instead of the
+ * :popover-open pseudo-class. Browsers drop any rule containing a selector
+ * they don't know, so match both inside :where():
+ *
+ *   .panel:where(:popover-open, .\:popover-open) { … }
+ *
+ * The polyfill injects its UA-like styles into base.popover-polyfill, a
+ * sublayer of base, so they lose to every other style, as the browser's own
+ * popover styles would. The rule below keeps popovers hidden until the
+ * polyfill has loaded (or when JS is off).
+ * ------------------------------------------------------------------------- */
+
+@layer base {
+    @layer popover-polyfill {
+        @supports not selector(:popover-open) {
+            :where([popover]:not(.\:popover-open)) {
+                display: none;
+            }
+        }
+    }
+}

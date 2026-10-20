@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components\Menu;
+namespace Gust\Components\Menu;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * MenuItem Component
  *
  * Usage:
- *   use Geum\Components\Menu\MenuItem\MenuItem;
+ *   use Gust\Components\Menu\MenuItem\MenuItem;
  *
  *   echo MenuItem::make();
  */
@@ -78,7 +78,7 @@ class MenuItem extends ComponentBase
 
             $args['sub-menu-attributes'] = [
                 'id' => 'sub-menu-'.$item->ID,
-                'class' => \Geum\Helpers::buildClasses([
+                'class' => \Gust\Helpers::buildClasses([
                     'sub-menu',
                     'sub-menu--depth-'.$args['depth'],
                 ]),
@@ -89,7 +89,7 @@ class MenuItem extends ComponentBase
             ];
 
             $args['button'] = [
-                'content' => \__('Expand or collapse a sub menu', 'geum'),
+                'content' => \__('Expand or collapse a sub menu', 'gust'),
                 'screen_reader_text' => true,
                 'classes' => ['sub-menu-toggler'],
                 'attributes' => [

@@ -1,6 +1,6 @@
 <?php
 
-use Geum\Components\PressLinks;
+use Gust\Components\PressLinks;
 
 ?>
 

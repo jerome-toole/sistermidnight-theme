@@ -1,13 +1,14 @@
 /**
- * Unregister any embed variants that aren't in the allow list.
- * Note: The default embed (which allows any provider) cannot be unregistered.
+ * Remove any embed variations that aren't in the allow list.
+ * Filtered at registration: the variations are registered with the block, so a
+ * domReady unregister runs too early to catch them.
+ * Note: The generic embed block (which allows any provider) can't be removed.
  */
-wp.domReady(() => {
-    const allowedEmbedVariants = ['youtube', 'vimeo', 'gravity-forms'];
+const allowedEmbedVariations = ['youtube', 'vimeo'];
 
-    wp.blocks.getBlockVariations('core/embed').forEach((variant) => {
-        if (!allowedEmbedVariants.includes(variant.name)) {
-            wp.blocks.unregisterBlockVariation('core/embed', variant.name);
-        }
-    });
+wp.hooks.addFilter('blocks.registerBlockType', 'gust/embed-variations', (settings, name) => {
+    if (name === 'core/embed') {
+        settings.variations = settings.variations?.filter((v) => allowedEmbedVariations.includes(v.name));
+    }
+    return settings;
 });

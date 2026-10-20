@@ -1,0 +1,137 @@
+/* --------------------------------------------------- */
+/* Variables */
+/* --------------------------------------------------- */
+
+@layer base {
+    :root {
+        /* --------------------------------------------------- */
+        /* Spacing */
+        /* --------------------------------------------------- */
+        /* space(px) → rem, spaceFluid(min, max) → responsive calc() */
+
+        --container-padding: 16px; /* Default inline padding for the page */
+        --space-base: rem(16); /* Default vertical spacing between text elements */
+
+        /* Default vertical spacing between larger components and blocks */
+        --space-layout: space(32);
+        --flow-space: var(--space-layout);
+
+        @media (width >= theme("screens.sm")) {
+            --container-padding: rem(30);
+            --space-layout: space(64);
+        }
+
+        /* --------------------------------------------------- */
+        /* Widths */
+        /* --------------------------------------------------- */
+        --width-fluid-container: calc(100% - (var(--container-padding) * 2));
+
+        --width-fluid-2xs: min(var(--container-2xs), var(--width-fluid-container));
+        --width-fluid-xs: min(var(--container-xs), var(--width-fluid-container));
+        --width-fluid-sm: min(var(--container-sm), var(--width-fluid-container));
+        --width-fluid-md: min(var(--container-md), var(--width-fluid-container));
+        --width-fluid-lg: min(var(--container-lg), var(--width-fluid-container));
+
+        /* --------------------------------------------------- */
+        /* Base */
+        /* --------------------------------------------------- */
+        --site--scroll-padding-top: calc(var(--site-header--top, 0px) + var(--site-header--height, 0px));
+
+        /* --------------------------------------------------- */
+        /* Transitions - used by the transition() function */
+        /* --------------------------------------------------- */
+        --transition--duration: 200ms;
+        --transition--ease: var(--ease-out-quad);
+
+        /* --------------------------------------------------- */
+        /* Border */
+        /* --------------------------------------------------- */
+        --base--border: 1px solid var(--color-accent);
+
+        /* --------------------------------------------------- */
+        /* Focus */
+        /* --------------------------------------------------- */
+        --focus--color: var(--color-accent);
+        --base--focus-offset: 5px;
+        --base--focus-width: 3px;
+
+        /* --------------------------------------------------- */
+        /* Box Shadow */
+        /* --------------------------------------------------- */
+        --base--shadow: 0 3px 9px hsla(var(--color-accent--hsl), 0.15);
+        --base--shadow--hover: 0 3px 20px 3px hsla(var(--color-accent--hsl), 0.15);
+
+        /* --------------------------------------------------- */
+        /* Grids */
+        /* --------------------------------------------------- */
+        --col-gap: spaceFluid(8, 12);
+        --row-gap: var(--col-gap);
+        --cols: 1;
+        --col-min-width: rem(300);
+
+        @media (width >= theme("screens.md")) {
+            --cols: 2;
+        }
+
+        @media (width >= theme("screens.lg")) {
+            --cols: 4;
+        }
+
+        /* --------------------------------------------------- */
+        /* Horizontal rule */
+        /* --------------------------------------------------- */
+        /* --hr--color: not declared, so it follows the colour context (see _base.pcss) */
+        --hr--thickness: 1px;
+
+        /* --------------------------------------------------- */
+        /* Rounded corners - default rounding on blocks */
+        /* --------------------------------------------------- */
+        --rounded-border-radius: var(--radius-lg);
+        --rounded-overflow: hidden;
+
+        /* --------------------------------------------------- */
+        /* Typography */
+        /* --------------------------------------------------- */
+        --heading--max-width: 17em;
+        --heading--margin-top: 1lh;
+        --heading--margin-bottom: var(--space-base);
+
+        /* Fluid typography breakpoints */
+        --fluid-min-width: strip-unit(theme("screens.fluid-min"));
+        --fluid-max-width: strip-unit(theme("screens.fluid-max"));
+        --fluid-screen: 100vw;
+        --fluid-bp: calc(
+            (var(--fluid-screen) - var(--fluid-min-width) / 16 * 1rem) /
+            (var(--fluid-max-width) - var(--fluid-min-width))
+        );
+
+        @media (min-width: theme("screens.fluid-max")) {
+            --fluid-screen: calc(var(--fluid-max-width) * 1px);
+        }
+
+        /* --------------------------------------------------- */
+        /* General */
+        /* --------------------------------------------------- */
+        --underline-offset: 0.2em;
+
+        /* --------------------------------------------------- */
+        /* Links */
+        /* --------------------------------------------------- */
+        /* --link--color, --link--color-hover: not declared, so they follow the colour context (see _link-styles.pcss) */
+        --link--text-decoration: underline;
+        --link--text-decoration--hover: underline;
+
+        /* --------------------------------------------------- */
+        /* Lists */
+        /* --------------------------------------------------- */
+        --list--item--spacing: calc(var(--space-base) / 2);
+        --list--indent: 0px;
+        --list--nested-indent: 1.5em;
+        /* --list--marker-color: var(--color-brand-2); /* defaults to currentColor */
+
+        @media (min-width: theme("screens.sm")) {
+            --list--indent: 1.5em;
+            --list--nested-indent: 2em;
+        }
+    }
+}

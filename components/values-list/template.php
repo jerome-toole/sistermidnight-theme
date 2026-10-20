@@ -11,7 +11,7 @@ $container_classes = [
 ];
 ?>
 
-<section class="<?= classes($container_classes, $this->classes) ?>" <?= attributes($this->attributes) ?>>
+<section class="<?= classes($container_classes, $this->classes) ?>" data-animate data-animate-stagger="80" <?= attributes($this->attributes) ?>>
     <?php if (! empty($this->heading)) { ?>
         <h2 class="values-list__heading"><?= esc_html($this->heading) ?></h2>
     <?php } ?>
@@ -22,7 +22,7 @@ $container_classes = [
 
     <ol class="values-list__items">
         <?php foreach ($this->items as $index => $item) { ?>
-            <li class="values-list__item animate-element" style="--animate--key: <?= $index ?>;">
+            <li class="values-list__item animate__item">
                 <span class="values-list__number"><?= esc_html($item['number']) ?></span>
 
                 <div class="values-list__content">

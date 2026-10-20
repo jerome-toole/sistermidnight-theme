@@ -2,9 +2,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "npm run dev",
+      "label": "pnpm run dev",
       "type": "shell",
-      "command": "eval \"$(fnm env --use-on-cd)\" && npm run dev",
+      "command": "eval \"$(fnm env --use-on-cd)\" && pnpm run dev",
       "group": {
         "kind": "build",
         "isDefault": true

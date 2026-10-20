@@ -1,10 +1,37 @@
 {
     "settings": {
+        "editor": {
+            "allowed_blocks": [
+                "core/paragraph",
+                "core/heading",
+                "core/list",
+                "core/list-item",
+                "core/quote",
+                "core/table",
+                "core/image",
+                "core/buttons",
+                "core/button",
+                "core/columns",
+                "core/column",
+                "core/group",
+                "core/separator",
+                "core/embed",
+                "core/shortcode",
+                "core/gallery",
+                "core/html",
+                "core/freeform",
+                "core/block",
+                "core/missing"
+            ]
+        },
+
         "deactivate_comments": true,
         "deactivate_posts_post_type": true,
 
         "remove_wp_global_styles": true,
         "remove_wp_block_library_styles": true,
+
+        "site_guide": false,
 
         "ajax_required": false,
 
@@ -14,8 +41,12 @@
 
         "enable_webmanifest": false,
 
+        "auto_update_core": true,
+        "auto_update_themes": true,
+        "auto_update_plugins": true,
+
         "image_sizes": {
-            "geum_super": [2500, 2500, false],
+            "gust_super": [2500, 2500, false],
             "1536x1536": false
         },
         "jpeg_upload_quality": 90,

@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * Banner Component
  *
  * Usage:
- *   use Geum\Components\Banner;
+ *   use Gust\Components\Banner;
  *
  *   echo Banner::make();
  */

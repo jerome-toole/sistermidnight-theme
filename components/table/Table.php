@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * Table Component
  *
  * Usage:
- *   use Geum\Components\Table;
+ *   use Gust\Components\Table;
  *
  *   echo Table::make();
  */

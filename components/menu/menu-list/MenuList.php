@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components\Menu;
+namespace Gust\Components\Menu;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * MenuList Component
  *
  * Usage:
- *   use Geum\Components\Menu\MenuList\MenuList;
+ *   use Gust\Components\Menu\MenuList\MenuList;
  *
  *   echo MenuList::make();
  */

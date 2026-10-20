@@ -1,0 +1,71 @@
+{
+    "key": "group_5fb524106910e",
+    "title": "Cookie Consent",
+    "fields": [
+        {
+            "key": "field_cookie_consent_enabled",
+            "label": "Enable Cookie Consent",
+            "name": "cookie_consent_enabled",
+            "type": "true_false",
+            "instructions": "Show the cookie consent banner on the site.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Enabled",
+            "ui_off_text": "Disabled"
+        },
+        {
+            "key": "field_5fb5243b58c0d",
+            "label": "Cookie Consent Text",
+            "name": "cookie_consent_text",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cookie_consent_enabled",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "We use cookies. Read more about them in our Privacy Policy.",
+            "tabs": "all",
+            "toolbar": "basic_formatting",
+            "media_upload": 0,
+            "delay": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-general"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Options Page",
+    "show_in_rest": 0,
+    "modified": 1771346461
+}

@@ -1,7 +1,13 @@
-/**
- * Unregister default styles for core/quote block.
- */
-wp.domReady(() => {
-    wp.blocks.unregisterBlockStyle('core/quote', 'default');
-    wp.blocks.unregisterBlockStyle('core/quote', 'plain');
-});
+wp.hooks.addFilter(
+    'blocks.registerBlockType',
+    'gust/core-quote-styles',
+    (settings, name) => {
+        if (name !== 'core/quote') return settings;
+        return {
+            ...settings,
+            styles: (settings.styles || []).filter(
+                s => !['default', 'plain'].includes(s.name)
+            ),
+        };
+    }
+);

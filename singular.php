@@ -2,12 +2,12 @@
 
 get_header();
 
-$object = \Geum\WordPress\PageObject::get();
+$object = \Gust\WordPress\PageObject::get();
 
 site_main_open(object: $object);
 
-if (! has_block('acf/page-header') && ! has_block('acf/homepage-hero')) {
-    echo \Geum\Components\PageHeader::make(object: $object);
+if (! has_block('theme/page-header') && ! has_block('theme/homepage-hero')) {
+    echo \Gust\Components\PageHeader::make(object: $object);
 }
 
 while (have_posts()) {

@@ -1,10 +1,10 @@
 :where(.page-navigation) {
-    padding-block: var(--space-md);
+    padding-block: space(24);
 }
 
 :where(.page-navigation--sticky) {
     position: sticky;
-    top: var(--header-height, 60px);
+    top: var(--site-header--height, 60px);
     z-index: 10;
     background: var(--color-background, var(--color-white));
 }
@@ -15,7 +15,7 @@
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-xs) var(--space-md);
+    gap: space(12) space(24);
 }
 
 :where(.page-navigation__item) {
@@ -24,10 +24,10 @@
 
 :where(.page-navigation__link) {
     display: inline-block;
-    padding-block: var(--space-2xs);
+    padding-block: space(8);
     color: inherit;
     text-decoration: none;
-    font-size: var(--type-small);
+    font-size: var(--text-small);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     opacity: 0.7;

@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * Cards Component
  *
  * Usage:
- *   use Geum\Components\Cards;
+ *   use Gust\Components\Cards;
  *
  *   echo Cards::make();
  */

@@ -6,7 +6,7 @@
  * Note: Requires social_networks ACF field to be populated, or pass networks directly.
  */
 
-use Geum\Components\SocialIcons;
+use Gust\Components\SocialIcons;
 
 ?>
 

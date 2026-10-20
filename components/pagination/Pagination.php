@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * Pagination Component
  *
  * Usage:
- *   use Geum\Components\Pagination;
+ *   use Gust\Components\Pagination;
  *
  *   echo Pagination::make();
  */
@@ -40,9 +40,9 @@ class Pagination extends ComponentBase
     protected static function transform(array $args): array
     {
         $args['output'] = get_the_posts_pagination([
-            'prev_text' => __('Previous page', 'geum'),
-            'next_text' => __('Next page', 'geum'),
-            'before_page_number' => '<span class="screen-reader-text">'.__('Page', 'geum').' </span>',
+            'prev_text' => __('Previous page', 'gust'),
+            'next_text' => __('Next page', 'gust'),
+            'before_page_number' => '<span class="screen-reader-text">'.__('Page', 'gust').' </span>',
             'class' => 'pagination__inner',
         ]);
 

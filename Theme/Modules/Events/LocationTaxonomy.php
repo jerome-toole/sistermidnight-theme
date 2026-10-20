@@ -9,7 +9,7 @@ class LocationTaxonomy
     public static function init(): void
     {
         \add_action('init', [__CLASS__, 'register']);
-        \add_filter('geum/templates/taxonomies', [__CLASS__, 'filterGeumTemplatesTaxonomies']);
+        \add_filter('gust/templates/taxonomies', [__CLASS__, 'filterGustTemplatesTaxonomies']);
     }
 
     public static function register(): void
@@ -33,14 +33,14 @@ class LocationTaxonomy
                 'dashboard_glance' => true,
             ],
             [
-                'singular' => __('Location', 'geum'),
-                'plural' => __('Locations', 'geum'),
+                'singular' => __('Location', 'gust'),
+                'plural' => __('Locations', 'gust'),
                 'slug' => self::SLUG,
             ]
         );
     }
 
-    public static function filterGeumTemplatesTaxonomies($taxonomies): array
+    public static function filterGustTemplatesTaxonomies($taxonomies): array
     {
         $taxonomies[] = self::SLUG;
 

@@ -18,7 +18,7 @@ class PostType
         }
 
         $args['template'] = [
-            ['acf/page-header'],
+            ['theme/page-header'],
         ];
 
         return $args;

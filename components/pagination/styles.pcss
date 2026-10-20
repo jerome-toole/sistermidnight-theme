@@ -1,11 +1,11 @@
 .pagination {
-    --block--margin-top: var(--space--base);
-    --block--margin-bottom: var(--space--base);
+    --flow-space: var(--space-base);
+    --section--margin-bottom: var(--space-base);
 }
 
 .nav-links {
     --pagination--size: 2.1875rem; /* 35px */
-    --grid--column-gap: space(8);
+    --col-gap: space(8);
 
     @apply flex-grid;
     @apply flex-grid-auto;
@@ -23,8 +23,8 @@
         --btn--border-color: var(--color-white);
         --btn--color: var(--color-foreground);
 
-        --btn--background-color--hover: var(--color-white);
-        --btn--border-color--hover: var(--color-white);
+        --btn--background-color--hover: var(--color-brand-2);
+        --btn--border-color--hover: var(--color-brand-2);
         --btn--color-hover: var(--color-foreground);
 
         --btn--size: var(--pagination--size);
@@ -33,22 +33,22 @@
         @apply btn--square;
         @apply type-h5;
 
-        box-shadow: var(--box-shadow--1);
+        box-shadow: var(--base--shadow);
         font-size: 0.875rem; /* 14px */
 
         &:hover,
         &:focus-visible {
-            box-shadow: var(--box-shadow--1--hover);
+            box-shadow: var(--base--shadow--hover);
         }
     }
 
     .current {
-        --btn--background-color: var(--color-white);
-        --btn--border-color: var(--color-white);
+        --btn--background-color: var(--color-brand-2);
+        --btn--border-color: var(--color-brand-2);
         --btn--color: var(--color-foreground);
 
-        --btn--background-color--hover: var(--color-white);
-        --btn--border-color--hover: var(--color-white);
+        --btn--background-color--hover: var(--color-brand-2);
+        --btn--border-color--hover: var(--color-brand-2);
         --btn--color-hover: var(--color-foreground);
     }
 
@@ -63,11 +63,11 @@
     .next,
     .prev {
         --btn--background-color: var(--color-background);
-        --btn--border-color: var(--color-white);
-        --btn--color: var(--color-warm-black);
+        --btn--border-color: var(--color-brand-2);
+        --btn--color: var(--color-accent);
 
-        --btn--background-color--hover: var(--color-white);
-        --btn--border-color--hover: var(--color-white);
+        --btn--background-color--hover: var(--color-brand-2);
+        --btn--border-color--hover: var(--color-brand-2);
         --btn--color-hover: var(--color-foreground);
 
         @apply btn--icon;

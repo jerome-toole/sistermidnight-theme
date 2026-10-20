@@ -4,7 +4,7 @@
  * NoContent Component Examples
  */
 
-use Geum\Components\NoContent;
+use Gust\Components\NoContent;
 
 ?>
 

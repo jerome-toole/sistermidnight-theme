@@ -1,6 +1,6 @@
 <?php
 
-use Geum\Components\StatsDisplay;
+use Gust\Components\StatsDisplay;
 
 ?>
 

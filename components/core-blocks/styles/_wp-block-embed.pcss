@@ -1,13 +1,6 @@
 .wp-block-embed {
     @apply media-embed;
 
-    .page-grid > & {
-        @apply content-width-md;
-
-        width: 100%;
-        box-shadow: 0 3px 9px hsla(0, 0%, 0%, 0.25);
-    }
-
     :where(.wp-block-embed__wrapper) {
         > * {
             margin-right: auto;
@@ -23,14 +16,7 @@
         iframe {
             overflow: var(--rounded-overflow, visible);
             border-radius: var(--rounded-border-radius);
-            box-shadow: var(--box-shadow--1);
-        }
-    }
-
-    &.wp-block-embed-twitter {
-        iframe {
-            border-radius: 0;
-            box-shadow: none;
+            box-shadow: var(--base--shadow);
         }
     }
 }

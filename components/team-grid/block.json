@@ -1,0 +1,37 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "theme/team-grid",
+    "title": "Team Grid",
+    "description": "Display team members in a responsive grid",
+    "category": "theme-blocks",
+    "icon": "groups",
+    "keywords": [
+        "team",
+        "people",
+        "staff",
+        "members",
+        "grid"
+    ],
+    "acf": {
+        "blockVersion": 3,
+        "mode": "preview",
+        "postTypes": [
+            "page",
+            "gust-template"
+        ],
+        "renderCallback": "Gust\\Components\\TeamGrid::renderBlock"
+    },
+    "supports": {
+        "anchor": true,
+        "align": [
+            "wide",
+            "full"
+        ],
+        "color": {
+            "background": true,
+            "text": false,
+            "gradients": false
+        }
+    }
+}

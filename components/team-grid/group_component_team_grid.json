@@ -140,7 +140,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/team-grid"
+                "value": "theme/team-grid"
             }
         ]
     ],

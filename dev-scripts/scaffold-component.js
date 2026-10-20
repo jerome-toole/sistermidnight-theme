@@ -12,7 +12,7 @@
  * Options:
  *   --styles    Create styles.pcss
  *   --scripts   Create scripts.js
- *   --block     Create acf.php for ACF block
+ *   --block     Create block.json for ACF block
  *   --all       Create all optional files
  */
 
@@ -42,9 +42,9 @@ function toPascalCase(str) {
 function generateClass(name, className) {
     return `<?php
 
-namespace Geum\\Components;
+namespace Gust\\Components;
 
-use Geum\\ComponentBase;
+use Gust\\ComponentBase;
 
 class ${className} extends ComponentBase
 {
@@ -75,10 +75,10 @@ function generateTemplate(name, className) {
 /**
  * ${className} Template
  *
- * @var \\Geum\\Components\\${className} $this
+ * @var \\Gust\\Components\\${className} $this
  */
 
-use Geum\\Helpers;
+use Gust\\Helpers;
 ?>
 
 <div <?= Helpers::buildAttributes($this->attributes); ?>>
@@ -103,42 +103,36 @@ function generateStyles(name) {
 function generateScripts(name) {
     return `const elements = document.querySelectorAll('.${name}');
 
-elements.forEach((el) => {
+elements?.forEach((el) => {
     // Component logic
 });
 `;
 }
 
 /**
- * Generate ACF block content
+ * Generate block.json content
  */
-function generateAcfBlock(name, className) {
+function generateBlockJson(name, className) {
     const title = className.replace(/([A-Z])/g, ' $1').trim();
-    return `<?php
-
-/**
- * Registers an ACF block for this component.
- *
- * @link https://www.advancedcustomfields.com/resources/acf_register_block_type/
- */
-acf_register_block_type([
-    'name' => '${name}',
-    'title' => '${title}',
-    'description' => '',
-    'category' => 'theme-blocks',
-    'icon' => 'admin-generic',
-    'mode' => 'auto',
-    'supports' => [
-        'anchor' => true,
-        'align' => false,
-    ],
-    'render_callback' => function ($block, $content, $is_preview, $post_id) {
-        $args = \\Geum\\Component::generateArgsFromBlock($block, get_fields());
-
-        echo \\Geum\\Components\\${className}::make(...$args);
-    },
-]);
-`;
+    return JSON.stringify({
+        $schema: 'https://schemas.wp.org/trunk/block.json',
+        apiVersion: 3,
+        name: `theme/${name}`,
+        title,
+        description: '',
+        category: 'theme-blocks',
+        icon: 'admin-generic',
+        acf: {
+            blockVersion: 3,
+            mode: 'auto',
+            autoInlineEditing: true,
+            renderCallback: `Gust\\Components\\${className}::renderBlock`,
+        },
+        supports: {
+            anchor: true,
+            align: false,
+        },
+    }, null, 4) + '\n';
 }
 
 /**
@@ -146,7 +140,7 @@ acf_register_block_type([
  */
 function regenerateImports() {
     try {
-        execSync('npm run build -- --mode development 2>/dev/null || true', {
+        execSync('pnpm run build --mode development 2>/dev/null || true', {
             cwd: path.join(__dirname, '..'),
             stdio: 'ignore'
         });
@@ -168,7 +162,7 @@ Usage: node dev-scripts/scaffold-component.js <name> [options]
 Options:
   --styles    Create styles.pcss
   --scripts   Create scripts.js
-  --block     Create acf.php for ACF block
+  --block     Create block.json for ACF block
   --all       Create all optional files
 
 Examples:
@@ -240,17 +234,17 @@ Examples:
     // Optional: ACF block
     if (withBlock) {
         fs.writeFileSync(
-            path.join(componentDir, 'acf.php'),
-            generateAcfBlock(name, className)
+            path.join(componentDir, 'block.json'),
+            generateBlockJson(name, className)
         );
-        console.log(`Created: acf.php`);
+        console.log(`Created: block.json`);
     }
 
     console.log(`\nComponent '${name}' scaffolded successfully.`);
 
     // Usage hint
     console.log(`\nUsage:`);
-    console.log(`  use Geum\\Components\\${className};`);
+    console.log(`  use Gust\\Components\\${className};`);
     console.log(`  echo ${className}::make();`);
 
     if (withStyles) {

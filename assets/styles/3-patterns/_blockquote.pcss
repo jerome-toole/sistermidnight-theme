@@ -1,10 +1,8 @@
 @utility blockquote {
-    --blockquote--border-width: var(--border-width--s);
+    --blockquote--border-width: 2px;
     --blockquote--padding-left: space(12);
     --blockquote--border-offset: 0.5em;
-    --block--margin-top: spaceFluid(12, 16);
-    --block--margin-bottom: spaceFluid(12, 16);
-    --block--max-width: var(--width-fluid-xs);
+    --flow-space: spaceFluid(12, 16);
 
     @apply margin-trim;
 
@@ -24,6 +22,6 @@
         left: calc(var(--blockquote--border-width) * -1);
         width: var(--blockquote--border-width);
         background-color: var(--color-foreground);
-        content: '';
+        content: "";
     }
 }

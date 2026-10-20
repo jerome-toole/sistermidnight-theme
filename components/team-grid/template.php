@@ -1,6 +1,6 @@
 <?php
 
-use Geum\Image;
+use Gust\Components\Image;
 
 if (empty($this->items)) {
     return;
@@ -8,7 +8,7 @@ if (empty($this->items)) {
 
 ?>
 
-<section class="<?= classes('team-grid', 'wp-block', 'animate', 'section', $this->classes) ?>" <?= attributes($this->attributes) ?>>
+<section class="<?= classes('team-grid', 'wp-block', 'animate', 'section', $this->classes) ?>" data-animate data-animate-stagger="80" <?= attributes($this->attributes) ?>>
     <?php if (! empty($this->heading)) { ?>
         <div class="section__header">
             <h2 class="team-grid__heading"><?= esc_html($this->heading) ?></h2>
@@ -17,10 +17,10 @@ if (empty($this->items)) {
 
     <div class="team-grid__grid grid-simple">
         <?php foreach ($this->items as $index => $member) { ?>
-            <div class="team-grid__item animate-element" style="--animate--key: <?= $index ?>;">
+            <div class="team-grid__item animate__item">
                 <?php if (! empty($member['image'])) { ?>
                     <div class="team-grid__image">
-                        <?= Image::picture($member['image'], 'medium_large'); ?>
+                        <?= Image::make(...array_merge($member['image'], ['size' => 'medium_large'])); ?>
                     </div>
                 <?php } ?>
 

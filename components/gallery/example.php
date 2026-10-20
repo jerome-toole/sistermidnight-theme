@@ -7,7 +7,7 @@
  * Captions from attachment caption field, credits from 'credit' meta.
  */
 
-use Geum\Components\Gallery;
+use Gust\Components\Gallery;
 
 // Fetch latest 4 and 5 image IDs from the media library
 $latest_4 = get_posts([

@@ -4,7 +4,7 @@
  * Link Component Examples
  */
 
-use Geum\Components\Link;
+use Gust\Components\Link;
 
 ?>
 

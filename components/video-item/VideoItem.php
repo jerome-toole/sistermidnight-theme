@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * VideoItem Component
  *
  * Usage:
- *   use Geum\Components\VideoItem;
+ *   use Gust\Components\VideoItem;
  *
  *   echo VideoItem::make();
  */
@@ -27,7 +27,6 @@ class VideoItem extends ComponentBase
         string $heading = '',
         string $content = '',
         string $video = '',
-        ?array $image = null,
         ...$others
     ): ?static {
         return static::createFromArgs(static::mergeArgs(get_defined_vars()));

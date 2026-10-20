@@ -1,0 +1,32 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "theme/video-item",
+    "title": "Video Item",
+    "description": "Video with thumbnail overlay",
+    "category": "theme-blocks",
+    "icon": "video-alt3",
+    "keywords": [
+        "video",
+        "youtube",
+        "vimeo",
+        "embed"
+    ],
+    "align": "wide",
+    "acf": {
+        "blockVersion": 3,
+        "mode": "auto",
+        "renderCallback": "Gust\\Components\\VideoItem::renderBlock"
+    },
+    "supports": {
+        "anchor": true,
+        "align": [
+            "wide",
+            "full"
+        ],
+        "color": {
+            "text": false,
+            "gradients": false
+        }
+    }
+}

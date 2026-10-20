@@ -4,7 +4,7 @@
  * Element Component Examples
  */
 
-use Geum\Components\Element;
+use Gust\Components\Element;
 
 ?>
 

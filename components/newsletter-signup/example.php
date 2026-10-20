@@ -1,6 +1,6 @@
 <?php
 
-use Geum\Components\NewsletterSignup;
+use Gust\Components\NewsletterSignup;
 
 ?>
 
@@ -19,7 +19,7 @@ use Geum\Components\NewsletterSignup;
 ]); ?>
 
 <h2>Newsletter Signup - On Dark Background</h2>
-<div class="color-context-warm-black" style="padding: var(--space-md);">
+<div class="color-context-warm-black" style="padding: 1.5rem;">
     <?= NewsletterSignup::make([
         'heading' => 'Subscribe to updates',
     ]); ?>

@@ -5,8 +5,8 @@ import wpPot from 'wp-pot';
 
 // Read theme details from style.css
 const styleCSS = readFileSync('./style.css', 'utf-8');
-const themeName = styleCSS.match(/Theme Name:\s*(.+)/)?.[1] || 'geum';
-const textDomain = styleCSS.match(/Text Domain:\s*(.+)/)?.[1] || 'geum';
+const themeName = styleCSS.match(/Theme Name:\s*(.+)/)?.[1] || 'gust';
+const textDomain = styleCSS.match(/Text Domain:\s*(.+)/)?.[1] || 'gust';
 
 wpPot({
     domain: textDomain,

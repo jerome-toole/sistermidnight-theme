@@ -4,14 +4,10 @@ node_modules/**
 .vscode/**
 .docs
 .docs/**
-.claude
-.claude/**
 dev-scripts
 dev-scripts/**
-./assets
-./assets/**
-auth.json
-auth.json.example
+/assets
+/assets/**
 .babelrc
 .browserslistrc
 .deployignore
@@ -28,18 +24,65 @@ auth.json.example
 .prettierrc
 .stylelintrc
 biome.json
-.biomeignore
 composer.json
 composer.lock
 gulpfile.js
 LICENCE
-package-lock.json
+pnpm-lock.yaml
+pnpm-workspace.yaml
 package.json
 pint.json
 postcss.config.js
 readme.md
-tailwind.config.js
 vite.config.js
 webpack.config.js
 wp-sync.yml
 CLAUDE.md
+
+# Secrets and credentials
+.env*
+**/.env*
+auth.json
+auth.json.example
+*.pem
+*.key
+.htpasswd
+
+# Database dumps, backups, archives, logs
+*.sql
+*.sql.gz
+*.sql.zip
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.bak
+*.old
+*.orig
+*.swp
+*~
+*.log
+
+# OS / editor cruft
+.DS_Store
+**/.DS_Store
+Thumbs.db
+.idea
+
+# Source maps
+*.map
+
+# Dev-only folders and docs
+.claude
+.designs
+.planning
+.plans
+.github
+ralph
+*.md
+.biomeignore
+.prettierignore
+
+# Vite dev server marker — if deployed, production loads assets from localhost
+/public/hot

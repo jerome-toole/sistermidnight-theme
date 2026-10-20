@@ -9,8 +9,7 @@ class PostType
     public static function init(): void
     {
         \add_action('init', [__CLASS__, 'register']);
-        \add_action('acf/init', [__CLASS__, 'addSettingsPage']);
-        \add_filter('geum/templates/post-types', [__CLASS__, 'filterGeumTemplatesPostTypes']);
+        \add_filter('gust/templates/post-types', [__CLASS__, 'filterGustTemplatesPostTypes']);
     }
 
     public static function register(): void
@@ -75,27 +74,13 @@ class PostType
                 ],
             ],
         ], [
-            'singular' => __('Event', 'geum'),
-            'plural' => __('Events', 'geum'),
+            'singular' => __('Event', 'gust'),
+            'plural' => __('Events', 'gust'),
             'slug' => self::SLUG,
         ]);
     }
 
-    public static function addSettingsPage(): void
-    {
-        if (! function_exists('acf_add_options_sub_page')) {
-            return;
-        }
-
-        \acf_add_options_sub_page([
-            'page_title' => __('Events Settings', 'geum'),
-            'menu_title' => __('Events Settings', 'geum'),
-            'menu_slug' => 'acf-options-events-settings',
-            'parent_slug' => 'edit.php?post_type='.self::SLUG,
-        ]);
-    }
-
-    public static function filterGeumTemplatesPostTypes($postTypes)
+    public static function filterGustTemplatesPostTypes($postTypes)
     {
         $postTypes[] = self::SLUG;
 

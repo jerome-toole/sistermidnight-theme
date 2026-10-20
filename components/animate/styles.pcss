@@ -1,46 +1,44 @@
-.js .animate {
-    --animate--animation: animate--fade-in;
-    --animate--duration: 300ms;
-    --animate--delay: 50ms;
-    --animate--item--delay: 0ms;
-    --animate--easing: ease-out;
+/* ---------------------------------------------------------------------------
+ * Animate on scroll
+ *
+ *   <div class="animate" data-animate data-animate-stagger="80">
+ *       <p class="animate__item">…</p>
+ *       <p class="animate__item">…</p>
+ *   </div>
+ *
+ * scripts.js sets [data-playing] when the block scrolls into view. The block
+ * can be its own item. Items stay visible without JS (the html.js class) and
+ * when the user prefers reduced motion.
+ *
+ * Block knobs: --animate--animation-name (fade-in), --animate--animation-duration,
+ * --animate--animation-timing-function, --animate--animation-delay, and
+ * --animate--translate for fade-in-translate.
+ * Item knob (read with a fallback): --animate__item--animation-delay, added to
+ * the block's delay. scripts.js sets it from data-animate-stagger.
+ *
+ * .animate__item needs no CSS of its own; .animate styles it.
+ * The keyframes live in assets/styles/1-theme/_tailwind-theme.pcss.
+ * ------------------------------------------------------------------------- */
 
-    &:where(.animate--play) {
-        &.animate-element,
-        .animate-element {
-            @media screen and (prefers-reduced-motion: no-preference) {
-                animation: var(--animate--animation) var(--animate--duration) var(--animate--delay) forwards var(--animate--easing);
-                animation-delay: calc(var(--animate--delay, 0ms) + calc(var(--animate--item--delay, 0ms) * var(--animate--key, 0)));
-            }
-        }
-    }
+.animate {
+    --animate--animation-name: fade-in;
+    --animate--animation-duration: 300ms;
+    --animate--animation-timing-function: ease-out;
+    --animate--animation-delay: 50ms;
 
-    &.animate-element,
-    .animate-element {
-        @media screen and (prefers-reduced-motion: no-preference) {
+    @media (prefers-reduced-motion: no-preference) {
+        :where(.js) &:where(.animate__item),
+        :where(.js) & :where(.animate__item) {
             opacity: 0;
         }
-    }
-}
 
-@keyframes animate--fade-in {
-    from {
-        opacity: var(--animate--opacity--from, 0);
-    }
-
-    to {
-        opacity: var(--animate--opacity--to, 1);
-    }
-}
-
-@keyframes animate--fade-in--translate {
-    from {
-        opacity: var(--animate--opacity--from, 0);
-        transform: translate(var(--animate--translateX, 0), var(--animate--translateY, 0));
-    }
-
-    to {
-        opacity: var(--animate--opacity--to, 1);
-        transform: translate(0);
+        &:where([data-playing]):where(.animate__item),
+        &:where([data-playing]) :where(.animate__item) {
+            /* The keyframes animate from their start state to this */
+            opacity: 1;
+            animation: var(--animate--animation-name) var(--animate--animation-duration)
+                var(--animate--animation-timing-function) both;
+            animation-delay: calc(var(--animate--animation-delay) + var(--animate__item--animation-delay, 0ms));
+        }
     }
 }

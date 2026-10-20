@@ -1,6 +1,6 @@
 <?php
 
-use Geum\Components\HomepageHero;
+use Gust\Components\HomepageHero;
 
 ?>
 

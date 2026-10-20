@@ -6,7 +6,7 @@
  * Note: Requires valid WordPress attachment IDs. Examples below use placeholder IDs.
  */
 
-use Geum\Components\Image;
+use Gust\Components\Image;
 
 // Try to get a real attachment ID from the media library
 $attachments = get_posts([

@@ -55,6 +55,23 @@ export default function generateComponentImportsPlugin() {
                     generateImports();
                 }
             });
+
+        },
+
+        handleHotUpdate({ file, server }) {
+            if (!file.match(/components\/[^/]+\/styles\.pcss$/)) return;
+
+            // Component styles can't be standalone Vite modules (they need main.pcss context),
+            // so we find main.pcss in the module graph and return it as the affected module.
+            // Vite will invalidate it and send a css-update (injection) instead of full-reload.
+            const affected = [];
+            for (const mod of server.moduleGraph.idToModuleMap.values()) {
+                if (mod.file?.endsWith('/assets/main.pcss')) {
+                    server.moduleGraph.invalidateModule(mod);
+                    affected.push(mod);
+                }
+            }
+            return affected.length > 0 ? affected : undefined;
         },
     };
 }

@@ -12,7 +12,7 @@
     </div>
 
     <div class="homepage-hero__graphic">
-        <?= \Geum\SVG::get(\Geum\Asset::path('build/images/homepage-header.svg'), ['asset' => false]); ?>
+        <?= \Gust\SVG::get('homepage-header.svg'); ?>
 
         <div class="homepage-hero__text">
             <?php if (! empty($this->line_1)) { ?>
@@ -28,6 +28,6 @@
     </div>
 
     <?php if (! empty($this->cta)) { ?>
-        <?= \Geum\Components\Link::make(...$this->cta); ?>
+        <?= \Gust\Components\Link::make(...$this->cta); ?>
     <?php } ?>
 </section>

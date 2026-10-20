@@ -122,9 +122,9 @@ export default {
 
 		/**
 		 * Get foreground color for a named color
-		 * @param {string} colorName - Color name (e.g., 'warm-black', 'off-white')
+		 * @param {string} colorName - Color name (e.g., 'accent', 'accent')
 		 * @returns {string} - Foreground color value
-		 * @example foreground-color('warm-black') → 'var(--color-white)'
+		 * @example foreground-color('accent') → 'var(--color-white)'
 		 */
 		'foreground-color': (colorName) => {
 			const name = colorName.replace(/['"]/g, '');

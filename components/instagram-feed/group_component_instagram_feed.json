@@ -106,7 +106,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/instagram-feed"
+                "value": "theme/instagram-feed"
             }
         ]
     ],

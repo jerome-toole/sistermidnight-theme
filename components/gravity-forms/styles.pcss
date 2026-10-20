@@ -2,9 +2,6 @@
    It's meant to complement GF's basic.min.css stylesheet. */
 
 .gform_wrapper {
-    margin-top: var(--space--base);
-    margin-bottom: var(--space--base);
-
     .gform_fields {
         grid-row-gap: var(--input--gap);
     }
@@ -18,8 +15,16 @@
         @apply btn;
     }
 
+    /* Spinner - positioned to avoid layout shift */
     .gform_ajax_spinner {
-        margin-left: 1em;
+        margin-left: 0.5em;
+        width: var(--loading-spinner--size, 1em);
+        height: var(--loading-spinner--size, 1em);
+        border-width: 0.2em;
+        border-style: solid;
+        border-color: currentColor transparent transparent;
+        border-radius: 50%;
+        animation: 1s linear infinite rotate;
     }
 
     .gf_invisible,
@@ -46,7 +51,7 @@
         .gform_fields {
             grid-template-columns: repeat(12, minmax(0, 1fr)); /* Fix grid blowout */
 
-            @media (max-width: theme('screens.sm')) {
+            @media only screen and (max-width: 641px) {
                 input:not([type='radio']):not([type='checkbox']):not([type='image']):not([type='file']) {
                     line-height: inherit;
                 }
@@ -61,7 +66,7 @@
 }
 
 .gform_heading {
-    margin-bottom: var(--space--base);
+    margin-bottom: var(--space-base);
 }
 
 .gsection_title {
@@ -71,7 +76,10 @@
 
 .gform_footer,
 .gform_page_footer {
-    margin-top: var(--space--base);
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: var(--space-base);
 }
 
 .gform_anchor[tabindex]:focus {
@@ -79,7 +87,7 @@
 }
 
 .gsection {
-    border-top: var(--border-width--s) dashed var(--color-foreground);
+    border-top: 2px dashed var(--color-foreground);
 }
 
 .gfield_label,
@@ -89,9 +97,9 @@
 }
 
 .gfield_description:not(.gfield_validation_message) {
-    @apply type-small;
+    @apply type-meta;
 
-    margin: var(--space--xxxs) 0 var(--space--xxxs) 0;
+    margin: space(4) 0 space(4) 0;
 }
 
 .hidden_label {
@@ -114,7 +122,7 @@
 
     max-width: var(--container-2xs);
     padding: spaceFluid(8, 12);
-    border-radius: var(--border-radius--s);
+    border-radius: var(--radius-sm);
     margin-top: space(16);
     margin-bottom: space(16);
 }
@@ -155,7 +163,7 @@
 .ginput_container_fileupload {
     .gform_drop_area {
         padding: space(16);
-        border: var(--border-width--s) dashed var(--input--border-color);
+        border: 2px dashed var(--input--border-color);
         border-radius: var(--input--border-radius);
         background: transparent;
 
@@ -165,10 +173,10 @@
     }
 
     .gform_fileupload_rules {
-        @apply type-small;
+        @apply type-meta;
 
         display: block;
-        margin-top: var(--space--xxxs);
+        margin-top: space(4);
     }
 }
 
@@ -192,13 +200,13 @@
     }
 
     label {
-        @apply type-small;
+        @apply type-meta;
     }
 
     .ginput_left,
     .ginput_right {
         @media (min-width: theme('screens.md')) {
-            flex: 1 0 calc(50% - var(--grid--row-gap));
+            flex: 1 0 calc(50% - var(--row-gap));
         }
     }
 
@@ -242,7 +250,7 @@
 
     .gform_delete_file {
         flex: 0 0 auto;
-        border-radius: var(--border-radius--s);
+        border-radius: var(--radius-sm);
         background: var(--color-error);
         color: var(--color-white);
 

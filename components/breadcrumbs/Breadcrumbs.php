@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * Breadcrumbs Component
  *
  * Usage:
- *   use Geum\Components\Breadcrumbs;
+ *   use Gust\Components\Breadcrumbs;
  *
  *   echo Breadcrumbs::make();
  */

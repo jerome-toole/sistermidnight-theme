@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * Card Component
  *
  * Usage:
- *   use Geum\Components\Card;
+ *   use Gust\Components\Card;
  *
  *   echo Card::make();
  */
@@ -89,7 +89,7 @@ class Card extends ComponentBase
 
                     if (! empty($metaAuthor)) {
                         $metaAuthor = Link::make(...$metaAuthor);
-                        $args['content']['meta'] .= sprintf(__('by %s', 'geum'), $metaAuthor);
+                        $args['content']['meta'] .= sprintf(__('by %s', 'gust'), $metaAuthor);
                     }
                 }
             } elseif ($args['object'] instanceof \WP_Term) {
@@ -105,7 +105,7 @@ class Card extends ComponentBase
             }
 
             if (empty($args['content']['read_more']['title'])) {
-                $args['content']['read_more']['title'] = __('Read more', 'geum');
+                $args['content']['read_more']['title'] = __('Read more', 'gust');
             }
         } elseif (! empty($args['content'])) {
             $content = $args['content'];

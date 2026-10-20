@@ -6,7 +6,7 @@ class MimeTypes
 {
     public static function init()
     {
-        \add_filter('geum/wordpress/upload_mimes/types', [__CLASS__, 'addThemeMimeTypes']);
+        \add_filter('gust/wordpress/upload_mimes/types', [__CLASS__, 'addThemeMimeTypes']);
     }
 
     public static function addThemeMimeTypes(array $types): array

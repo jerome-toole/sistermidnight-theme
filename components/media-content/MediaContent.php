@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * MediaContent Component
  *
  * Usage:
- *   use Geum\Components\MediaContent;
+ *   use Gust\Components\MediaContent;
  *
  *   echo MediaContent::make();
  */
@@ -35,13 +35,12 @@ class MediaContent extends ComponentBase
         ?string $heading = null,
         ?string $subheading = null,
         ?string $content = null,
-        array $video = [],
+        string|array $video = [],
         array $image = [],
         ?string $media_type = null,
         ?string $media_side = null,
         ?bool $reverse = null,
         ?string $media = null,
-        ?array $button_1 = null,
         ...$others
     ): ?static {
         return static::createFromArgs(static::mergeArgs(get_defined_vars()));

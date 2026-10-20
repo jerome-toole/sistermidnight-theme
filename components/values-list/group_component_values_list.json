@@ -113,7 +113,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/values-list"
+                "value": "theme/values-list"
             }
         ]
     ],

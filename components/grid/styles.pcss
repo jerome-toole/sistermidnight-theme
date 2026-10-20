@@ -1,0 +1,45 @@
+/* Grid block — uses grid-simple utility for layout, adds stacking + editor chrome */
+
+.grid-block {
+	position: relative;
+
+	&[data-cols="1"] { --cols: 1; }
+	&[data-cols="2"] { --cols: 2; }
+	&[data-cols="3"] { --cols: 3; }
+	&[data-cols="4"] { --cols: 4; }
+	&[data-cols="5"] { --cols: 5; }
+	&[data-cols="6"] { --cols: 6; }
+
+	&[data-stack="phone"] {
+		@media (max-width: 479px) {
+			--cols: 1;
+		}
+	}
+
+	&[data-stack="tablet"] {
+		@media (max-width: 767px) {
+			--cols: 1;
+		}
+	}
+
+	&[data-stack="laptop"] {
+		@media (max-width: 1023px) {
+			--cols: 1;
+		}
+	}
+
+	/* Editor: Make intermediate wrappers transparent to the grid layout */
+	& > .acf-innerblocks-container,
+	& > .block-editor-inner-blocks,
+	& > .block-editor-inner-blocks > .block-editor-block-list__layout {
+		display: contents;
+	}
+
+	/* Editor: Placeholder cells for empty grid slots */
+	.grid-block__visualizer-cell {
+		border-radius: 2px;
+		min-height: 48px;
+		pointer-events: none;
+		box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 20%, #0000);
+	}
+}

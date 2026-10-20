@@ -31,6 +31,7 @@
 
 const dynamicElements = {
     registry: new Map(),
+    initialized: new WeakMap(), // element → Set of selectors already run on it
     observer: new MutationObserver((mutations) => dynamicElements.handleMutations(mutations)),
     isObserving: false,
 
@@ -78,35 +79,46 @@ const dynamicElements = {
 
     initExistingElements(selector, callback) {
         document.querySelectorAll(selector).forEach((el) => {
-            this.initElement(el, callback);
+            this.initElement(el, selector, callback);
         });
     },
 
     handleMutations(mutations) {
         mutations.forEach((mutation) => {
             mutation.addedNodes.forEach((node) => {
-                if (node.nodeType === 1) {
-                    this.registry.forEach(({ callback, watch }, selector) => {
-                        if (!watch) return;
+                if (node.nodeType !== 1) return;
 
-                        if (node.matches(selector)) {
-                            this.initElement(node, callback);
-                        } else {
-                            node.querySelectorAll(selector).forEach((el) => {
-                                this.initElement(el, callback);
-                            });
-                        }
+                this.registry.forEach(({ callback, watch }, selector) => {
+                    if (!watch) return;
+
+                    if (node.matches(selector)) {
+                        this.initElement(node, selector, callback);
+                    }
+
+                    node.querySelectorAll(selector).forEach((el) => {
+                        this.initElement(el, selector, callback);
                     });
-                }
+                });
             });
         });
     },
 
-    initElement(el, callback) {
-        if (!el.__initialized) {
-            callback(el);
-            el.__initialized = true; // Prevent duplicate initialization
+    /**
+     * Run the callback once per element per selector, so an element matched by
+     * several selectors is initialised by each of them.
+     */
+    initElement(el, selector, callback) {
+        let initializedSelectors = this.initialized.get(el);
+
+        if (!initializedSelectors) {
+            initializedSelectors = new Set();
+            this.initialized.set(el, initializedSelectors);
         }
+
+        if (initializedSelectors.has(selector)) return;
+
+        initializedSelectors.add(selector);
+        callback(el);
     },
 };
 

@@ -6,7 +6,7 @@
  * Note: Requires a registered nav menu with has_nav_menu() returning true.
  */
 
-use Geum\Components\Menu;
+use Gust\Components\Menu;
 
 ?>
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * LogoGrid Component
  *
  * Usage:
- *   use Geum\Components\LogoGrid;
+ *   use Gust\Components\LogoGrid;
  *
  *   echo LogoGrid::make();
  */

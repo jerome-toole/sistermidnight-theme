@@ -109,7 +109,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/press-links"
+                "value": "theme/press-links"
             }
         ]
     ],

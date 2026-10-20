@@ -4,7 +4,7 @@
  * Burger Component Examples
  */
 
-use Geum\Components\Burger;
+use Gust\Components\Burger;
 
 ?>
 

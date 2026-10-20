@@ -9,6 +9,7 @@ const cAttr = (key, value) => `${key}=${value};`;
 
 // Set a cookie with a given lifetime (in days).
 const setCookie = (name, value, lifetime) => {
+    // biome-ignore lint/suspicious/noDocumentCookie: Cookie Store API lacks broad support and is async.
     document.cookie =
         cAttr(name, value) +
         cAttr('expires', utcFutureDate(lifetime)) +

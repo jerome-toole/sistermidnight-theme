@@ -1,6 +1,6 @@
 <?php
 
-use Geum\Components\PageNavigation;
+use Gust\Components\PageNavigation;
 
 ?>
 

@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "theme/page-header",
+    "title": "Page Header",
+    "category": "theme-blocks",
+    "icon": "cover-image",
+    "keywords": ["hero"],
+    "align": "full",
+    "acf": {
+        "blockVersion": 3,
+        "mode": "auto",
+        "autoInlineEditing": true,
+        "postTypes": ["page", "gust-template"],
+        "renderCallback": "Gust\\Components\\PageHeader::renderBlock"
+    },
+    "supports": {
+        "anchor": true,
+        "align": false,
+        "multiple": false,
+        "color": {
+            "background": false,
+            "text": false,
+            "gradients": false
+        }
+    }
+}

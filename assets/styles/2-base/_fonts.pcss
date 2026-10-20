@@ -1,52 +1,61 @@
+/* ---------------------------------------------------------------------------
+ * Fonts
+ *
+ * Self-hosted from assets/static/fonts/. Wired to the theme in
+ * 1-theme/_tailwind-theme.pcss and preloaded in Theme/Modules/Core/Preloads.php:
+ *   --font-display   Sister Midnight   hero, h1–h3
+ *   --font-sans      Rework Text       body, h4–h6, labels, buttons
+ * ------------------------------------------------------------------------- */
+
 @font-face {
-    font-family: 'SisterMidnight';
-    src: url('/subset-SisterMidnight-Regular.woff2') format('woff2');
-    font-weight: normal;
+    font-display: fallback;
+    font-family: "SisterMidnight";
     font-style: normal;
-    font-display: fallback;
-}
-
-@font-face {
-    font-family: 'Rework';
-    src: url('/subset-ReworkText-RegularItalic.woff2') format('woff2');
-    font-weight: 300;
-    font-style: italic;
-    font-display: fallback;
-    font-feature-settings: "lnum";
-}
-
-@font-face {
-    font-family: 'Rework';
-    src: url('/subset-ReworkText-Regular.woff2') format('woff2');
-    font-weight: 300;
-    font-style: normal;
-    font-display: fallback;
-    font-feature-settings: "lnum";
-}
-
-@font-face {
-    font-family: 'Rework';
-    src: url('/subset-ReworkText-Semibold.woff2') format('woff2');
     font-weight: 400;
+    src: url("/fonts/sister-midnight-regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: fallback;
+    font-family: "Rework";
+    font-feature-settings: "lnum";
     font-style: normal;
-    font-display: fallback;
-    font-feature-settings: "lnum";
+    font-weight: 300;
+    src: url("/fonts/rework-text-regular.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: 'Rework';
-    src: url('/subset-ReworkText-SemiboldItalic.woff2') format('woff2');
-    font-weight: 400;
+    font-display: fallback;
+    font-family: "Rework";
+    font-feature-settings: "lnum";
     font-style: italic;
-    font-display: fallback;
-    font-feature-settings: "lnum";
+    font-weight: 300;
+    src: url("/fonts/rework-text-regular-italic.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: 'Rework';
-    src: url('/subset-ReworkText-Bold.woff2') format('woff2');
+    font-display: fallback;
+    font-family: "Rework";
+    font-feature-settings: "lnum";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/rework-text-semibold.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: fallback;
+    font-family: "Rework";
+    font-feature-settings: "lnum";
+    font-style: italic;
+    font-weight: 400;
+    src: url("/fonts/rework-text-semibold-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: fallback;
+    font-family: "Rework";
+    font-feature-settings: "lnum";
+    font-style: normal;
     font-weight: 700;
-    font-style: normal;
-    font-display: fallback;
-    font-feature-settings: "lnum";
+    src: url("/fonts/rework-text-bold.woff2") format("woff2");
 }

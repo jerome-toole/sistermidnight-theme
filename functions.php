@@ -8,41 +8,42 @@ if (file_exists($autoloader = __DIR__.'/vendor/autoload.php')) {
     require $autoloader;
 }
 
-require __DIR__.'/Geum/functions.php';
+require __DIR__.'/Gust/functions.php';
 
 // ----------------------------------------------------
 // Load config values.
 // ----------------------------------------------------
-\Geum\Config::init();
+\Gust\Config::init();
 
 // ----------------------------------------------------
 // Load core framework functionality.
 // ----------------------------------------------------
-\Geum\Component::init();
+\Gust\Component::init();
 
-\Geum\WordPress\Admin::init();
-\Geum\WordPress\Cleanup::init();
-\Geum\WordPress\Comments::init();
-\Geum\WordPress\EditHomepage::init();
-\Geum\WordPress\Emails::init();
-\Geum\WordPress\Enqueue::init();
-\Geum\WordPress\Escaping::init();
-\Geum\WordPress\Gutenberg::init();
-\Geum\WordPress\Colors::init();
-\Geum\WordPress\Head::init();
-\Geum\WordPress\Images::init();
-\Geum\WordPress\PostsPT::init();
-\Geum\WordPress\Security::init();
-\Geum\WordPress\ThemeSetup::init();
-\Geum\Router::init();
-\Geum\WordPress\Updates::init();
-\Geum\WordPress\UploadMimes::init();
-\Geum\Dev\DevRoutes::init();
+\Gust\WordPress\Admin::init();
+\Gust\WordPress\Cleanup::init();
+\Gust\WordPress\Comments::init();
+\Gust\WordPress\EditHomepage::init();
+\Gust\WordPress\Emails::init();
+\Gust\WordPress\Enqueue::init();
+\Gust\WordPress\Escaping::init();
+\Gust\WordPress\Editor::init();
+\Gust\WordPress\Colors::init();
+\Gust\WordPress\Head::init();
+\Gust\WordPress\Images::init();
+\Gust\WordPress\PostsPT::init();
+\Gust\WordPress\Roles::init();
+\Gust\WordPress\Security::init();
+\Gust\WordPress\ThemeSetup::init();
+\Gust\Router::init();
+\Gust\WordPress\Updates::init();
+\Gust\WordPress\UploadMimes::init();
+\Gust\Dev\DevRoutes::init();
 
 // ----------------------------------------------------
 // Load Theme Modules.
 // ----------------------------------------------------
-\Geum\Module::init();
+\Gust\Module::init();
 
 // ----------------------------------------------------
 // Load Theme Utilities.

@@ -1,6 +1,6 @@
 <?php
 
-use Geum\Components\TeamGrid;
+use Gust\Components\TeamGrid;
 
 ?>
 

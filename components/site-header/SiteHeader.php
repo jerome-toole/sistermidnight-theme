@@ -1,14 +1,14 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\ComponentBase;
+use Gust\ComponentBase;
 
 /**
  * SiteHeader Component
  *
  * Usage:
- *   use Geum\Components\SiteHeader;
+ *   use Gust\Components\SiteHeader;
  *
  *   echo SiteHeader::make();
  */
@@ -34,8 +34,6 @@ class SiteHeader extends ComponentBase
      */
     protected static function transform(array $args): array
     {
-        $args['site_name'] = \get_bloginfo('name');
-
         return $args;
     }
 }

@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * Link Component
  *
  * Usage:
- *   use Geum\Components\Link;
+ *   use Gust\Components\Link;
  *
  *   echo Link::make();
  */

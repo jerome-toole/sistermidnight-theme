@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * Menu Component
  *
  * Usage:
- *   use Geum\Components\Menu;
+ *   use Gust\Components\Menu;
  *
  *   echo Menu::make();
  */
@@ -136,7 +136,7 @@ class Menu extends ComponentBase
 
         // A taxonomy/term archive menu item which matches the current taxonomy/term archive.
         if ($item->type === 'taxonomy') {
-            return \Geum\Helpers::isTaxonomy() && \get_queried_object()->taxonomy === $item->object;
+            return \Gust\Helpers::isTaxonomy() && \get_queried_object()->taxonomy === $item->object;
         }
 
         // A post type menu item which matches the current queried object ID.
@@ -146,7 +146,7 @@ class Menu extends ComponentBase
 
         // A router page menu item - check if current route matches.
         if ($item->type === 'post_type' && $item->object === 'page') {
-            $routerPage = \Geum\Router::getPage();
+            $routerPage = \Gust\Router::getPage();
             if ($routerPage && (int) $item->object_id === $routerPage->ID) {
                 return true;
             }

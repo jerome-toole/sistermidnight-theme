@@ -495,7 +495,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cards"
+                "value": "theme\/cards"
             }
         ]
     ],

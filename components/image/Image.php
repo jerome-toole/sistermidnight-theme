@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * Image Component
  *
  * Usage:
- *   use Geum\Components\Image;
+ *   use Gust\Components\Image;
  *
  *   echo Image::make();
  */

@@ -1,6 +1,6 @@
 <?php
 
-use Geum\Components\Image;
+use Gust\Components\Image;
 
 ?>
 
@@ -37,7 +37,7 @@ use Geum\Components\Image;
 
     <?php if (! empty($this->profile_url)) { ?>
         <a class="instagram-feed__link" href="<?= esc_url($this->profile_url) ?>" target="_blank" rel="noopener">
-            <?= esc_html__('see more on insta', 'geum') ?> →
+            <?= esc_html__('see more on insta', 'gust') ?> →
         </a>
     <?php } ?>
 </div>

@@ -1,6 +1,6 @@
 <?php
 
-use Geum\Components\DocumentLinks;
+use Gust\Components\DocumentLinks;
 
 ?>
 

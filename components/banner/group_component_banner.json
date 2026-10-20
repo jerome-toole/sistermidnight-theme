@@ -75,7 +75,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/banner"
+                "value": "theme\/banner"
             }
         ]
     ],

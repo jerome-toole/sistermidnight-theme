@@ -9,7 +9,7 @@
         <ul class="taxonomy-filters__list flex-list">
             <?php foreach ($this->items as $item) { ?>
                 <li class="taxonomy-filters__item-wrap">
-                    <?= \Geum\Components\Link::make(...$item); ?>
+                    <?= \Gust\Components\Link::make(...$item); ?>
                 </li>
             <?php }  ?>
         </ul>

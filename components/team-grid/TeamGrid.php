@@ -1,8 +1,8 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\ComponentBase;
+use Gust\ComponentBase;
 
 class TeamGrid extends ComponentBase
 {

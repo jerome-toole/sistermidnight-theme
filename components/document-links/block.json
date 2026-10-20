@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "theme/document-links",
+    "title": "Document Links",
+    "category": "theme-blocks",
+    "icon": "media-document",
+    "keywords": [
+        "document",
+        "download",
+        "file",
+        "pdf",
+        "attachment"
+    ],
+    "acf": {
+        "blockVersion": 3,
+        "mode": "preview",
+        "postTypes": [
+            "page",
+            "gust-template"
+        ],
+        "renderCallback": "Gust\\Components\\DocumentLinks::renderBlock"
+    },
+    "supports": {
+        "anchor": true,
+        "align": [
+            "wide",
+            "full"
+        ],
+        "color": {
+            "background": true,
+            "text": false,
+            "gradients": false
+        }
+    }
+}

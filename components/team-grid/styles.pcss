@@ -1,9 +1,9 @@
 :where(.team-grid) {
-    padding-block: var(--space-lg);
+    padding-block: space(32);
 }
 
 :where(.team-grid__heading) {
-    margin-block-end: var(--space-lg);
+    margin-block-end: space(32);
 }
 
 :where(.team-grid__grid) {
@@ -21,7 +21,7 @@
 :where(.team-grid__item) {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: space(16);
 }
 
 :where(.team-grid__image) {
@@ -46,24 +46,24 @@
 
 :where(.team-grid__name) {
     font-family: var(--font-display), ui-serif, serif;
-    font-size: var(--type-lg);
+    font-size: var(--text-h3);
     font-weight: 400;
     margin: 0;
 }
 
 :where(.team-grid__role) {
-    font-size: var(--type-small);
+    font-size: var(--text-small);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     opacity: 0.7;
     margin: 0;
-    margin-block-start: var(--space-3xs);
+    margin-block-start: space(4);
 }
 
 :where(.team-grid__bio) {
     @apply margin-trim;
 
-    font-size: var(--type-base);
+    font-size: var(--text-base);
     line-height: 1.6;
-    margin-block-start: var(--space-xs);
+    margin-block-start: space(12);
 }

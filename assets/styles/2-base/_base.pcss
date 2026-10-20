@@ -1,5 +1,9 @@
+/* Base Styles - imported in @layer base (on the front end) */
+
 /* Use a more-intuitive box-sizing model */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -16,21 +20,30 @@
 }
 
 /* Inherit fonts for form controls */
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
     font: inherit;
 }
 
 /* Avoid text overflows */
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     overflow-wrap: break-word;
 }
 
 /* Focus styles */
 *:focus {
-    @apply focus--1;
+    @apply focus-base;
 }
 
-[tabindex='-1']:focus {
+[tabindex="-1"]:focus {
     @apply no-focus-be-careful;
 }
 
@@ -39,7 +52,7 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: var(--site--scroll-padding-top);
 
-    // Turn on ligatures
+    /* Turn on ligatures */
     text-rendering: optimizeLegibility;
     text-underline-offset: var(--underline-offset);
 }
@@ -47,7 +60,7 @@ html {
 body {
     --backdrop--background-color: hsla(var(--color-black--hsl), 0.4);
     --backdrop--transition-duration: 500ms;
-    --backdrop--transition-ease: var(--submenu--transition-ease);
+    --backdrop--transition-ease: var(--transition--ease);
 
     @apply type-base;
 
@@ -60,7 +73,7 @@ body {
     -webkit-font-smoothing: antialiased;
 
     &::before {
-        // Backdrop overlay
+        /* Backdrop overlay */
         position: fixed;
         z-index: var(--z-index-backdrop);
         top: 0;
@@ -68,7 +81,7 @@ body {
         bottom: 0;
         left: 0;
         background: var(--backdrop--background-color);
-        content: '';
+        content: "";
         opacity: 0;
         pointer-events: none;
         transition: all var(--backdrop--transition-duration) var(--backdrop--transition-ease);
@@ -85,20 +98,24 @@ blockquote {
 }
 
 button,
-[type=submit],
-[type=reset],
-[type=button] {
+[type="submit"],
+[type="reset"],
+[type="button"] {
     @apply button-reset;
 }
 
 /* Improve media defaults */
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
     display: block;
     max-width: 100%;
 }
 
 img {
-    // Basic responsive images
+    /* Basic responsive images */
     width: auto;
     max-width: 100%;
     height: auto;
@@ -110,7 +127,7 @@ iframe {
     border: 0;
 }
 
-// Responsive SVGs by default
+/* Responsive SVGs by default */
 svg {
     width: 100%;
     height: auto;
@@ -120,7 +137,7 @@ svg {
 hr {
     height: var(--hr--thickness);
     border: 0;
-    background-color: var(--hr--color);
+    background-color: var(--hr--color, color-mix(in oklab, var(--color-foreground) 50%, transparent));
 }
 
 ::selection {
@@ -140,4 +157,46 @@ fieldset {
     border: 0;
     margin-right: 0;
     margin-left: 0;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: var(--form--label-spacing);
+}
+
+[type="text"],
+[type="password"],
+[type="date"],
+[type="datetime"],
+[type="datetime-local"],
+[type="month"],
+[type="week"],
+[type="email"],
+[type="number"],
+[type="search"],
+[type="tel"],
+[type="time"],
+[type="url"],
+[type="color"],
+textarea {
+    @apply input;
+}
+
+select {
+    @apply input;
+    @apply select;
+}
+
+textarea,
+[multiple] {
+    height: var(--form--textarea-height);
+    resize: vertical;
+}
+
+[type="radio"],
+[type="checkbox"] {
+    width: 1em;
+    height: 1em;
+    accent-color: var(--input--border-color);
+    transform: translateY(0.15em);
 }

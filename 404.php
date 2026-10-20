@@ -2,19 +2,17 @@
 
 get_header();
 
-$object = \Geum\WordPress\PageObject::get();
+$object = \Gust\WordPress\PageObject::get();
 
 site_main_open(object: $object);
 
-ob_start();
-\Geum\Router::renderPage();
-$routerContent = ob_get_clean();
+$routerPage = \Gust\Router::getPage();
 
-if ($routerContent) {
-    echo $routerContent;
+if ($routerPage) {
+    echo apply_filters('the_content', $routerPage->post_content);
 } else {
-    echo \Geum\Components\PageHeader::make(object: $object);
-    echo \Geum\Components\NoContent::make(object: $object);
+    echo \Gust\Components\PageHeader::make(object: $object);
+    echo \Gust\Components\NoContent::make(object: $object);
 }
 
 site_main_close();

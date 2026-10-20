@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * NoContent Component
  *
  * Usage:
- *   use Geum\Components\NoContent;
+ *   use Gust\Components\NoContent;
  *
  *   echo NoContent::make();
  */
@@ -20,7 +20,7 @@ class NoContent extends ComponentBase
     protected static function getDefaults(): array
     {
         return [
-            'content' => ['message' => __('No content found.', 'geum')],
+            'content' => ['message' => __('No content found.', 'gust')],
         ];
     }
 
@@ -46,15 +46,15 @@ class NoContent extends ComponentBase
             $object = $args['object'];
 
             if ($object instanceof \WP_Query && $object->is_404()) {
-                $args['content']['message'] = __("It seems we can't find what you're looking for.", 'geum');
+                $args['content']['message'] = __("It seems we can't find what you're looking for.", 'gust');
             } elseif ($object instanceof \WP_Query && $object->is_search()) {
                 $args['content']['message'] = __(
                     'Sorry, but nothing matched your search terms. Please try again with some different keywords.',
-                    'geum'
+                    'gust'
                 );
             }
         } elseif (is_admin()) {
-            $args['content']['message'] = __('Items cannot be displayed in the editor.', 'geum');
+            $args['content']['message'] = __('Items cannot be displayed in the editor.', 'gust');
         }
 
         return $args;

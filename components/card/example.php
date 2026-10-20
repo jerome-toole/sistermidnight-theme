@@ -4,7 +4,7 @@
  * Card Component Examples
  */
 
-use Geum\Components\Card;
+use Gust\Components\Card;
 
 // Get sample post
 $sample_post = get_posts([

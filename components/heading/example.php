@@ -4,7 +4,7 @@
  * Heading Component Examples
  */
 
-use Geum\Components\Heading;
+use Gust\Components\Heading;
 
 ?>
 

@@ -1,43 +1,97 @@
+/* Button Variables
+ *
+ * Pill buttons in Rework Text with a 2px border.
+ *
+ *   .btn           solid accent (primary)
+ *   .btn--theme-2  accent outline that fills on hover (secondary)
+ *   .btn--ghost    text only
+ *
+ * Colour knobs are never declared on :root. They're read with a fallback to the
+ * colour roles, so a button follows its colour context (a .btn on a blue context
+ * turns white) without per-context overrides. Set them on a button or a parent:
+ *   --btn--background-color, --btn--border-color, --btn--color (+ --hover / -hover)
+ */
+
+@layer base {
+    :root {
+        --btn--padding-y: 0.15em;
+        --btn--padding-x: 0.525em;
+
+        --btn--border-width: 2px;
+        --btn--border-radius: 999px;
+
+        --btn--gap: 0.5em;
+    }
+}
 
 @utility btn {
+    --focus--color: var(--btn--border-color, var(--color-accent));
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: var(--btn--padding-y) var(--btn--padding-x);
     border-width: var(--btn--border-width);
     border-style: solid;
-    border-color: var(--btn--border-color);
+    border-color: var(--btn--border-color, var(--btn--background-color, var(--color-accent)));
     border-radius: var(--btn--border-radius);
-    background-color: var(--btn--background-color);
-    color: var(--btn--color);
+    background-color: var(--btn--background-color, var(--color-accent));
+    color: var(--btn--color, var(--color-accent--foreground));
     cursor: pointer;
-    font-size: var(--btn--font-size, inherit);
+    font-family: var(--font-sans);
+    font-size: var(--btn--font-size, var(--text-label));
+    font-weight: var(--font-weight-normal);
     gap: var(--btn--gap);
-    line-height: 1.25;
+    letter-spacing: var(--text-label--letter-spacing);
+    line-height: var(--text-label--line-height);
     text-align: center;
-    text-decoration: none; // [1]
+    text-decoration: none; /* [1] */
     transition: transition(color, background-color, border-color, box-shadow, transform);
     user-select: none;
 
     @media (hover: hover) {
         &:hover {
-            border-color: var(--btn--border-color--hover);
-            background-color: var(--btn--background-color--hover);
-            color: var(--btn--color-hover);
+            border-color: var(
+                --btn--border-color--hover,
+                var(
+                    --btn--background-color--hover,
+                    color-mix(in oklab, var(--color-accent) 80%, var(--color-background))
+                )
+            );
+            background-color: var(
+                --btn--background-color--hover,
+                color-mix(in oklab, var(--color-accent) 80%, var(--color-background))
+            );
+            color: var(--btn--color-hover, var(--btn--color, var(--color-accent--foreground)));
             text-decoration: none;
         }
     }
     @media (hover: none) {
         &:active {
-            border-color: var(--btn--border-color--hover);
-            background-color: var(--btn--background-color--hover);
-            color: var(--btn--color-hover);
+            border-color: var(
+                --btn--border-color--hover,
+                var(
+                    --btn--background-color--hover,
+                    color-mix(in oklab, var(--color-accent) 80%, var(--color-background))
+                )
+            );
+            background-color: var(
+                --btn--background-color--hover,
+                color-mix(in oklab, var(--color-accent) 80%, var(--color-background))
+            );
+            color: var(--btn--color-hover, var(--btn--color, var(--color-accent--foreground)));
             text-decoration: none;
         }
     }
 
     &:focus {
-        @apply focus--1;
+        @apply focus-base;
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+        cursor: not-allowed;
+        opacity: 0.5;
     }
 
     :where(.btn__icon) {
@@ -45,7 +99,7 @@
         width: var(--btn--icon-size, 1em);
         height: var(--btn--icon-size, 1em);
         background: currentColor;
-        content: '';
+        content: "";
         mask-position: center;
         mask-repeat: no-repeat;
         mask-size: contain;
@@ -53,65 +107,47 @@
     }
 }
 
+/* Outline: fills with the accent on hover */
 @utility btn--theme-2 {
-    --btn--background-color: var(--color-off-white);
-    --btn--border-color: var(--color-off-white);
-    --btn--color: var(--color-warm-black);
+    --btn--background-color: transparent;
+    --btn--border-color: var(--color-accent);
+    --btn--color: var(--color-accent);
 
-    --btn--background-color--hover:  var(--color-warm-black);
-    --btn--border-color--hover:  var(--color-warm-black);
-    --btn--color-hover: var(--color-off-white);
+    --btn--background-color--hover: var(--color-accent);
+    --btn--border-color--hover: var(--color-accent);
+    --btn--color-hover: var(--color-accent--foreground);
 }
 
-// @apply btn--theme-3 {
-//     --btn--background-color: var(--color-warm-black);
-//     --btn--border-color: var(--color-warm-black);
-//     --btn--color: var(--color-white);
-
-//     --btn--background-color--hover: hsl(
-//         var(--color-off-white--h),
-//         calc(var(--color-off-white--s) * 0.75),
-//         calc(var(--color-off-white--l) * 0.75)
-//     );
-//     --btn--border-color--hover: hsl(
-//         var(--color-off-white--h),
-//         calc(var(--color-off-white--s) * 0.75),
-//         calc(var(--color-off-white--l) * 0.75)
-//     );
-//     --btn--color-hover: var(--color-white);
-// }
-
 @utility btn--ghost {
-    --btn--color: var(--color-warm-black);
+    --btn--color: var(--color-foreground);
     --btn--background-color: transparent;
     --btn--border-color: transparent;
 
-    --btn--background-color--hover:  transparent;
-    --btn--border-color--hover:  transparent;
-    --btn--color-hover: var(--color-warm-black);
+    --btn--background-color--hover: color-mix(in oklab, var(--color-foreground) 8%, transparent);
+    --btn--border-color--hover: transparent;
+    --btn--color-hover: var(--color-foreground);
 }
 
 @utility btn--small {
-    --btn--padding-y: var(--btn--small--padding-y);
-    --btn--padding-x: var(--btn--small--padding-x);
+    --btn--padding-y: 0.3em;
+    --btn--padding-x: 0.6em;
 }
 
 @utility btn--label {
     @apply btn--small;
-    @apply type-small;
+    @apply type-label-sm;
 }
 
-// Used for square buttons containing a single number or icon
+/* Used for square buttons containing a single number or icon */
 @utility btn--square {
     min-width: var(--btn--size, rem(44));
     min-height: var(--btn--size, rem(44));
     padding: 0 0.3em;
-    border-radius: var(--border-radius--s);
+    border-radius: var(--radius-sm);
 }
 
 @utility btn--arrow {
     --btn--icon-size: 0.9em;
-
 
     @media (hover: hover) {
         &:hover {
@@ -131,7 +167,7 @@
     &::after {
         @apply mask-icon;
 
-        mask-image: url('/images/icons/chevron-right.svg');
+        mask-image: url("/images/icons/chevron-right.svg");
         transform: translateX(0);
         transition: transition(transform);
         width: var(--btn--icon-size, 1em);
@@ -162,75 +198,35 @@
     }
 }
 
-@utility btn--chip {
-    --btn--icon-size: 0.85em;
-
-    &::after {
-        @apply mask-icon;
-
-        width: var(--btn--icon-size);
-        height: var(--btn--icon-size);
-        mask-image: url('/images/icons/close.svg');
-        display: none;
-    }
-
-    /* @media (hover: hover) {
-        &:hover:not([aria-pressed="true"]) {
-        }
-    } */
-
-    &[aria-pressed="true"] {
-        background-color: var(--btn--background-color--selected);
-        border-color: var(--btn--border-color--selected);
-        color: var(--btn--color--selected);
-
-        &::after {
-            display: block;
-        }
-    }
-}
-
-@utility btn--close {
-    --btn--icon-size: 0.85em;
-
-    &::after {
-        @apply mask-icon;
-
-        width: var(--btn--icon-size);
-        height: var(--btn--icon-size);
-        mask-image: url('/images/icons/close.svg');
-    }
-}
-
 @utility btn--unstyled {
-	padding: 0;
-	border: 0;
-	border-radius: 0;
-	background-color: transparent;
-	color: inherit;
-	cursor: pointer;
-	font-family: inherit;
-	font-size: inherit;
-	font-weight: inherit;
-	letter-spacing: inherit;
-	line-height: inherit;
-	text-transform: inherit;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    text-transform: inherit;
 
-	@media (hover: hover) {
-		&:hover {
-			background-color: transparent;
-			color: inherit;
-		}
-	}
-	@media (hover: none) {
-		&:active {
-			background-color: transparent;
-			color: inherit;
-		}
-	}
+    @media (hover: hover) {
+        &:hover {
+            background-color: transparent;
+            color: inherit;
+        }
+    }
+    @media (hover: none) {
+        &:active {
+            background-color: transparent;
+            color: inherit;
+        }
+    }
 
-	&:focus {
-		box-shadow: unset;
-		outline-width: 5px;
-	}
+    &:focus {
+        box-shadow: unset;
+        outline-width: 5px;
+    }
 }

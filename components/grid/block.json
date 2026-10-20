@@ -1,0 +1,26 @@
+{
+    "apiVersion": 3,
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "name": "theme/grid",
+    "title": "Grid",
+    "description": "A simple grid with 1-6 columns and breakpoint stacking",
+    "category": "theme-blocks",
+    "icon": "grid-view",
+    "textdomain": "gust",
+    "attributes": {
+        "columns": {
+            "type": "number",
+            "default": 3
+        },
+        "breakpoint": {
+            "type": "string",
+            "default": "tablet"
+        }
+    },
+    "supports": {
+        "html": false,
+        "anchor": true,
+        "align": false
+    },
+    "render": "file:./render.php"
+}

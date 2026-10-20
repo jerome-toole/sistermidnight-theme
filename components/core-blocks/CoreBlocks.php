@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * CoreBlocks Component
  *
  * Usage:
- *   use Geum\Components\CoreBlocks;
+ *   use Gust\Components\CoreBlocks;
  *
  *   echo CoreBlocks::make();
  */

@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * SocialIcons Component
  *
  * Usage:
- *   use Geum\Components\SocialIcons;
+ *   use Gust\Components\SocialIcons;
  *
  *   echo SocialIcons::make();
  */

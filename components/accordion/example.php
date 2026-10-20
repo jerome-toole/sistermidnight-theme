@@ -8,7 +8,7 @@
  * - $component: The current component name
  */
 
-use Geum\Component;
+use Gust\Component;
 
 ?>
 
@@ -19,7 +19,7 @@ use Geum\Component;
         A simple accordion with three items.
     </p>
     <div class="component-example-section__preview">
-        <?= \Geum\Components\Accordion::make(
+        <?= \Gust\Components\Accordion::make(
             accordion_items: [
                 [
                     'title' => 'What is your return policy?',
@@ -45,7 +45,7 @@ use Geum\Component;
         An accordion with a section heading above the items.
     </p>
     <div class="component-example-section__preview">
-        <?= \Geum\Components\Accordion::make(
+        <?= \Gust\Components\Accordion::make(
             heading: 'Frequently Asked Questions',
             accordion_items: [
                 [
@@ -72,7 +72,7 @@ use Geum\Component;
         An accordion demonstrating rich HTML content within panels, including lists and multiple paragraphs.
     </p>
     <div class="component-example-section__preview">
-        <?= \Geum\Components\Accordion::make(
+        <?= \Gust\Components\Accordion::make(
             heading: 'Product Information',
             accordion_items: [
                 [
@@ -114,7 +114,7 @@ use Geum\Component;
         An accordion with just one expandable item.
     </p>
     <div class="component-example-section__preview">
-        <?= \Geum\Components\Accordion::make(
+        <?= \Gust\Components\Accordion::make(
             accordion_items: [
                 [
                     'title' => 'Click to reveal more information',
@@ -141,7 +141,7 @@ for ($i = 1; $i <= 8; $i++) {
     ];
 }
 ?>
-        <?= \Geum\Components\Accordion::make(
+        <?= \Gust\Components\Accordion::make(
             heading: 'Full FAQ Section',
             accordion_items: $items,
         ); ?>

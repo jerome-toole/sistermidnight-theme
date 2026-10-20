@@ -1,5 +1,5 @@
 
-        <?= \Geum\Components\SiteFooter::make(); ?>
+        <?= \Gust\Components\SiteFooter::make(); ?>
         <?php wp_footer(); ?>
     </body>
 </html>

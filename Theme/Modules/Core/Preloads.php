@@ -6,18 +6,22 @@ class Preloads
 {
     public static function init()
     {
-        \add_filter('geum/wordpress/head/preload_assets', [__CLASS__, 'addPreloads']);
+        \add_filter('gust/wordpress/head/preload_assets', [__CLASS__, 'addPreloads']);
     }
 
     public static function addPreloads(array $preloads): array
     {
         $preloads = array_merge($preloads, [
-            // [
-            //     'href' => \Geum\Asset::URL('static/WebFont-Regular.woff2'),
-            //     'fetchpriority' => 'low',
-            //     'type' => 'font/woff2',
-            //     'as' => 'font',
-            // ],
+            [
+                'href' => \Gust\Helpers::staticUrl('fonts/sister-midnight-regular.woff2'),
+                'type' => 'font/woff2',
+                'as' => 'font',
+            ],
+            [
+                'href' => \Gust\Helpers::staticUrl('fonts/rework-text-regular.woff2'),
+                'type' => 'font/woff2',
+                'as' => 'font',
+            ],
         ]);
 
         return $preloads;

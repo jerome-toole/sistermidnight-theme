@@ -10,8 +10,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 THEME_DIR="$(dirname "$SCRIPT_DIR")"
 CONFIG_FILE="$THEME_DIR/wp-sync.yml"
 ENV_FILE="$THEME_DIR/.env"
-THEME_NAME="sistermidnight-theme"
-
 ENV="${1:-staging}"
 DRY_RUN=""
 
@@ -51,6 +49,9 @@ PORT=$(parse_yaml_env "$ENV" "port")
 REMOTE_PATH=$(parse_yaml_env "$ENV" "path")
 [[ -z "$REMOTE_PATH" ]] && REMOTE_PATH=$(get_env_var "DEPLOY_${ENV_UPPER}_PATH")
 
+THEME_NAME=$(get_env_var "THEME_NAME")
+[[ -z "$THEME_NAME" ]] && THEME_NAME=$(basename "$THEME_DIR")
+
 if [[ -z "$HOST" ]] || [[ -z "$REMOTE_PATH" ]]; then
     echo "Error: Environment '$ENV' not configured"
     echo ""
@@ -65,6 +66,7 @@ if [[ -z "$HOST" ]] || [[ -z "$REMOTE_PATH" ]]; then
     echo "  DEPLOY_${ENV_UPPER}_HOST=user@hostname"
     echo "  DEPLOY_${ENV_UPPER}_PORT=22"
     echo "  DEPLOY_${ENV_UPPER}_PATH=/path/to/wordpress"
+    echo "  THEME_NAME=my-theme"
     exit 1
 fi
 
@@ -91,10 +93,10 @@ eval rsync $RSYNC_OPTS $SSH_OPTS $DRY_RUN \
     "$THEME_DIR/" \
     "$HOST:$REMOTE_THEME_PATH"
 
-# Flush caches (skip on dry run)
+# Flush cache (skip on dry run)
 if [[ -z "$DRY_RUN" ]]; then
     echo ""
-    echo "Flushing caches..."
+    echo "Flushing WP cache..."
     if [[ -n "$PORT" ]]; then
         ssh -p "$PORT" "$HOST" "cd $REMOTE_PATH && wp cache flush && wp scout purge" 2>/dev/null || echo "Cache flush skipped"
     else

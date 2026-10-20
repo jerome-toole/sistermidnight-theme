@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "theme/newsletter-signup",
+    "title": "Newsletter Signup",
+    "category": "theme-blocks",
+    "icon": "email-alt",
+    "keywords": [
+        "newsletter",
+        "email",
+        "subscribe",
+        "brevo",
+        "mailing list"
+    ],
+    "acf": {
+        "blockVersion": 3,
+        "mode": "preview",
+        "postTypes": [
+            "page",
+            "gust-template"
+        ],
+        "renderCallback": "Gust\\Components\\NewsletterSignup::renderBlock"
+    },
+    "supports": {
+        "anchor": true,
+        "align": [
+            "wide",
+            "full"
+        ],
+        "color": {
+            "background": true,
+            "text": false,
+            "gradients": false
+        }
+    }
+}

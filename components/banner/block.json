@@ -1,0 +1,25 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "theme/banner",
+    "title": "Banner",
+    "category": "theme-blocks",
+    "icon": "align-center",
+    "keywords": ["callout"],
+    "align": "full",
+    "acf": {
+        "blockVersion": 3,
+        "mode": "auto",
+        "autoInlineEditing": true,
+        "renderCallback": "Gust\\Components\\Banner::renderBlock"
+    },
+    "supports": {
+        "anchor": true,
+        "align": ["wide", "full"],
+        "color": {
+            "background": true,
+            "text": false,
+            "gradients": false
+        }
+    }
+}

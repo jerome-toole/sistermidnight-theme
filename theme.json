@@ -1,6 +1,18 @@
 {
     "$schema": "https://schemas.wp.org/trunk/theme.json",
-    "version": 2,
+    "version": 3,
+    "styles": {
+        "color": {
+            "background": "var(--background-color)"
+        },
+        "elements": {
+            "link": {
+                "typography": {
+                    "textDecoration": "false"
+                }
+            }
+        }
+    },
     "settings": {
         "appearanceTools": false,
         "blocks": {
@@ -11,6 +23,9 @@
                 },
                 "color": {
                     "background": false
+                },
+                "dimensions": {
+                    "width": false
                 },
                 "layout": {},
                 "spacing": {
@@ -30,6 +45,36 @@
                 "color": {
                     "background": true
                 }
+            },
+            "core/heading": {
+                "color": {
+                    "background": false
+                }
+            },
+            "core/list": {
+                "color": {
+                    "background": false
+                }
+            },
+            "core/list-item": {
+                "color": {
+                    "background": false
+                }
+            },
+            "core/quote": {
+                "color": {
+                    "background": false
+                }
+            },
+            "core/separator": {
+                "color": {
+                    "background": false
+                }
+            },
+            "core/table": {
+                "color": {
+                    "background": false
+                }
             }
         },
         "border": {
@@ -38,8 +83,13 @@
             "style": false,
             "width": false
         },
+        "layout": {
+            "contentSize": "1400px",
+            "wideSize": "1400px"
+        },
         "color": {
             "background": true,
+            "button": false,
             "custom": false,
             "customDuotone": false,
             "customGradient": false,
@@ -48,13 +98,10 @@
             "defaultPalette": false,
             "duotone": [],
             "gradients": [],
+            "heading": false,
             "link": false,
             "palette": [],
             "text": false
-        },
-        "layout": {
-            "contentSize": "765px",
-            "wideSize": "1400px"
         },
         "shadow": {
             "defaultPresets": false,
@@ -71,6 +118,7 @@
             "customFontSize": false,
             "lineHeight": false,
             "dropCap": false,
+            "defaultFontSizes": false,
             "fontFamilies": [],
             "fontSizes": [],
             "fontStyle": false,
@@ -79,7 +127,8 @@
             "textDecoration": false,
             "textTransform": false,
             "fluid": false,
-            "textColumns": false
+            "textColumns": false,
+            "textIndent": false
         },
         "useRootPaddingAwareAlignments": false
     }

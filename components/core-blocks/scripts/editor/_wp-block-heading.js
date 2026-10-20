@@ -1,4 +1,23 @@
 /**
+ * Disable "Fit text" on core/heading and core/paragraph. It's a block support,
+ * not a theme.json setting, so it has to be removed at registration.
+ */
+wp.hooks.addFilter('blocks.registerBlockType', 'gust/disable-fit-text', (settings, name) => {
+    if (!['core/heading', 'core/paragraph'].includes(name)) return settings;
+
+    return {
+        ...settings,
+        supports: {
+            ...settings.supports,
+            typography: {
+                ...settings.supports?.typography,
+                fitText: false,
+            },
+        },
+    };
+});
+
+/**
  * Register block styles for core/heading block.
  */
 wp.domReady(() => {

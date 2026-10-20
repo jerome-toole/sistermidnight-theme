@@ -1,13 +1,13 @@
 .media-content {
-    --media-content--aspect-ratio: 4 / 3;
-    --media-content--outer-padding-y: var(--block--padding-y);
-    --media-content--outer-padding-x: var(--block--padding-x);
+    --media-content--aspect-ratio: 16 / 9;
+    --media-content--outer-padding-y: var(--section--padding-y);
+    --media-content--outer-padding-x: var(--section--padding-x);
     --media-content--inner-padding-y: 0px;
     --media-content--content--max-width: 28.125rem; /* 450px */
-    --media-content--gap: spaceFluid(24, 48);
+    --media-content--gap: spaceFluid(16, 24);
 
     @media (min-width: theme('screens.md')) {
-        --media-content--inner-padding-y: var(--block--padding-y);
+        --media-content--inner-padding-y: var(--section--padding-y);
     }
 
     :where(.media-content__inner) {
@@ -16,6 +16,8 @@
         place-items: center;
 
         @media (min-width: theme('screens.md')) {
+            --media-content--aspect-ratio: 4 / 3;
+
             gap: var(--media-content--gap, 0);
             grid-template-areas: 'media content .';
             grid-template-columns: 50% 1fr 0fr;
@@ -52,7 +54,7 @@
         border-radius: var(--rounded-border-radius);
         position: relative;
         width: 100%;
-        box-shadow: var(--box-shadow--1);
+        box-shadow: var(--base--shadow);
 
         @media (min-width: theme('screens.md')) {
             grid-area: media;
@@ -73,7 +75,7 @@
         max-width: var(--heading--max-width);
 
         + .media-content__subheading {
-            margin-top: calc((var(--heading--margin-bottom) * -1) + var(--space--base));
+            margin-top: calc((var(--heading--margin-bottom) * -1) + var(--space-base));
         }
     }
 

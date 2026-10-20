@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * TaxonomyFilters Component
  *
  * Usage:
- *   use Geum\Components\TaxonomyFilters;
+ *   use Gust\Components\TaxonomyFilters;
  *
  *   echo TaxonomyFilters::make();
  */
@@ -53,7 +53,7 @@ class TaxonomyFilters extends ComponentBase
     protected static function transform(array $args): array
     {
         // Default translated value
-        $args['label'] ??= __('Filter by', 'geum');
+        $args['label'] ??= __('Filter by', 'gust');
 
         if (! empty($args['object'])) {
             $object = $args['object'];
@@ -76,7 +76,7 @@ class TaxonomyFilters extends ComponentBase
             $tax = get_taxonomy($args['taxonomy']);
 
             $args['label'] = sprintf(
-                __('Filter by %s', 'geum'),
+                __('Filter by %s', 'gust'),
                 strtolower($tax->labels->singular_name)
             );
 

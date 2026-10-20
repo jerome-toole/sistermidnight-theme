@@ -10,32 +10,27 @@
  * @see agents/2026-01-08-application-routing-system-pages.md
  */
 
-use Geum\Router;
-use Theme\Controllers\ArchiveController;
+use Gust\Router;
 use Theme\Controllers\NotFoundController;
 use Theme\Controllers\SearchController;
-
-// Blog archive (posts)
-Router::decorate('archive:post', ArchiveController::class)
-    ->withContent('blog')
-    ->withSlot('listing', fn () => ArchiveController::renderLoop());
+use Theme\Modules\Events\EventsModule;
 
 // Search results
-Router::decorate('search', SearchController::class)
-    ->withContent('search')
-    ->withSlot('listing', fn () => SearchController::renderResults());
+Router::decorateSearch(SearchController::class)
+    ->withPage('search')
+    ->withSlot('template-content', fn () => SearchController::renderResults());
 
 // 404 page
-Router::decorate('404', NotFoundController::class)
-    ->withContent('404')
+Router::decorate404(NotFoundController::class)
+    ->withPage('404')
     ->withSlot('template-content', fn () => NotFoundController::renderContent());
 
-// Example: Custom post type archive (uncomment to use)
-Router::decorate('post_type:event', ArchiveController::class)
-    ->withContent('events')
-    ->withSlot('listing', fn () => ArchiveController::renderLoop());
+// Events archive
+Router::decoratePostType('event', EventsModule::class)
+    ->withPage('events')
+    ->withSlot('template-content', [EventsModule::class, 'renderArchive']);
 
-// Example: Taxonomy archive (uncomment to use)
-// Router::decorate('taxonomy:category', ArchiveController::class)
-//     ->withContent('category-listing')
-//     ->withSlot('listing', fn () => ArchiveController::renderLoop());
+// Example: Taxonomy archive for 'category' taxonomy
+// Router::decorateTaxonomy('category', ArchiveController::class)
+//     ->withPage('category-listing')
+//     ->withSlot('template-content', fn () => ArchiveController::renderLoop());

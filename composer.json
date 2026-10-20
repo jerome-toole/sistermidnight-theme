@@ -1,11 +1,9 @@
 {
-    "name": "jerometoole/geum",
+    "name": "jerometoole/gust",
     "description": "A modern WordPress theme framework",
     "require": {
-        "php": "^8.0",
-        "squizlabs/php_codesniffer": "3.*",
+        "php": "^8.2",
         "johnbillion/extended-cpts": "^5.0.2",
-        "wpackagist-plugin/query-monitor": "*",
         "wpackagist-plugin/safe-svg": "*",
         "wpackagist-plugin/wordpress-seo": "*",
         "wpengine/advanced-custom-fields-pro": "*"
@@ -15,11 +13,12 @@
         "php-stubs/wordpress-stubs": "*",
         "php-stubs/wp-cli-stubs": "^2.10",
         "laravel/pint": "^1.17",
-        "fakerphp/faker": "^1.24"
+        "fakerphp/faker": "^1.24",
+        "wpackagist-plugin/query-monitor": "*"
     },
     "autoload": {
         "psr-4": {
-            "Geum\\": "Geum/",
+            "Gust\\": "Gust/",
             "Theme\\": "Theme/"
         },
         "classmap": [
@@ -30,18 +29,25 @@
         "0": {
             "type": "composer",
             "url": "https://wpackagist.org",
-            "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
         },
         "1": {
-          "type": "composer",
-          "url": "https://connect.advancedcustomfields.com"
+            "type": "composer",
+            "url": "https://connect.advancedcustomfields.com"
         }
     },
     "extra": {
         "installer-paths": {
             "../../mu-plugins/{$name}/": [],
-            "../../plugins/{$name}/": ["type:wordpress-plugin"],
-            "../{$name}/": ["type:wordpress-theme"]
+            "../../plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            "../{$name}/": [
+                "type:wordpress-theme"
+            ]
         }
     },
     "config": {

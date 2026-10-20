@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * Burger Component
  *
  * Usage:
- *   use Geum\Components\Burger;
+ *   use Gust\Components\Burger;
  *
  *   echo Burger::make();
  */

@@ -231,7 +231,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/media-content"
+                "value": "theme\/media-content"
             }
         ]
     ],

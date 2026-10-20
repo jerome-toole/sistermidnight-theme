@@ -1,5 +1,5 @@
 .taxonomy-filters {
-    --block--margin-bottom: calc(var(--block--margin-bottom) / 2);
+    --section--margin-bottom: calc(var(--section--margin-bottom) / 2);
 
     display: grid;
     align-items: center;
@@ -11,12 +11,7 @@
     }
 
     + * {
-        margin-top: calc(var(--block--margin-top) / 2);
-    }
-
-    .blocks > & {
-        margin-top: space(24);
-        margin-bottom: space(24);
+        margin-block-start: calc(var(--flow-space, var(--space-layout)) / 2);
     }
 
     :where(.taxonomy-filters__label) {
@@ -24,14 +19,12 @@
     }
 
     :where(.taxonomy-filters__list) {
-        --grid--column-gap: space(8);
+        --col-gap: space(8);
 
         justify-content: center;
     }
 
-    :where(.taxonomy-filters__item) {
-        &:where(.taxonomy-filters__item--current) {
-            @apply btn--theme-2;
-        }
+    :where(.taxonomy-filters__item):not(.taxonomy-filters__item--current) {
+        @apply btn--theme-2;
     }
 }

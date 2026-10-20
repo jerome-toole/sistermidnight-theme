@@ -1,1 +1,87 @@
-/* wp-block-columns - commented out for now */
+/* Columns block: stacks on mobile, flex row on lg+. Mirrors wp-block-group grid behavior. */
+/* "Stack on mobile" off (.is-not-stacked-on-mobile) keeps the flex row at all widths. */
+
+.wp-block-columns {
+    @apply margin-trim;
+    @apply content-grid;
+
+    &.has-background {
+        padding-block: var(--space-layout);
+    }
+
+    &.alignfull {
+        @apply content-grid;
+    }
+
+    &:not(.alignfull) {
+        --container-padding: 26px;
+    }
+
+    @media (width < theme('screens.lg')) {
+        &:not(.is-not-stacked-on-mobile) {
+            @apply content-flow;
+
+            > .wp-block-column {
+                width: 100%;
+            }
+        }
+    }
+
+    &.is-not-stacked-on-mobile {
+        display: flex;
+        column-gap: var(--col-gap);
+
+        > .wp-block-column {
+            margin-block: 0;
+        }
+    }
+
+    @media (width >= theme('screens.lg')) {
+        display: flex;
+        column-gap: var(--col-gap);
+
+        > .wp-block-column {
+            margin-block: 0;
+        }
+    }
+
+    /* Equal widths unless a column has its own width (inline flex-basis) */
+    > .wp-block-column {
+        flex: 1 1 0;
+        min-width: 0;
+
+        &[style*='flex-basis'] {
+            flex-grow: 0;
+        }
+    }
+
+    &.are-vertically-aligned-top {
+        align-items: flex-start;
+    }
+
+    &.are-vertically-aligned-center {
+        align-items: center;
+    }
+
+    &.are-vertically-aligned-bottom {
+        align-items: flex-end;
+    }
+}
+
+.wp-block-column {
+    &.is-vertically-aligned-top {
+        align-self: flex-start;
+    }
+
+    &.is-vertically-aligned-center {
+        align-self: center;
+    }
+
+    &.is-vertically-aligned-bottom {
+        align-self: flex-end;
+    }
+
+    &.is-vertically-aligned-stretch {
+        align-self: stretch;
+    }
+}

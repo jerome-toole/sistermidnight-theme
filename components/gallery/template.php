@@ -2,11 +2,11 @@
 /**
  * Gallery Template
  *
- * @var \Geum\Components\Gallery $this
+ * @var \Gust\Components\Gallery $this
  */
 
-use Geum\Components\Heading;
-use Geum\Components\Image;
+use Gust\Components\Heading;
+use Gust\Components\Image;
 
 $image_count = count($this->images ?? []);
 ?>

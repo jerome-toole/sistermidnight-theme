@@ -4,7 +4,7 @@
  * HeaderSearch Component Examples
  */
 
-use Geum\Components\HeaderSearch;
+use Gust\Components\HeaderSearch;
 
 ?>
 

@@ -1,0 +1,37 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "theme/instagram-feed",
+    "title": "Instagram Feed",
+    "category": "theme-blocks",
+    "icon": "instagram",
+    "keywords": [
+        "instagram",
+        "social",
+        "feed",
+        "grid",
+        "images",
+        "posts"
+    ],
+    "acf": {
+        "blockVersion": 3,
+        "mode": "preview",
+        "postTypes": [
+            "page",
+            "gust-template"
+        ],
+        "renderCallback": "Gust\\Components\\InstagramFeed::renderBlock"
+    },
+    "supports": {
+        "anchor": true,
+        "align": [
+            "wide",
+            "full"
+        ],
+        "color": {
+            "background": true,
+            "text": false,
+            "gradients": false
+        }
+    }
+}

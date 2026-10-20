@@ -2,7 +2,7 @@
     <div class="banner__inner content-width-lg margin-trim">
         <?php if (! empty($this->image)) { ?>
             <div class="banner__image">
-                <?= \Geum\Components\Image::make(...$this->image); ?>
+                <?= \Gust\Components\Image::make(...$this->image); ?>
             </div>
         <?php } ?>
 

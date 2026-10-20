@@ -1,17 +1,17 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * SiteMain Component
  *
  * Usage:
- *   site_main_open(object: $post, classes: ['custom']);
+ *   SiteMain::open(classes: ['custom'], object: $post);
  *   // ... content ...
- *   site_main_close();
+ *   SiteMain::close();
  */
 class SiteMain extends ComponentBase
 {
@@ -24,7 +24,7 @@ class SiteMain extends ComponentBase
         return [
             'inner_el' => 'div',
             'attributes' => [],
-            'blocks_context' => true,
+            'content_flow' => true,
         ];
     }
 
@@ -36,9 +36,9 @@ class SiteMain extends ComponentBase
         ?object $object = null,
         ?string $inner_el = null,
         array $attributes = [],
-        bool $blocks_context = true,
+        bool $content_flow = true,
     ): string {
-        $args = compact('classes', 'object', 'inner_el', 'attributes', 'blocks_context');
+        $args = compact('classes', 'object', 'inner_el', 'attributes', 'content_flow');
         $args = array_merge(static::getDefaults(), array_filter($args, fn ($v) => $v !== null && $v !== []));
 
         // WP_Post → article wrapper
@@ -71,32 +71,5 @@ class SiteMain extends ComponentBase
         include __DIR__.'/close.php';
 
         return ob_get_clean();
-    }
-
-    /**
-     * @deprecated Use site_main_open()/site_main_close() instead.
-     */
-    public static function make(
-        array $classes = [],
-        ?string $inner_el = null,
-        bool $blocks_context = true,
-        ...$others
-    ): ?static {
-        return static::createFromArgs(static::mergeArgs(get_defined_vars()));
-    }
-
-    protected static function transform(array $args): array
-    {
-        if (! empty($args['object'])) {
-            if ($args['object'] instanceof \WP_Post) {
-                $args['inner_el'] = 'article';
-            }
-        }
-
-        if (empty($args['id']) && empty($args['attributes']['id'])) {
-            $args['attributes']['id'] = 'main';
-        }
-
-        return $args;
     }
 }

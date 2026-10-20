@@ -1,9 +1,4 @@
+import dynamicElements from '../../assets/scripts/helpers/dynamicElements.js';
 import SiteHeader from './scripts/SiteHeader.js';
 
-window.addEventListener('DOMContentLoaded', () => {
-    const element = document.querySelector('.site-header');
-
-    if (element) {
-        new SiteHeader(element);
-    }
-});
+dynamicElements.define('[data-site-header]', (element) => new SiteHeader(element));

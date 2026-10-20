@@ -1,14 +1,14 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\ComponentBase;
+use Gust\ComponentBase;
 
 /**
  * SiteFooter Component
  *
  * Usage:
- *   use Geum\Components\SiteFooter;
+ *   use Gust\Components\SiteFooter;
  *
  *   echo SiteFooter::make();
  */
@@ -61,7 +61,7 @@ class SiteFooter extends ComponentBase
                     if (! empty($link)) {
                         $image_data['link_args'] = array_merge($link, [
                             'classes' => ['site-footer__image'],
-                            'content' => \Geum\Components\Image::make(...$image),
+                            'content' => \Gust\Components\Image::make(...$image),
                             'content_filter' => false,
                         ]);
                     }

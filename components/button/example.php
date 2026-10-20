@@ -4,7 +4,7 @@
  * Button Component Examples
  */
 
-use Geum\Components\Button;
+use Gust\Components\Button;
 
 ?>
 

@@ -1,7 +1,26 @@
+@layer base {
+    :root {
+        --section--padding-y: space(16);
+        --section--padding-x: var(--container-padding);
+        --section--max-width: var(--width-fluid-sm);
+
+        --section--header--margin-bottom: var(--space-base);
+        --section--footer--margin-top: var(--space-base);
+
+        @media (min-width: theme("screens.sm")) {
+            --section--padding-y: spaceFluid(24, 32);
+        }
+
+        @media (min-width: theme("screens.md")) {
+            --section--padding-x: spaceFluid(16, 24);
+        }
+    }
+}
+
 @utility section-header {
     @apply margin-trim;
 
-    padding-top: space(24, 40);
+    padding-top: spaceFluid(24, 40);
     margin-bottom: spaceFluid(24, 32);
 
     .heading,
@@ -16,7 +35,6 @@
     }
 }
 
-
 @utility section {
     @apply margin-trim;
 
@@ -24,4 +42,3 @@
         @apply section-header;
     }
 }
-

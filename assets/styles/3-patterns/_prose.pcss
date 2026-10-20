@@ -1,58 +1,90 @@
 @utility prose {
-    // First child never has top margin
+    /* Margin trimming */
     > :first-child {
         margin-top: 0;
     }
 
-    // Block element spacing (top-margin only)
-    :where(p, ul, ol, table, iframe, embed, hr, address, pre, dl, fieldset) {
-        margin-top: var(--space--base);
+    > :last-child {
+        margin-bottom: 0;
     }
 
-    // Heading spacing (top-margin only)
+    /* Block element spacing */
+    :where(p, ul, ol, table, iframe, embed, hr, address, pre, dl, fieldset) {
+        margin-top: var(--space-base);
+        margin-bottom: var(--space-base);
+    }
+
+    /* Heading spacing */
     :where(h1, h2, h3, h4, h5, h6) {
+        margin-top: 0;
+        margin-bottom: var(--heading--margin-bottom);
+    }
+
+    :where(* + :is(h1, h2, h3, h4, h5, h6)) {
         margin-top: var(--heading--margin-top);
     }
 
-    // List item spacing
-    :where(li + li) {
-        margin-top: var(--list--item--spacing);
+    /* List styling */
+    :where(ul, ol) {
+        @apply list-styled;
     }
 
-    // Nested list spacing
-    :where(li > :is(ol, ul)) {
-        margin-top: var(--list--item--spacing);
-    }
-
-    // Definition list spacing
+    /* Definition list spacing */
     :where(dd + dt) {
         margin-top: var(--list--item--spacing);
     }
 }
 
 @utility not-prose {
-    :where(p, ul, ol, table, iframe, embed, hr, address, pre, dl, fieldset),
-    :where(h1, h2, h3, h4, h5, h6),
+    :where(p, ul, ol, table, iframe, embed, hr, address, pre, dl, fieldset) {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    :where(h1, h2, h3, h4, h5, h6) {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    :where(ul, ol) {
+        list-style: none;
+        padding-inline-start: 0;
+    }
+
     :where(li + li),
     :where(li > :is(ol, ul)),
     :where(dd + dt) {
         margin-top: 0;
+        margin-bottom: 0;
     }
 }
 
 /* Re-enable prose inside not-prose */
 .not-prose .prose {
     :where(p, ul, ol, table, iframe, embed, hr, address, pre, dl, fieldset) {
-        margin-top: var(--space--base);
+        margin-top: var(--space-base);
+        margin-bottom: var(--space-base);
     }
 
     :where(h1, h2, h3, h4, h5, h6) {
+        margin-top: 0;
+        margin-bottom: var(--heading--margin-bottom);
+    }
+
+    :where(* + :is(h1, h2, h3, h4, h5, h6)) {
         margin-top: var(--heading--margin-top);
     }
 
-    :where(li + li),
-    :where(li > :is(ol, ul)),
+    :where(ul, ol) {
+        @apply list-styled;
+    }
+
     :where(dd + dt) {
         margin-top: var(--list--item--spacing);
     }
+}
+
+/* WP block list */
+.wp-block-list {
+    @apply list-styled;
 }

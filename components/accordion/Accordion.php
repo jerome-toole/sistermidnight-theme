@@ -1,15 +1,15 @@
 <?php
 
-namespace Geum\Components;
+namespace Gust\Components;
 
-use Geum\Component;
-use Geum\ComponentBase;
+use Gust\Component;
+use Gust\ComponentBase;
 
 /**
  * Accordion Component
  *
  * Usage:
- *   use Geum\Components\Accordion;
+ *   use Gust\Components\Accordion;
  *
  *   echo Accordion::make();
  */
@@ -32,8 +32,6 @@ class Accordion extends ComponentBase
 
     protected static function transform(array $args): array
     {
-        $args['classes'] = array_merge(['accordion', 'section'], $args['classes'] ?? []);
-
         if (! empty($args['heading'])) {
             $args['heading'] = [
                 'heading' => $args['heading'],

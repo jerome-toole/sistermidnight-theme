@@ -1,8 +1,8 @@
 .logo-grid {
-    --logo-grid--padding-y: var(--block--padding-y);
-    --logo-grid--box-shadow: var(--box-shadow--1);
-    --logo-grid--box-shadow--hover: var(--box-shadow--1--hover);
-    --logo-grid--spacing: var(--space--base);
+    --logo-grid--padding-y: var(--section--padding-y);
+    --logo-grid--box-shadow: var(--base--shadow);
+    --logo-grid--box-shadow--hover: var(--base--shadow--hover);
+    --logo-grid--spacing: var(--space-base);
     --logo-grid--item--aspect-ratio: 28 / 13;
 
     @media (min-width: theme('screens.md')) {
@@ -14,15 +14,15 @@
         padding-bottom: var(--logo-grid--padding-y);
 
         &:not(.alignfull) {
-            padding-right: var(--block--padding-x);
-            padding-left: var(--block--padding-x);
+            padding-right: var(--section--padding-x);
+            padding-left: var(--section--padding-x);
         }
     }
 
     :where(.logo-grid__header) {
         @apply margin-trim;
 
-        margin-bottom: var(--block--header--margin-bottom);
+        margin-bottom: var(--section--header--margin-bottom);
     }
 
     :where(.logo-grid__heading) {
@@ -35,7 +35,7 @@
         @apply margin-trim;
         @apply content-width-2xs;
 
-        margin-block: var(--space--base);
+        margin-block: var(--space-base);
         margin-inline: auto;
         text-align: center;
     }
@@ -45,27 +45,27 @@
     }
 
     :where(.logo-grid__items) {
-        --grid--columns: 2;
+        --cols: 2;
 
         @apply flex-grid;
 
         width: 100%;
 
         @media (min-width: theme('screens.md')) {
-            --grid--columns: 3;
-            --grid--column-gap: spaceFluid(4, 8);
-            --grid--row-gap: spaceFluid(4, 8);
+            --cols: 3;
+            --col-gap: spaceFluid(4, 8);
+            --row-gap: spaceFluid(4, 8);
 
             max-width: var(--width-fluid-lg);
             justify-content: center;
         }
 
         @media (min-width: theme('screens.lg')) {
-            --grid--columns: 4;
+            --cols: 4;
         }
 
         @media (min-width: theme('screens.xl')) {
-            --grid--columns: 5;
+            --cols: 5;
         }
     }
 
@@ -78,6 +78,6 @@
     }
 
     &.is-style-thin {
-        --logo-grid--padding--y: var(--space--base);
+        --logo-grid--padding--y: var(--space-base);
     }
 }

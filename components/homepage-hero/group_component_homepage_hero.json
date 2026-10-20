@@ -50,7 +50,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/homepage-hero"
+                "value": "theme\/homepage-hero"
             }
         ]
     ],

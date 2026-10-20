@@ -1,0 +1,27 @@
+@layer base {
+    /* Restore layout-size gap when prose follows a major/layout block */
+    :where(.alignwide, .alignfull) + :where(.wp-block-heading, .wp-block-paragraph, .wp-block-list) {
+        --flow-space: var(--space-layout);
+    }
+}
+
+@utility content-flow {
+    @apply flow;
+
+    /* Prose width constraint for text elements */
+    > :where(p, ul, ol, h1, h2, h3, h4, h5, h6) {
+        max-width: var(--prose--max-width, 65ch);
+    }
+
+    /* WP block special behaviors */
+    > :where([class*="has-background"].alignfull) {
+        + :where([class*="has-background"].alignfull) {
+            --flow-space: 0;
+        }
+
+        /* Pull footer up to last full-width block with background */
+        &:last-child {
+            margin-bottom: calc(var(--site-footer--margin-top) * -1);
+        }
+    }
+}

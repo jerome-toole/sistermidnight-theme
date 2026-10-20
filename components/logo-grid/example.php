@@ -6,7 +6,7 @@
  * Note: Requires image attachment IDs for logos.
  */
 
-use Geum\Components\LogoGrid;
+use Gust\Components\LogoGrid;
 
 // Get sample images
 $attachments = get_posts([
