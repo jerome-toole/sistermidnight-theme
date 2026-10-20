@@ -1,0 +1,171 @@
+{
+    "key": "group_event",
+    "title": "Event",
+    "fields": [
+        {
+            "key": "field_event_presenter",
+            "label": "Presenter",
+            "name": "presenter",
+            "type": "text",
+            "instructions": "Eyebrow text above the title, e.g. \"Sister Midnight Presents\".",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Sister Midnight Presents",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_event_start",
+            "label": "Start",
+            "name": "start",
+            "type": "date_time_picker",
+            "instructions": "Start date and time.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "d/m/Y H:i",
+            "return_format": "Y-m-d H:i:s",
+            "first_day": 1
+        },
+        {
+            "key": "field_event_end_time",
+            "label": "End time",
+            "name": "end_time",
+            "type": "time_picker",
+            "instructions": "Optional. Leave empty and use the end label for \"late\".",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "H:i",
+            "return_format": "H:i"
+        },
+        {
+            "key": "field_event_end_label",
+            "label": "End label",
+            "name": "end_label",
+            "type": "text",
+            "instructions": "Free text shown instead of an end time, e.g. \"late\".",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_event_end_time",
+                        "operator": "==empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "late",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_event_venue_name",
+            "label": "Venue name",
+            "name": "venue_name",
+            "type": "text",
+            "instructions": "Display name for the venue. Falls back to the Location term name.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_event_ticket_type",
+            "label": "Ticket type",
+            "name": "ticket_type",
+            "type": "select",
+            "instructions": "Controls the button label.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "buy": "Buy tickets",
+                "signup": "Sign up",
+                "free": "Free (no button)"
+            },
+            "default_value": "buy",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_event_ticket_link",
+            "label": "Ticket link",
+            "name": "ticket_link",
+            "type": "link",
+            "instructions": "Button URL. The label comes from the ticket type.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_event_ticket_type",
+                        "operator": "!=",
+                        "value": "free"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "event"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Event details",
+    "show_in_rest": 0,
+    "modified": 1760947200
+}

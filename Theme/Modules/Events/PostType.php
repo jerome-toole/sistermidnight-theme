@@ -6,6 +6,10 @@ class PostType
 {
     protected const SLUG = 'event';
 
+    public const ARCHIVE_SLUG = 'whats-on';
+
+    public const START_META_KEY = 'start';
+
     public static function init(): void
     {
         \add_action('init', [__CLASS__, 'register']);
@@ -20,7 +24,8 @@ class PostType
 
         \register_extended_post_type(self::SLUG, [
             'public' => true,
-            'has_archive' => true,
+            'has_archive' => self::ARCHIVE_SLUG,
+            'rewrite' => ['slug' => 'events', 'with_front' => false],
             'hierarchical' => false,
             'show_in_rest' => true,
             'menu_position' => 25,
@@ -61,8 +66,11 @@ class PostType
                 'title' => [
                     'title' => 'Title',
                 ],
-                'author' => [
-                    'title' => 'Author',
+                'start' => [
+                    'title' => 'Start',
+                    'meta_key' => self::START_META_KEY,
+                    'date_format' => 'D j M Y, H:i',
+                    'default' => 'ASC',
                 ],
                 'location' => [
                     'taxonomy' => 'location',

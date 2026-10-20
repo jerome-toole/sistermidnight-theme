@@ -21,3 +21,7 @@ Appended by build agents when the spec is silent. Format: `- [phase.task] decisi
 - [0.3] `Button::make` gains `variant`, `url`, `target`, `arrow`; with `url` it renders an `<a>` (rel="noopener" for `_blank`) — the design's buttons are mostly links (tickets, map), and a single component keeps the markup identical
 - [0.3] One right-arrow inline SVG serves both variants (no separate ↗ for external links) — spec names a single "arrow icon"; primary uses `space-between` so the arrow sits at the right edge like the Figma 200×58 frame
 - [fix-foundations] Primary button focus ring is inset (`--base--focus-offset: -4px`) so it is drawn warm-sand on the burnt-sienna fill (3.5:1) rather than outside the button on the section colour, where it was ~1.1:1 on stone-beige
+- [1.1] Event field group saved at theme `acf-json/group_event.json` (not `Theme/Modules/Events/acf-json`) — that is ACF's save path, so admin edits round-trip to the same file; the module's extra load path is left in place
+- [1.1] `end()` treats an end time earlier than the start as next-day (e.g. 20:00 – 02:00) — spec gives no rule; events running past midnight are the common case
+- [1.1] `ticket_type` defaults to `buy`; unknown/empty values are treated as `buy` so a missing field never hides a ticket link
+- [1.1] Location taxonomy switched to non-hierarchical to match the spec's "Hierarchical: no" (no terms exist yet, so nothing is lost)

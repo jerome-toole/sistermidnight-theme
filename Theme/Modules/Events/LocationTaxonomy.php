@@ -24,7 +24,7 @@ class LocationTaxonomy
                 'event',
             ],
             [
-                'hierarchical' => true,
+                'hierarchical' => false,
                 'show_admin_column' => true,
                 'show_in_rest' => true,
                 'meta_box' => 'simple',
