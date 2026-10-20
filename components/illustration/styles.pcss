@@ -1,0 +1,33 @@
+/* --------------------------------------------------- */
+/* Illustration
+ *
+ * Decorative inline SVG. Fill follows `currentColor`, so set `color`
+ * on the illustration (or inherit it from the colour context).
+ * Width is set by `--illustration--size`; the SVG is square.
+ */
+/* --------------------------------------------------- */
+
+.illustration {
+    --illustration--size: 100%;
+
+    display: block;
+    width: var(--illustration--size);
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    color: inherit;
+    pointer-events: none;
+    user-select: none;
+}
+
+.illustration--sm {
+    --illustration--size: spaceFluid(120, 200);
+}
+
+.illustration--md {
+    --illustration--size: spaceFluid(240, 400);
+}
+
+.illustration--lg {
+    --illustration--size: spaceFluid(320, 562);
+}
