@@ -14,6 +14,7 @@ class EventsModule
     {
         PostType::init();
         LocationTaxonomy::init();
+        Feed::init();
 
         \add_filter('acf/settings/load_json', [__CLASS__, 'loadACFJson']);
     }

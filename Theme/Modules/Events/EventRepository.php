@@ -43,6 +43,21 @@ class EventRepository
     }
 
     /**
+     * All events with start >= $start.
+     *
+     * @return Event[]
+     */
+    public static function since(DateTimeInterface $start): array
+    {
+        return self::query([
+            'posts_per_page' => -1,
+            'meta_query' => [
+                self::startClause('>=', $start),
+            ],
+        ]);
+    }
+
+    /**
      * Events with start >= $start and start < $end.
      *
      * @return Event[]
