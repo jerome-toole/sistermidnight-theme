@@ -40,8 +40,15 @@
 }
 
 /* Primary: burnt-sienna fill. The colour context sets the label and focus
- * colours, so the button reads the same on any section background. */
+ * colours, so the button reads the same on any section background.
+ *
+ * The focus ring is drawn inset, against the button's own fill (warm-sand on
+ * burnt-sienna, 3.5:1): the context's warm-sand ring would otherwise sit
+ * outside the button on whatever the section colour is, and on stone-beige
+ * it all but disappears (~1.1:1). */
 .button--primary {
+    --base--focus-offset: -4px;
+
     @apply color-context-burnt-sienna;
     @apply type-base;
 

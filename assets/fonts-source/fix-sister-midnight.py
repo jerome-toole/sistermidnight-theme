@@ -1,6 +1,6 @@
 """Fix Sister Midnight font: baseline, quote mapping, kerning.
 
-Usage: python3 -I fix_font.py <in.woff2|ttf> <out.ttf> [--report]
+Usage: python3 fix-sister-midnight.py <in.woff2|ttf> <out.ttf> [--report]
 """
 import sys
 from fontTools.ttLib import TTFont
