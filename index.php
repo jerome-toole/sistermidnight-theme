@@ -20,18 +20,14 @@ if ($routerPage) {
         echo \Gust\Router::renderSlot('template-content');
     }
 } else {
-    $items = [];
-    while (have_posts()) {
-        the_post();
-        $items[]['object'] = get_post();
-    }
+    if (have_posts()) {
+        echo '<div class="content-width-lg grid gap-6 md:grid-cols-2 lg:grid-cols-3">';
+        while (have_posts()) {
+            the_post();
+            echo \Gust\Components\NewsCard::make(post: get_post());
+        }
+        echo '</div>';
 
-    if (! empty($items)) {
-        echo \Gust\Components\TaxonomyFilters::make(
-            object: $object,
-        );
-
-        echo \Gust\Components\Cards::make(items: $items);
         echo \Gust\Components\Pagination::make();
     } else {
         echo \Gust\Components\NoContent::make(
