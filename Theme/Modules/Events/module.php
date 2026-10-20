@@ -17,12 +17,13 @@ class EventsModule
     }
 
     /**
-     * What's On: the next three events as featured cards, then the calendar.
-     * The page header comes from the router page (index.php).
+     * What's On: the vertical "What's On" label (the page <h1>) beside the
+     * next three events as featured cards, then the calendar. index.php skips
+     * the Page Header for this archive.
      */
     public static function renderArchive(): string
     {
-        return UpcomingEvents::make(label: '', variant: 'featured', count: 3)
+        return UpcomingEvents::make(label: __("What's On", 'gust'), label_level: 1, variant: 'featured', count: 3)
             .EventsCalendar::make();
     }
 

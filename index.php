@@ -6,7 +6,10 @@ $object = \Gust\WordPress\PageObject::get();
 
 site_main_open(object: $object);
 
-echo \Gust\Components\PageHeader::fromObject($object);
+// What's On draws its own vertical <h1> beside the featured cards (EventsModule::renderArchive).
+if (! is_post_type_archive('event')) {
+    echo \Gust\Components\PageHeader::fromObject($object);
+}
 
 $routerPage = \Gust\Router::getPage();
 

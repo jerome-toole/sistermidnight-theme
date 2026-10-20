@@ -31,8 +31,8 @@ $announcement = [
 
 <section class="component-example-section">
     <h2 class="component-example-section__title">Featured (What's On)</h2>
-    <p class="component-example-section__description">Three small cards in a row, the middle one offset. No label.</p>
+    <p class="component-example-section__description">Three small cards in a row, the middle one offset. The label is the page &lt;h1&gt; and the cards are &lt;h2&gt;s.</p>
     <div class="component-example-section__preview">
-        <?= UpcomingEvents::make(label: '', variant: 'featured'); ?>
+        <?= UpcomingEvents::make(label: "What's On", label_level: 1, variant: 'featured'); ?>
     </div>
 </section>

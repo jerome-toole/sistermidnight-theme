@@ -17,6 +17,12 @@
 
     position: relative;
     width: 100%;
+
+    /* Inset ring: the context's focus colour is for the paper, not the page around it */
+    &:has(.event-card__link:focus-visible) {
+        outline: var(--base--focus-width, 2px) solid var(--focus--color);
+        outline-offset: calc(var(--event-card--padding) / -2);
+    }
 }
 
 .event-card--sm {
@@ -34,8 +40,7 @@
     text-decoration: none;
 
     &:focus-visible {
-        outline: var(--base--focus-width, 2px) solid var(--focus--color);
-        outline-offset: 4px;
+        outline: none;
     }
 }
 

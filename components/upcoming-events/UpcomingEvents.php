@@ -10,11 +10,15 @@ use Theme\Modules\Events\EventRepository;
  *
  * The next N events (start >= now) as Event Cards under a vertical label.
  *
- *   grid      Front page: two staggered columns (596 / 680). An optional
+ *   grid      Front page: two staggered columns (596 / 680), laid out
+ *             independently so each column keeps a uniform gap. An optional
  *             announcement Card sits first in the right column; without it
  *             the right column is pushed down 300px. A large decorative
  *             illustration sits bottom-left after the last card.
  *   featured  What's On: three cards in a row, the middle one offset.
+ *
+ * The label is an <h2> by default; What's On passes label_level 1 so it is
+ * the page <h1> and the cards become <h2>s.
  *
  * Empty state: "No upcoming events" and a link to What's On.
  *
@@ -22,7 +26,7 @@ use Theme\Modules\Events\EventRepository;
  *   use Gust\Components\UpcomingEvents;
  *
  *   echo UpcomingEvents::make();
- *   echo UpcomingEvents::make(label: '', variant: 'featured', count: 3);
+ *   echo UpcomingEvents::make(label: "What's On", label_level: 1, variant: 'featured', count: 3);
  *   echo UpcomingEvents::make(announcement: ['heading' => 'Venue launch', 'text' => '<p>…</p>', 'illustration' => 'record-face']);
  */
 class UpcomingEvents extends ComponentBase
@@ -37,6 +41,7 @@ class UpcomingEvents extends ComponentBase
     {
         return [
             'label' => 'Upcoming',
+            'label_level' => 2,
             'variant' => 'grid',
         ];
     }
@@ -44,7 +49,8 @@ class UpcomingEvents extends ComponentBase
     /**
      * Create a new Upcoming Events component.
      *
-     * @param  string|null  $label  Vertical gutter label, rendered as the <h2>. Empty hides it.
+     * @param  string|null  $label  Vertical gutter label, rendered as the <h2> (see $label_level). Empty hides it.
+     * @param  int|null  $label_level  Heading level of the label, 1–3 (default 2). Cards use the level below.
      * @param  int|null  $count  Number of events (default 4 for grid, 3 for featured).
      * @param  string|null  $variant  One of self::VARIANTS.
      * @param  array|null  $announcement  heading, text, illustration, link (ACF link array). Hidden when the heading is empty.
@@ -52,6 +58,7 @@ class UpcomingEvents extends ComponentBase
      */
     public static function make(
         ?string $label = null,
+        ?int $label_level = null,
         ?int $count = null,
         ?string $variant = null,
         ?array $announcement = null,
@@ -101,8 +108,11 @@ class UpcomingEvents extends ComponentBase
         $args['events'] = EventRepository::upcoming($args['count']);
         $args['archive_url'] = (string) \get_post_type_archive_link('event');
 
-        // Without a label the cards' titles are the first headings under the page <h1>.
-        $args['heading_level'] = $args['label'] !== '' ? 3 : 2;
+        // Cards sit one level under the label; without a label their titles are
+        // the first headings under the page <h1>.
+        $args['label_level'] = max(1, min(3, (int) ($args['label_level'] ?? 2)));
+        $args['label_tag'] = 'h'.$args['label_level'];
+        $args['heading_level'] = $args['label'] !== '' ? $args['label_level'] + 1 : 2;
 
         $args['classes'] = array_merge([
             'upcoming-events',
@@ -153,18 +163,55 @@ class UpcomingEvents extends ComponentBase
     }
 
     /**
-     * Grid placement for the event at $index (0-based): odd events in the left
-     * column, even in the right, each spanning two rows offset by one so the
-     * columns stagger without JavaScript. Row 1 of the right column holds the
-     * announcement (or the 300px offset).
+     * The cards as columns of list items. The grid variant lays its two
+     * columns out independently (left: events 1, 3, 5…; right: the
+     * announcement, then events 2, 4, 6…) so the gaps within each column stay
+     * even whatever the posters' heights; `order` restores the single column
+     * in date order below md. The featured variant is one list.
+     *
+     * @return array<int, array<int, array{order: int, classes: array<string>, html: string}>>
      */
-    public function placement(int $index): string
+    public function columns(): array
     {
-        if ($this->variant !== 'grid') {
-            return '';
+        $cards = [];
+
+        foreach ($this->events as $index => $event) {
+            $cards[] = [
+                'order' => $index + 1,
+                'classes' => [],
+                'html' => (string) EventCard::make(
+                    event: $event,
+                    size: $this->variant === 'grid' ? 'lg' : 'sm',
+                    heading_level: $this->heading_level,
+                    classes: ['upcoming-events__card'],
+                ),
+            ];
         }
 
-        return sprintf('--upcoming-events--column: %d; --upcoming-events--row: %d;', $index % 2 + 1, $index + 1);
+        if ($this->variant !== 'grid') {
+            return [$cards];
+        }
+
+        $left = [];
+        $right = [];
+
+        if ($this->announcement) {
+            $right[] = [
+                'order' => 0,
+                'classes' => ['upcoming-events__item--announcement'],
+                'html' => (string) $this->announcement,
+            ];
+        }
+
+        foreach ($cards as $index => $card) {
+            if ($index % 2 === 0) {
+                $left[] = $card;
+            } else {
+                $right[] = $card;
+            }
+        }
+
+        return array_values(array_filter([$left, $right]));
     }
 
     /**

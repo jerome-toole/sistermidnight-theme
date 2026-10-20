@@ -1,13 +1,13 @@
 <?php
 
-use Gust\Components\EventCard;
 use Gust\Components\Illustration;
 
 /**
  * Upcoming Events Template
  *
- * One list in date order. In the grid variant each item carries its column
- * and row (custom properties) so CSS can stagger the two columns.
+ * One list per column (two in the grid variant, one in featured). Each item
+ * carries its date-order index so the grid collapses to one column in date
+ * order below md.
  *
  * @var \Gust\Components\UpcomingEvents $this
  */
@@ -15,27 +15,20 @@ use Gust\Components\Illustration;
 <section class="<?= classes($this->classes) ?>" <?= attributes($this->attributes) ?>>
     <div class="upcoming-events__inner">
         <?php if ($this->label !== '' || $this->is_preview) { ?>
-            <h2 class="upcoming-events__label" <?= $this->inlineText('label', __('Upcoming', 'gust')) ?>><?= esc_html($this->label) ?></h2>
+            <<?= $this->label_tag ?> class="upcoming-events__label" <?= $this->inlineText('label', __('Upcoming', 'gust')) ?>><?= esc_html($this->label) ?></<?= $this->label_tag ?>>
         <?php } ?>
 
         <div class="upcoming-events__body">
             <?php if ($this->events) { ?>
-                <ul class="upcoming-events__list">
-                    <?php if ($this->announcement) { ?>
-                        <li class="upcoming-events__item upcoming-events__item--announcement"><?= $this->announcement ?></li>
+                <div class="upcoming-events__columns">
+                    <?php foreach ($this->columns() as $column) { ?>
+                        <ul class="upcoming-events__list">
+                            <?php foreach ($column as $item) { ?>
+                                <li class="<?= classes('upcoming-events__item', $item['classes']) ?>" style="--upcoming-events--order: <?= (int) $item['order'] ?>;"><?= $item['html'] ?></li>
+                            <?php } ?>
+                        </ul>
                     <?php } ?>
-
-                    <?php foreach ($this->events as $index => $event) { ?>
-                        <li class="upcoming-events__item" <?= $this->placement($index) ? 'style="'.esc_attr($this->placement($index)).'"' : '' ?>>
-                            <?= EventCard::make(
-                                event: $event,
-                                size: $this->variant === 'grid' ? 'lg' : 'sm',
-                                heading_level: $this->heading_level,
-                                classes: ['upcoming-events__card'],
-                            ); ?>
-                        </li>
-                    <?php } ?>
-                </ul>
+                </div>
 
                 <?php if ($this->illustration) { ?>
                     <div class="upcoming-events__illustration" aria-hidden="true">
