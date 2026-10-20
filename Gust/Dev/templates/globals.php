@@ -5,7 +5,7 @@
  * @var array $colors Theme colors from WordPress palette
  */
 ?>
-<section class="dev-kit__section alignfull flow">
+<section class="dev-kit__section alignfull dev-flow">
     <h2 data-dev-ui>Design Tokens</h2>
 
     <?php if (! empty($colors)) : ?>

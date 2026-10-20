@@ -3,8 +3,8 @@
  * HTML Elements kitchen sink for style guide.
  */
 ?>
-<section class="dev-kit__section alignfull flow">
-    <h2 class="dev-page-title">HTML Elements</h2>
+<section class="dev-kit__section alignfull dev-flow">
+    <h2 class="dev-page-title" data-dev-ui>HTML Elements</h2>
 
     <section class="flow">
         <hgroup class="content-flow">

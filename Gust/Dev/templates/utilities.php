@@ -7,7 +7,7 @@
      PATTERNS (3-patterns)
      ============================================ -->
 
-<section class="dev-kit__section alignfull flow">
+<section class="dev-kit__section alignfull dev-flow">
     <h2 data-dev-ui>Patterns</h2>
 
     <!-- Buttons -->
@@ -346,7 +346,7 @@
      UTILITIES (4-utilities)
      ============================================ -->
 
-<section class="dev-kit__section alignfull flow">
+<section class="dev-kit__section alignfull dev-flow">
     <h2 data-dev-ui>Utilities</h2>
 
     <!-- Color Context -->

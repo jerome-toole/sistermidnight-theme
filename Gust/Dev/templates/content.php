@@ -9,7 +9,7 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmo
 $short = 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
 ?>
 
-<section class="dev-kit__section alignfull flow">
+<section class="dev-kit__section alignfull dev-flow">
 <h2 data-dev-ui>Content Flow</h2>
 
 <div class="content-flow content-grid alignfull">

@@ -30,17 +30,16 @@ class DevRoutes
         echo <<<'HTML'
             <style>
                 /* ============================================
-                   Gust Dev Tools — Kite Co. design tokens, hardcoded
-                   (intentionally isolated from project styles)
-                   Blue on neutral, IBM Plex, hairline keylines.
-                   The Plex fonts come from the theme's main CSS.
+                   Gust Dev Tools chrome
+                   Intentionally isolated from project styles:
+                   browser-standard fonts, own --dev-* tokens only.
+                   Never reference theme vars or utility classes here.
                    ============================================ */
                 *, *::before, *::after { box-sizing: border-box; }
 
                 :root {
-                    --dev-serif:     'IBM Plex Serif', Georgia, serif;
-                    --dev-mono:      'IBM Plex Mono', ui-monospace, Menlo, Monaco, Consolas, monospace;
-                    --dev-sans:      'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+                    --dev-sans:      system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                    --dev-mono:      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
                     --dev-blue:      #0e26ac;
                     --dev-neutral:   #eee8e3;
                     --dev-lilac:     #e8e5f6;
@@ -56,6 +55,10 @@ class DevRoutes
                     --dev-ink:       var(--dev-blue);
                     --dev-ink-fg:    #ffffff;
                     --dev-radius:    6px;
+                    --dev-space:     2rem;
+                    --dev-space-sm:  1rem;
+                    --dev-grid-max:  960px;
+                    --dev-grid-padding: 2rem;
                 }
 
                 body {
@@ -65,6 +68,11 @@ class DevRoutes
                     color: var(--dev-text);
                     background: var(--dev-bg);
                     min-height: 100vh;
+                }
+
+                /* ---- Dev-only vertical rhythm (replaces theme .flow) ---- */
+                .dev-flow > * + * {
+                    margin-top: var(--dev-space-sm);
                 }
 
                 /* ---- Top bar ---- */
@@ -143,11 +151,8 @@ class DevRoutes
                     color: var(--dev-blue);
                 }
 
-                /* ---- Main content — hardcoded content grid (intentionally isolated from project content-grid) ---- */
+                /* ---- Main content — own content grid (isolated from project content-grid) ---- */
                 .dev-main {
-                    --dev-grid-max: 960px;
-                    --dev-grid-padding: 2rem;
-
                     display: grid;
                     grid-template-columns:
                         [full-start] minmax(var(--dev-grid-padding), 1fr)
@@ -182,18 +187,32 @@ class DevRoutes
                 h5[data-dev-ui],
                 h6[data-dev-ui] {
                     font-family: var(--dev-mono) !important;
+                    font-size: 1rem !important;
                     font-weight: 600 !important;
                     line-height: 1.3 !important;
                     letter-spacing: 0 !important;
                     text-transform: none !important;
+                    text-wrap: initial !important;
                     color: var(--dev-text) !important;
+                    margin: 0 !important;
                 }
 
                 p[data-dev-ui] {
-                    font-size: 0.9375rem;
-                    line-height: 1.6;
-                    color: var(--dev-text);
-                    margin: 0 0 1rem;
+                    font-family: var(--dev-sans) !important;
+                    font-size: 0.9375rem !important;
+                    line-height: 1.6 !important;
+                    color: var(--dev-text) !important;
+                    margin: 0 0 1rem !important;
+                }
+
+                small[data-dev-ui],
+                .dev-kit__subsection > small,
+                .dev-kit__swatch small {
+                    font-family: var(--dev-sans);
+                    font-size: 0.8125rem;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    color: var(--dev-muted);
                 }
 
                 /* ---- Page header ---- */
@@ -209,11 +228,12 @@ class DevRoutes
                 /* Doubled class: outranks the h1–h6[data-dev-ui] resets */
                 .dev-page-title.dev-page-title,
                 .dev-component-example__title.dev-component-example__title {
-                    font-family: var(--dev-serif) !important;
-                    font-size: clamp(2rem, 1.5rem + 2vw, 2.625rem) !important;
-                    font-weight: 500 !important;
+                    font-family: var(--dev-sans) !important;
+                    font-size: clamp(1.75rem, 1.25rem + 2vw, 2.375rem) !important;
+                    font-weight: 600 !important;
                     text-transform: none !important;
                     letter-spacing: -0.01em !important;
+                    text-wrap: initial !important;
                     color: var(--dev-text) !important;
                     margin: 0 !important;
                     line-height: 1.2 !important;
@@ -268,13 +288,18 @@ class DevRoutes
                     text-decoration: none;
                 }
 
-                /* ---- Link list — Kite Co. tags ---- */
+                /* ---- Link list — tags (own layout, not theme .flex-list) ---- */
                 .dev-link-list {
                     list-style: none;
                     padding: 0;
+                    margin: 0;
                     display: flex;
                     flex-wrap: wrap;
                     gap: 0.625rem;
+                }
+
+                .dev-link-list li {
+                    margin: 0;
                 }
 
                 .dev-link-list a {
@@ -311,6 +336,7 @@ class DevRoutes
                 }
 
                 .component-example-section__description {
+                    font-family: var(--dev-sans);
                     font-size: 0.875rem;
                     color: var(--dev-muted);
                     margin-bottom: 1rem;
@@ -331,7 +357,7 @@ class DevRoutes
                         [wide-start] minmax(0, var(--dev-grid-max))
                         [wide-end] minmax(var(--dev-grid-padding), 1fr)
                         [full-end];
-                    padding-block: var(--space-base, 2rem);
+                    padding-block: var(--dev-space);
 
                     > * {
                         grid-column: wide;
@@ -354,17 +380,15 @@ class DevRoutes
                     margin-top: 0;
                 }
 
-                /* Section headings: Kite Co. surtitles */
+                /* Section headings */
                 h2[data-dev-ui] {
                     font-size: 1rem !important;
-                    color: var(--dev-text) !important;
                     padding-bottom: 0.5rem;
                     border-bottom: 1px solid var(--dev-rule);
                 }
 
                 h3[data-dev-ui] {
                     font-size: 0.875rem !important;
-                    color: var(--dev-text) !important;
                     margin-top: 1.25rem !important;
                 }
 
@@ -374,10 +398,7 @@ class DevRoutes
 
                 .dev-kit__subsection > small {
                     display: block;
-                    font-size: 0.8125rem;
-                    color: var(--dev-muted);
                     margin-bottom: 0.5rem;
-                    line-height: 1.5;
                 }
 
                 .dev-kit__demo {
@@ -385,12 +406,12 @@ class DevRoutes
                     border: 1px solid var(--dev-rule);
                     border-radius: var(--dev-radius);
                     margin-top: 0.5rem;
-                    background: var(--color-background, var(--dev-surface));
+                    background: var(--dev-surface);
                 }
 
                 .dev-kit__demo--dark {
-                    background: var(--color-foreground);
-                    color: var(--color-background);
+                    background: var(--dev-ink);
+                    color: var(--dev-ink-fg);
                 }
 
                 /* ---- Colour swatches ---- */
@@ -530,7 +551,7 @@ class DevRoutes
         $crumbs .= '</nav>';
 
         echo '<div class="dev-topbar">'.$crumbs.$nav_html.'</div>';
-        echo '<div class="dev-main flow">';
+        echo '<div class="dev-main dev-flow">';
     }
 
     protected static function devPageClose(): void
@@ -686,7 +707,7 @@ class DevRoutes
         $title = \esc_html(\ucwords(\str_replace('-', ' ', $component)));
         static::devPageOpen($title, 'component');
 
-        echo '<div class="dev-component-example flow">';
+        echo '<div class="dev-component-example dev-flow">';
         echo '<div class="dev-page-header" data-dev-ui>';
         echo '<h1 class="dev-component-example__title">'.$title.'</h1>';
         echo '</div>';
@@ -698,7 +719,7 @@ class DevRoutes
 
     protected static function getDevIndexContent(): string
     {
-        $content = '<div class="dev-index flow" data-dev-ui>';
+        $content = '<div class="dev-index dev-flow" data-dev-ui>';
         $content .= '<div class="dev-page-header">';
         $content .= '<h1 class="dev-page-title" data-dev-ui>Dev Kit</h1>';
         $content .= '</div>';
@@ -717,15 +738,15 @@ class DevRoutes
     {
         $components = static::getComponentsWithExamples();
 
-        $content = '<div class="dev-component-list flow" data-dev-ui>';
+        $content = '<div class="dev-component-list dev-flow" data-dev-ui>';
         $content .= '<div class="dev-page-header">';
         $content .= '<h1 class="dev-page-title" data-dev-ui>Components</h1>';
         $content .= '</div>';
 
         if (empty($components)) {
-            $content .= '<p>No components with examples found. Add an <code>example.php</code> file to a component directory.</p>';
+            $content .= '<p data-dev-ui>No components with examples found. Add an <code>example.php</code> file to a component directory.</p>';
         } else {
-            $content .= '<ul class="dev-link-list flex-list">';
+            $content .= '<ul class="dev-link-list">';
             $all_url = \esc_url(\home_url('/_dev/all-components/'));
             $content .= "<li><a href=\"{$all_url}\"><strong>All</strong></a></li>";
             foreach ($components as $comp_name) {
