@@ -25,3 +25,8 @@ Appended by build agents when the spec is silent. Format: `- [phase.task] decisi
 - [1.1] `end()` treats an end time earlier than the start as next-day (e.g. 20:00 – 02:00) — spec gives no rule; events running past midnight are the common case
 - [1.1] `ticket_type` defaults to `buy`; unknown/empty values are treated as `buy` so a missing field never hides a ticket link
 - [1.1] Location taxonomy switched to non-hierarchical to match the spec's "Hierarchical: no" (no terms exist yet, so nothing is lost)
+- [1.2] Radio fields live in a new `group_radio` on the Header options page and Newsletter fields in `group_newsletter` on General; `radio_url` and `membership_link` sit in `group_header` — no new option pages, the radio bar is part of the header and the newsletter banner is site-wide
+- [1.2] "Primary"/"Footer" menus are the existing nav menu locations (`header`, `footer-1`, relabelled; unused `footer-2` removed), not ACF fields — keeps menus editable in Appearance > Menus where they are already assigned
+- [1.2] Existing `footer_legal_text` serves as `legal_text`, and old footer fields (`footer_text_*`, `footer_images`, `header_call_to_action_1`) are kept until the footer/header rebuild — removing them now would break the current templates
+- [1.2] `hero_illustration` / `newsletter_illustration` select choices are loaded from `Illustration::NAMES` via `acf/load_field` — one source of truth for illustration names
+- [1.2] `listen_url` left empty by default; consumers fall back to `https://stream.radio.co/{station_id}/listen` — spec gives no default and the stream URL derives from the station

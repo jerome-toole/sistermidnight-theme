@@ -45,7 +45,7 @@
             "label": "Legal Text",
             "name": "footer_legal_text",
             "type": "wysiwyg",
-            "instructions": "FCA registration and legal disclaimer text.",
+            "instructions": "Charity / company registration and legal text.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -118,6 +118,121 @@
                     "return_format": "array"
                 }
             ]
+        },
+        {
+            "key": "field_footer_address",
+            "label": "Address",
+            "name": "address",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_footer_map_link",
+            "label": "Map Link",
+            "name": "map_link",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_footer_supporters",
+            "label": "Supporters",
+            "name": "supporters",
+            "type": "repeater",
+            "instructions": "Funder and partner logos. Social links are set on the General options page; the footer menu under Appearance > Menus (Footer).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_footer_supporter_name",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Add Supporter",
+            "sub_fields": [
+                {
+                    "key": "field_footer_supporter_logo",
+                    "label": "Logo",
+                    "name": "logo",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "preview_size": "thumbnail",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": ""
+                },
+                {
+                    "key": "field_footer_supporter_name",
+                    "label": "Name",
+                    "name": "name",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_footer_supporter_url",
+                    "label": "URL",
+                    "name": "url",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": ""
+                }
+            ]
         }
     ],
     "location": [
@@ -138,5 +253,5 @@
     "active": true,
     "description": "Options Page",
     "show_in_rest": 0,
-    "modified": 1659441122
+    "modified": 1792510973
 }

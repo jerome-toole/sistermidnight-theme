@@ -12,9 +12,8 @@ class Menus
     public static function registerThemeMenus(): void
     {
         \register_nav_menus([
-            'header' => _x('Header', 'Menu name', 'gust'),
-            'footer-1' => _x('Footer 1', 'Menu name', 'gust'),
-            'footer-2' => _x('Footer 2', 'Menu name', 'gust'),
+            'header' => _x('Primary', 'Menu name', 'gust'),
+            'footer-1' => _x('Footer', 'Menu name', 'gust'),
         ]);
     }
 }

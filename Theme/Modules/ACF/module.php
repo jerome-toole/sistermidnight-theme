@@ -2,6 +2,8 @@
 
 namespace Theme\Modules\ACF;
 
+use Gust\Components\Illustration;
+
 class ACFModule
 {
     public static function init(): void
@@ -19,6 +21,8 @@ class ACFModule
 
         \add_filter('acf/load_field/name=theme_background_color', [__CLASS__, 'loadColorFieldChoices']);
         \add_filter('acf/load_field/name=item_theme_background_color', [__CLASS__, 'loadColorFieldChoices']);
+        \add_filter('acf/load_field/name=hero_illustration', [__CLASS__, 'loadIllustrationFieldChoices']);
+        \add_filter('acf/load_field/name=newsletter_illustration', [__CLASS__, 'loadIllustrationFieldChoices']);
 
         \add_filter('acf/load_value/type=link', [__CLASS__, 'filterEmptyLinkField']);
 
@@ -64,6 +68,17 @@ class ACFModule
             foreach (GUST_COLOR_PALETTE as $color) {
                 $field['choices'][$color['slug']] = $color['name'];
             }
+        }
+
+        return $field;
+    }
+
+    public static function loadIllustrationFieldChoices(array $field): array
+    {
+        $field['choices'] = [];
+
+        foreach (Illustration::NAMES as $name) {
+            $field['choices'][$name] = ucwords(str_replace('-', ' ', $name));
         }
 
         return $field;

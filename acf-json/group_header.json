@@ -3,6 +3,118 @@
     "title": "Header",
     "fields": [
         {
+            "key": "field_header_tab_hero",
+            "label": "Hero",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_header_hero_video",
+            "label": "Hero Video",
+            "name": "hero_video",
+            "type": "file",
+            "instructions": "Front page background video (MP4). The site menu is managed under Appearance > Menus (Primary).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4"
+        },
+        {
+            "key": "field_header_hero_poster",
+            "label": "Hero Poster",
+            "name": "hero_poster",
+            "type": "image",
+            "instructions": "Shown before the video loads and when reduced motion is preferred.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_header_hero_illustration",
+            "label": "Hero Illustration",
+            "name": "hero_illustration",
+            "type": "select",
+            "instructions": "Choices are loaded from the Illustration component.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": false,
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_header_tab_links",
+            "label": "Links",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_header_radio_url",
+            "label": "Radio URL",
+            "name": "radio_url",
+            "type": "url",
+            "instructions": "Header link to the radio site.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "https://radio.sistermidnight.org",
+            "placeholder": ""
+        },
+        {
+            "key": "field_header_membership_link",
+            "label": "Membership Link",
+            "name": "membership_link",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
             "key": "field_60a655601e0fd",
             "label": "Header Call To Action",
             "name": "header_call_to_action_1",
@@ -35,5 +147,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "Options Page",
-    "modified": 1641492399
+    "modified": 1792510973
 }
