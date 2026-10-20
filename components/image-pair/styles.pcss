@@ -1,0 +1,46 @@
+/* ---------------------------------------------------------------------------
+ * Image Pair (block)
+ *
+ * Full-width colour context, padded 126 top/bottom; the pair sits in the
+ * 1237px content container (104px gutters at 1445). Two portrait images (599×826) side by side, gap 40. Stacked below md.
+ * ------------------------------------------------------------------------- */
+
+.image-pair {
+    --image-pair--padding-block: spaceFluid(48, 126);
+    --image-pair--gap: spaceFluid(24, 40);
+
+    padding-block: var(--image-pair--padding-block);
+    padding-inline: var(--container-padding);
+}
+
+.image-pair__list {
+    display: grid;
+    max-width: var(--width-fluid-content);
+    margin-inline: auto;
+    gap: var(--image-pair--gap);
+    margin-block: 0;
+    padding: 0;
+    list-style: none;
+    grid-template-columns: minmax(0, 1fr);
+
+    @media (width >= theme('screens.md')) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.image-pair__item {
+    margin: 0;
+    aspect-ratio: 599 / 826;
+}
+
+.image-pair__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-pair__placeholder {
+    margin: 0;
+    opacity: 0.6;
+}
