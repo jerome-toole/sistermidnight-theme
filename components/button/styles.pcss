@@ -1,0 +1,101 @@
+/* --------------------------------------------------- */
+/* Button
+ *
+ * `.button` alone is an unstyled control (used by toggles). Variants:
+ *   .button--primary  burnt-sienna fill, 200×58, label left + arrow right
+ *   .button--link     underlined text + arrow, follows the link colour
+ *
+ * The arrow is an inline SVG (`.button__icon`) so it takes `currentColor`.
+ */
+/* --------------------------------------------------- */
+
+.button {
+    --button--gap: space(12);
+    --button--icon-size: space(20);
+
+    @apply button-reset;
+
+    &:focus {
+        @apply focus-base;
+    }
+
+    .button__icon {
+        flex: 0 0 auto;
+        width: var(--button--icon-size);
+        height: var(--button--icon-size);
+        transform: translateX(0);
+        transition: transition(transform);
+    }
+
+    @media (hover: hover) {
+        &:hover .button__icon {
+            transform: translateX(15%);
+        }
+    }
+    @media (hover: none) {
+        &:active .button__icon {
+            transform: translateX(15%);
+        }
+    }
+}
+
+/* Primary: burnt-sienna fill. The colour context sets the label and focus
+ * colours, so the button reads the same on any section background. */
+.button--primary {
+    @apply color-context-burnt-sienna;
+    @apply type-base;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--button--gap);
+    min-width: space(200);
+    min-height: space(58);
+    padding: space(10) space(20);
+    border-radius: 0;
+    text-align: left;
+    text-decoration: none;
+    transition: transition(background-color, color);
+
+    @media (hover: hover) {
+        &:hover {
+            background-color: color-mix(in oklab, var(--color-burnt-sienna) 85%, var(--color-dark-umber));
+            color: var(--color-foreground);
+            text-decoration: none;
+        }
+    }
+    @media (hover: none) {
+        &:active {
+            background-color: color-mix(in oklab, var(--color-burnt-sienna) 85%, var(--color-dark-umber));
+            color: var(--color-foreground);
+            text-decoration: none;
+        }
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+}
+
+/* Link: underlined label + arrow, in the current link colour */
+.button--link {
+    --button--icon-size: 0.9em;
+    --link--text-decoration: underline;
+    --link--text-decoration--hover: underline;
+
+    @apply link;
+    @apply type-base;
+
+    display: inline-flex;
+    align-items: center;
+    gap: space(6);
+    padding: 0;
+    background: transparent;
+    text-underline-offset: 0.15em;
+
+    .button__icon {
+        stroke-width: 2.25;
+    }
+}
