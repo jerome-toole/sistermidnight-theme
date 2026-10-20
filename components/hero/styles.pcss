@@ -1,0 +1,96 @@
+/* ---------------------------------------------------------------------------
+ * Hero
+ *
+ * Full-width media banner on burnt-sienna, 690px tall (70vh below md). The
+ * poster fills it; the video sits on top and fades in once it has started
+ * playing (data-hero-started, set by scripts.js), so the poster is the LCP
+ * element. Illustration bottom-right from md up; the pause/play toggle is a
+ * 44×44 burnt-sienna square bottom-right at every width.
+ *
+ * The site header (hero variant) is absolutely positioned over this.
+ * ------------------------------------------------------------------------- */
+
+.hero {
+    --hero--inset: space(24);
+
+    position: relative;
+    height: 70vh;
+    overflow: hidden;
+
+    @media (width >= theme('screens.md')) {
+        --hero--inset: space(40);
+
+        height: space(690);
+    }
+}
+
+.hero__poster,
+.hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero__video {
+    opacity: 0;
+    pointer-events: none;
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition: transition(opacity);
+    }
+
+    .hero[data-hero-started] & {
+        opacity: 1;
+    }
+}
+
+/* Nested under .hero: .illustration sets display: block later in the bundle. */
+.hero .hero__illustration {
+    position: absolute;
+    right: var(--hero--inset);
+    bottom: 0;
+    display: none;
+    color: var(--color-foreground);
+
+    @media (width >= theme('screens.md')) {
+        display: block;
+    }
+}
+
+/* Pause/play toggle. Inset focus ring, as on .button--primary: the ring is
+ * drawn against the button's own fill rather than the image behind it. */
+.hero__toggle {
+    --base--focus-offset: -4px;
+
+    @apply button-reset;
+    @apply color-context-burnt-sienna;
+
+    position: absolute;
+    right: var(--hero--inset);
+    bottom: var(--hero--inset);
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: space(44);
+    height: space(44);
+
+    &:focus {
+        @apply focus-base;
+    }
+
+    &[hidden] {
+        display: none;
+    }
+
+    &[aria-pressed='true'] .hero__icon--pause,
+    &[aria-pressed='false'] .hero__icon--play {
+        display: none;
+    }
+}
+
+.hero__icon {
+    width: space(24);
+    height: space(24);
+}
