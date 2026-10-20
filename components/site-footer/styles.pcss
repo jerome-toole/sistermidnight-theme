@@ -1,166 +1,171 @@
+/* ---------------------------------------------------------------------------
+ * Site footer
+ *
+ * Dark-umber context. Full-width dancers strip, then two rows: footer nav +
+ * social icons left with the address right; supporter logos left with the
+ * legal text right. Below md the strip is cropped to a fixed height and the
+ * columns stack.
+ * ------------------------------------------------------------------------- */
+
 .site-footer {
-    --link--color: var(--color-foreground);
-    --link--color-hover: var(--color-foreground);
+    --site-footer--padding: space(16);
+    --site-footer--strip-height: space(160);
 
-    position: relative;
-    padding-top: space(16);
-    padding-bottom: space(16);
+    padding-top: var(--site-footer--padding);
 
-    @media (min-width: theme('screens.md')) {
-        padding-top: space(24);
+    @media (width >= theme('screens.md')) {
+        --site-footer--padding: space(24);
+        --site-footer--strip-height: auto;
+    }
+}
+
+/* Decorative strip: inline SVG filled with the context foreground. Below md it
+ * is cropped to a fixed height (centred, overflow hidden) rather than scaled. */
+.site-footer__strip {
+    display: flex;
+    justify-content: center;
+    height: var(--site-footer--strip-height);
+    overflow: hidden;
+    pointer-events: none;
+
+    svg {
+        display: block;
+        flex: none;
+        width: 100%;
+        max-width: none;
+        height: auto;
+
+        @media (width < theme('screens.md')) {
+            width: auto;
+            height: 100%;
+        }
+    }
+
+    svg * {
+        fill: currentColor;
     }
 }
 
 .site-footer__inner {
-    @apply content-width-fluid-lg;
-
-    position: relative;
-}
-
-.site-footer__main {
     display: flex;
     flex-direction: column;
-    gap: space(10);
-    margin-bottom: space(24);
+    gap: space(34);
+    padding: space(40) var(--site-footer--padding) var(--site-footer--padding);
+}
 
-    @media (min-width: theme('screens.md')) {
+.site-footer__top,
+.site-footer__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: space(34);
+
+    @media (width >= theme('screens.md')) {
         flex-direction: row;
         justify-content: space-between;
-        gap: space(8);
-        margin-bottom: space(32);
-    }
-}
-
-.site-footer__left {
-    display: flex;
-    flex-direction: column;
-    gap: space(24);
-
-    .social-icons {
-        --col-gap: space(3);
-
-        display: flex;
-        flex-flow: row wrap;
-        align-items: center;
-    }
-}
-
-.site-footer__right {
-    display: flex;
-    flex-direction: column;
-    gap: space(24);
-
-    @media (min-width: theme('screens.md')) {
-        align-items: flex-end;
-        text-align: right;
-        flex-shrink: 0;
-    }
-}
-
-.site-footer__menu {
-    .menu__inner {
-        @apply list-reset-hard;
-
-        display: flex;
-        flex-direction: column;
-        gap: space(1);
-    }
-
-    .menu-list {
-        display: flex;
-        flex-direction: column;
-        gap: space(1);
-    }
-
-    a {
-        @apply type-small link--2;
-    }
-}
-
-.site-footer__address {
-    @apply type-small margin-trim;
-
-    a {
-        @apply link--2;
+        align-items: flex-start;
     }
 }
 
 .site-footer__bottom {
-    display: flex;
-    flex-direction: column;
-    column-gap: space(32);
-    row-gap: space(10);
-    align-items: flex-start;
-    margin-bottom: space(24);
-
-    @media (min-width: theme('screens.md')) {
-        flex-direction: row;
-        justify-content: space-between;
+    @media (width >= theme('screens.md')) {
         align-items: flex-end;
-        gap: space(8);
     }
 }
 
-.site-footer__meta {
+.site-footer__menus {
     display: flex;
     flex-direction: column;
-    gap: space(1);
+    gap: space(16);
+}
 
-    @media (min-width: theme('screens.md')) {
-        align-items: flex-end;
-        text-align: right;
+.site-footer__nav {
+    .menu-list {
+        display: flex;
+        flex-direction: column;
+        gap: space(12);
     }
-}
-
-.site-footer__legal {
-    @apply type-small margin-trim;
-}
-
-.site-footer__copyright {
-    @apply type-small margin-trim;
 
     a {
-        @apply link--2;
+        @apply type-small link link--2 link--foreground;
+
+        display: inline-flex;
+        align-items: center;
+        min-height: space(24);
     }
+}
+
+.site-footer__location {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: space(10);
+}
+
+.site-footer__address {
+    @apply type-body margin-trim;
+
+    font-style: normal;
+}
+
+.site-footer__map-link {
+    @apply type-small link link--2 link--foreground;
+
+    display: inline-flex;
+    align-items: center;
+    gap: space(8);
+    min-height: space(24);
 }
 
 .site-footer__supporters {
     display: flex;
     flex-direction: column;
-    gap: space(3);
+    gap: space(8);
 }
 
 .site-footer__supporters-label {
     @apply type-small;
-    margin-bottom: space(8);
+
+    margin: 0;
 }
 
-.site-footer__images {
+.site-footer__logos {
+    @apply list-reset-hard;
+
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
     align-items: center;
-    max-width: 600px;
+    gap: space(16);
 }
 
-.site-footer__image {
-    height: 25px;
-    width: auto;
+/* Logos are flattened to a light silhouette: brightness(0) keeps only the
+ * alpha, invert lifts it to white and the opacity settles it towards the
+ * warm-sand foreground. Logos need transparent backgrounds. */
+.site-footer__logo {
+    a {
+        display: block;
+    }
 
     img {
-        height: 100%;
+        display: block;
         width: auto;
+        max-width: space(160);
+        height: auto;
+        max-height: space(40);
+        filter: brightness(0) invert(1);
+        opacity: 0.8;
     }
 }
 
-.site-footer__illustration {
-    width: 100%;
-    pointer-events: none;
+.site-footer__legal {
+    @apply type-small margin-trim;
 
-    img,
-    svg {
-        display: block;
-        width: 100%;
-        height: auto;
+    max-width: space(616);
+
+    @media (width >= theme('screens.md')) {
+        text-align: right;
+    }
+
+    a {
+        @apply link link--2 link--foreground;
     }
 }
