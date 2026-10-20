@@ -19,6 +19,21 @@
     }
 }
 
+/* Reduced motion: collapse every transition and animation to a single frame.
+ * Durations stay non-zero so `transitionend` / `animationend` still fire for
+ * scripts that wait on them. Components that must move (carousel, hero video)
+ * check the media query themselves. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 /* Inherit fonts for form controls */
 input,
 button,

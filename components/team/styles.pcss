@@ -189,6 +189,11 @@
             display: block;
         }
     }
+
+    /* Escape closed it while the toggle still has focus (scripts.js) */
+    .team__member[data-dismissed] & {
+        display: none;
+    }
 }
 
 .team__name,
