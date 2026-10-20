@@ -31,6 +31,7 @@ CONTACT_ID=$(page_id contact "Contact")
 $WP option update show_on_front page >/dev/null
 $WP option update page_on_front "$HOME_ID" >/dev/null
 $WP option update page_for_posts "$NEWS_ID" >/dev/null
+$WP option update timezone_string Europe/London >/dev/null
 
 echo "Seeding menus..."
 
