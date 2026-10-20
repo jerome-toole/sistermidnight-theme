@@ -1,0 +1,290 @@
+{
+    "key": "group_component_section",
+    "title": "Block - Section",
+    "fields": [
+        {
+            "key": "field_section_label",
+            "label": "Label",
+            "name": "section_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Vertical label in the left gutter, rendered as the section heading. Editable in place in the editor.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_section_layout",
+            "label": "Layout",
+            "name": "section_layout",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Text right: content in the right half, media in the left. Two column: two groups side by side. Scatter: staggered cards with decorative illustrations.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "text-right": "Text right",
+                "two-column": "Two column",
+                "scatter": "Scatter"
+            },
+            "default_value": "text-right",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_section_background",
+            "label": "Background",
+            "name": "section_background",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "dark-umber": "Dark Umber",
+                "stone-beige": "Stone Beige"
+            },
+            "default_value": "dark-umber",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_section_media",
+            "label": "Media",
+            "name": "section_media",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Shown in the left half.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_section_layout",
+                        "operator": "==",
+                        "value": "text-right"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "None",
+                "illustration": "Illustration",
+                "image": "Image"
+            },
+            "default_value": "none",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_section_illustration",
+            "label": "Illustration",
+            "name": "section_illustration",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Choices are loaded from the Illustration component.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_section_media",
+                        "operator": "==",
+                        "value": "illustration"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": false,
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_section_image",
+            "label": "Image",
+            "name": "section_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Shown at 440×652 (portrait).",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_section_media",
+                        "operator": "==",
+                        "value": "image"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_section_scatter_illustration_1",
+            "label": "Scatter illustration 1",
+            "name": "section_scatter_illustration_1",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Choices are loaded from the Illustration component.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_section_layout",
+                        "operator": "==",
+                        "value": "scatter"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": false,
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_section_scatter_illustration_2",
+            "label": "Scatter illustration 2",
+            "name": "section_scatter_illustration_2",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Choices are loaded from the Illustration component.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_section_layout",
+                        "operator": "==",
+                        "value": "scatter"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": false,
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_section_scatter_illustration_3",
+            "label": "Scatter illustration 3",
+            "name": "section_scatter_illustration_3",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Choices are loaded from the Illustration component.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_section_layout",
+                        "operator": "==",
+                        "value": "scatter"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": false,
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "theme/section"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792800000
+}

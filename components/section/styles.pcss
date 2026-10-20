@@ -1,0 +1,191 @@
+/* ---------------------------------------------------------------------------
+ * Section (block)
+ *
+ * Full-width colour context with the page gutter as side padding. Inside:
+ * the vertical label (left gutter, rotated from md) and the body.
+ *
+ *   text-right   content-layout: media in the left half, inner blocks in
+ *                the right half; media follows the text below md.
+ *   two-column   inner blocks (two groups) side by side from md.
+ *   scatter      cards in two staggered columns, decorative illustrations
+ *                around them (hidden below md); single column below md.
+ * ------------------------------------------------------------------------- */
+
+.content-section {
+    --content-section--padding-block: spaceFluid(48, 126);
+    --content-section--gap: spaceFluid(24, 32);
+    --content-section--column-gap: var(--content-layout--gap);
+    --content-section--illustration-size: spaceFluid(220, 300);
+    --content-section--image-width: space(440);
+    --content-section--image-ratio: 440 / 652;
+    --content-section--scatter-offset: 70%;
+
+    padding-block: var(--content-section--padding-block);
+    padding-inline: var(--container-padding);
+}
+
+.content-section__inner {
+    display: grid;
+    gap: var(--content-section--gap);
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+}
+
+.content-section--labelled .content-section__inner {
+    @media (width >= theme('screens.md')) {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+}
+
+.content-section__label {
+    @apply type-h2;
+    @apply vertical-label;
+
+    margin: 0;
+}
+
+.content-section__body {
+    min-width: 0;
+    align-items: start;
+}
+
+/* Inner blocks: flow spacing between blocks, prose capped like the page */
+.content-section__content--text-right {
+    @apply content-flow;
+}
+
+/* ---- Text right ---------------------------------------------------------- */
+
+.content-section__media {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+
+    /* Below md the media follows the text */
+    @media (width < theme('screens.md')) {
+        order: 1;
+        justify-content: flex-start;
+    }
+}
+
+.content-section__illustration {
+    --illustration--size: var(--content-section--illustration-size);
+
+    color: var(--color-foreground);
+
+    @media (width < theme('screens.md')) {
+        --illustration--size: 60%;
+    }
+}
+
+.content-section__img {
+    display: block;
+    width: 100%;
+    max-width: var(--content-section--image-width);
+    height: auto;
+    aspect-ratio: var(--content-section--image-ratio);
+    object-fit: cover;
+}
+
+/* ---- Two column ---------------------------------------------------------- */
+
+.content-section__content--two-column {
+    display: grid;
+    gap: var(--content-section--column-gap);
+    width: 100%;
+    max-width: var(--content-layout--max-width);
+    margin-inline: auto;
+    grid-template-columns: minmax(0, 1fr);
+
+    @media (width >= theme('screens.md')) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+
+    /* Groups fill their column: the group block's own content-grid would inset
+     * them by a gutter, so each column is a plain flow block */
+    > .wp-block-group {
+        @apply content-flow;
+
+        display: block;
+
+        &.has-background {
+            padding-inline: var(--space-base);
+        }
+    }
+}
+
+/* ---- Scatter ------------------------------------------------------------- */
+
+.content-section__body--scatter {
+    position: relative;
+}
+
+.content-section__content--scatter {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--content-section--column-gap);
+    width: 100%;
+    max-width: var(--content-layout--max-width);
+    margin-inline: auto;
+    grid-template-columns: minmax(0, 1fr);
+
+    @media (width >= theme('screens.md')) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+
+        /* Even cards sit in the right column, pushed down to stagger */
+        > :nth-child(even) {
+            margin-top: var(--content-section--scatter-offset);
+        }
+    }
+}
+
+.content-section__scatter {
+    display: none;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    @media (width >= theme('screens.md')) {
+        display: block;
+    }
+}
+
+.content-section__scatter-illustration {
+    position: absolute;
+    color: var(--color-foreground);
+
+    /* Left column, below the first card */
+    &:nth-child(1) {
+        --illustration--size: 24%;
+
+        left: 12%;
+        bottom: 0;
+    }
+
+    /* Right column, above the second card */
+    &:nth-child(2) {
+        --illustration--size: 22%;
+
+        top: 0;
+        right: 0;
+    }
+
+    /* Left edge, between the first card and the first illustration */
+    &:nth-child(3) {
+        --illustration--size: 12%;
+
+        left: 0;
+        top: 45%;
+    }
+}
+
+/* Room below the cards for the first illustration */
+.content-section__body--scatter:has(.content-section__scatter) .content-section__content--scatter {
+    @media (width >= theme('screens.md')) {
+        padding-bottom: 12%;
+    }
+}

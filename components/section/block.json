@@ -1,0 +1,28 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "theme/section",
+    "title": "Section",
+    "description": "Content section with a vertical gutter label, optional illustration or image, and a text-right, two-column or scatter layout.",
+    "category": "theme-blocks",
+    "icon": "align-pull-left",
+    "keywords": ["section", "columns", "illustration", "scatter"],
+    "textdomain": "gust",
+    "acf": {
+        "blockVersion": 3,
+        "mode": "preview",
+        "renderCallback": "Gust\\Components\\Section::renderBlock"
+    },
+    "supports": {
+        "anchor": true,
+        "align": false,
+        "mode": false,
+        "jsx": true,
+        "html": false,
+        "color": {
+            "background": false,
+            "text": false,
+            "gradients": false
+        }
+    }
+}

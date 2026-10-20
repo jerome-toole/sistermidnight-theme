@@ -1,0 +1,19 @@
+/* Section block editor parity. ACF puts the InnerBlocks class on the block
+ * list itself, so the front-end styles.pcss (already in the editor
+ * stylesheet) lays the inner blocks out as on the page. What remains:
+ * Gutenberg's constrained-group layout CSS centres headings and paragraphs
+ * inside groups with auto margins, and the canvas zeroes paragraph margins at
+ * a higher specificity than the flow pattern, so nested blocks lose their
+ * flow gap. Changes require `pnpm run build`. */
+
+.editor-styles-wrapper {
+    .content-section .wp-block-group > :where(p, ul, ol, h1, h2, h3, h4, h5, h6) {
+        max-width: none;
+        margin-inline: 0 !important;
+    }
+
+    /* Only the flow layouts: the two-column and scatter grids space with gap */
+    .content-section :is(.content-section__content--text-right, .wp-block-group) > .wp-block + .wp-block {
+        margin-block-start: var(--flow-space, var(--space-layout));
+    }
+}
