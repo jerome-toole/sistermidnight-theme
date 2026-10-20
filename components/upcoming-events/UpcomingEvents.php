@@ -10,10 +10,11 @@ use Theme\Modules\Events\EventRepository;
  *
  * The next N events (start >= now) as Event Cards under a vertical label.
  *
- *   grid      Front page: two staggered columns (596 / 680), laid out
- *             independently so each column keeps a uniform gap. An optional
- *             announcement Card sits first in the right column; without it
- *             the right column is pushed down 300px. A large decorative
+ *   grid      Front page: one date-ordered list shown as two staggered
+ *             columns (596 / 680) from md, each packed independently so the
+ *             gaps within a column stay even. An optional announcement Card
+ *             comes first and sits at the top of the right column; without
+ *             it the right column is pushed down 300px. A large decorative
  *             illustration sits bottom-left after the last card.
  *   featured  What's On: three cards in a row, the middle one offset.
  *
@@ -165,21 +166,26 @@ class UpcomingEvents extends ComponentBase
     }
 
     /**
-     * The cards as columns of list items. The grid variant lays its two
-     * columns out independently (left: events 1, 3, 5…; right: the
-     * announcement, then events 2, 4, 6…) so the gaps within each column stay
-     * even whatever the posters' heights; `order` restores the single column
-     * in date order below md. The featured variant is one list.
+     * The list items in DOM order: the announcement card first (grid only),
+     * then the events in date order. The grid variant's two staggered
+     * columns are CSS only (floats from md), so Tab and reading order
+     * always follow the dates.
      *
-     * @return array<int, array<int, array{order: int, classes: array<string>, html: string}>>
+     * @return array<int, array{classes: array<string>, html: string}>
      */
-    public function columns(): array
+    public function items(): array
     {
-        $cards = [];
+        $items = [];
+
+        if ($this->variant === 'grid' && $this->announcement) {
+            $items[] = [
+                'classes' => ['upcoming-events__item--announcement'],
+                'html' => (string) $this->announcement,
+            ];
+        }
 
         foreach ($this->events as $index => $event) {
-            $cards[] = [
-                'order' => $index + 1,
+            $items[] = [
                 'classes' => [],
                 'html' => (string) EventCard::make(
                     event: $event,
@@ -191,30 +197,7 @@ class UpcomingEvents extends ComponentBase
             ];
         }
 
-        if ($this->variant !== 'grid') {
-            return [$cards];
-        }
-
-        $left = [];
-        $right = [];
-
-        if ($this->announcement) {
-            $right[] = [
-                'order' => 0,
-                'classes' => ['upcoming-events__item--announcement'],
-                'html' => (string) $this->announcement,
-            ];
-        }
-
-        foreach ($cards as $index => $card) {
-            if ($index % 2 === 0) {
-                $left[] = $card;
-            } else {
-                $right[] = $card;
-            }
-        }
-
-        return array_values(array_filter([$left, $right]));
+        return $items;
     }
 
     /**

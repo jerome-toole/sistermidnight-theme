@@ -4,13 +4,14 @@
  * Full-width band with the page gutter as side padding: the vertical label
  * (left gutter, rotated from md) and the Event Cards in one or two lists.
  *
- *   grid      From md, two independent columns (596 / 680), one list each,
- *             so the gap between cards stays 24 within a column whatever the
- *             posters' heights. The right column starts with the
- *             announcement card, or 300px down without one. A large
- *             decorative illustration sits bottom-left after the last card.
- *             Below md the two lists merge (display: contents) into one
- *             column ordered by date (`--upcoming-events--order`).
+ *   grid      One list in date order (announcement card first). From md the
+ *             items float into two columns (596 / 680): odd/even items left
+ *             and right, each column packed independently so the gap between
+ *             cards stays 24 whatever the posters' heights (a float sits
+ *             directly under the previous float on its side). The right
+ *             column starts with the announcement card, or 300px down
+ *             without one. A large decorative illustration sits bottom-left
+ *             after the last card. Below md: one column, one item per row.
  *   featured  One list: two columns from md, three from lg with the middle
  *             card pushed down 65px.
  * ------------------------------------------------------------------------- */
@@ -54,13 +55,6 @@
     min-width: 0;
 }
 
-.upcoming-events__columns {
-    display: grid;
-    gap: var(--upcoming-events--row-gap) var(--upcoming-events--column-gap);
-    grid-template-columns: minmax(0, 1fr);
-    align-items: start;
-}
-
 .upcoming-events__list {
     display: grid;
     gap: var(--upcoming-events--row-gap) var(--upcoming-events--column-gap);
@@ -79,25 +73,39 @@
 /* ---- Grid ---------------------------------------------------------------- */
 
 .upcoming-events--grid {
-    /* Below md the two lists collapse into one column in date order */
-    @media (width < theme('screens.md')) {
+    @media (width >= theme('screens.md')) {
+        --upcoming-events--left: calc((100% - var(--upcoming-events--column-gap)) * 596 / 1276);
+        --upcoming-events--right: calc((100% - var(--upcoming-events--column-gap)) * 680 / 1276);
+
         .upcoming-events__list {
-            display: contents;
+            display: flow-root;
+            gap: 0;
         }
 
         .upcoming-events__item {
-            order: var(--upcoming-events--order, 0);
-        }
-    }
+            float: left;
+            width: var(--upcoming-events--left);
+            margin-bottom: var(--upcoming-events--row-gap);
 
-    @media (width >= theme('screens.md')) {
-        .upcoming-events__columns {
-            grid-template-columns: 596fr 680fr;
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
 
-        /* No announcement: the right column starts 300px down */
-        &:not(.upcoming-events--announced) .upcoming-events__list:nth-child(2) {
-            padding-top: var(--upcoming-events--offset);
+        /* Without an announcement the even items go right, 300px down */
+        &:not(.upcoming-events--announced) .upcoming-events__item:nth-child(even) {
+            float: right;
+            width: var(--upcoming-events--right);
+        }
+
+        &:not(.upcoming-events--announced) .upcoming-events__item:nth-child(2) {
+            margin-top: var(--upcoming-events--offset);
+        }
+
+        /* With one, the announcement and the even events go right */
+        &.upcoming-events--announced .upcoming-events__item:nth-child(odd) {
+            float: right;
+            width: var(--upcoming-events--right);
         }
     }
 }

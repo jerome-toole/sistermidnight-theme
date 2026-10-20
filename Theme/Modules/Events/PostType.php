@@ -4,7 +4,7 @@ namespace Theme\Modules\Events;
 
 class PostType
 {
-    protected const SLUG = 'event';
+    public const SLUG = 'event';
 
     public const ARCHIVE_SLUG = 'whats-on';
 

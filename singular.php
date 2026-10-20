@@ -37,15 +37,22 @@ $isProseOnly = static function (string $content): bool {
 while (have_posts()) {
     the_post();
 
+    $content = trim((string) apply_filters('the_content', get_the_content()));
+
+    // Nothing to show (or only empty paragraphs): no content band at all.
+    if (trim((string) preg_replace('#<p(\s[^>]*)?>(\s|&nbsp;)*</p>#i', '', $content)) === '') {
+        continue;
+    }
+
     if ($post_type === 'post' || ($post_type === 'event' && $isProseOnly(get_the_content()))) {
         echo \Gust\Components\Section::make(
             background: 'stone-beige',
             layout: 'text-right',
-            content: apply_filters('the_content', get_the_content()),
+            content: $content,
             classes: ['article-content'],
         );
     } else {
-        the_content();
+        echo $content;
     }
 }
 

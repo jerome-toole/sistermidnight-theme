@@ -5,9 +5,8 @@ use Gust\Components\Illustration;
 /**
  * Upcoming Events Template
  *
- * One list per column (two in the grid variant, one in featured). Each item
- * carries its date-order index so the grid collapses to one column in date
- * order below md.
+ * One list in reading order: the announcement card (grid only), then the
+ * events by date. The grid variant's two columns are CSS only.
  *
  * @var \Gust\Components\UpcomingEvents $this
  */
@@ -20,15 +19,11 @@ use Gust\Components\Illustration;
 
         <div class="upcoming-events__body">
             <?php if ($this->events) { ?>
-                <div class="upcoming-events__columns">
-                    <?php foreach ($this->columns() as $column) { ?>
-                        <ul class="upcoming-events__list">
-                            <?php foreach ($column as $item) { ?>
-                                <li class="<?= classes('upcoming-events__item', $item['classes']) ?>" style="--upcoming-events--order: <?= (int) $item['order'] ?>;"><?= $item['html'] ?></li>
-                            <?php } ?>
-                        </ul>
+                <ul class="upcoming-events__list">
+                    <?php foreach ($this->items() as $item) { ?>
+                        <li class="<?= classes('upcoming-events__item', $item['classes']) ?>"><?= $item['html'] ?></li>
                     <?php } ?>
-                </div>
+                </ul>
 
                 <?php if ($this->illustration) { ?>
                     <div class="upcoming-events__illustration" aria-hidden="true">

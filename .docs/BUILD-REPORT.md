@@ -70,7 +70,7 @@ Bundles: `main.js` is 8 KB gzip, `main.css` is 32 KB gzip (239 KB raw). The caro
 - **Font weight (2.3):** SisterMidnight is declared at weight 700 so axe treats the 20px radio-bar text as large bold. The font file itself says 400. Defensible visually, but a strict auditor could dispute it.
 - **Event Card (5.1):** Lighthouse `label-content-name-mismatch` on the card link. The News Card was already fixed with a stretched link, and the Event Card can follow.
 - **`PageHeader::$intro` dynamic property deprecation** at `components/page-header/PageHeader.php:117` (PHP 8.2+). Declare the property.
-- I could not read the final review output for Editor and Events & News in my inputs. Their fix commits are in the log, so check those two review summaries before sign-off.
+- The five items from the final Events & News and Hardening re-reviews are fixed; see "Open issues after final review (resolved)" below.
 
 ## Decisions needing a human call
 
@@ -110,3 +110,18 @@ Open https://sistermidnight.test/ and check these:
 - `/support/` and `/membership/` (YouTube embed migrated).
 
 Check keyboard use and the menu dialog at narrow width. Re-seed with `dev-scripts/seed.sh`.
+
+## Phase 4 and 5 review summaries
+
+- **Events & News (Review 4):** 4 issues found and fixed. The re-review found 2 regressions (Upcoming Events column-major DOM/focus order; empty event body still rendering a content band) and 1 minor (What's On document title "Events Archive"). All three fixed in "Final review fixes".
+- **Hardening (Review 5):** 2 issues found and fixed. The re-review left the Membership gallery data migration and a note about a stale dev-server `public/hot` file. Both handled in "Final review fixes".
+
+## Open issues after final review (resolved)
+
+1. **Upcoming Events DOM order (major):** `UpcomingEvents::items()` now renders one date-ordered `<ul>` (announcement card first, then events). The grid variant's two staggered columns are CSS only from md: items float left/right (odd/even, swapped when announced) at 596/1276 and 680/1276 widths, so each column packs independently with an even 24px gap; the 300px right-column offset is a `margin-top` on the second item when there is no announcement. Verified at 500px (single column, Tab order follows date order) and 1440px (left column y 1563/2397, right 1563/1815/2649 — matches `front-page.jpg`). axe: 0 violations on `/`.
+2. **Empty event body band (major):** `singular.php` renders `the_content` once, strips empty `<p>` blocks and outputs nothing when nothing is left. Verified on an event whose body was temporarily set to an empty paragraph: no `.article-content` band, Event Header intact, axe 0 violations. News posts unaffected.
+3. **What's On title (minor):** `EventsModule` filters `document_title_parts` plus Yoast's `wpseo_title`, `wpseo_opengraph_title` and `wpseo_twitter_title` (Yoast owns the title here; its template was `%%pt_plural%% Archive`). `/whats-on/` now has `<title>What's On ~ Sister Midnight</title>` and `og:title` "What's On".
+4. **Membership gallery data (major):** post 25's `theme/gallery` block migrated via `wp eval-file` from the legacy repeater keys (`images_N_image`) to `{"gallery_label":"","_gallery_label":"field_gallery_label","gallery_images":[174,152,39,153,40,37,38],"_gallery_images":"field_gallery_images"}` (the empty eighth row dropped). `/membership/` renders the masonry gallery with 7 images; `debug.log` unchanged.
+5. **Stale `public/hot` (minor):** not deleted — a Vite dev server for this theme is running (`[::1]:5173`, matching the hot file). It was started before the 5.3 cleanup, so it still 404s `components/page-navigation/scripts.js` and `components/video-item/scripts.js` in the console; restart `pnpm run dev` (or stop it and delete `public/hot`) to clear that. The production build does not reference either file.
+
+Checks after the fixes: `pnpm run build` and `pnpm run fix` clean, no new `debug.log` lines, `/`, `/whats-on/`, `/events/community-choir-evening/` and `/membership/` load with no console errors other than the dev-server 404s above.
