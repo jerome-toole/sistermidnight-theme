@@ -1,0 +1,112 @@
+/* ---------------------------------------------------------------------------
+ * Event Card (partial)
+ *
+ * Paper card on stone-beige, padding 24, 32 between poster and text. The
+ * whole card is one link. Header (presenter, title, excerpt) gap 12; the
+ * meta row sits at the bottom, at least 65–77 below the header.
+ * `lg` caps the poster at 410 wide (front page); `sm` fills the card
+ * (What's On featured). Mobile: full width, poster max-height 70vw.
+ * ------------------------------------------------------------------------- */
+
+.event-card {
+    --event-card--padding: space(24);
+    --event-card--poster-width: space(410);
+    --event-card--meta-gap: spaceFluid(40, 77);
+
+    @apply color-context-stone-beige;
+
+    position: relative;
+    width: 100%;
+}
+
+.event-card--sm {
+    --event-card--poster-width: 100%;
+    --event-card--meta-gap: spaceFluid(40, 65);
+}
+
+.event-card__link {
+    display: flex;
+    flex-direction: column;
+    gap: space(32);
+    height: 100%;
+    padding: var(--event-card--padding);
+    color: inherit;
+    text-decoration: none;
+
+    &:focus-visible {
+        outline: var(--base--focus-width, 2px) solid var(--focus--color);
+        outline-offset: 4px;
+    }
+}
+
+.event-card__poster {
+    width: 100%;
+    max-width: var(--event-card--poster-width);
+}
+
+.event-card__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 70vw;
+    object-fit: cover;
+
+    @media (width >= theme('screens.md')) {
+        max-height: none;
+    }
+}
+
+.event-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--event-card--meta-gap);
+}
+
+.event-card__header {
+    display: flex;
+    flex-direction: column;
+    gap: space(12);
+}
+
+.event-card__presenter {
+    @apply type-h6;
+
+    margin: 0;
+    line-height: 1.2;
+}
+
+.event-card__title {
+    @apply type-h2;
+
+    margin: 0;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.12em;
+    transition: text-decoration-color 0.2s;
+
+    .event-card__link:hover & {
+        text-decoration-color: currentcolor;
+    }
+}
+
+.event-card__excerpt {
+    @apply type-body;
+
+    margin: 0;
+}
+
+.event-card__meta {
+    @apply type-h6;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: space(8) space(17);
+    line-height: 1.2;
+    margin: 0;
+    margin-top: auto;
+}
