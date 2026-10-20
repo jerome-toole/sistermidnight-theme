@@ -1,0 +1,101 @@
+/* ---------------------------------------------------------------------------
+ * Event header (partial)
+ *
+ * Event single top on the page colour: the poster (496×626, 3px stone-beige
+ * border) in the left half of the content layout, the text in the right half.
+ * Text: eyebrow / title / meta (gap 16, 15) then, 52 below, the excerpt and
+ * the CTA (gap 32). Below md the poster comes first at full width.
+ * ------------------------------------------------------------------------- */
+
+.event-header {
+    --event-header--padding-bottom: spaceFluid(48, 78);
+    --event-header--poster-width: space(496);
+    --event-header--poster-ratio: 496 / 626;
+    --event-header--poster-border: 3px;
+    --event-header--gap: spaceFluid(32, 52);
+
+    padding-block: 0 var(--event-header--padding-bottom);
+    padding-inline: var(--container-padding);
+}
+
+.event-header__inner {
+    align-items: start;
+}
+
+.event-header__poster {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.event-header__image {
+    display: block;
+    width: 100%;
+    max-width: var(--event-header--poster-width);
+    height: auto;
+    aspect-ratio: var(--event-header--poster-ratio);
+    object-fit: cover;
+    border: var(--event-header--poster-border) solid var(--color-stone-beige);
+    background-color: var(--color-stone-beige);
+}
+
+.event-header__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--event-header--gap);
+}
+
+.event-header__intro {
+    display: flex;
+    flex-direction: column;
+    gap: space(16);
+}
+
+.event-header__presenter {
+    @apply type-h6;
+
+    margin: 0;
+    line-height: 1.2;
+}
+
+.event-header__title {
+    @apply type-h1;
+
+    margin: 0;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.event-header__meta {
+    @apply type-h6;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: space(8) space(24);
+    margin: 0;
+    line-height: 1.2;
+
+    dd {
+        margin: 0;
+    }
+}
+
+.event-header__details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: space(32);
+}
+
+.event-header__excerpt {
+    @apply type-body;
+
+    margin: 0;
+}
+
+.event-header__note {
+    @apply type-h6;
+
+    margin: 0;
+    line-height: 1.2;
+}
