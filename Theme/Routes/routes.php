@@ -35,8 +35,3 @@ Router::decoratePostType('event', EventsModule::class)
 Router::decoratePostType('post', NewsController::class)
     ->withPage('news')
     ->withSlot('template-content', [NewsController::class, 'renderLoop']);
-
-// Example: Taxonomy archive for 'category' taxonomy
-// Router::decorateTaxonomy('category', ArchiveController::class)
-//     ->withPage('category-listing')
-//     ->withSlot('template-content', fn () => ArchiveController::renderLoop());
