@@ -1,0 +1,24 @@
+/* Buttons in the editor: the link is a RichText div, and Gutenberg wraps the
+ * block in .block-editor-block-list__block. Keep it inline-flex so the
+ * ::after arrow sits beside the label as it does on the front end. */
+
+.editor-styles-wrapper {
+    .wp-block-button {
+        .wp-block-button__link {
+            display: inline-flex;
+            color: var(--color-foreground);
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        &.is-style-link .wp-block-button__link {
+            color: var(--link--color, var(--color-accent));
+        }
+    }
+
+    .wp-block-buttons > .wp-block-button {
+        margin: 0;
+    }
+}

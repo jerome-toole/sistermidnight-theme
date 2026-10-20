@@ -22,6 +22,11 @@ wp.hooks.addFilter('blocks.registerBlockType', 'gust/disable-fit-text', (setting
  */
 wp.domReady(() => {
     wp.blocks.registerBlockStyle('core/heading', {
+        name: 'eyebrow',
+        label: 'Eyebrow',
+    });
+
+    wp.blocks.registerBlockStyle('core/heading', {
         name: 'type-h2',
         label: 'H2 Appearance',
     });

@@ -1,0 +1,67 @@
+/* Editor canvas: same colour context and body type as the front end, so
+ * headings, paragraph styles and colour contexts read as they will on the
+ * page. Fonts come from 2-base/_fonts.pcss (absolute /fonts/ URLs). */
+
+.editor-styles-wrapper {
+    @apply color-context-dark-umber;
+    @apply type-base;
+
+    -webkit-font-smoothing: antialiased;
+
+    /* Gutenberg sets its own heading fonts/sizes on the canvas. :where() keeps
+     * these at zero specificity so block styles (Eyebrow, H2 Appearance…) win. */
+    :where(h1, h2, h3, h4, h5, h6).wp-block-heading {
+        margin-block: 0;
+        color: inherit;
+    }
+
+    :where(h1.wp-block-heading) {
+        @apply type-h1;
+    }
+
+    :where(h2.wp-block-heading) {
+        @apply type-h2;
+    }
+
+    :where(h3.wp-block-heading) {
+        @apply type-h3;
+    }
+
+    :where(h4.wp-block-heading) {
+        @apply type-h4;
+    }
+
+    :where(h5.wp-block-heading) {
+        @apply type-h5;
+    }
+
+    :where(h6.wp-block-heading) {
+        @apply type-h6;
+    }
+
+    p.wp-block-paragraph,
+    p[data-type='core/paragraph'] {
+        margin-block: 0;
+        color: inherit;
+    }
+
+    /* Gutenberg gives every unaligned top-level block max-width 1400px and
+     * auto margins (!important), which beats content-flow's 65ch prose cap and
+     * centres short blocks (a grid item with auto margins shrinks to fit).
+     * The front end caps prose at 65ch and sits it left, so do the same here. */
+    .is-root-container.is-root-container > :where(p, ul, ol, h1, h2, h3, h4, h5, h6):not(.aligncenter) {
+        max-width: var(--prose--max-width, 65ch);
+        margin-inline: 0 !important;
+    }
+
+    /* Colour contexts: a group/columns/paragraph with a palette background */
+    .has-background {
+        color: var(--color-foreground);
+    }
+
+    /* Placeholders should read on a dark canvas */
+    [data-rich-text-placeholder]::after {
+        color: inherit;
+        opacity: 0.5;
+    }
+}

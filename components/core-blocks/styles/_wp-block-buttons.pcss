@@ -1,11 +1,14 @@
+/* Buttons block. Block styles: "Primary" (default, burnt-sienna fill) and
+ * "Link" (underlined text). Both share the Button component's utilities and
+ * draw the arrow with a masked ::after so the editor markup (a RichText div)
+ * matches the front end without extra markup. */
+
 .wp-block-buttons {
     @apply flex-list;
 }
 
 .wp-block-button {
-    :where(.wp-block-button__link) {
-        @apply btn;
-    }
+    --button--icon-size: space(20);
 
     &.aligncenter {
         margin-top: var(--space-base);
@@ -16,5 +19,50 @@
     &.alignright {
         width: auto;
         margin-top: 0.4em;
+    }
+
+    .wp-block-button__link {
+        @apply button-primary;
+
+        &::after {
+            flex: 0 0 auto;
+            width: var(--button--icon-size);
+            height: var(--button--icon-size);
+            background-color: currentColor;
+            content: '';
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12h17M13 5l7 7-7 7'/%3E%3C/svg%3E")
+                center / contain no-repeat;
+            transform: translateX(0);
+            transition: transition(transform);
+        }
+
+        &:focus {
+            @apply focus-base;
+        }
+
+        @media (hover: hover) {
+            &:hover::after {
+                transform: translateX(15%);
+            }
+        }
+        @media (hover: none) {
+            &:active::after {
+                transform: translateX(15%);
+            }
+        }
+    }
+
+    &.is-style-link .wp-block-button__link {
+        --button--icon-size: 0.9em;
+        --base--focus-offset: 3px;
+
+        @apply button-link;
+
+        min-width: 0;
+        min-height: 0;
+
+        &::after {
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12h17M13 5l7 7-7 7'/%3E%3C/svg%3E");
+        }
     }
 }

@@ -18,3 +18,13 @@ wp.hooks.addFilter(
         };
     }
 );
+
+/**
+ * Block style for core/image: "Framed" draws a thin rule around the image.
+ */
+wp.domReady(() => {
+    wp.blocks.registerBlockStyle('core/image', {
+        name: 'framed',
+        label: 'Framed',
+    });
+});

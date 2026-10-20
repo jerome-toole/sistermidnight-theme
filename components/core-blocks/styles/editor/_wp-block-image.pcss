@@ -1,0 +1,9 @@
+/* Image block in the editor: the framed style also wraps the resizable box */
+
+.editor-styles-wrapper .wp-block-image.is-style-framed {
+    .components-resizable-box__container > img,
+    > figure > img {
+        padding: space(12);
+        border: 1px solid color-mix(in oklab, var(--color-foreground) 60%, transparent);
+    }
+}

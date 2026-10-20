@@ -11,3 +11,21 @@ wp.hooks.addFilter(
         };
     }
 );
+
+/**
+ * Block styles for core/button: "Primary" (default, burnt-sienna fill with an
+ * arrow) and "Link" (underlined text with an arrow). Styled in
+ * core-blocks/styles/_wp-block-buttons.pcss.
+ */
+wp.domReady(() => {
+    wp.blocks.registerBlockStyle('core/button', {
+        name: 'primary',
+        label: 'Primary',
+        isDefault: true,
+    });
+
+    wp.blocks.registerBlockStyle('core/button', {
+        name: 'link',
+        label: 'Link',
+    });
+});

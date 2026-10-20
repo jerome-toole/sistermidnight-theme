@@ -1,1 +1,10 @@
+/* Core block editor parity. The front-end component CSS (_components.pcss,
+ * including core-blocks/styles.pcss) is already in the editor stylesheet, so
+ * this file only covers what the editor DOM does differently: the canvas
+ * colour and type, block-style classes on editor wrappers, and Gutenberg's
+ * own resets that fight the theme. Changes require `pnpm run build`. */
+
+@import './styles/editor/_canvas.pcss';
+@import './styles/editor/_wp-block-buttons.pcss';
+@import './styles/editor/_wp-block-image.pcss';
 @import './styles/editor/_wp-block-separator.pcss';

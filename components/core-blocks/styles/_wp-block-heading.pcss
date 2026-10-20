@@ -1,0 +1,10 @@
+/* Heading block. Block style "Eyebrow": the small display label that sits
+ * above a title ("SMFM Presents", "23rd March"), Sister 17 = type-h6. */
+
+.wp-block-heading.is-style-eyebrow {
+    @apply type-h6;
+
+    + :is(h1, h2, h3, h4, h5, h6, p) {
+        --flow-space: space(12);
+    }
+}
