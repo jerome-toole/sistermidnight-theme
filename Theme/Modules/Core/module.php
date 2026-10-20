@@ -8,6 +8,7 @@ class CoreModule
     {
         Admin::init();
         Excerpt::init();
+        Images::init();
         Menus::init();
         MimeTypes::init();
         Preloads::init();

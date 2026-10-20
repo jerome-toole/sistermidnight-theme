@@ -79,7 +79,6 @@ class Hero extends ComponentBase
         $args['attributes'] ??= [];
 
         $args['poster_id'] = static::posterId($args['poster']);
-        $args['poster_url'] = (string) \wp_get_attachment_image_url($args['poster_id'], 'full');
 
         $video = $args['video'] ?? null;
         $args['video_url'] = ! empty($video['url']) ? (string) $video['url'] : '';

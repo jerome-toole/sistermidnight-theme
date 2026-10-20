@@ -3,7 +3,8 @@
  * Hero Template
  *
  * Poster image first (LCP), then the optional video and its toggle, then the
- * illustration. The toggle starts hidden and is revealed by scripts.js once
+ * illustration. The <video> has no poster attribute: the <img> is the poster,
+ * so the browser does not download the full-size image a second time. The toggle starts hidden and is revealed by scripts.js once
  * it can control the video; aria-pressed="true" means the video is paused.
  *
  * @var \Gust\Components\Hero $this
@@ -19,7 +20,7 @@
     ]); ?>
 
     <?php if ($this->video_url) { ?>
-        <video class="hero__video" muted loop playsinline disablepictureinpicture preload="metadata" poster="<?= esc_url($this->poster_url) ?>" aria-hidden="true" tabindex="-1" data-hero-video>
+        <video class="hero__video" muted loop playsinline disablepictureinpicture preload="metadata" aria-hidden="true" tabindex="-1" data-hero-video>
             <source src="<?= esc_url($this->video_url) ?>" type="<?= esc_attr($this->video_type) ?>">
         </video>
 

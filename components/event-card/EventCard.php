@@ -46,6 +46,7 @@ class EventCard extends ComponentBase
      * @param  bool|null  $show_presenter  Show the presenter eyebrow when set on the event.
      * @param  int|null  $heading_level  Title heading level (2–6).
      * @param  string|null  $sizes  `sizes` attribute for the poster.
+     * @param  bool  $eager  Load the poster eagerly with fetchpriority="high" (the page's LCP candidate).
      * @return static|null Null when the post is not an event.
      */
     public static function make(
@@ -54,6 +55,7 @@ class EventCard extends ComponentBase
         ?bool $show_presenter = null,
         ?int $heading_level = null,
         ?string $sizes = null,
+        bool $eager = false,
         array $classes = [],
         array $attributes = [],
         ...$others
@@ -94,7 +96,8 @@ class EventCard extends ComponentBase
             ? wp_get_attachment_image($thumbnail, 'medium_large', false, [
                 'class' => 'event-card__image',
                 'alt' => '',
-                'loading' => 'lazy',
+                'loading' => $args['eager'] ? 'eager' : 'lazy',
+                'fetchpriority' => $args['eager'] ? 'high' : false,
                 'decoding' => 'async',
                 'sizes' => $args['sizes'] ?: ($args['size'] === 'sm'
                     ? '(min-width: 1024px) 380px, calc(100vw - 80px)'

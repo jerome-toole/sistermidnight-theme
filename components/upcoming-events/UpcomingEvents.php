@@ -55,6 +55,7 @@ class UpcomingEvents extends ComponentBase
      * @param  string|null  $variant  One of self::VARIANTS.
      * @param  array|null  $announcement  heading, text, illustration, link (ACF link array). Hidden when the heading is empty.
      * @param  string|null  $illustration  Illustration name for the large bottom-left illustration (grid only).
+     * @param  bool  $eager_first  Load the first card's poster eagerly (when the block is the page's LCP, e.g. What's On).
      */
     public static function make(
         ?string $label = null,
@@ -63,6 +64,7 @@ class UpcomingEvents extends ComponentBase
         ?string $variant = null,
         ?array $announcement = null,
         ?string $illustration = null,
+        bool $eager_first = false,
         bool $is_preview = false,
         array $classes = [],
         array $attributes = [],
@@ -183,6 +185,7 @@ class UpcomingEvents extends ComponentBase
                     event: $event,
                     size: $this->variant === 'grid' ? 'lg' : 'sm',
                     heading_level: $this->heading_level,
+                    eager: $this->eager_first && $index === 0,
                     classes: ['upcoming-events__card'],
                 ),
             ];

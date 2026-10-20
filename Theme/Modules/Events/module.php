@@ -23,7 +23,7 @@ class EventsModule
      */
     public static function renderArchive(): string
     {
-        return UpcomingEvents::make(label: __("What's On", 'gust'), label_level: 1, variant: 'featured', count: 3)
+        return UpcomingEvents::make(label: __("What's On", 'gust'), label_level: 1, variant: 'featured', count: 3, eager_first: true)
             .EventsCalendar::make();
     }
 

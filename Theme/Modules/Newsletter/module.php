@@ -6,6 +6,8 @@ class NewsletterModule
 {
     public static function init(): void
     {
+        BrevoAssets::init();
+
         \add_action('rest_api_init', [__CLASS__, 'registerEndpoint']);
         \add_action('acf/include_fields', [__CLASS__, 'registerFields']);
 

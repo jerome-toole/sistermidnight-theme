@@ -46,6 +46,7 @@
         "auto_update_plugins": true,
 
         "image_sizes": {
+            "gust_small": [600, 600, false],
             "gust_super": [2500, 2500, false],
             "1536x1536": false
         },
