@@ -30,3 +30,4 @@ Appended by build agents when the spec is silent. Format: `- [phase.task] decisi
 - [1.2] Existing `footer_legal_text` serves as `legal_text`, and old footer fields (`footer_text_*`, `footer_images`, `header_call_to_action_1`) are kept until the footer/header rebuild — removing them now would break the current templates
 - [1.2] `hero_illustration` / `newsletter_illustration` select choices are loaded from `Illustration::NAMES` via `acf/load_field` — one source of truth for illustration names
 - [1.2] `listen_url` left empty by default; consumers fall back to `https://stream.radio.co/{station_id}/listen` — spec gives no default and the stream URL derives from the station
+- [1.3] Seed uses core `post` for news (not the `article` CPT) per spec; existing Primary/Footer menus are emptied and rebuilt, existing pages reused by slug; Gravity Forms is not installed so newsletter_form_id is a placeholder 1 and the GF form must be created when the plugin is added.
