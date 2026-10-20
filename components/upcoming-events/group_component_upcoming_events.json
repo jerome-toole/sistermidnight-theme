@@ -1,0 +1,229 @@
+{
+    "key": "group_component_upcoming_events",
+    "title": "Block - Upcoming Events",
+    "fields": [
+        {
+            "key": "field_upcoming_events_label",
+            "label": "Label",
+            "name": "upcoming_events_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Vertical label in the left gutter, rendered as the section heading. Editable in place in the editor. Clear it to hide.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Upcoming",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_upcoming_events_variant",
+            "label": "Variant",
+            "name": "upcoming_events_variant",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Grid: two staggered columns with the announcement and illustration (front page). Featured: three cards in a row (What's On).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "grid": "Grid",
+                "featured": "Featured"
+            },
+            "default_value": "grid",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_upcoming_events_count",
+            "label": "Number of events",
+            "name": "upcoming_events_count",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 4,
+            "min": 1,
+            "max": 12,
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_upcoming_events_illustration",
+            "label": "Illustration",
+            "name": "upcoming_events_illustration",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Large illustration bottom-left after the last card (grid only). Choices are loaded from the Illustration component.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_upcoming_events_variant",
+                        "operator": "==",
+                        "value": "grid"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": false,
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_upcoming_events_announcement",
+            "label": "Announcement",
+            "name": "upcoming_events_announcement",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Text-only card shown first in the right column (grid only). Hidden when the heading is empty.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_upcoming_events_variant",
+                        "operator": "==",
+                        "value": "grid"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_upcoming_events_announcement_heading",
+                    "label": "Heading",
+                    "name": "upcoming_events_announcement_heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_upcoming_events_announcement_text",
+                    "label": "Text",
+                    "name": "upcoming_events_announcement_text",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "tabs": "visual",
+                    "toolbar": "Basic Formatting",
+                    "media_upload": 0,
+                    "delay": 0
+                },
+                {
+                    "key": "field_upcoming_events_announcement_illustration",
+                    "label": "Illustration",
+                    "name": "upcoming_events_announcement_illustration",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Small illustration in the card's top-right corner.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {},
+                    "default_value": false,
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_upcoming_events_announcement_link",
+                    "label": "Link",
+                    "name": "upcoming_events_announcement_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "Optional \"Read more\" link under the text.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "theme/upcoming-events"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792900000
+}

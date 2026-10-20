@@ -1,0 +1,29 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "theme/upcoming-events",
+    "title": "Upcoming Events",
+    "description": "The next events as a staggered grid of event cards, with an optional announcement card and illustration. Also the featured row on What's On.",
+    "category": "theme-blocks",
+    "icon": "calendar-alt",
+    "keywords": ["events", "upcoming", "featured", "announcement"],
+    "textdomain": "gust",
+    "acf": {
+        "blockVersion": 3,
+        "mode": "preview",
+        "renderCallback": "Gust\\Components\\UpcomingEvents::renderBlock"
+    },
+    "supports": {
+        "anchor": true,
+        "align": false,
+        "mode": false,
+        "jsx": false,
+        "html": false,
+        "multiple": true,
+        "color": {
+            "background": false,
+            "text": false,
+            "gradients": false
+        }
+    }
+}
