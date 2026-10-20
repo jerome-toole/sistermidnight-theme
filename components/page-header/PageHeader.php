@@ -2,180 +2,156 @@
 
 namespace Gust\Components;
 
-use Gust\Component;
 use Gust\ComponentBase;
+use Gust\Router;
 
 /**
  * PageHeader Component
  *
+ * Internal page header: the page title as a vertical label in the left
+ * gutter (the page <h1>; rotation is CSS only), an optional illustration or
+ * image in the left half and the intro copy in the right half. Below md the
+ * label sits horizontally above and the media follows the intro.
+ *
  * Usage:
  *   use Gust\Components\PageHeader;
  *
- *   echo PageHeader::make();
+ *   echo PageHeader::fromObject($object);                       // templates: page, term, search, 404…
+ *   echo PageHeader::fromPage($post);                           // a page's own fields
+ *   echo PageHeader::make(label: 'About us', intro: '<p>…</p>', media: 'stars');
+ *   echo PageHeader::make(label: 'Venue', media: ['ID' => 12]); // image array or attachment ID
  */
 class PageHeader extends ComponentBase
 {
     protected static string $name = 'page-header';
 
-    protected static function getDefaults(): array
-    {
-        return [
-            'image_position' => 'inset',
-            'background' => 'dark-umber',
-            'show_breadcrumbs' => true,
-        ];
-    }
-
     /**
      * Create a new PageHeader component.
      *
-     * @return static|null Returns null if component should not render.
+     * @param  string  $label  Page title, rendered as the <h1>.
+     * @param  string  $intro  Intro copy (HTML).
+     * @param  string|int|array|null  $media  Illustration name, image array / attachment ID, or null.
+     * @return static|null Returns null without a label.
      */
     public static function make(
-        ?object $object = null,
+        string $label = '',
+        string $intro = '',
+        string|int|array|null $media = null,
         array $classes = [],
-        ?string $type = null,
-        ?string $image_position = null,
-        ?string $background = null,
         array $attributes = [],
-        ?bool $show_breadcrumbs = null,
         ...$others
     ): ?static {
         return static::createFromArgs(static::mergeArgs(get_defined_vars()));
     }
 
+    /**
+     * Build from a page's own fields (intro_text, header_media,
+     * header_illustration, header_image). Works for any WP_Post; posts
+     * without the fields just get their title. `$intro` is the fallback
+     * when the page has no intro_text.
+     */
+    public static function fromPage(?\WP_Post $post, string $intro = '', array $classes = [], array $attributes = []): ?static
+    {
+        if (! $post) {
+            return null;
+        }
+
+        $media = null;
+
+        if (\function_exists('get_field')) {
+            $intro = (string) \get_field('intro_text', $post->ID) ?: $intro;
+            $type = (string) \get_field('header_media', $post->ID);
+
+            if ($type === 'image') {
+                $media = \get_field('header_image', $post->ID) ?: null;
+            } elseif ($type === 'illustration') {
+                $media = (string) \get_field('header_illustration', $post->ID) ?: null;
+            }
+        }
+
+        return static::make(
+            label: $post->post_title,
+            intro: $intro,
+            media: $media,
+            classes: $classes,
+            attributes: $attributes,
+        );
+    }
+
+    /**
+     * Build for the current request from the queried object. Routes with a
+     * backing router page (search, 404, archives) use that page's fields.
+     */
+    public static function fromObject(?object $object = null, array $classes = [], array $attributes = []): ?static
+    {
+        $object ??= \Gust\WordPress\PageObject::get();
+
+        if ($object instanceof \WP_Post) {
+            return static::fromPage($object, classes: $classes, attributes: $attributes);
+        }
+
+        $label = '';
+        $intro = '';
+
+        if ($object instanceof \WP_Term) {
+            $label = $object->name;
+            $intro = (string) \term_description($object);
+        } elseif ($object instanceof \WP_Post_Type) {
+            $label = $object->label;
+        } elseif ($object instanceof \WP_User) {
+            $label = sprintf(__('Posts by %s', 'gust'), $object->display_name);
+        } elseif ($object instanceof \WP_Query && $object->is_404()) {
+            $label = __('404', 'gust');
+            $intro = '<p>'.esc_html__('The page you are looking for could not be found.', 'gust').'</p>';
+        } elseif ($object instanceof \WP_Query && $object->is_search()) {
+            $label = __('Search', 'gust');
+        }
+
+        if (\is_search() && ($query = \get_search_query())) {
+            $intro = '<p>'.sprintf(esc_html__("Showing results for '%s'", 'gust'), esc_html($query)).'</p>';
+        }
+
+        if ($page = Router::getPage()) {
+            return static::fromPage($page, $intro, $classes, $attributes);
+        }
+
+        return static::make(label: $label, intro: $intro, classes: $classes, attributes: $attributes);
+    }
+
+    protected static function validate(array $args): bool
+    {
+        return trim($args['label'] ?? '') !== '';
+    }
+
     protected static function transform(array $args): array
     {
-        if (isset($args['is_preview']) && $args['is_preview']) {
-            $args['object'] = \get_post($args['post_id']);
-        } else {
-            $args['object'] = \Gust\WordPress\PageObject::get() ?? null;
-        }
+        $args['label'] = trim($args['label']);
+        $args['intro'] = trim($args['intro'] ?? '');
+        $args['classes'] = array_merge(['page-header', 'alignfull'], $args['classes'] ?? []);
+        $args['attributes'] ??= [];
 
-        $heading = '';
+        $media = $args['media'] ?? null;
+        $args['illustration'] = '';
+        $args['image'] = null;
 
-        if (! empty($args['object'])) {
-            $object = $args['object'];
+        if (is_string($media) && in_array($media, Illustration::NAMES, true)) {
+            $args['illustration'] = $media;
+            $args['classes'][] = 'page-header--illustration';
+        } elseif (is_array($media) || is_int($media)) {
+            $id = is_array($media) ? (int) ($media['ID'] ?? $media['id'] ?? 0) : $media;
 
-            if ($object instanceof \WP_Term) {
-                $heading = $object->name;
-            } elseif ($object instanceof \WP_Post_Type) {
-                if ($routerPage = \Gust\Router::getPage()) {
-                    $object = $routerPage;
-                } else {
-                    $heading = $object->label;
-                }
-            } elseif ($object instanceof \WP_Query && $object->is_404()) {
-                $heading = __('404', 'gust');
-            } elseif ($object instanceof \WP_Query && $object->is_search()) {
-                $heading = __('Search', 'gust');
-
-                if (! empty($object->query['s'])) {
-                    $args['subheading'] = sprintf(__("Showing results for '%s'", 'gust'), $object->query['s']);
-                }
-            } elseif ($object instanceof \WP_User) {
-                $heading = sprintf(__('Posts by %s', 'gust'), $object->data->display_name);
-            }
-
-            if ($object instanceof \WP_Post) {
-                $heading = $object->post_title;
-                $args['image'] = \get_post_thumbnail_id($object);
-
-                if ($object->post_type === 'post') {
-                    $args['meta'] = sprintf(__('Published on %s ', 'gust'), \get_the_date(\get_option('date_format'), $object->ID));
-                    $args['labels'] = \Theme\Utils\ObjectMeta::getObjectLabels($object->ID, ['limit' => 3, 'taxonomies' => ['category']]);
-                    $args['background'] = false;
-                    $args['image_position'] = 'mini';
-                    $args['type'] = 'article';
-
-                    if ($author_name = \get_the_author_meta('display_name', $object->post_author)) {
-                        $args['meta'] .= sprintf(__('by %s ', 'gust'), $author_name);
-                    }
-                } elseif ($object->post_type === 'page') {
-                    if (\is_front_page()) {
-                        $args['classes'][] = 'page-header--home';
-                        $args['show_breadcrumbs'] = false;
-                    }
-
-                    if (empty($object->post_parent)) {
-                        $args['show_breadcrumbs'] = false;
-                    }
-                }
-
-                if ($heading === 'Auto Draft') {
-                    $heading = __('Post Title', 'gust');
-                }
-
-                unset($args['object']);
-            }
-        }
-
-        $args['heading'] = $args['heading'] ?? $heading;
-
-        if (! empty($heading) && empty($args['heading'])) {
-            $args['heading'] = $heading;
-        }
-
-        if (! empty($args['primary_call_to_action'])) {
-            $args['buttons'][] = array_merge($args['primary_call_to_action'], ['classes' => ['btn']]);
-        }
-
-        if (isset($args['is_preview']) && $args['is_preview']) {
-            if (empty($args['heading'])) {
-                $args['heading'] = _x('Add title', 'Placeholder for page header title', 'gust');
-            }
-
-            if (empty($args['subheading'])) {
-                $args['subheading'] = _x('Add subheading', 'Placeholder for page header subheading', 'gust');
-            }
-        }
-
-        if (! empty($args['image'])) {
-            if (is_array($args['image'])) {
-                $args['image'] = $args['image']['ID'];
-            }
-
-            if (($args['image_position'] ?? '') === 'mini') {
+            if ($id > 0 && \wp_attachment_is_image($id)) {
                 $args['image'] = Image::make(
-                    id: $args['image'],
-                    size: 'medium',
-                    sizes: '(min-width: 768px) 50vw, 100vw',
+                    id: $id,
+                    size: 'large',
+                    sizes: '(min-width: 768px) 410px, 100vw',
+                    classes: ['page-header__img'],
                 );
-                $args['classes'][] = 'has-mini-image';
-            } else {
-                $args['image'] = Image::make(
-                    id: $args['image'],
-                    size: 'gust_super',
-                    sizes: '(min-width: 768px) 50vw, 100vw',
-                );
-                $args['classes'][] = 'has-inset-image';
+                $args['classes'][] = 'page-header--image';
             }
         }
 
-        if (! empty($args['heading'])) {
-            $args['heading'] = [
-                'heading' => $args['heading'],
-                'el' => 'h1',
-                'classes' => ['page-header__heading', 'is-style-type-h1'],
-            ];
-        }
-
-        if (! empty($args['background']) && $args['background'] !== 'none') {
-            $args['classes'][] = 'has-'.$args['background'].'-background-color';
-            $args['classes'][] = 'has-background';
-        }
-
-        if (! empty($args['type'])) {
-            $args['classes'][] = 'page-header--type--'.$args['type'];
-        }
-
-        if (! empty($args['image_overlay_opacity'])) {
-            $args['attributes']['style']['--page-header--overlay-opacity'] = $args['image_overlay_opacity'].'%';
-        }
-
-        if (! empty($args['show_breadcrumbs'])) {
-            $args['classes'][] = 'has-breadcrumbs';
-        }
+        unset($args['media']);
 
         return $args;
     }

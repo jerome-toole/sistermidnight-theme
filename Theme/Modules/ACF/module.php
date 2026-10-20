@@ -23,6 +23,7 @@ class ACFModule
         \add_filter('acf/load_field/name=item_theme_background_color', [__CLASS__, 'loadColorFieldChoices']);
         \add_filter('acf/load_field/name=hero_illustration', [__CLASS__, 'loadIllustrationFieldChoices']);
         \add_filter('acf/load_field/name=newsletter_illustration', [__CLASS__, 'loadIllustrationFieldChoices']);
+        \add_filter('acf/load_field/name=header_illustration', [__CLASS__, 'loadIllustrationFieldChoices']);
 
         \add_filter('acf/load_value/type=link', [__CLASS__, 'filterEmptyLinkField']);
 

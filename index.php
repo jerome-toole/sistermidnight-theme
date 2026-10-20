@@ -6,23 +6,21 @@ $object = \Gust\WordPress\PageObject::get();
 
 site_main_open(object: $object);
 
+echo \Gust\Components\PageHeader::fromObject($object);
+
 $routerPage = \Gust\Router::getPage();
 
 if ($routerPage) {
-    if (! has_block('theme/page-header', $routerPage->ID)) {
-        echo \Gust\Components\PageHeader::make(object: $object);
-    }
-
     echo apply_filters('the_content', $routerPage->post_content);
+
+    if (! has_block('theme/template-content', $routerPage)) {
+        echo \Gust\Router::renderSlot('template-content');
+    }
 } else {
     $items = [];
     while (have_posts()) {
         the_post();
         $items[]['object'] = get_post();
-    }
-
-    if (! has_block('theme/page-header')) {
-        echo \Gust\Components\PageHeader::make(object: $object);
     }
 
     if (! empty($items)) {
