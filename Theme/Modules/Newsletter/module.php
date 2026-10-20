@@ -8,6 +8,10 @@ class NewsletterModule
     {
         \add_action('rest_api_init', [__CLASS__, 'registerEndpoint']);
         \add_action('acf/include_fields', [__CLASS__, 'registerFields']);
+
+        // Newsletter form: primary Button (label + arrow) instead of GF's <input type="submit">
+        // https://docs.gravityforms.com/gform_submit_button/
+        \add_filter('gform_submit_button', [\Gust\Components\NewsletterForm::class, 'submitButton'], 10, 2);
     }
 
     public static function registerEndpoint(): void

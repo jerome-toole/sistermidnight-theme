@@ -1,0 +1,43 @@
+{
+    "key": "group_page",
+    "title": "Page",
+    "fields": [
+        {
+            "key": "field_page_hide_newsletter",
+            "label": "Hide newsletter banner",
+            "name": "hide_newsletter",
+            "type": "true_false",
+            "instructions": "The Newsletter banner shows after the content on every page except the front page. Turn it off for this page.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 10,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Per-page settings",
+    "show_in_rest": 0
+}

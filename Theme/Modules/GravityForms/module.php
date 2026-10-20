@@ -18,6 +18,11 @@ class GravityFormsModule
         // https://docs.gravityforms.com/gform_disable_form_theme_css/
         \add_filter('gform_disable_form_theme_css', '__return_true');
 
+        // Render every form with the legacy "gravity-theme" markup (no Orbital inline
+        // style block); components/gravity-forms/styles.pcss is written against it
+        // https://docs.gravityforms.com/gform_form_theme_slug/
+        \add_filter('gform_form_theme_slug', fn () => 'gravity-theme');
+
         // Override default GF initial settings
         \add_filter('gform_form_settings_initial_values', [__CLASS__, 'setInitialSettings']);
 

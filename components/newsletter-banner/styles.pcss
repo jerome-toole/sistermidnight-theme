@@ -1,0 +1,57 @@
+/* ---------------------------------------------------------------------------
+ * Newsletter banner
+ *
+ * Stone-beige band (padding 40, 16 at the sides below md): heading, text and
+ * the Newsletter Form on the left, a 240px illustration on the right. Below
+ * md the illustration is hidden and the content stacks.
+ * ------------------------------------------------------------------------- */
+
+.newsletter-banner {
+    --newsletter-banner--padding: space(40);
+    --newsletter-banner--padding-x: space(16);
+    --newsletter-banner--illustration-size: space(240);
+
+    @apply color-context-stone-beige;
+
+    padding: var(--newsletter-banner--padding) var(--newsletter-banner--padding-x);
+
+    @media (width >= theme('screens.md')) {
+        --newsletter-banner--padding-x: var(--newsletter-banner--padding);
+    }
+}
+
+.newsletter-banner__inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: space(32);
+}
+
+.newsletter-banner__content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: space(26);
+    max-width: space(541);
+}
+
+.newsletter-banner__heading {
+    @apply type-h3;
+}
+
+.newsletter-banner__text {
+    @apply type-body;
+
+    max-width: space(436);
+}
+
+/* Decorative, so simply dropped on small screens */
+.newsletter-banner__illustration {
+    display: none;
+
+    @media (width >= theme('screens.md')) {
+        display: block;
+        flex: none;
+        width: var(--newsletter-banner--illustration-size);
+    }
+}

@@ -1,0 +1,79 @@
+/* ---------------------------------------------------------------------------
+ * Newsletter form
+ *
+ * Wraps a Gravity Forms render: one email field in the underline style with
+ * the primary "Sign up" button beside it (gap 32, bottoms aligned). The
+ * validation summary spans the full row above; below ~md the two wrap and the
+ * input fills the line. Colours come from the surrounding colour context.
+ * ------------------------------------------------------------------------- */
+
+.newsletter-form {
+    --newsletter-form--gap: space(32);
+    --newsletter-form--input-width: space(308);
+    --input--background-color: transparent;
+    --input--background-color--focus: transparent;
+    /* Re-declared here so they resolve against the surrounding colour context,
+     * not the :root foreground */
+    --input--border-color: var(--color-foreground);
+    --input--border-radius: 0;
+    --input--border-width: 2px;
+    --input--color: var(--color-foreground);
+    --input--color-focus: var(--color-foreground);
+    --input--outline-width--focus: 0;
+    --input--padding-x: 0;
+    --input--padding-y: space(6);
+    --input--placeholder-color: color-mix(in oklab, var(--color-foreground) 70%, transparent);
+
+    .gform_wrapper {
+        /* GF already offsets the wrapper; the banner sets its own gaps */
+        margin: 0;
+    }
+
+    .gform_wrapper form {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: space(16) var(--newsletter-form--gap);
+    }
+
+    .gform_heading,
+    .gform_required_legend {
+        display: none;
+    }
+
+    .gform_validation_errors {
+        flex: 0 0 100%;
+        margin: 0;
+    }
+
+    .gform-body {
+        flex: 1 1 space(200);
+        max-width: var(--newsletter-form--input-width);
+    }
+
+    .gform_footer {
+        flex: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .gfield_label {
+        @apply screen-reader;
+    }
+
+    .ginput_container input {
+        @apply type-base;
+
+        border-width: 0 0 var(--input--border-width);
+
+        &:focus-visible {
+            outline: 2px solid var(--focus--color);
+            outline-offset: 4px;
+        }
+    }
+
+    /* The field error message sits under the underline */
+    .gfield_validation_message {
+        margin-top: space(8);
+    }
+}
