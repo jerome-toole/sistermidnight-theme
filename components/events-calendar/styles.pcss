@@ -1,0 +1,268 @@
+/* ---------------------------------------------------------------------------
+ * Events Calendar (partial)
+ *
+ * Header row: "Calendar // List" toggle left, "< April 2026 >" month nav
+ * right, both type-h6 on the page colour. Below it either the month table
+ * or the list; both are drawn by scripts.js into .events-calendar__body,
+ * which starts out holding the server-rendered fallback rows.
+ *
+ * Table: 7 equal columns, Sun–Sat headings (type-h6), cells ~155px tall
+ * separated by a 2px gap that shows the page colour. Day number top-left
+ * ("April 1" on the 1st), event titles + presenter bottom-left. Cell colour
+ * contexts: stone-beige (no events), clay-beige (has events), burnt-sienna
+ * (today). Past and adjacent-month days are muted.
+ *
+ * Below md the toggle is hidden and the script only renders the list.
+ * ------------------------------------------------------------------------- */
+
+.events-calendar {
+    --events-calendar--padding-block: spaceFluid(48, 126);
+    --events-calendar--header-gap: space(24);
+    --events-calendar--cell-height: space(155);
+    --events-calendar--cell-padding: space(10) space(8);
+    --events-calendar--cell-gap: 2px;
+    --events-calendar--muted-opacity: 0.85;
+
+    padding-block: var(--events-calendar--padding-block);
+    padding-inline: var(--container-padding);
+}
+
+/* ---- Header -------------------------------------------------------------- */
+
+.events-calendar__header {
+    @apply type-h6;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: space(12) var(--events-calendar--header-gap);
+    margin-bottom: space(21);
+    line-height: 1.2;
+}
+
+.events-calendar__views {
+    display: none;
+    gap: space(9);
+
+    @media (width >= theme('screens.md')) {
+        display: flex;
+    }
+}
+
+.events-calendar__view {
+    color: var(--color-foreground);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.25em;
+    transition: text-decoration-color 0.2s;
+
+    &:hover,
+    &[aria-current] {
+        text-decoration-color: currentcolor;
+    }
+}
+
+.events-calendar__months {
+    display: flex;
+    align-items: center;
+    gap: space(11);
+    margin-left: auto;
+}
+
+.events-calendar__month-link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: space(32);
+    min-height: space(44);
+    margin-block: space(-10);
+    color: var(--color-foreground);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--color-stone-beige);
+    }
+}
+
+/* ---- Table --------------------------------------------------------------- */
+
+.events-calendar__table {
+    width: calc(100% + var(--events-calendar--cell-gap) * 2);
+    margin: 0 calc(var(--events-calendar--cell-gap) * -1);
+    border-collapse: separate;
+    border-spacing: var(--events-calendar--cell-gap);
+    table-layout: fixed;
+}
+
+.events-calendar__heading {
+    @apply type-h6;
+
+    padding: space(6) space(8);
+    text-align: left;
+    line-height: 1.2;
+}
+
+.events-calendar__cell {
+    @apply color-context-stone-beige;
+
+    padding: 0;
+    vertical-align: top;
+}
+
+/* dark-umber (the context foreground) is 4.1:1 on clay-beige; black passes, muted too */
+.events-calendar__cell--has-events {
+    @apply color-context-clay-beige;
+
+    --color-foreground: var(--color-black);
+    --focus--color: var(--color-black);
+
+    color: var(--color-foreground);
+}
+
+/* warm-sand (the context foreground) is under 4.5:1 on burnt-sienna; cool-grey passes */
+.events-calendar__cell--today {
+    @apply color-context-burnt-sienna;
+
+    --color-foreground: var(--color-cool-grey);
+    --focus--color: var(--color-cool-grey);
+
+    color: var(--color-foreground);
+}
+
+.events-calendar__cell-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: space(12);
+    min-height: var(--events-calendar--cell-height);
+    padding: var(--events-calendar--cell-padding);
+}
+
+.events-calendar__day {
+    @apply type-h6;
+
+    line-height: 1.2;
+
+    .events-calendar__cell--past &,
+    .events-calendar__cell--outside & {
+        opacity: var(--events-calendar--muted-opacity);
+    }
+}
+
+.events-calendar__events {
+    display: flex;
+    flex-direction: column;
+    gap: space(8);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .events-calendar__cell--past & {
+        opacity: var(--events-calendar--muted-opacity);
+    }
+}
+
+.events-calendar__event {
+    @apply type-small;
+
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+}
+
+.events-calendar__event-link {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    color: var(--color-foreground);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.15em;
+    transition: text-decoration-color 0.2s;
+
+    &:hover {
+        text-decoration-color: currentcolor;
+    }
+
+    &:focus-visible {
+        outline-offset: 1px;
+    }
+}
+
+.events-calendar__event-presenter {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ---- List ---------------------------------------------------------------- */
+
+.events-calendar__list {
+    display: flex;
+    flex-direction: column;
+    gap: spaceFluid(32, 48);
+}
+
+.events-calendar__group-heading {
+    @apply type-h4;
+
+    margin: 0 0 space(16);
+}
+
+.events-calendar__rows {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-foreground);
+}
+
+.events-calendar__row {
+    display: grid;
+    gap: space(4) space(24);
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: space(16);
+    border-bottom: 1px solid var(--color-foreground);
+
+    @media (width >= theme('screens.md')) {
+        grid-template-columns: space(180) minmax(0, 1fr) auto;
+        align-items: baseline;
+    }
+}
+
+.events-calendar__row-date {
+    @apply type-h6;
+
+    display: flex;
+    gap: space(12);
+    line-height: 1.2;
+}
+
+.events-calendar__row-title {
+    @apply type-h4;
+
+    color: var(--color-foreground);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.12em;
+    transition: text-decoration-color 0.2s;
+
+    &:hover {
+        text-decoration-color: currentcolor;
+    }
+}
+
+.events-calendar__row-venue {
+    @apply type-h6;
+
+    line-height: 1.2;
+}
+
+.events-calendar__empty {
+    @apply type-large;
+
+    margin: 0;
+}

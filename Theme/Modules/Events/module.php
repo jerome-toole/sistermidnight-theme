@@ -2,11 +2,8 @@
 
 namespace Theme\Modules\Events;
 
-use Gust\Components\Cards;
-use Gust\Components\NoContent;
-use Gust\Components\Pagination;
-use Gust\Components\TaxonomyFilters;
-use Gust\WordPress\PageObject;
+use Gust\Components\EventsCalendar;
+use Gust\Components\UpcomingEvents;
 
 class EventsModule
 {
@@ -19,27 +16,14 @@ class EventsModule
         \add_filter('acf/settings/load_json', [__CLASS__, 'loadACFJson']);
     }
 
+    /**
+     * What's On: the next three events as featured cards, then the calendar.
+     * The page header comes from the router page (index.php).
+     */
     public static function renderArchive(): string
     {
-        $object = PageObject::get();
-
-        $items = [];
-        while (\have_posts()) {
-            \the_post();
-            $items[]['object'] = \get_post();
-        }
-
-        \ob_start();
-
-        if (! empty($items)) {
-            echo TaxonomyFilters::make(object: $object);
-            echo Cards::make(items: $items);
-            echo Pagination::make();
-        } else {
-            echo NoContent::make(object: $object);
-        }
-
-        return \ob_get_clean();
+        return UpcomingEvents::make(label: '', variant: 'featured', count: 3)
+            .EventsCalendar::make();
     }
 
     public static function loadACFJson(array $paths): array
