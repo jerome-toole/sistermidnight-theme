@@ -20,7 +20,7 @@ class Card extends ComponentBase
     protected static function getDefaults(): array
     {
         return [
-            'background' => 'white',
+            'background' => 'stone-beige',
             'image_size' => 'medium_large',
             'show_read_more' => true,
             'heading_class' => 'is-style-type-h4',

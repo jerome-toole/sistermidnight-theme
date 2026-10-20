@@ -92,48 +92,65 @@
 
     /* Typography (@font-face rules in 2-base/_fonts.pcss) */
     --font-display: "SisterMidnight", Impact, serif;
-    --font-sans: "Rework", system-ui, sans-serif;
+    --font-sans: "FOSS Modern", system-ui, sans-serif;
     --font-serif: var(--font-display);
     --font-mono: ui-monospace, Menlo, Monaco, Consolas, monospace;
 
-    /* Type scale. Each size carries its line height and letter spacing;
-       type-* utilities add family and weight. */
-    --text-hero: rfs(30, 48);
-    --text-hero--line-height: 1.3;
-    --text-hero--letter-spacing: 0em;
-    --text-h1: rfs(32, 54);
-    --text-h1--line-height: 1.3;
-    --text-h1--letter-spacing: 0em;
-    --text-h2: rfs(26, 34);
-    --text-h2--line-height: 1.3;
-    --text-h2--letter-spacing: 0em;
-    --text-h3: rfs(20, 24);
-    --text-h3--line-height: 1.3;
-    --text-h3--letter-spacing: 0em;
-    --text-h4: rfs(17, 19);
-    --text-h4--line-height: 1.3;
-    --text-h4--letter-spacing: 0.02em;
-    --text-h5: rfs(14, 16);
-    --text-h5--line-height: 1.3;
-    --text-h5--letter-spacing: 0.02em;
-    --text-h6: rem(16);
-    --text-h6--line-height: 1.3;
-    --text-h6--letter-spacing: 0em;
-    --text-base: rfs(17, 18);
-    --text-base--line-height: 1.3;
-    --text-base--letter-spacing: 0.02em;
-    --text-small: rem(16);
-    --text-small--line-height: 1.375;
-    --text-small--letter-spacing: 0em;
-    --text-label: rem(16);
-    --text-label--line-height: 1.2;
-    --text-label--letter-spacing: 0.02em;
-    --text-label-sm: rem(14);
-    --text-label-sm--line-height: 1.3;
-    --text-label-sm--letter-spacing: 0.02em;
-    --text-meta: rem(16);
-    --text-meta--line-height: 1.2;
-    --text-meta--letter-spacing: 0em;
+    /* Type scale, from the Figma website designs (1445px desktop frames).
+       Each size carries its line height and letter spacing;
+       type-* utilities add family, weight and case. */
+
+    /* Sister Midnight */
+    --text-hero: rfs(40, 65);
+    --text-hero--line-height: 0.98;
+    --text-hero--letter-spacing: -0.05em;
+    --text-h1: rfs(40, 65);
+    --text-h1--line-height: 1.05;
+    --text-h1--letter-spacing: -0.01em;
+    --text-h2: rfs(34, 50);
+    --text-h2--line-height: 1.05;
+    --text-h2--letter-spacing: -0.01em;
+    --text-h3: rfs(28, 40);
+    --text-h3--line-height: 1.05;
+    --text-h3--letter-spacing: -0.01em;
+    --text-h4: rfs(24, 32);
+    --text-h4--line-height: 1.05;
+    --text-h4--letter-spacing: -0.01em;
+    --text-h5: rfs(18, 20);
+    --text-h5--line-height: 1.05;
+    --text-h5--letter-spacing: -0.01em;
+    --text-h6: rem(17);
+    --text-h6--line-height: 0.84;
+    --text-h6--letter-spacing: -0.01em;
+    --text-title: rfs(32, 52);
+    --text-title--line-height: 1.1;
+    --text-title--letter-spacing: -0.019em;
+    --text-title-sm: rfs(28, 42);
+    --text-title-sm--line-height: 1.1;
+    --text-title-sm--letter-spacing: -0.019em;
+
+    /* FOSS Modern Bold */
+    --text-large: rfs(25, 32);
+    --text-large--line-height: 0.9;
+    --text-large--letter-spacing: -0.07em;
+    --text-lead: rfs(21, 25);
+    --text-lead--line-height: 1.1;
+    --text-lead--letter-spacing: -0.07em;
+    --text-base: rfs(18, 21);
+    --text-base--line-height: 1.1;
+    --text-base--letter-spacing: -0.07em;
+    --text-small: rfs(16, 18);
+    --text-small--line-height: 1.1;
+    --text-small--letter-spacing: -0.07em;
+    --text-label: rfs(20, 24);
+    --text-label--line-height: 0.9;
+    --text-label--letter-spacing: -0.07em;
+    --text-label-sm: rem(18);
+    --text-label-sm--line-height: 0.9;
+    --text-label-sm--letter-spacing: -0.07em;
+    --text-meta: rem(13);
+    --text-meta--line-height: 0.9;
+    --text-meta--letter-spacing: -0.07em;
     --text-code: rem(14);
     --text-code--line-height: 1.6;
     --text-code--letter-spacing: 0em;

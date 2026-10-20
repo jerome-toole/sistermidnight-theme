@@ -72,7 +72,7 @@ use Gust\Components\DocumentLinks;
 ]) ?>
 
 <h3>With Background Color</h3>
-<div class="color-context-paper">
+<div class="color-context-warm-sand">
     <?= DocumentLinks::make([
         'heading' => 'Financial Documents',
         'documents' => [

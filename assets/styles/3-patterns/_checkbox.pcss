@@ -38,7 +38,7 @@
             height: var(--checkbox--size);
             border: var(--checkbox--border-width) solid var(--color-accent);
             border-radius: var(--checkbox--border-radius);
-            background: var(--color-white);
+            background: var(--color-warm-sand);
             cursor: pointer;
             transition: transition(background);
         }
@@ -85,7 +85,7 @@
                 &::after {
                     width: var(--checkbox--check-size);
                     height: calc(var(--checkbox--check-size) / 2);
-                    border-color: var(--color-white);
+                    border-color: var(--color-warm-sand);
                 }
             }
         }
@@ -93,7 +93,7 @@
         &:focus + label::before,
         + label:focus::before {
             box-shadow:
-                0 0 0 calc(var(--input--outline-width--focus) * 2) var(--color-white),
+                0 0 0 calc(var(--input--outline-width--focus) * 2) var(--color-warm-sand),
                 0 0 0 calc(var(--input--outline-width--focus) * 4) var(--input--color-focus);
         }
 

@@ -16,7 +16,7 @@ use Gust\Components\PressLinks;
 ]); ?>
 
 <h2>Press Links - No Heading</h2>
-<div class="color-context-warm-black">
+<div class="color-context-dark-umber">
 <?= PressLinks::make([
     'links' => [
         ['date' => '2025-12-01', 'publication' => 'NME', 'url' => 'https://example.com/nme'],
@@ -26,7 +26,7 @@ use Gust\Components\PressLinks;
 </div>
 
 <h2>Press Links - On Orange</h2>
-<div class="color-context-orange">
+<div class="color-context-burnt-sienna">
 <?= PressLinks::make([
     'heading' => 'Press Coverage',
     'links' => [

@@ -14,7 +14,7 @@ use Gust\Components\StatsDisplay;
 ]); ?>
 
 <h2>Stats Display - Single Stat</h2>
-<div class="color-context-orange">
+<div class="color-context-burnt-sienna">
 <?= StatsDisplay::make([
     'stats' => [
         ['value' => '£351,725', 'label' => 'raised to date'],
@@ -23,7 +23,7 @@ use Gust\Components\StatsDisplay;
 </div>
 
 <h2>Stats Display - Compact</h2>
-<div class="color-context-warm-black">
+<div class="color-context-dark-umber">
 <?= StatsDisplay::make([
     'stats' => [
         ['value' => '£351,725', 'label' => 'raised'],

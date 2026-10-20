@@ -1,4 +1,4 @@
-<header class="<?= classes('site-header color-context-deep-blue', $this->classes) ?>" data-site-header <?= attributes($this->attributes) ?>>
+<header class="<?= classes('site-header color-context-dark-umber', $this->classes) ?>" data-site-header <?= attributes($this->attributes) ?>>
     <div class="site-header__bar">
         <a href="<?= esc_url(home_url('/')) ?>" class="site-header__logo">
             <?= esc_html(get_bloginfo('name')) ?>

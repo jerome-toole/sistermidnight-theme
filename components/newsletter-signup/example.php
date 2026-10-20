@@ -19,7 +19,7 @@ use Gust\Components\NewsletterSignup;
 ]); ?>
 
 <h2>Newsletter Signup - On Dark Background</h2>
-<div class="color-context-warm-black" style="padding: 1.5rem;">
+<div class="color-context-dark-umber" style="padding: 1.5rem;">
     <?= NewsletterSignup::make([
         'heading' => 'Subscribe to updates',
     ]); ?>

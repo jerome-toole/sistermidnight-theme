@@ -27,7 +27,7 @@ use Gust\Components\PageNavigation;
 ]) ?>
 
 <h3>With Background Color</h3>
-<div class="color-context-paper">
+<div class="color-context-warm-sand">
     <?= PageNavigation::make([
         'links' => [
             ['label' => 'Introduction', 'anchor' => 'intro'],

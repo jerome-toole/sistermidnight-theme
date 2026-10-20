@@ -11,7 +11,7 @@ class Gallery extends ComponentBase
     protected static function getDefaults(): array
     {
         return [
-            'background_color' => 'white',
+            'background_color' => 'dark-umber',
         ];
     }
 

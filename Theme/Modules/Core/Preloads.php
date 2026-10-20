@@ -18,7 +18,7 @@ class Preloads
                 'as' => 'font',
             ],
             [
-                'href' => \Gust\Helpers::staticUrl('fonts/rework-text-regular.woff2'),
+                'href' => \Gust\Helpers::staticUrl('fonts/foss-modern-bold.woff2'),
                 'type' => 'font/woff2',
                 'as' => 'font',
             ],

@@ -27,7 +27,7 @@ use Gust\Components\TeamGrid;
 ]); ?>
 
 <h2>Team Grid - 2 Column</h2>
-<div class="color-context-paper">
+<div class="color-context-warm-sand">
 <?= TeamGrid::make([
     'heading' => 'Leadership',
     'team_members' => [

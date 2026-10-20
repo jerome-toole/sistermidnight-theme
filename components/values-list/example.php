@@ -32,7 +32,7 @@ $example_values = [
     ]) ?>
 </section>
 
-<section class="dev-section color-context-warm-black">
+<section class="dev-section color-context-dark-umber">
     <h2>Values List - Dark Background</h2>
     <?= ValuesList::make([
         'heading' => 'Our Values',
