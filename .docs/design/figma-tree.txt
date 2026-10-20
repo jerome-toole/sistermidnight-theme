@@ -1,0 +1,1150 @@
+Front Page | FRA | 1445x4869@5957,0 | #3b302a | col gap0 p0/0/0/0
+  Intro | FRA | 1445x690@0,0 | #9e4429
+    IMG_4361 1 | REC | 1474x921@-28,-54 | IMAGE
+    Sister Midnight | TEX | 525x50@20,38 | #cfbdad | Sister 60 | "Sister Midnight"
+    Menu | FRA | 223x138@1198,36 | col gap18 p0/0/0/0
+      About | TEX | 77x21@146,0 | #cfbdad | Sister 20 | "About"
+      Events | TEX | 91x21@132,39 | #cfbdad | Sister 20 | "Events"
+      Venue | TEX | 74x21@149,78 | #cfbdad | Sister 20 | "Venue"
+      Radio | TEX | 69x21@154,117 | #cfbdad | Sister 20 | "Radio"
+    Menu | FRA | 365x21@1057,31 | row gap18 p0/0/0/0
+      About | TEX | 77x21@0,0 | #cfbdad | Sister 20 | "About"
+      Events | TEX | 91x21@95,0 | #cfbdad | Sister 20 | "Events"
+      Venue | TEX | 74x21@204,0 | #cfbdad | Sister 20 | "Venue"
+      Radio | TEX | 69x21@296,0 | #cfbdad | Sister 20 | "Radio"
+    01.41 Illustrations | INS | 562x562@777,98 | INST
+      Group | GRO | 0x0@156,28
+        Frame | FRA | 249x506@156,28
+          Clip path group | GRO | 248x499@0,0 | +2
+    Rectangle 38 | REC | 44x44@1361,616 | #3b302a
+    Rectangle 39 | REC | 5x19@1375,628 | #c4b29f
+    Rectangle 40 | REC | 5x19@1386,628 | #c4b29f
+  Block | FRA | 1445x64@0,690 | #9e4429
+    01.19 COMBO - SISTER MIDNIGHT FM | FRA | 271x27@19,20
+      01.16 LOGOTYPE - SISTER MIDNIGHT FM | INS | 240x19@31,3 | INST
+        SISTER MIDNIGHT FM | TEX | 240x19@0,0 | #c4b29f | Sister 21 | "SISTER MIDNIGHT FM"
+      01.13 MARQUE - SISTER MIDNIGHT | INS | 27x27@0,0 | INST
+        Group 2147230743 | GRO | 21x23@3,2
+          Vector | VEC | 7x9@18,9 | #c4b29f
+          Vector | VEC | 18x23@3,2 | #c4b29f
+          Vector | VEC | 13x17@11,5 | #c4b29f
+    text | FRA | 851x15@572,25 | row gap12 p0/0/0/0
+      Now playing: Moonbeam Levels w/ Amar Patel | TEX | 395x14@0,1 | #c4b29f | FOSS 21 | "Now playing:  Moonbeam Levels w/ Amar Patel"
+      listen button | GRO | 91x15@760,0
+        Listen | TEX | 72x14@760,1 | #c4b29f | Sister 17 | "Listen"
+        arrow | GRO | 13x15@838,0
+          Line 1 | LIN | 17x0@838,15
+          Line 2 | LIN | 12x0@851,12
+          Line 3 | LIN | 12x0@851,0
+  Block | FRA | 1445x483@0,754 | #3b302a | row gap28 p80/24/80/24
+    Text | TEX | 0x52@76,80 | #c4b29f | Sister 50 | " "
+    inner | FRA | 1236x323@104,80 | col gap12 p0/0/0/0
+      text | FRA | 1236x323@0,0 | row gap20 p0/0/0/0
+        image | FRA | 600x313@0,0 | row gap12 p0/0/0/0
+          01.41 DRAWINGS | INS | 291x291@143,23 | INST | +1
+        Sister Midnight is an upcoming community-owned music venue and radio station based in Catford. We’re on a mission to elevate artists around Lewisham and become a creative hub for all across SE London. Everything we do is driven by our belief in the power of music to uplift, unite and affect positive change. By working at a grassroots level and always democratically, we hope to make this a space for belonging, solidarity and experimentation. Want to help reimagine what a music venue could be? Become a member | TEX | 595x323@641,0 | #c4b29f | FOSS 25 | "Sister Midnight is an upcoming community-owned music venue and radio station bas"
+  Block | FRA | 1443x2217@1,1237 | row gap34 p48/17/0/17
+    Upcoming | TEX | 283x52@69,48 | #c4b29f | Sister 50 | "Upcoming"
+    Upcoming events | FRA | 1318x2169@108,48
+      events | FRA | 1324x2111@0,0
+        event card | FRA | 596x859@1,0 | #c4b29f | col gap32 p24/24/24/24
+          image 34 | REC | 383x481@24,24 | IMAGE
+          Rael. Max Winter. Isiah Hull | TEX | 548x112@24,537 | #3b302a | Sister 51 | "Rael. Max Winter. Isiah Hull"
+          event card text | FRA | 548x154@24,681 | col gap77 p0/0/0/0 | +2
+        event card | FRA | 680x921@638,301 | #c4b29f | col gap32 p24/24/24/24
+          image 31 | REC | 410x512@24,24 | IMAGE
+          event card text | FRA | 632x329@24,568 | col gap65 p0/0/0/0 | +2
+        event card | FRA | 596x729@1,885 | #c4b29f | col gap32 p24/24/24/24
+          image 32 | REC | 383x480@24,24 | IMAGE
+          event card text | FRA | 548x169@24,536 | col gap77 p0/0/0/0 | +2
+        event card | FRA | 680x747@638,1257 | #c4b29f | col gap32 p24/24/24/24
+          image 35 | REC | 345x484@24,24 | IMAGE
+          event card text | FRA | 632x183@24,540 | col gap65 p0/0/0/0 | +2
+        event card | FRA | 680x218@638,59 | #c4b29f | col gap32 p20/20/20/20
+          event card text | FRA | 640x178@20,20 | col gap26 p0/0/0/0 | +2
+          01.41 DRAWINGS | INS | 86x86@590,6 | INST | +1
+    01.41 DRAWINGS | INS | 504x504@142,1744 | INST
+      Group | GRO | 224x454@140,25
+        Frame | FRA | 224x454@140,25
+          Clip path group | GRO | 223x448@0,0 | +2
+  Block | FRA | 1443x797@1,3454
+    01.41 DRAWINGS | INS | 301x301@245,470 | INST
+      Group | GRO | 271x177@15,62
+        Frame | FRA | 271x177@15,62
+          Clip path group | GRO | 270x176@0,0 | +2
+    Join the party | TEX | 473x52@71,64 | #c4b29f | Sister 50 | "Join the party"
+    event card | FRA | 677x359@144,75 | #c4b29f | col gap32 p24/22/24/22
+      event card text | FRA | 633x311@22,24 | col gap26 p0/0/0/0
+        header | FRA | 633x46@0,0 | col gap12 p0/0/0/0
+          Become a Member | TEX | 633x46@0,0 | #3b302a | Sister 42 | "Become a Member"
+        Since 2021, over 1100 members have raised £365,000 to make this happen — and now we need your help to complete the next stage of renovations. We’ve started renovating the Brookdale Club in Catford, and now we need your help to finish! Invest in community shares from £25, every pound is double match funded, and become part of Catford’s first community-owned grassroots music venue. | TEX | 560x199@0,72 | #3b302a | FOSS 21 | "Since 2021, over 1100 members have raised £365,000 to make this happen — and now"
+        Read more | TEX | 298x14@0,297 | #3b302a | FOSS 21 | "Read more"
+    event card | FRA | 614x201@722,492 | #c4b29f | col gap32 p20/20/20/20
+      event card text | FRA | 574x161@20,20 | col gap26 p0/0/0/0
+        header | FRA | 574x46@0,0 | col gap12 p0/0/0/0
+          Stay In touch | TEX | 574x46@0,0 | #3b302a | Sister 42 | "Stay In touch"
+        We send an occasional newsletter letting you know about our events. | TEX | 441x37@0,72 | #3b302a | FOSS 21 | "We send an occasional newsletter letting you know about our events."
+        Signup form | FRA | 379x26@0,135 | row gap12 p0/0/0/0
+          input | FRA | 302x26@0,0 | row gap12 p6/2/6/2 | +1
+          Sign up | TEX | 65x14@314,6 | #3b302a | FOSS 21 | "Sign up"
+      01.41 DRAWINGS | INS | 108x108@503,6 | INST
+        Group | GRO | 66x97@21,5
+          Frame | FRA | 66x97@21,5 | +1
+    01.41 DRAWINGS | INS | 286x286@1089,12 | INST
+      Group | GRO | 258x215@14,36
+        Frame | FRA | 258x215@14,36
+          Clip path group | GRO | 256x215@0,0 | +2
+  Footer | COM | 1445x618@0,4251 | #3b302a | col gap40 p24/0/0/0
+    footer image | FRA | 1445x313@0,24 | col gap12 p0/0/0/0
+      dancing | FRA | 1445x313@0,0
+        shapes | GRO | 1387x319@27,0
+          Subtract | BOO | 165x118@1249,193 | #cfbdad | +4
+          Subtract | BOO | 163x168@27,71 | #cfbdad | +14
+          Vector | VEC | 116x276@664,20 | #cfbdad
+          Vector | VEC | 160x222@832,84 | #cfbdad
+          Subtract | BOO | 178x180@1142,19 | #cfbdad | +2
+          Vector | VEC | 203x188@245,120 | #cfbdad
+          Subtract | BOO | 131x157@509,65 | #cfbdad | +2
+          Vector | VEC | 103x151@990,57 | #cfbdad
+          Subtract | BOO | 90x85@304,226 | #cfbdad | +2
+          Vector | VEC | 117x112@1000,195 | #cfbdad
+          Vector | VEC | 115x105@481,192 | #cfbdad
+          Vector | VEC | 95x98@1061,164 | #cfbdad
+          Vector | VEC | 112x89@469,101 | #cfbdad
+          Vector | VEC | 94x115@803,158 | #cfbdad
+          Vector | VEC | 135x156@275,155 | #cfbdad
+          Vector | VEC | 88x110@569,197 | #cfbdad
+          Subtract | BOO | 61x67@497,50 | #cfbdad | +2
+          Subtract | BOO | 56x56@754,39 | #cfbdad | +2
+          Vector | VEC | 52x56@895,27 | #cfbdad
+          Vector | VEC | 82x88@761,92 | #cfbdad
+          Vector | VEC | 55x57@333,74 | #cfbdad
+          Vector | VEC | 60x120@750,183 | #cfbdad
+          Vector | VEC | 101x82@371,71 | #cfbdad
+          Vector | VEC | 88x118@152,201 | #cfbdad
+          Vector | VEC | 32x101@431,196 | #cfbdad
+          Vector | VEC | 39x80@80,0 | #cfbdad
+          Subtract | BOO | 41x45@1064,139 | #cfbdad | +2
+          Vector | VEC | 22x55@635,58 | #cfbdad
+          Vector | VEC | 40x34@1075,101 | #cfbdad
+          Vector | VEC | 46x59@60,220 | #cfbdad
+          Vector | VEC | 46x60@1345,92 | #cfbdad
+          Vector | VEC | 22x31@641,27 | #cfbdad
+          Vector | VEC | 15x34@239,9 | #cfbdad
+          Vector | VEC | 39x19@247,49 | #cfbdad
+          Vector | VEC | 35x23@1086,134 | #cfbdad
+          Vector | VEC | 23x28@213,14 | #cfbdad
+          Vector | VEC | 36x13@195,36 | #cfbdad
+          Vector | VEC | 12x34@230,58 | #cfbdad
+          Vector | VEC | 28x15@246,30 | #cfbdad
+          Vector | VEC | 14x31@1199,226 | #cfbdad
+          Vector | VEC | 17x26@245,57 | #cfbdad
+          Vector | VEC | 28x17@206,54 | #cfbdad
+          Vector | VEC | 13x13@234,43 | #cfbdad
+          Vector | VEC | 23x12@1210,252 | #cfbdad
+          Vector | VEC | 14x18@1186,230 | #cfbdad
+          Vector | VEC | 22x9@1175,243 | #cfbdad
+          Vector | VEC | 7x22@1197,258 | #cfbdad
+          Vector | VEC | 15x10@1210,240 | #cfbdad
+          Vector | VEC | 10x17@1207,257 | #cfbdad
+          Vector | VEC | 18x10@1181,256 | #cfbdad
+    Footer | FRA | 1443x241@0,377 | col gap34 p0/24/24/24
+      footer top | FRA | 1395x126@24,0 | row gap34 p0/0/0/0
+        menus | FRA | 151x126@0,0 | col gap16 p0/0/0/0
+          links | FRA | 111x92@0,0 | col gap12 p0/0/0/0 | +4
+          Social Links | FRA | 69x18@0,108 | row gap4.987881183624268 p0/0/0/0 | +2
+        location | FRA | 180x107@1215,0 | col gap10 p0/0/0/0
+          Sister Midnight Brookdale Road Catford SE6 4JY | TEX | 180x83@0,0 | #cfbdad | FOSS 21 | "Sister Midnight Brookdale Road Catford SE6 4JY"
+          Frame 21 | FRA | 180x14@0,93 | row gap8 p0/0/0/0 | +2
+      Frame 23 | FRA | 1395x57@24,160 | row gap518 p0/0/0/0
+        Support logos | FRA | 450x57@0,0 | col gap8 p0/0/0/0
+          supported by | TEX | 158x9@0,0 | #cfbdad | FOSS 13 | "supported by"
+          Mask group | GRO | 450x40@0,17 | +2
+        Legal Text | TEX | 616x31@779,26 | #cfbdad | FOSS 13 | "Sister Midnight is a Community Benefit Society, FCA #8598 /  Imprint | Privacy — T"
+Internal Page | FRA | 1445x8287@7629,0 | #704f50 | col gap0 p0/0/0/0
+  Intro | FRA | 1445x169@0,0 | #3b302a
+    Sister Midnight | TEX | 303x29@24,24 | #c4b29f | Sister 34 | "Sister Midnight"
+    Menu | FRA | 223x157@1175,36 | col gap18 p0/0/0/0
+      About | TEX | 64x17@159,0 | #cfbdad | FOSS 24 | "About"
+      Events | TEX | 70x17@153,35 | #cfbdad | FOSS 24 | "Events"
+      Venue | TEX | 65x17@158,70 | #cfbdad | FOSS 24 | "Venue"
+      Radio | TEX | 59x17@164,105 | #cfbdad | FOSS 24 | "Radio"
+      Support | TEX | 84x17@139,140 | #cfbdad | FOSS 24 | "Support"
+    01.41 Illustrations | INS | 562x562@777,98 | INST
+      Group | GRO | 249x506@156,28
+        Frame | FRA | 249x506@156,28
+          Clip path group | GRO | 248x499@0,0 | +2
+    Menu | FRA | 365x21@1054,23 | row gap18 p0/0/0/0
+      About | TEX | 77x21@0,0 | #cfbdad | Sister 20 | "About"
+      Events | TEX | 91x21@95,0 | #cfbdad | Sister 20 | "Events"
+      Venue | TEX | 74x21@204,0 | #cfbdad | Sister 20 | "Venue"
+      Radio | TEX | 69x21@296,0 | #cfbdad | Sister 20 | "Radio"
+  Block | FRA | 1445x748@0,169 | #3b302a
+    text | FRA | 1189x323@151,78 | row gap20 p0/0/0/0
+      Text | TEX | 0x104@0,0 | #c4b29f | Sister 50 | " / "
+      Sister Midnight is an upcoming community-owned music venue and radio station based in Catford. We’re on a mission to elevate artists around Lewisham and become a creative hub for all across SE London. Everything we do is driven by our belief in the power of music to uplift, unite and affect positive change. By working at a grassroots level and always democratically, we hope to make this a space for belonging, solidarity and experimentation. Want to help reimagine what a music venue could be? Become a member | TEX | 595x323@594,0 | #c4b29f | FOSS 25 | "Sister Midnight is an upcoming community-owned music venue and radio station bas"
+    01.41 DRAWINGS | INS | 420x420@217,25 | INST
+      Group | GRO | 378x247@21,86
+        Frame | FRA | 378x247@21,86
+          Clip path group | GRO | 376x246@0,0 | +2
+    About US | TEX | 274x52@71,75 | #c4b29f | Sister 50 | "About US"
+  Section | FRA | 1443x706@1,917 | #c4b29f | col gap12 p0/0/0/0
+    inner | FRA | 1443x706@0,0 | #c4b29f | col gap12 p192/101/192/104
+      Block | FRA | 1238x322@104,192 | row gap40 p0/0/0/0
+        about block | FRA | 520x322@0,0 | col gap23 p0/0/0/0
+          Our Manifesto | TEX | 520x42@0,0 | #3b302a | Sister 40 | "Our Manifesto"
+          Sister Midnight is an upcoming community-owned music venue and radio station based in Catford. We’re on a mission to elevate artists around Lewisham and become a creative hub for all across SE London. Everything we do is driven by our belief in the power of music to uplift, unite and affect positive change. By working at a grassroots level and always democratically, we hope to make this a space for belonging, solidarity and experimentation. Want to help reimagine what a music venue could be? Become a member | TEX | 520x257@0,65 | #3b302a | "Sister Midnight is an upcoming community-owned music venue and radio station bas"
+        about block | FRA | 599x148@639,0 | col gap23 p0/0/0/0
+          Our Values | TEX | 599x42@0,0 | #3b302a | Sister 40 | "Our Values"
+          Our core values were co-written with our members, and reflect the principles that we believe a community-owned music venue should uphold. These values form the core of our organisational ethics and will inform the choices we make throughout the lifetime of Sister Midnight. | TEX | 599x83@0,65 | #3b302a | FOSS 21 | "Our core values were co-written with our members, and reflect the principles tha"
+  Block | FRA | 1445x1092@0,1623 | #3b302a
+    text | FRA | 1236x954@103,78 | row gap20 p0/0/0/0
+      Text | TEX | 0x104@0,0 | #c4b29f | Sister 50 | " / "
+      Frame 1000000902 | FRA | 593x954@643,0 | col gap14 p0/0/0/0
+        Cultural Aims | TEX | 592x34@0,0 | #c4b29f | Sister 32 | "Cultural Aims"
+        Champion local music by giving emerging artists from Lewisham and South East London opportunities to perform, grow, and be heard.  Make live music more accessible by creating welcoming, inclusive spaces where more people feel able to take part, on stage and in the audience.  Build a creative hub where musicians, artists, organisers, and audiences can connect, share ideas, and collaborate.  | TEX | 592x199@0,48 | #c4b29f | FOSS 21 | "Champion local music by giving emerging artists from Lewisham and South East Lon"
+        Community Aims | TEX | 592x34@0,261 | #c4b29f | Sister 32 | "Community Aims"
+        Bring people together by creating a space that feels open and welcoming, helping to reduce social isolation and strengthen community connections. Put our community at the centre of what we do, giving members and local people real opportunities to shape our direction and decisions. Support skills and opportunities locally through volunteering, work placements, and training that build confidence, experience, and employability. Strengthen the local economy by working closely with other Lewisham-based businesses, freelancers, and organisations. Build solidarity across South East London by collaborating with like-minded groups to support wellbeing, creativity, and collective resilience.  | TEX | 593x361@0,309 | #c4b29f | FOSS 21 | "Bring people together by creating a space that feels open and welcoming, helping"
+        Advocacy & Change | TEX | 592x34@0,684 | #c4b29f | Sister 32 | "Advocacy & Change"
+        Help grow the co-operative cultural sector by sharing knowledge, supporting new initiatives, and working collaboratively within our local area. Stand up for culture by advocating for policies that protect and support grassroots music and community spaces at local, regional, and national levels. Support co-operative and community-owned models by championing fairer, more democratic ways of organising work and resources. | TEX | 592x222@0,732 | #c4b29f | FOSS 21 | "Help grow the co-operative cultural sector by sharing knowledge, supporting new "
+    01.41 DRAWINGS | INS | 291x291@251,75 | INST
+      Group | GRO | 161x262@65,15
+        Frame | FRA | 161x262@65,15
+          Clip path group | GRO | 157x259@0,0 | +2
+    Objectives | TEX | 357x52@71,75 | #c4b29f | Sister 50 | "Objectives"
+  Block | FRA | 1445x1092@0,2715 | #3b302a
+    text | FRA | 1236x906@104,78 | row gap40 p0/0/0/0
+      left | FRA | 597x652@0,0 | row gap12 p0/0/0/0
+        image 37 | REC | 440x652@79,0 | IMAGE
+      Frame 1000000902 | FRA | 599x906@637,0 | col gap14 p0/0/0/0
+        Champion local music by giving emerging artists from Lewisham and South East London opportunities to perform, grow, and be heard.  Make live music more accessible by creating welcoming, inclusive spaces where more people feel able to take part, on stage and in the audience.  Build a creative hub where musicians, artists, organisers, and audiences can connect, share ideas, and collaborate.  | TEX | 592x199@0,0 | #c4b29f | FOSS 21 | "Champion local music by giving emerging artists from Lewisham and South East Lon"
+        Community Aims | TEX | 592x34@0,213 | #c4b29f | Sister 32 | "Community Aims"
+        Bring people together by creating a space that feels open and welcoming, helping to reduce social isolation and strengthen community connections. Put our community at the centre of what we do, giving members and local people real opportunities to shape our direction and decisions. Support skills and opportunities locally through volunteering, work placements, and training that build confidence, experience, and employability. Strengthen the local economy by working closely with other Lewisham-based businesses, freelancers, and organisations. Build solidarity across South East London by collaborating with like-minded groups to support wellbeing, creativity, and collective resilience.  | TEX | 593x361@0,261 | #c4b29f | FOSS 21 | "Bring people together by creating a space that feels open and welcoming, helping"
+        Advocacy & Change | TEX | 592x34@0,636 | #c4b29f | Sister 32 | "Advocacy & Change"
+        Help grow the co-operative cultural sector by sharing knowledge, supporting new initiatives, and working collaboratively within our local area. Stand up for culture by advocating for policies that protect and support grassroots music and community spaces at local, regional, and national levels. Support co-operative and community-owned models by championing fairer, more democratic ways of organising work and resources. | TEX | 592x222@0,684 | #c4b29f | FOSS 21 | "Help grow the co-operative cultural sector by sharing knowledge, supporting new "
+    Our Process | TEX | 383x52@71,75 | #c4b29f | Sister 50 | "Our Process"
+  Block | FRA | 1445x1078@0,3807 | #c4b29f | col gap12 p126/102/126/104
+    Frame 1000000905 | FRA | 1239x826@104,126 | row gap40 p0/0/0/0
+      image 39 | REC | 599x826@0,0 | IMAGE
+      R1-04555-0003 2 1 | REC | 600x826@639,0 | IMAGE
+  Block | FRA | 1445x926@0,4885 | #3b302a
+    Gallery | TEX | 270x52@74,97 | #c4b29f | Sister 50 | "Gallery"
+    images | FRA | 1316x739@104,101 | row gap11.169449806213379 p0/0/0/0
+      Frame 1000000908 | FRA | 268x360@0,0 | row gap12.213359832763672 p0/0/0/0
+        IMG_3668 1 | REC | 268x360@0,0 | IMAGE
+      Frame 1000000909 | FRA | 533x360@279,0 | col gap12.213359832763672 p0/0/0/0
+        F1A5378F-01D7-4293-BBA4-ABDB83D02114 1 | REC | 533x360@0,0 | IMAGE
+      3FBFD5A0-AC40-4C61-815F-F0104329AB9D 1 | REC | 243x360@823,0 | IMAGE
+      image 38 | REC | 238x360@1078,0 | IMAGE
+      R1-04555-0003 2 1 | REC | 247x365@0,380 | IMAGE
+      image 37 | REC | 247x365@258,380 | IMAGE
+      R1-03712-0011 1 | REC | 551x365@516,380 | IMAGE
+      image 39 | REC | 238x360@1078,380 | IMAGE
+  Block | FRA | 1445x605@0,5811 | #3b302a
+    Slider | TEX | 204x52@74,97 | #c4b29f | Sister 50 | "Slider"
+    slider | FRA | 1185x420@104,96 | row gap16 p0/0/0/0
+      image 40 | REC | 278x420@0,0 | IMAGE
+      image 39 | REC | 278x420@294,0 | IMAGE
+      image 42 | REC | 634x420@588,0 | IMAGE
+      image 37 | REC | 284x420@1238,0 | IMAGE
+      F1A5378F-01D7-4293-BBA4-ABDB83D02114 1 | REC | 622x420@1538,0 | IMAGE
+      IMG_4361 1 | REC | 672x420@2176,0 | IMAGE
+      image 38 | REC | 278x420@2864,0 | IMAGE
+      R1-04555-0003 2 1 | REC | 284x420@3158,0 | IMAGE
+      3FBFD5A0-AC40-4C61-815F-F0104329AB9D 1 | REC | 284x420@3458,0 | IMAGE
+      R1-03712-0011 1 | REC | 284x420@3758,0 | IMAGE
+      IMG_3668 1 | REC | 199x420@4058,0 | IMAGE
+    Nav | FRA | 54x13@1356,57 | row gap24 p0/0/0/0
+      ← | TEX | 15x13@0,0 | #c4b29f | FOSS 18 | "←"
+      → | TEX | 15x13@39,0 | #c4b29f | FOSS 18 | "→"
+  Block | FRA | 1445x412@0,6416 | #c4b29f
+    The Team | TEX | 286x52@76,39 | #3b302a | Sister 50 | "The Team"
+    slider | FRA | 1341x341@104,71 | row gap16 p0/0/0/0
+      person | FRA | 261x327@0,14 | col gap12 p0/0/0/0
+        Alex_Edit 1 | REC | 261x327@0,0 | IMAGE
+        Alex | TEX | 41x14@31,161 | #3b302a | FOSS 21 | "Alex"
+      Keilah_Edit 1 | REC | 267x334@277,7 | IMAGE
+      Keilah | TEX | 54x14@517,288 | #3b302a | FOSS 21 | "Keilah"
+      Sophie_Edit 1 | REC | 243x341@560,0 | IMAGE
+      Sophie | TEX | 62x14@626,110 | #3b302a | FOSS 21 | "Sophie"
+      Cleo_Edit 1 | REC | 263x329@819,12 | IMAGE
+      Cleo | TEX | 42x14@1043,148 | #3b302a | FOSS 21 | "Cleo"
+      Lenny_Edit 1 | REC | 272x341@1098,0 | IMAGE
+      Lenny | TEX | 55x14@1190,26 | #3b302a | FOSS 21 | "Lenny"
+      Dams_Edit 1 | REC | 243x341@1386,0 | IMAGE
+      hover | GRO | 262x125@754,100
+        Cursors | WID | 24x24@764,100
+        text | FRA | 262x91@754,134 | #9e4429 | col gap14 p10/6/8/6
+          Sophie Farrell | TEX | 250x14@6,10 | #dadad9 | FOSS 21 | "Sophie Farrell"
+          Sophie is Co-Founding director of Sister Midnight, SMFM and Social Records Society | TEX | 250x45@6,38 | #dadad9 | FOSS 15 | "Sophie is Co-Founding director of Sister Midnight, SMFM and Social Records Socie"
+  Block | FRA | 1445x575@0,6828 | #3b302a
+    text | FRA | 1188x419@151,78 | row gap20 p0/0/0/0
+      Text | TEX | 0x104@297,0 | #c4b29f | Sister 50 | " / "
+      FAQs | FRA | 594x419@594,0 | col gap40 p0/0/0/0
+        FAQ | TEX | 592x42@0,0 | #c4b29f | Sister 40 | "FAQ"
+        FAQ | FRA | 594x160@0,82 | col gap12 p0/0/0/0
+          heading | FRA | 594x30@0,0 | row gap12 p8/0/8/0 | +1
+          Yes, you can ... amet, consectetur adipiscing elit. Sed id nisi vitae mi gravida porta at eget ligula. Maecenas orci tellus, posuere sed metus dapibus, laoreet tincidunt est. £6 – meal £10 – meal and a drink | TEX | 594x118@0,42 | #c4b29f | FOSS 21 | "Yes, you can ... amet, consectetur adipiscing elit. Sed id nisi vitae mi gravida"
+        FAQ | FRA | 594x137@0,282 | col gap12 p0/0/0/0
+          heading | FRA | 594x30@0,0 | row gap12 p8/0/8/0 | +1
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id nisi vitae mi gravida porta at eget ligula. Maecenas orci tellus, posuere sed metus dapibus, laoreet tincidunt est. Contact: access@sistermidnight.org | TEX | 594x95@0,42 | #c4b29f | FOSS 21 | "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id nisi vitae mi gr"
+  Newsletter Banner | INS | 1445x266@0,7403 | #3b302a | col gap12 p0/0/0/0 | INST
+    inner | FRA | 1445x266@0,0 | #c4b29f | row gap32 p40/40/40/40
+      01.41 DRAWINGS | INS | 240x240@1089,-1 | INST
+        Group | GRO | 216x129@12,55
+          Frame | FRA | 216x129@12,55 | +1
+      01.41 DRAWINGS | INS | 240x240@1089,-1 | INST
+        Group | GRO | 216x129@12,55
+          Frame | FRA | 216x129@12,55 | +1
+      Frame 1000000916 | FRA | 1317x186@64,40 | col gap207 p0/0/0/0
+        event card text | FRA | 436x128@0,0 | col gap26 p0/0/0/0
+          header | FRA | 436x34@0,0 | col gap12 p0/0/0/0 | +1
+          Sign up to the Sister Midnight newsletter to hear about upcoming events and news. | TEX | 436x37@0,60 | #3b302a | FOSS 21 | "Sign up to the Sister Midnight newsletter to hear about upcoming events and news"
+        Signup form | FRA | 541x58@0,128 | row gap32 p0/0/0/0
+          input | FRA | 308x35@0,23 | row gap12 p6/0/6/0 | +1
+          right | FRA | 201x58@340,0 | col gap12 p0/0/0/0 | +1
+  Footer | INS | 1445x618@0,7669 | #3b302a | col gap40 p24/0/0/0 | INST
+    footer image | FRA | 1445x313@0,24 | col gap12 p0/0/0/0
+      dancing | FRA | 1445x313@0,0
+        shapes | GRO | 1387x319@27,0
+          Subtract | BOO | 165x118@1249,193 | #cfbdad | +4
+          Subtract | BOO | 163x168@27,71 | #cfbdad | +14
+          Vector | VEC | 116x276@664,20 | #cfbdad
+          Vector | VEC | 160x222@832,84 | #cfbdad
+          Subtract | BOO | 178x180@1142,19 | #cfbdad | +2
+          Vector | VEC | 203x188@245,120 | #cfbdad
+          Subtract | BOO | 131x157@509,65 | #cfbdad | +2
+          Vector | VEC | 103x151@990,57 | #cfbdad
+          Subtract | BOO | 90x85@304,226 | #cfbdad | +2
+          Vector | VEC | 117x112@1000,195 | #cfbdad
+          Vector | VEC | 115x105@481,192 | #cfbdad
+          Vector | VEC | 95x98@1061,164 | #cfbdad
+          Vector | VEC | 112x89@469,101 | #cfbdad
+          Vector | VEC | 94x115@803,158 | #cfbdad
+          Vector | VEC | 135x156@275,155 | #cfbdad
+          Vector | VEC | 88x110@569,197 | #cfbdad
+          Subtract | BOO | 61x67@497,50 | #cfbdad | +2
+          Subtract | BOO | 56x56@754,39 | #cfbdad | +2
+          Vector | VEC | 52x56@895,27 | #cfbdad
+          Vector | VEC | 82x88@761,92 | #cfbdad
+          Vector | VEC | 55x57@333,74 | #cfbdad
+          Vector | VEC | 60x120@750,183 | #cfbdad
+          Vector | VEC | 101x82@371,71 | #cfbdad
+          Vector | VEC | 88x118@152,201 | #cfbdad
+          Vector | VEC | 32x101@431,196 | #cfbdad
+          Vector | VEC | 39x80@80,0 | #cfbdad
+          Subtract | BOO | 41x45@1064,139 | #cfbdad | +2
+          Vector | VEC | 22x55@635,58 | #cfbdad
+          Vector | VEC | 40x34@1075,101 | #cfbdad
+          Vector | VEC | 46x59@60,220 | #cfbdad
+          Vector | VEC | 46x60@1345,92 | #cfbdad
+          Vector | VEC | 22x31@641,27 | #cfbdad
+          Vector | VEC | 15x34@239,9 | #cfbdad
+          Vector | VEC | 39x19@247,49 | #cfbdad
+          Vector | VEC | 35x23@1086,134 | #cfbdad
+          Vector | VEC | 23x28@213,14 | #cfbdad
+          Vector | VEC | 36x13@195,36 | #cfbdad
+          Vector | VEC | 12x34@230,58 | #cfbdad
+          Vector | VEC | 28x15@246,30 | #cfbdad
+          Vector | VEC | 14x31@1199,226 | #cfbdad
+          Vector | VEC | 17x26@245,57 | #cfbdad
+          Vector | VEC | 28x17@206,54 | #cfbdad
+          Vector | VEC | 13x13@234,43 | #cfbdad
+          Vector | VEC | 23x12@1210,252 | #cfbdad
+          Vector | VEC | 14x18@1186,230 | #cfbdad
+          Vector | VEC | 22x9@1175,243 | #cfbdad
+          Vector | VEC | 7x22@1197,258 | #cfbdad
+          Vector | VEC | 15x10@1210,240 | #cfbdad
+          Vector | VEC | 10x17@1207,257 | #cfbdad
+          Vector | VEC | 18x10@1181,256 | #cfbdad
+    Footer | FRA | 1443x241@0,377 | col gap34 p0/24/24/24
+      footer top | FRA | 1395x126@24,0 | row gap34 p0/0/0/0
+        menus | FRA | 151x126@0,0 | col gap16 p0/0/0/0
+          links | FRA | 111x92@0,0 | col gap12 p0/0/0/0 | +4
+          Social Links | FRA | 69x18@0,108 | row gap4.987881183624268 p0/0/0/0 | +2
+        location | FRA | 180x107@1215,0 | col gap10 p0/0/0/0
+          Sister Midnight Brookdale Road Catford SE6 4JY | TEX | 180x83@0,0 | #cfbdad | FOSS 21 | "Sister Midnight Brookdale Road Catford SE6 4JY"
+          Frame 21 | FRA | 180x14@0,93 | row gap8 p0/0/0/0 | +2
+      Frame 23 | FRA | 1395x57@24,160 | row gap518 p0/0/0/0
+        Support logos | FRA | 450x57@0,0 | col gap8 p0/0/0/0
+          supported by | TEX | 158x9@0,0 | #cfbdad | FOSS 13 | "supported by"
+          Mask group | GRO | 450x40@0,17 | +2
+        Legal Text | TEX | 616x31@779,26 | #cfbdad | FOSS 13 | "Sister Midnight is a Community Benefit Society, FCA #8598 /  Imprint | Privacy — T"
+Internal Page - Image | FRA | 1445x1196@9269,2 | #704f50 | col gap0 p0/0/0/0
+  Intro | FRA | 1445x169@0,0 | #3b302a
+    Sister Midnight | TEX | 303x29@24,24 | #c4b29f | Sister 34 | "Sister Midnight"
+    Menu | FRA | 223x157@1175,36 | col gap18 p0/0/0/0
+      About | TEX | 64x17@159,0 | #cfbdad | FOSS 24 | "About"
+      Events | TEX | 70x17@153,35 | #cfbdad | FOSS 24 | "Events"
+      Venue | TEX | 65x17@158,70 | #cfbdad | FOSS 24 | "Venue"
+      Radio | TEX | 59x17@164,105 | #cfbdad | FOSS 24 | "Radio"
+      Support | TEX | 84x17@139,140 | #cfbdad | FOSS 24 | "Support"
+    01.41 Illustrations | INS | 562x562@777,98 | INST
+      Group | GRO | 249x506@156,28
+        Frame | FRA | 249x506@156,28
+          Clip path group | GRO | 248x499@0,0 | +2
+    Menu | FRA | 365x21@1054,23 | row gap18 p0/0/0/0
+      About | TEX | 77x21@0,0 | #cfbdad | Sister 20 | "About"
+      Events | TEX | 91x21@95,0 | #cfbdad | Sister 20 | "Events"
+      Venue | TEX | 74x21@204,0 | #cfbdad | Sister 20 | "Venue"
+      Radio | TEX | 69x21@296,0 | #cfbdad | Sister 20 | "Radio"
+  Block | FRA | 1445x748@0,169 | #3b302a
+    text | FRA | 1211x458@151,78 | row gap20 p0/0/0/0
+      Text | TEX | 0x104@0,0 | #c4b29f | Sister 50 | " / "
+      Sister Midnight is an upcoming community-owned music venue and radio station based in Catford. We’re on a mission to elevate artists around Lewisham and become a creative hub for all across SE London. Everything we do is driven by our belief in the power of music to uplift, unite and affect positive change. By working at a grassroots level and always democratically, we hope to make this a space for belonging, solidarity and experimentation. Want to help reimagine what a music venue could be? Become a member | TEX | 592x458@619,0 | #c4b29f | "Sister Midnight is an upcoming community-owned music venue and radio station bas"
+    3FBFD5A0-AC40-4C61-815F-F0104329AB9D 1 | REC | 410x607@218,-12 | IMAGE
+    PAge title | TEX | 341x52@68,75 | #c4b29f | Sister 50 | "PAge title"
+  Block | FRA | 1443x1092@1,917 | #cfbdad
+    text | FRA | 1211x954@151,78 | row gap20 p0/0/0/0
+      Text | TEX | 0x104@0,0 | #351218 | Sister 50 | " / "
+      Frame 1000000902 | FRA | 593x954@618,0 | col gap14 p0/0/0/0
+        Cultural Aims | TEX | 592x34@0,0 | #351218 | Sister 32 | "Cultural Aims"
+        Champion local music by giving emerging artists from Lewisham and South East London opportunities to perform, grow, and be heard.  Make live music more accessible by creating welcoming, inclusive spaces where more people feel able to take part, on stage and in the audience.  Build a creative hub where musicians, artists, organisers, and audiences can connect, share ideas, and collaborate.  | TEX | 592x199@0,48 | #351218 | FOSS 21 | "Champion local music by giving emerging artists from Lewisham and South East Lon"
+        Community Aims | TEX | 592x34@0,261 | #351218 | Sister 32 | "Community Aims"
+        Bring people together by creating a space that feels open and welcoming, helping to reduce social isolation and strengthen community connections. Put our community at the centre of what we do, giving members and local people real opportunities to shape our direction and decisions. Support skills and opportunities locally through volunteering, work placements, and training that build confidence, experience, and employability. Strengthen the local economy by working closely with other Lewisham-based businesses, freelancers, and organisations. Build solidarity across South East London by collaborating with like-minded groups to support wellbeing, creativity, and collective resilience.  | TEX | 593x361@0,309 | #351218 | FOSS 21 | "Bring people together by creating a space that feels open and welcoming, helping"
+        Advocacy & Change | TEX | 592x34@0,684 | #351218 | Sister 32 | "Advocacy & Change"
+        Help grow the co-operative cultural sector by sharing knowledge, supporting new initiatives, and working collaboratively within our local area. Stand up for culture by advocating for policies that protect and support grassroots music and community spaces at local, regional, and national levels. Support co-operative and community-owned models by championing fairer, more democratic ways of organising work and resources. | TEX | 592x222@0,732 | #351218 | FOSS 21 | "Help grow the co-operative cultural sector by sharing knowledge, supporting new "
+    01.41 DRAWINGS | INS | 291x291@251,75 | INST
+      Group | GRO | 161x262@65,15
+        Frame | FRA | 161x262@65,15
+          Clip path group | GRO | 157x259@0,0 | +2
+    Objectives | TEX | 357x52@68,75 | #351218 | Sister 50 | "Objectives"
+  Footer | INS | 1445x618@0,2009 | #3b302a | col gap40 p24/0/0/0 | INST
+    footer image | FRA | 1445x313@0,24 | col gap12 p0/0/0/0
+      dancing | FRA | 1445x313@0,0
+        shapes | GRO | 1387x319@27,0
+          Subtract | BOO | 165x118@1249,193 | #cfbdad | +4
+          Subtract | BOO | 163x168@27,71 | #cfbdad | +14
+          Vector | VEC | 116x276@664,20 | #cfbdad
+          Vector | VEC | 160x222@832,84 | #cfbdad
+          Subtract | BOO | 178x180@1142,19 | #cfbdad | +2
+          Vector | VEC | 203x188@245,120 | #cfbdad
+          Subtract | BOO | 131x157@509,65 | #cfbdad | +2
+          Vector | VEC | 103x151@990,57 | #cfbdad
+          Subtract | BOO | 90x85@304,226 | #cfbdad | +2
+          Vector | VEC | 117x112@1000,195 | #cfbdad
+          Vector | VEC | 115x105@481,192 | #cfbdad
+          Vector | VEC | 95x98@1061,164 | #cfbdad
+          Vector | VEC | 112x89@469,101 | #cfbdad
+          Vector | VEC | 94x115@803,158 | #cfbdad
+          Vector | VEC | 135x156@275,155 | #cfbdad
+          Vector | VEC | 88x110@569,197 | #cfbdad
+          Subtract | BOO | 61x67@497,50 | #cfbdad | +2
+          Subtract | BOO | 56x56@754,39 | #cfbdad | +2
+          Vector | VEC | 52x56@895,27 | #cfbdad
+          Vector | VEC | 82x88@761,92 | #cfbdad
+          Vector | VEC | 55x57@333,74 | #cfbdad
+          Vector | VEC | 60x120@750,183 | #cfbdad
+          Vector | VEC | 101x82@371,71 | #cfbdad
+          Vector | VEC | 88x118@152,201 | #cfbdad
+          Vector | VEC | 32x101@431,196 | #cfbdad
+          Vector | VEC | 39x80@80,0 | #cfbdad
+          Subtract | BOO | 41x45@1064,139 | #cfbdad | +2
+          Vector | VEC | 22x55@635,58 | #cfbdad
+          Vector | VEC | 40x34@1075,101 | #cfbdad
+          Vector | VEC | 46x59@60,220 | #cfbdad
+          Vector | VEC | 46x60@1345,92 | #cfbdad
+          Vector | VEC | 22x31@641,27 | #cfbdad
+          Vector | VEC | 15x34@239,9 | #cfbdad
+          Vector | VEC | 39x19@247,49 | #cfbdad
+          Vector | VEC | 35x23@1086,134 | #cfbdad
+          Vector | VEC | 23x28@213,14 | #cfbdad
+          Vector | VEC | 36x13@195,36 | #cfbdad
+          Vector | VEC | 12x34@230,58 | #cfbdad
+          Vector | VEC | 28x15@246,30 | #cfbdad
+          Vector | VEC | 14x31@1199,226 | #cfbdad
+          Vector | VEC | 17x26@245,57 | #cfbdad
+          Vector | VEC | 28x17@206,54 | #cfbdad
+          Vector | VEC | 13x13@234,43 | #cfbdad
+          Vector | VEC | 23x12@1210,252 | #cfbdad
+          Vector | VEC | 14x18@1186,230 | #cfbdad
+          Vector | VEC | 22x9@1175,243 | #cfbdad
+          Vector | VEC | 7x22@1197,258 | #cfbdad
+          Vector | VEC | 15x10@1210,240 | #cfbdad
+          Vector | VEC | 10x17@1207,257 | #cfbdad
+          Vector | VEC | 18x10@1181,256 | #cfbdad
+    Footer | FRA | 1443x241@0,377 | col gap34 p0/24/24/24
+      footer top | FRA | 1395x126@24,0 | row gap34 p0/0/0/0
+        menus | FRA | 151x126@0,0 | col gap16 p0/0/0/0
+          links | FRA | 111x92@0,0 | col gap12 p0/0/0/0 | +4
+          Social Links | FRA | 69x18@0,108 | row gap4.987881183624268 p0/0/0/0 | +2
+        location | FRA | 180x107@1215,0 | col gap10 p0/0/0/0
+          Sister Midnight Brookdale Road Catford SE6 4JY | TEX | 180x83@0,0 | #cfbdad | FOSS 21 | "Sister Midnight Brookdale Road Catford SE6 4JY"
+          Frame 21 | FRA | 180x14@0,93 | row gap8 p0/0/0/0 | +2
+      Frame 23 | FRA | 1395x57@24,160 | row gap518 p0/0/0/0
+        Support logos | FRA | 450x57@0,0 | col gap8 p0/0/0/0
+          supported by | TEX | 158x9@0,0 | #cfbdad | FOSS 13 | "supported by"
+          Mask group | GRO | 450x40@0,17 | +2
+        Legal Text | TEX | 616x31@779,26 | #cfbdad | FOSS 13 | "Sister Midnight is a Community Benefit Society, FCA #8598 /  Imprint | Privacy — T"
+Event Detail | FRA | 1445x3764@14189,0 | #704f50 | col gap0 p0/0/0/0
+  Intro | FRA | 1445x169@0,0 | #3b302a
+    Sister Midnight | TEX | 303x29@24,24 | #c4b29f | Sister 34 | "Sister Midnight"
+    Menu | FRA | 223x157@1175,36 | col gap18 p0/0/0/0
+      About | TEX | 64x17@159,0 | #cfbdad | FOSS 24 | "About"
+      Events | TEX | 70x17@153,35 | #cfbdad | FOSS 24 | "Events"
+      Venue | TEX | 65x17@158,70 | #cfbdad | FOSS 24 | "Venue"
+      Radio | TEX | 59x17@164,105 | #cfbdad | FOSS 24 | "Radio"
+      Support | TEX | 84x17@139,140 | #cfbdad | FOSS 24 | "Support"
+    01.41 Illustrations | INS | 562x562@777,98 | INST
+      Group | GRO | 249x506@156,28
+        Frame | FRA | 249x506@156,28
+          Clip path group | GRO | 248x499@0,0 | +2
+    Menu | FRA | 365x21@1054,23 | row gap18 p0/0/0/0
+      About | TEX | 77x21@0,0 | #cfbdad | Sister 20 | "About"
+      Events | TEX | 91x21@95,0 | #cfbdad | Sister 20 | "Events"
+      Venue | TEX | 74x21@204,0 | #cfbdad | Sister 20 | "Venue"
+      Radio | TEX | 69x21@296,0 | #cfbdad | Sister 20 | "Radio"
+  Block | FRA | 1445x703@0,169 | #3b302a
+    header content | FRA | 1211x626@154,0 | row gap20 p0/0/0/0
+      image | GRO | 496x626@0,0
+        Rectangle 35 | REC | 496x626@0,0 | #cfbdad
+        image 32 | REC | 496x622@0,3 | IMAGE
+      Frame 1000000911 | FRA | 590x624@621,0 | col gap52 p0/0/0/0
+        Frame 1000000912 | FRA | 590x263@0,0 | col gap16 p0/0/0/0
+          SMFM Presents | TEX | 590x14@0,0 | #cfbdad | Sister 17 | "SMFM Presents"
+          Frame 1000000911 | FRA | 590x233@0,30 | col gap15 p0/0/0/0 | +2
+        Frame 1000000913 | FRA | 590x150@0,315 | col gap32 p0/0/0/0
+          Sister Midnight opens its doors in Catford for the first time. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id nisi vitae mi gravida porta at eget ligula. | TEX | 590x60@0,0 | #cfbdad | FOSS 21 | "Sister Midnight opens its doors in Catford for the first time. Lorem ipsum dolor"
+          Button | INS | 200x58@0,92 | col gap12 p0/0/0/0 | INST | +1
+  Block | FRA | 1443x355@1,872 | #c4b29f
+    text | FRA | 1211x199@151,78 | row gap20 p0/0/0/0
+      Text | TEX | 0x104@0,0 | #3b302a | Sister 50 | " / "
+      Frame 1000000902 | FRA | 592x199@619,0 | col gap14 p0/0/0/0
+        Champion local music by giving emerging artists from Lewisham and South East London opportunities to perform, grow, and be heard.  Make live music more accessible by creating welcoming, inclusive spaces where more people feel able to take part, on stage and in the audience.  Build a creative hub where musicians, artists, organisers, and audiences can connect, share ideas, and collaborate.  | TEX | 592x199@0,0 | #3b302a | FOSS 21 | "Champion local music by giving emerging artists from Lewisham and South East Lon"
+  Block | FRA | 1445x1078@0,1227 | #3b302a | col gap12 p126/102/126/104
+    Frame 1000000905 | FRA | 1239x826@104,126 | row gap40 p0/0/0/0
+      image 39 | REC | 599x826@0,0 | IMAGE
+      R1-04555-0003 2 1 | REC | 600x826@639,0 | IMAGE
+  Block | FRA | 1443x575@1,2305 | #3b302a
+    text | FRA | 1211x419@151,78 | row gap20 p0/0/0/0
+      Text | TEX | 0x104@0,0 | #c4b29f | Sister 50 | " / "
+      FAQs | FRA | 592x419@619,0 | col gap40 p0/0/0/0
+        FAQ | TEX | 592x42@0,0 | #c4b29f | Sister 40 | "FAQ"
+        FAQ | FRA | 592x160@0,82 | col gap12 p0/0/0/0
+          heading | FRA | 592x30@0,0 | row gap12 p8/0/8/0 | +1
+          Yes, you can ... amet, consectetur adipiscing elit. Sed id nisi vitae mi gravida porta at eget ligula. Maecenas orci tellus, posuere sed metus dapibus, laoreet tincidunt est. £6 – meal £10 – meal and a drink | TEX | 592x118@0,42 | #c4b29f | FOSS 21 | "Yes, you can ... amet, consectetur adipiscing elit. Sed id nisi vitae mi gravida"
+        FAQ | FRA | 592x137@0,282 | col gap12 p0/0/0/0
+          heading | FRA | 592x30@0,0 | row gap12 p8/0/8/0 | +1
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id nisi vitae mi gravida porta at eget ligula. Maecenas orci tellus, posuere sed metus dapibus, laoreet tincidunt est. Contact: access@sistermidnight.org | TEX | 592x95@0,42 | #c4b29f | FOSS 21 | "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id nisi vitae mi gr"
+  Newsletter Banner | INS | 1445x266@0,2880 | #3b302a | col gap12 p0/0/0/0 | INST
+    inner | FRA | 1445x266@0,0 | #c4b29f | row gap32 p40/40/40/40
+      01.41 DRAWINGS | INS | 240x240@1089,-1 | INST
+        Group | GRO | 216x129@12,55
+          Frame | FRA | 216x129@12,55 | +1
+      01.41 DRAWINGS | INS | 240x240@1089,-1 | INST
+        Group | GRO | 216x129@12,55
+          Frame | FRA | 216x129@12,55 | +1
+      Frame 1000000916 | FRA | 1317x186@64,40 | col gap207 p0/0/0/0
+        event card text | FRA | 436x128@0,0 | col gap26 p0/0/0/0
+          header | FRA | 436x34@0,0 | col gap12 p0/0/0/0 | +1
+          Sign up to the Sister Midnight newsletter to hear about upcoming events and news. | TEX | 436x37@0,60 | #3b302a | FOSS 21 | "Sign up to the Sister Midnight newsletter to hear about upcoming events and news"
+        Signup form | FRA | 541x58@0,128 | row gap32 p0/0/0/0
+          input | FRA | 308x35@0,23 | row gap12 p6/0/6/0 | +1
+          right | FRA | 201x58@340,0 | col gap12 p0/0/0/0 | +1
+  Footer | INS | 1445x618@0,3146 | #3b302a | col gap40 p24/0/0/0 | INST
+    footer image | FRA | 1445x313@0,24 | col gap12 p0/0/0/0
+      dancing | FRA | 1445x313@0,0
+        shapes | GRO | 1387x319@27,0
+          Subtract | BOO | 165x118@1249,193 | #cfbdad | +4
+          Subtract | BOO | 163x168@27,71 | #cfbdad | +14
+          Vector | VEC | 116x276@664,20 | #cfbdad
+          Vector | VEC | 160x222@832,84 | #cfbdad
+          Subtract | BOO | 178x180@1142,19 | #cfbdad | +2
+          Vector | VEC | 203x188@245,120 | #cfbdad
+          Subtract | BOO | 131x157@509,65 | #cfbdad | +2
+          Vector | VEC | 103x151@990,57 | #cfbdad
+          Subtract | BOO | 90x85@304,226 | #cfbdad | +2
+          Vector | VEC | 117x112@1000,195 | #cfbdad
+          Vector | VEC | 115x105@481,192 | #cfbdad
+          Vector | VEC | 95x98@1061,164 | #cfbdad
+          Vector | VEC | 112x89@469,101 | #cfbdad
+          Vector | VEC | 94x115@803,158 | #cfbdad
+          Vector | VEC | 135x156@275,155 | #cfbdad
+          Vector | VEC | 88x110@569,197 | #cfbdad
+          Subtract | BOO | 61x67@497,50 | #cfbdad | +2
+          Subtract | BOO | 56x56@754,39 | #cfbdad | +2
+          Vector | VEC | 52x56@895,27 | #cfbdad
+          Vector | VEC | 82x88@761,92 | #cfbdad
+          Vector | VEC | 55x57@333,74 | #cfbdad
+          Vector | VEC | 60x120@750,183 | #cfbdad
+          Vector | VEC | 101x82@371,71 | #cfbdad
+          Vector | VEC | 88x118@152,201 | #cfbdad
+          Vector | VEC | 32x101@431,196 | #cfbdad
+          Vector | VEC | 39x80@80,0 | #cfbdad
+          Subtract | BOO | 41x45@1064,139 | #cfbdad | +2
+          Vector | VEC | 22x55@635,58 | #cfbdad
+          Vector | VEC | 40x34@1075,101 | #cfbdad
+          Vector | VEC | 46x59@60,220 | #cfbdad
+          Vector | VEC | 46x60@1345,92 | #cfbdad
+          Vector | VEC | 22x31@641,27 | #cfbdad
+          Vector | VEC | 15x34@239,9 | #cfbdad
+          Vector | VEC | 39x19@247,49 | #cfbdad
+          Vector | VEC | 35x23@1086,134 | #cfbdad
+          Vector | VEC | 23x28@213,14 | #cfbdad
+          Vector | VEC | 36x13@195,36 | #cfbdad
+          Vector | VEC | 12x34@230,58 | #cfbdad
+          Vector | VEC | 28x15@246,30 | #cfbdad
+          Vector | VEC | 14x31@1199,226 | #cfbdad
+          Vector | VEC | 17x26@245,57 | #cfbdad
+          Vector | VEC | 28x17@206,54 | #cfbdad
+          Vector | VEC | 13x13@234,43 | #cfbdad
+          Vector | VEC | 23x12@1210,252 | #cfbdad
+          Vector | VEC | 14x18@1186,230 | #cfbdad
+          Vector | VEC | 22x9@1175,243 | #cfbdad
+          Vector | VEC | 7x22@1197,258 | #cfbdad
+          Vector | VEC | 15x10@1210,240 | #cfbdad
+          Vector | VEC | 10x17@1207,257 | #cfbdad
+          Vector | VEC | 18x10@1181,256 | #cfbdad
+    Footer | FRA | 1443x241@0,377 | col gap34 p0/24/24/24
+      footer top | FRA | 1395x126@24,0 | row gap34 p0/0/0/0
+        menus | FRA | 151x126@0,0 | col gap16 p0/0/0/0
+          links | FRA | 111x92@0,0 | col gap12 p0/0/0/0 | +4
+          Social Links | FRA | 69x18@0,108 | row gap4.987881183624268 p0/0/0/0 | +2
+        location | FRA | 180x107@1215,0 | col gap10 p0/0/0/0
+          Sister Midnight Brookdale Road Catford SE6 4JY | TEX | 180x83@0,0 | #cfbdad | FOSS 21 | "Sister Midnight Brookdale Road Catford SE6 4JY"
+          Frame 21 | FRA | 180x14@0,93 | row gap8 p0/0/0/0 | +2
+      Frame 23 | FRA | 1395x57@24,160 | row gap518 p0/0/0/0
+        Support logos | FRA | 450x57@0,0 | col gap8 p0/0/0/0
+          supported by | TEX | 158x9@0,0 | #cfbdad | FOSS 13 | "supported by"
+          Mask group | GRO | 450x40@0,17 | +2
+        Legal Text | TEX | 616x31@779,26 | #cfbdad | FOSS 13 | "Sister Midnight is a Community Benefit Society, FCA #8598 /  Imprint | Privacy — T"
+Event Detail | FRA | 1445x2880@15689,0 | #704f50 | col gap0 p0/0/0/0
+  Intro | FRA | 1445x169@0,0 | #3b302a
+    Sister Midnight | TEX | 303x29@24,24 | #c4b29f | Sister 34 | "Sister Midnight"
+    Menu | FRA | 223x157@1175,36 | col gap18 p0/0/0/0
+      About | TEX | 64x17@159,0 | #cfbdad | FOSS 24 | "About"
+      Events | TEX | 70x17@153,35 | #cfbdad | FOSS 24 | "Events"
+      Venue | TEX | 65x17@158,70 | #cfbdad | FOSS 24 | "Venue"
+      Radio | TEX | 59x17@164,105 | #cfbdad | FOSS 24 | "Radio"
+      Support | TEX | 84x17@139,140 | #cfbdad | FOSS 24 | "Support"
+    01.41 Illustrations | INS | 562x562@777,98 | INST
+      Group | GRO | 249x506@156,28
+        Frame | FRA | 249x506@156,28
+          Clip path group | GRO | 248x499@0,0 | +2
+    Menu | FRA | 365x21@1054,23 | row gap18 p0/0/0/0
+      About | TEX | 77x21@0,0 | #cfbdad | Sister 20 | "About"
+      Events | TEX | 91x21@95,0 | #cfbdad | Sister 20 | "Events"
+      Venue | TEX | 74x21@204,0 | #cfbdad | Sister 20 | "Venue"
+      Radio | TEX | 69x21@296,0 | #cfbdad | Sister 20 | "Radio"
+  Block | FRA | 1445x703@0,169 | #3b302a
+    header content | FRA | 1211x624@154,0 | row gap20 p0/0/0/0
+      image | GRO | 496x623@0,0
+        image 34 | REC | 496x623@0,0 | IMAGE
+      Frame 1000000911 | FRA | 590x624@621,0 | col gap52 p0/0/0/0
+        Frame 1000000912 | FRA | 590x263@0,0 | col gap16 p0/0/0/0
+          SMFM Presents | TEX | 590x14@0,0 | #c4b29f | Sister 17 | "SMFM Presents"
+          Frame 1000000911 | FRA | 590x233@0,30 | col gap15 p0/0/0/0 | +2
+        Frame 1000000913 | FRA | 590x185@0,315 | col gap32 p0/0/0/0
+          Sister Midnight opens its doors in Catford for the first time. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id nisi vitae mi gravida porta at eget ligula. Tickets from £5 | TEX | 590x95@0,0 | #c4b29f | FOSS 21 | "Sister Midnight opens its doors in Catford for the first time. Lorem ipsum dolor"
+          Signup button | FRA | 200x58@0,127 | #9e4429 | row gap12 p10/20/10/20 | +2
+  Block | FRA | 1443x1124@1,872 | #c4b29f
+    text | FRA | 1211x954@151,78 | row gap20 p0/0/0/0
+      Text | TEX | 0x104@0,0 | #3b302a | Sister 50 | " / "
+      Frame 1000000902 | FRA | 593x954@618,0 | col gap14 p0/0/0/0
+        Cultural Aims | TEX | 592x34@0,0 | #3b302a | Sister 32 | "Cultural Aims"
+        Champion local music by giving emerging artists from Lewisham and South East London opportunities to perform, grow, and be heard.  Make live music more accessible by creating welcoming, inclusive spaces where more people feel able to take part, on stage and in the audience.  Build a creative hub where musicians, artists, organisers, and audiences can connect, share ideas, and collaborate.  | TEX | 592x199@0,48 | #3b302a | FOSS 21 | "Champion local music by giving emerging artists from Lewisham and South East Lon"
+        Community Aims | TEX | 592x34@0,261 | #3b302a | Sister 32 | "Community Aims"
+        Bring people together by creating a space that feels open and welcoming, helping to reduce social isolation and strengthen community connections. Put our community at the centre of what we do, giving members and local people real opportunities to shape our direction and decisions. Support skills and opportunities locally through volunteering, work placements, and training that build confidence, experience, and employability. Strengthen the local economy by working closely with other Lewisham-based businesses, freelancers, and organisations. Build solidarity across South East London by collaborating with like-minded groups to support wellbeing, creativity, and collective resilience.  | TEX | 593x361@0,309 | #3b302a | FOSS 21 | "Bring people together by creating a space that feels open and welcoming, helping"
+        Advocacy & Change | TEX | 592x34@0,684 | #3b302a | Sister 32 | "Advocacy & Change"
+        Help grow the co-operative cultural sector by sharing knowledge, supporting new initiatives, and working collaboratively within our local area. Stand up for culture by advocating for policies that protect and support grassroots music and community spaces at local, regional, and national levels. Support co-operative and community-owned models by championing fairer, more democratic ways of organising work and resources. | TEX | 592x222@0,732 | #3b302a | FOSS 21 | "Help grow the co-operative cultural sector by sharing knowledge, supporting new "
+  Newsletter Banner | INS | 1445x266@0,1996 | #c4b29f | col gap12 p0/0/0/0 | INST
+    inner | FRA | 1445x266@0,0 | #3b302a | row gap32 p40/40/40/40
+      01.41 DRAWINGS | INS | 240x240@1089,-1 | INST
+        Group | GRO | 216x129@12,55
+          Frame | FRA | 216x129@12,55 | +1
+      01.41 DRAWINGS | INS | 240x240@1089,-1 | INST
+        Group | GRO | 216x129@12,55
+          Frame | FRA | 216x129@12,55 | +1
+      Frame 1000000916 | FRA | 1317x186@64,40 | col gap207 p0/0/0/0
+        event card text | FRA | 436x128@0,0 | col gap26 p0/0/0/0
+          header | FRA | 436x34@0,0 | col gap12 p0/0/0/0 | +1
+          Sign up to the Sister Midnight newsletter to hear about upcoming events and news. | TEX | 436x37@0,60 | #c4b29f | FOSS 21 | "Sign up to the Sister Midnight newsletter to hear about upcoming events and news"
+        Signup form | FRA | 541x58@0,128 | row gap32 p0/0/0/0
+          input | FRA | 308x35@0,23 | row gap12 p6/0/6/0 | +1
+          right | FRA | 201x58@340,0 | col gap12 p0/0/0/0 | +1
+  Footer | INS | 1445x618@0,2262 | #3b302a | col gap40 p24/0/0/0 | INST
+    footer image | FRA | 1445x313@0,24 | col gap12 p0/0/0/0
+      dancing | FRA | 1445x313@0,0
+        shapes | GRO | 1387x319@27,0
+          Subtract | BOO | 165x118@1249,193 | #cfbdad | +4
+          Subtract | BOO | 163x168@27,71 | #cfbdad | +14
+          Vector | VEC | 116x276@664,20 | #cfbdad
+          Vector | VEC | 160x222@832,84 | #cfbdad
+          Subtract | BOO | 178x180@1142,19 | #cfbdad | +2
+          Vector | VEC | 203x188@245,120 | #cfbdad
+          Subtract | BOO | 131x157@509,65 | #cfbdad | +2
+          Vector | VEC | 103x151@990,57 | #cfbdad
+          Subtract | BOO | 90x85@304,226 | #cfbdad | +2
+          Vector | VEC | 117x112@1000,195 | #cfbdad
+          Vector | VEC | 115x105@481,192 | #cfbdad
+          Vector | VEC | 95x98@1061,164 | #cfbdad
+          Vector | VEC | 112x89@469,101 | #cfbdad
+          Vector | VEC | 94x115@803,158 | #cfbdad
+          Vector | VEC | 135x156@275,155 | #cfbdad
+          Vector | VEC | 88x110@569,197 | #cfbdad
+          Subtract | BOO | 61x67@497,50 | #cfbdad | +2
+          Subtract | BOO | 56x56@754,39 | #cfbdad | +2
+          Vector | VEC | 52x56@895,27 | #cfbdad
+          Vector | VEC | 82x88@761,92 | #cfbdad
+          Vector | VEC | 55x57@333,74 | #cfbdad
+          Vector | VEC | 60x120@750,183 | #cfbdad
+          Vector | VEC | 101x82@371,71 | #cfbdad
+          Vector | VEC | 88x118@152,201 | #cfbdad
+          Vector | VEC | 32x101@431,196 | #cfbdad
+          Vector | VEC | 39x80@80,0 | #cfbdad
+          Subtract | BOO | 41x45@1064,139 | #cfbdad | +2
+          Vector | VEC | 22x55@635,58 | #cfbdad
+          Vector | VEC | 40x34@1075,101 | #cfbdad
+          Vector | VEC | 46x59@60,220 | #cfbdad
+          Vector | VEC | 46x60@1345,92 | #cfbdad
+          Vector | VEC | 22x31@641,27 | #cfbdad
+          Vector | VEC | 15x34@239,9 | #cfbdad
+          Vector | VEC | 39x19@247,49 | #cfbdad
+          Vector | VEC | 35x23@1086,134 | #cfbdad
+          Vector | VEC | 23x28@213,14 | #cfbdad
+          Vector | VEC | 36x13@195,36 | #cfbdad
+          Vector | VEC | 12x34@230,58 | #cfbdad
+          Vector | VEC | 28x15@246,30 | #cfbdad
+          Vector | VEC | 14x31@1199,226 | #cfbdad
+          Vector | VEC | 17x26@245,57 | #cfbdad
+          Vector | VEC | 28x17@206,54 | #cfbdad
+          Vector | VEC | 13x13@234,43 | #cfbdad
+          Vector | VEC | 23x12@1210,252 | #cfbdad
+          Vector | VEC | 14x18@1186,230 | #cfbdad
+          Vector | VEC | 22x9@1175,243 | #cfbdad
+          Vector | VEC | 7x22@1197,258 | #cfbdad
+          Vector | VEC | 15x10@1210,240 | #cfbdad
+          Vector | VEC | 10x17@1207,257 | #cfbdad
+          Vector | VEC | 18x10@1181,256 | #cfbdad
+    Footer | FRA | 1443x241@0,377 | col gap34 p0/24/24/24
+      footer top | FRA | 1395x126@24,0 | row gap34 p0/0/0/0
+        menus | FRA | 151x126@0,0 | col gap16 p0/0/0/0
+          links | FRA | 111x92@0,0 | col gap12 p0/0/0/0 | +4
+          Social Links | FRA | 69x18@0,108 | row gap4.987881183624268 p0/0/0/0 | +2
+        location | FRA | 180x107@1215,0 | col gap10 p0/0/0/0
+          Sister Midnight Brookdale Road Catford SE6 4JY | TEX | 180x83@0,0 | #cfbdad | FOSS 21 | "Sister Midnight Brookdale Road Catford SE6 4JY"
+          Frame 21 | FRA | 180x14@0,93 | row gap8 p0/0/0/0 | +2
+      Frame 23 | FRA | 1395x57@24,160 | row gap518 p0/0/0/0
+        Support logos | FRA | 450x57@0,0 | col gap8 p0/0/0/0
+          supported by | TEX | 158x9@0,0 | #cfbdad | FOSS 13 | "supported by"
+          Mask group | GRO | 450x40@0,17 | +2
+        Legal Text | TEX | 616x31@779,26 | #cfbdad | FOSS 13 | "Sister Midnight is a Community Benefit Society, FCA #8598 /  Imprint | Privacy — T"
+News | FRA | 1445x2523@17297,0 | #704f50 | col gap0 p0/0/0/0
+  Intro | FRA | 1445x98@0,0 | #3b302a
+    Sister Midnight | TEX | 303x29@24,24 | #c4b29f | Sister 34 | "Sister Midnight"
+    Menu | FRA | 223x157@1175,36 | col gap18 p0/0/0/0
+      About | TEX | 64x17@159,0 | #cfbdad | FOSS 24 | "About"
+      Events | TEX | 70x17@153,35 | #cfbdad | FOSS 24 | "Events"
+      Venue | TEX | 65x17@158,70 | #cfbdad | FOSS 24 | "Venue"
+      Radio | TEX | 59x17@164,105 | #cfbdad | FOSS 24 | "Radio"
+      Support | TEX | 84x17@139,140 | #cfbdad | FOSS 24 | "Support"
+    01.41 Illustrations | INS | 562x562@777,98 | INST
+      Group | GRO | 249x506@156,28
+        Frame | FRA | 249x506@156,28
+          Clip path group | GRO | 248x499@0,0 | +2
+    Menu | FRA | 365x21@1054,23 | row gap18 p0/0/0/0
+      About | TEX | 77x21@0,0 | #cfbdad | Sister 20 | "About"
+      Events | TEX | 91x21@95,0 | #cfbdad | Sister 20 | "Events"
+      Venue | TEX | 74x21@204,0 | #cfbdad | Sister 20 | "Venue"
+      Radio | TEX | 69x21@296,0 | #cfbdad | Sister 20 | "Radio"
+  Block | FRA | 1445x431@0,98 | #3b302a | col gap12 p0/104/80/104
+    header content | FRA | 1237x351@104,0 | row gap20 p0/0/0/0
+      image | FRA | 597x351@0,0 | col gap12 p0/0/0/0
+        R1-03712-0011 1 | REC | 531x351@33,0 | IMAGE
+      text | FRA | 598x215@639,0 | col gap24 p0/0/0/0
+        Frame 1000000911 | FRA | 598x131@0,0 | col gap15 p0/0/0/0
+          23 March 2026 | TEX | 155x14@0,0 | #c4b29f | Sister 17 | "23 March 2026"
+          Building update: speedy progress as works enter their final stages | TEX | 598x102@0,29 | #c4b29f | Sister 32 | "Building update: speedy progress as works enter their final stages"
+        Frame 1000000913 | FRA | 598x60@0,155 | col gap32 p0/0/0/0
+          Our works are drawing to a close ipsum dolor sit amet, consectetur adipiscing elit. Sed id nisi vitae mi gravida porta at eget ligula. Maecenas orci tellus, posuere sed metus dapibus, laoreet tincidunt est. | TEX | 598x60@0,0 | #c4b29f | FOSS 21 | "Our works are drawing to a close ipsum dolor sit amet, consectetur adipiscing el"
+  Block | FRA | 1443x1110@1,529 | #c4b29f
+    text | FRA | 1236x954@103,78 | row gap20 p0/0/0/0
+      Text | TEX | 0x104@0,0 | #3b302a | Sister 50 | " / "
+      Frame 1000000902 | FRA | 593x954@643,0 | col gap14 p0/0/0/0
+        Cultural Aims | TEX | 592x34@0,0 | #3b302a | Sister 32 | "Cultural Aims"
+        Champion local music by giving emerging artists from Lewisham and South East London opportunities to perform, grow, and be heard.  Make live music more accessible by creating welcoming, inclusive spaces where more people feel able to take part, on stage and in the audience.  Build a creative hub where musicians, artists, organisers, and audiences can connect, share ideas, and collaborate.  | TEX | 592x199@0,48 | #3b302a | FOSS 21 | "Champion local music by giving emerging artists from Lewisham and South East Lon"
+        Community Aims | TEX | 592x34@0,261 | #3b302a | Sister 32 | "Community Aims"
+        Bring people together by creating a space that feels open and welcoming, helping to reduce social isolation and strengthen community connections. Put our community at the centre of what we do, giving members and local people real opportunities to shape our direction and decisions. Support skills and opportunities locally through volunteering, work placements, and training that build confidence, experience, and employability. Strengthen the local economy by working closely with other Lewisham-based businesses, freelancers, and organisations. Build solidarity across South East London by collaborating with like-minded groups to support wellbeing, creativity, and collective resilience.  | TEX | 593x361@0,309 | #3b302a | FOSS 21 | "Bring people together by creating a space that feels open and welcoming, helping"
+        Advocacy & Change | TEX | 592x34@0,684 | #3b302a | Sister 32 | "Advocacy & Change"
+        Help grow the co-operative cultural sector by sharing knowledge, supporting new initiatives, and working collaboratively within our local area. Stand up for culture by advocating for policies that protect and support grassroots music and community spaces at local, regional, and national levels. Support co-operative and community-owned models by championing fairer, more democratic ways of organising work and resources. | TEX | 592x222@0,732 | #3b302a | FOSS 21 | "Help grow the co-operative cultural sector by sharing knowledge, supporting new "
+  Newsletter Banner | INS | 1445x266@0,1639 | #c4b29f | col gap12 p0/0/0/0 | INST
+    inner | FRA | 1445x266@0,0 | #3b302a | row gap32 p40/40/40/40
+      01.41 DRAWINGS | INS | 240x240@1089,-1 | INST
+        Group | GRO | 216x129@12,55
+          Frame | FRA | 216x129@12,55 | +1
+      01.41 DRAWINGS | INS | 240x240@1089,-1 | INST
+        Group | GRO | 216x129@12,55
+          Frame | FRA | 216x129@12,55 | +1
+      Frame 1000000916 | FRA | 1317x186@64,40 | col gap207 p0/0/0/0
+        event card text | FRA | 436x128@0,0 | col gap26 p0/0/0/0
+          header | FRA | 436x34@0,0 | col gap12 p0/0/0/0 | +1
+          Sign up to the Sister Midnight newsletter to hear about upcoming events and news. | TEX | 436x37@0,60 | #c4b29f | FOSS 21 | "Sign up to the Sister Midnight newsletter to hear about upcoming events and news"
+        Signup form | FRA | 541x58@0,128 | row gap32 p0/0/0/0
+          input | FRA | 308x35@0,23 | row gap12 p6/0/6/0 | +1
+          right | FRA | 201x58@340,0 | col gap12 p0/0/0/0 | +1
+  Footer | INS | 1445x618@0,1905 | #3b302a | col gap40 p24/0/0/0 | INST
+    footer image | FRA | 1445x313@0,24 | col gap12 p0/0/0/0
+      dancing | FRA | 1445x313@0,0
+        shapes | GRO | 1387x319@27,0
+          Subtract | BOO | 165x118@1249,193 | #cfbdad | +4
+          Subtract | BOO | 163x168@27,71 | #cfbdad | +14
+          Vector | VEC | 116x276@664,20 | #cfbdad
+          Vector | VEC | 160x222@832,84 | #cfbdad
+          Subtract | BOO | 178x180@1142,19 | #cfbdad | +2
+          Vector | VEC | 203x188@245,120 | #cfbdad
+          Subtract | BOO | 131x157@509,65 | #cfbdad | +2
+          Vector | VEC | 103x151@990,57 | #cfbdad
+          Subtract | BOO | 90x85@304,226 | #cfbdad | +2
+          Vector | VEC | 117x112@1000,195 | #cfbdad
+          Vector | VEC | 115x105@481,192 | #cfbdad
+          Vector | VEC | 95x98@1061,164 | #cfbdad
+          Vector | VEC | 112x89@469,101 | #cfbdad
+          Vector | VEC | 94x115@803,158 | #cfbdad
+          Vector | VEC | 135x156@275,155 | #cfbdad
+          Vector | VEC | 88x110@569,197 | #cfbdad
+          Subtract | BOO | 61x67@497,50 | #cfbdad | +2
+          Subtract | BOO | 56x56@754,39 | #cfbdad | +2
+          Vector | VEC | 52x56@895,27 | #cfbdad
+          Vector | VEC | 82x88@761,92 | #cfbdad
+          Vector | VEC | 55x57@333,74 | #cfbdad
+          Vector | VEC | 60x120@750,183 | #cfbdad
+          Vector | VEC | 101x82@371,71 | #cfbdad
+          Vector | VEC | 88x118@152,201 | #cfbdad
+          Vector | VEC | 32x101@431,196 | #cfbdad
+          Vector | VEC | 39x80@80,0 | #cfbdad
+          Subtract | BOO | 41x45@1064,139 | #cfbdad | +2
+          Vector | VEC | 22x55@635,58 | #cfbdad
+          Vector | VEC | 40x34@1075,101 | #cfbdad
+          Vector | VEC | 46x59@60,220 | #cfbdad
+          Vector | VEC | 46x60@1345,92 | #cfbdad
+          Vector | VEC | 22x31@641,27 | #cfbdad
+          Vector | VEC | 15x34@239,9 | #cfbdad
+          Vector | VEC | 39x19@247,49 | #cfbdad
+          Vector | VEC | 35x23@1086,134 | #cfbdad
+          Vector | VEC | 23x28@213,14 | #cfbdad
+          Vector | VEC | 36x13@195,36 | #cfbdad
+          Vector | VEC | 12x34@230,58 | #cfbdad
+          Vector | VEC | 28x15@246,30 | #cfbdad
+          Vector | VEC | 14x31@1199,226 | #cfbdad
+          Vector | VEC | 17x26@245,57 | #cfbdad
+          Vector | VEC | 28x17@206,54 | #cfbdad
+          Vector | VEC | 13x13@234,43 | #cfbdad
+          Vector | VEC | 23x12@1210,252 | #cfbdad
+          Vector | VEC | 14x18@1186,230 | #cfbdad
+          Vector | VEC | 22x9@1175,243 | #cfbdad
+          Vector | VEC | 7x22@1197,258 | #cfbdad
+          Vector | VEC | 15x10@1210,240 | #cfbdad
+          Vector | VEC | 10x17@1207,257 | #cfbdad
+          Vector | VEC | 18x10@1181,256 | #cfbdad
+    Footer | FRA | 1443x241@0,377 | col gap34 p0/24/24/24
+      footer top | FRA | 1395x126@24,0 | row gap34 p0/0/0/0
+        menus | FRA | 151x126@0,0 | col gap16 p0/0/0/0
+          links | FRA | 111x92@0,0 | col gap12 p0/0/0/0 | +4
+          Social Links | FRA | 69x18@0,108 | row gap4.987881183624268 p0/0/0/0 | +2
+        location | FRA | 180x107@1215,0 | col gap10 p0/0/0/0
+          Sister Midnight Brookdale Road Catford SE6 4JY | TEX | 180x83@0,0 | #cfbdad | FOSS 21 | "Sister Midnight Brookdale Road Catford SE6 4JY"
+          Frame 21 | FRA | 180x14@0,93 | row gap8 p0/0/0/0 | +2
+      Frame 23 | FRA | 1395x57@24,160 | row gap518 p0/0/0/0
+        Support logos | FRA | 450x57@0,0 | col gap8 p0/0/0/0
+          supported by | TEX | 158x9@0,0 | #cfbdad | FOSS 13 | "supported by"
+          Mask group | GRO | 450x40@0,17 | +2
+        Legal Text | TEX | 616x31@779,26 | #cfbdad | FOSS 13 | "Sister Midnight is a Community Benefit Society, FCA #8598 /  Imprint | Privacy — T"
+What's On | FRA | 1445x3288@10909,0 | #704f50 | col gap0 p0/0/0/0
+  Intro | FRA | 1445x76@0,0 | #3b302a
+    Sister Midnight | TEX | 303x29@24,24 | #c4b29f | Sister 34 | "Sister Midnight"
+    Menu | FRA | 223x157@1175,36 | col gap18 p0/0/0/0
+      About | TEX | 64x17@159,0 | #cfbdad | FOSS 24 | "About"
+      Events | TEX | 70x17@153,35 | #cfbdad | FOSS 24 | "Events"
+      Venue | TEX | 65x17@158,70 | #cfbdad | FOSS 24 | "Venue"
+      Radio | TEX | 59x17@164,105 | #cfbdad | FOSS 24 | "Radio"
+      Support | TEX | 84x17@139,140 | #cfbdad | FOSS 24 | "Support"
+    01.41 Illustrations | INS | 562x562@777,98 | INST
+      Group | GRO | 249x506@156,28
+        Frame | FRA | 249x506@156,28
+          Clip path group | GRO | 248x499@0,0 | +2
+    Menu | FRA | 365x21@1054,23 | row gap18 p0/0/0/0
+      About | TEX | 77x21@0,0 | #cfbdad | Sister 20 | "About"
+      Events | TEX | 91x21@95,0 | #cfbdad | Sister 20 | "Events"
+      Venue | TEX | 74x21@204,0 | #cfbdad | Sister 20 | "Venue"
+      Radio | TEX | 69x21@296,0 | #cfbdad | Sister 20 | "Radio"
+  Block | FRA | 1445x2328@0,76 | #3b302a
+    Events Calendar | FRA | 1285x1001@112,1212 | col gap21.34255027770996 p0/0/0/0
+      Events Header | FRA | 1285x19@0,0 | row gap10.67127513885498 p0/0/0/0
+        Frame 36 | FRA | 197x19@0,0 | row gap9 p0/0/0/0
+          Calendar | TEX | 111x19@0,0 | #c4b29f | Sister 18 | "Calendar"
+          // | TEX | 19x19@120,0 | #c4b29f | Sister 18 | "//"
+          List | TEX | 49x19@148,0 | #c4b29f | Sister 18 | "List"
+        calendar nav | FRA | 160x19@1125,0 | row gap10.67127513885498 p0/0/0/0
+          < | TEX | 8x16@0,2 | #c4b29f | Rework 13 | "<"
+          April 2026 | TEX | 123x19@19,0 | #c4b29f | Sister 18 | "April 2026"
+          > | TEX | 8x16@152,2 | #c4b29f | Rework 13 | ">"
+      Calendar | FRA | 1285x961@0,40 | col gap11.560547828674316 p0/0/0/0
+        Calendar | FRA | 1285x961@0,0 | col gap0 p0/0/0/0
+          calendar header | FRA | 1285x31@0,0 | row gap0 p0/0/0/0 | +7
+          calendar days | FRA | 1285x930@0,31 | row gap0 p0/0/0/0 | +35
+    What`s On | TEX | 298x52@63,75 | #c4b29f | Sister 50 | "What`s On"
+    event card | FRA | 416x938@112,75 | #c4b29f | col gap32 p24/24/24/24
+      Group 34 | GRO | 368x513@24,24
+        Rectangle 37 | REC | 368x513@24,24 | #3b302a
+        image 34 | REC | 368x513@24,24 | IMAGE
+      event card text | FRA | 368x345@24,569 | col gap77 p0/0/0/0
+        header | FRA | 368x254@0,0 | col gap12 p0/0/0/0
+          Sister Midnight Presents | TEX | 368x14@0,0 | #3b302a | Sister 17 | "Sister Midnight Presents"
+          Rael. Max Winter. Isiah Hull | TEX | 368x156@0,26 | #3b302a | Sister 47 | "Rael. Max Winter. Isiah Hull"
+          another amazing night of music at @piehouse.coop for our monthly Residency❤️ | TEX | 368x60@0,194 | #3b302a | FOSS 21 | "another amazing night of music at @piehouse.coop for our monthly Residency❤️"
+        details | FRA | 368x14@0,331 | row gap17 p0/0/0/0
+          23rd March | TEX | 124x14@0,0 | #3b302a | Sister 17 | "23rd March"
+          catford house | TEX | 158x14@210,0 | #3b302a | Sister 17 | "catford house"
+    event card | FRA | 426x850@989,75 | #c4b29f | col gap32 p24/24/24/24
+      Group 33 | GRO | 378x472@24,24
+        Rectangle 36 | REC | 378x472@24,24 | #c4b29f
+        image 31 | REC | 378x472@24,24 | IMAGE
+      event card text | FRA | 378x298@24,528 | col gap65 p0/0/0/0
+        header | FRA | 378x219@0,0 | col gap19 p0/0/0/0
+          SiSter Midnight FM live at Rons Coffee House | TEX | 378x117@0,0 | #3b302a | Sister 38 | "SiSter Midnight FM live at Rons Coffee House"
+          Sister Midnight opens its doors in Catford for the first time. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id nisi vitae mi gravida porta at eget ligula. | TEX | 378x83@0,136 | #3b302a | FOSS 21 | "Sister Midnight opens its doors in Catford for the first time. Lorem ipsum dolor"
+        details | FRA | 378x14@0,284 | row gap17 p0/0/0/0
+          23rd March | TEX | 124x14@0,0 | #3b302a | Sister 17 | "23rd March"
+          catford house | TEX | 158x14@220,0 | #3b302a | Sister 17 | "catford house"
+    event card | FRA | 406x843@556,140 | #c4b29f | col gap32 p24/24/24/24
+      Group 31 | GRO | 358x448@24,24
+        Rectangle 35 | REC | 358x448@24,24 | #3b302a
+        image 32 | REC | 356x447@24,25 | IMAGE
+      event card text | FRA | 358x315@24,504 | col gap77 p0/0/0/0
+        header | FRA | 358x224@0,0 | col gap12 p0/0/0/0
+          Otta. No Home. MAtthew Muli. Cigotine | TEX | 358x129@0,0 | #3b302a | Sister 41 | "Otta. No Home. MAtthew Muli. Cigotine"
+          Sister Midnight opens its doors in Catford for the first time. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id nisi vitae mi gravida porta at eget ligula. | TEX | 358x83@0,141 | #3b302a | FOSS 21 | "Sister Midnight opens its doors in Catford for the first time. Lorem ipsum dolor"
+        details | FRA | 358x14@0,301 | row gap17 p0/0/0/0
+          23rd March | TEX | 124x14@0,0 | #3b302a | Sister 17 | "23rd March"
+          catford house | TEX | 158x14@200,0 | #3b302a | Sister 17 | "catford house"
+  Newsletter Banner | INS | 1445x266@0,2404 | #3b302a | col gap12 p0/0/0/0 | INST
+    inner | FRA | 1445x266@0,0 | #c4b29f | row gap32 p40/40/40/40
+      01.41 DRAWINGS | INS | 240x240@1089,-1 | INST
+        Group | GRO | 216x129@12,55
+          Frame | FRA | 216x129@12,55 | +1
+      01.41 DRAWINGS | INS | 240x240@1089,-1 | INST
+        Group | GRO | 216x129@12,55
+          Frame | FRA | 216x129@12,55 | +1
+      Frame 1000000916 | FRA | 1317x186@64,40 | col gap207 p0/0/0/0
+        event card text | FRA | 436x128@0,0 | col gap26 p0/0/0/0
+          header | FRA | 436x34@0,0 | col gap12 p0/0/0/0 | +1
+          Sign up to the Sister Midnight newsletter to hear about upcoming events and news. | TEX | 436x37@0,60 | #3b302a | FOSS 21 | "Sign up to the Sister Midnight newsletter to hear about upcoming events and news"
+        Signup form | FRA | 541x58@0,128 | row gap32 p0/0/0/0
+          input | FRA | 308x35@0,23 | row gap12 p6/0/6/0 | +1
+          right | FRA | 201x58@340,0 | col gap12 p0/0/0/0 | +1
+  Footer | INS | 1445x618@0,2670 | #3b302a | col gap40 p24/0/0/0 | INST
+    footer image | FRA | 1445x313@0,24 | col gap12 p0/0/0/0
+      dancing | FRA | 1445x313@0,0
+        shapes | GRO | 1387x319@27,0
+          Subtract | BOO | 165x118@1249,193 | #cfbdad | +4
+          Subtract | BOO | 163x168@27,71 | #cfbdad | +14
+          Vector | VEC | 116x276@664,20 | #cfbdad
+          Vector | VEC | 160x222@832,84 | #cfbdad
+          Subtract | BOO | 178x180@1142,19 | #cfbdad | +2
+          Vector | VEC | 203x188@245,120 | #cfbdad
+          Subtract | BOO | 131x157@509,65 | #cfbdad | +2
+          Vector | VEC | 103x151@990,57 | #cfbdad
+          Subtract | BOO | 90x85@304,226 | #cfbdad | +2
+          Vector | VEC | 117x112@1000,195 | #cfbdad
+          Vector | VEC | 115x105@481,192 | #cfbdad
+          Vector | VEC | 95x98@1061,164 | #cfbdad
+          Vector | VEC | 112x89@469,101 | #cfbdad
+          Vector | VEC | 94x115@803,158 | #cfbdad
+          Vector | VEC | 135x156@275,155 | #cfbdad
+          Vector | VEC | 88x110@569,197 | #cfbdad
+          Subtract | BOO | 61x67@497,50 | #cfbdad | +2
+          Subtract | BOO | 56x56@754,39 | #cfbdad | +2
+          Vector | VEC | 52x56@895,27 | #cfbdad
+          Vector | VEC | 82x88@761,92 | #cfbdad
+          Vector | VEC | 55x57@333,74 | #cfbdad
+          Vector | VEC | 60x120@750,183 | #cfbdad
+          Vector | VEC | 101x82@371,71 | #cfbdad
+          Vector | VEC | 88x118@152,201 | #cfbdad
+          Vector | VEC | 32x101@431,196 | #cfbdad
+          Vector | VEC | 39x80@80,0 | #cfbdad
+          Subtract | BOO | 41x45@1064,139 | #cfbdad | +2
+          Vector | VEC | 22x55@635,58 | #cfbdad
+          Vector | VEC | 40x34@1075,101 | #cfbdad
+          Vector | VEC | 46x59@60,220 | #cfbdad
+          Vector | VEC | 46x60@1345,92 | #cfbdad
+          Vector | VEC | 22x31@641,27 | #cfbdad
+          Vector | VEC | 15x34@239,9 | #cfbdad
+          Vector | VEC | 39x19@247,49 | #cfbdad
+          Vector | VEC | 35x23@1086,134 | #cfbdad
+          Vector | VEC | 23x28@213,14 | #cfbdad
+          Vector | VEC | 36x13@195,36 | #cfbdad
+          Vector | VEC | 12x34@230,58 | #cfbdad
+          Vector | VEC | 28x15@246,30 | #cfbdad
+          Vector | VEC | 14x31@1199,226 | #cfbdad
+          Vector | VEC | 17x26@245,57 | #cfbdad
+          Vector | VEC | 28x17@206,54 | #cfbdad
+          Vector | VEC | 13x13@234,43 | #cfbdad
+          Vector | VEC | 23x12@1210,252 | #cfbdad
+          Vector | VEC | 14x18@1186,230 | #cfbdad
+          Vector | VEC | 22x9@1175,243 | #cfbdad
+          Vector | VEC | 7x22@1197,258 | #cfbdad
+          Vector | VEC | 15x10@1210,240 | #cfbdad
+          Vector | VEC | 10x17@1207,257 | #cfbdad
+          Vector | VEC | 18x10@1181,256 | #cfbdad
+    Footer | FRA | 1443x241@0,377 | col gap34 p0/24/24/24
+      footer top | FRA | 1395x126@24,0 | row gap34 p0/0/0/0
+        menus | FRA | 151x126@0,0 | col gap16 p0/0/0/0
+          links | FRA | 111x92@0,0 | col gap12 p0/0/0/0 | +4
+          Social Links | FRA | 69x18@0,108 | row gap4.987881183624268 p0/0/0/0 | +2
+        location | FRA | 180x107@1215,0 | col gap10 p0/0/0/0
+          Sister Midnight Brookdale Road Catford SE6 4JY | TEX | 180x83@0,0 | #cfbdad | FOSS 21 | "Sister Midnight Brookdale Road Catford SE6 4JY"
+          Frame 21 | FRA | 180x14@0,93 | row gap8 p0/0/0/0 | +2
+      Frame 23 | FRA | 1395x57@24,160 | row gap518 p0/0/0/0
+        Support logos | FRA | 450x57@0,0 | col gap8 p0/0/0/0
+          supported by | TEX | 158x9@0,0 | #cfbdad | FOSS 13 | "supported by"
+          Mask group | GRO | 450x40@0,17 | +2
+        Legal Text | TEX | 616x31@779,26 | #cfbdad | FOSS 13 | "Sister Midnight is a Community Benefit Society, FCA #8598 /  Imprint | Privacy — T"
+What's On | FRA | 1445x3288@12549,0 | #704f50 | col gap0 p0/0/0/0
+  Intro | FRA | 1445x76@0,0 | #3b302a
+    Sister Midnight | TEX | 303x29@24,24 | #c4b29f | Sister 34 | "Sister Midnight"
+    Menu | FRA | 223x157@1175,36 | col gap18 p0/0/0/0
+      About | TEX | 64x17@159,0 | #cfbdad | FOSS 24 | "About"
+      Events | TEX | 70x17@153,35 | #cfbdad | FOSS 24 | "Events"
+      Venue | TEX | 65x17@158,70 | #cfbdad | FOSS 24 | "Venue"
+      Radio | TEX | 59x17@164,105 | #cfbdad | FOSS 24 | "Radio"
+      Support | TEX | 84x17@139,140 | #cfbdad | FOSS 24 | "Support"
+    01.41 Illustrations | INS | 562x562@777,98 | INST
+      Group | GRO | 249x506@156,28
+        Frame | FRA | 249x506@156,28
+          Clip path group | GRO | 248x499@0,0 | +2
+    Menu | FRA | 365x21@1054,23 | row gap18 p0/0/0/0
+      About | TEX | 77x21@0,0 | #cfbdad | Sister 20 | "About"
+      Events | TEX | 91x21@95,0 | #cfbdad | Sister 20 | "Events"
+      Venue | TEX | 74x21@204,0 | #cfbdad | Sister 20 | "Venue"
+      Radio | TEX | 69x21@296,0 | #cfbdad | Sister 20 | "Radio"
+  Block | FRA | 1445x2328@0,76 | #3b302a
+    Events Calendar | FRA | 1285x1001@112,1212 | col gap21.34255027770996 p0/0/0/0
+      Events Header | FRA | 1285x19@0,0 | row gap10.67127513885498 p0/0/0/0
+        Frame 36 | FRA | 184x19@0,0 | row gap24 p0/0/0/0
+          Calendar | TEX | 111x19@0,0 | #c4b29f | Sister 18 | "Calendar"
+          List | TEX | 49x19@135,0 | #c4b29f | Sister 18 | "List"
+        calendar nav | FRA | 160x19@1125,0 | row gap10.67127513885498 p0/0/0/0
+          < | TEX | 8x16@0,2 | #c4b29f | Rework 13 | "<"
+          April 2026 | TEX | 123x19@19,0 | #c4b29f | Sister 18 | "April 2026"
+          > | TEX | 8x16@152,2 | #c4b29f | Rework 13 | ">"
+      Calendar | FRA | 1285x961@0,40 | col gap11.560547828674316 p0/0/0/0
+        Calendar | FRA | 1285x961@0,0 | col gap0 p0/0/0/0
+          calendar header | FRA | 1285x31@0,0 | row gap0 p0/0/0/0 | +7
+          calendar days | FRA | 1285x930@0,31 | row gap0 p0/0/0/0 | +35
+    What`s On | TEX | 298x52@63,75 | #c4b29f | Sister 50 | "What`s On"
+    event card | FRA | 416x938@112,75 | #c4b29f | col gap32 p24/24/24/24
+      Group 34 | GRO | 368x513@24,24
+        Rectangle 37 | REC | 368x513@24,24 | #3b302a
+        image 34 | REC | 368x513@24,24 | IMAGE
+      event card text | FRA | 368x345@24,569 | col gap77 p0/0/0/0
+        header | FRA | 368x254@0,0 | col gap12 p0/0/0/0
+          Sister Midnight Presents | TEX | 368x14@0,0 | #3b302a | Sister 17 | "Sister Midnight Presents"
+          Rael. Max Winter. Isiah Hull | TEX | 368x156@0,26 | #3b302a | Sister 47 | "Rael. Max Winter. Isiah Hull"
+          another amazing night of music at @piehouse.coop for our monthly Residency❤️ | TEX | 368x60@0,194 | #3b302a | FOSS 21 | "another amazing night of music at @piehouse.coop for our monthly Residency❤️"
+        details | FRA | 368x14@0,331 | row gap17 p0/0/0/0
+          23rd March | TEX | 124x14@0,0 | #3b302a | Sister 17 | "23rd March"
+          catford house | TEX | 158x14@210,0 | #3b302a | Sister 17 | "catford house"
+    event card | FRA | 426x850@989,75 | #c4b29f | col gap32 p24/24/24/24
+      Group 33 | GRO | 378x472@24,24
+        Rectangle 36 | REC | 378x472@24,24 | #c4b29f
+        image 31 | REC | 378x472@24,24 | IMAGE
+      event card text | FRA | 378x298@24,528 | col gap65 p0/0/0/0
+        header | FRA | 378x219@0,0 | col gap19 p0/0/0/0
+          SiSter Midnight FM live at Rons Coffee House | TEX | 378x117@0,0 | #3b302a | Sister 38 | "SiSter Midnight FM live at Rons Coffee House"
+          Sister Midnight opens its doors in Catford for the first time. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id nisi vitae mi gravida porta at eget ligula. | TEX | 378x83@0,136 | #3b302a | FOSS 21 | "Sister Midnight opens its doors in Catford for the first time. Lorem ipsum dolor"
+        details | FRA | 378x14@0,284 | row gap17 p0/0/0/0
+          23rd March | TEX | 124x14@0,0 | #3b302a | Sister 17 | "23rd March"
+          catford house | TEX | 158x14@220,0 | #3b302a | Sister 17 | "catford house"
+    event card | FRA | 406x843@556,140 | #c4b29f | col gap32 p24/24/24/24
+      Group 31 | GRO | 358x448@24,24
+        Rectangle 35 | REC | 358x448@24,24 | #3b302a
+        image 32 | REC | 356x447@24,25 | IMAGE
+      event card text | FRA | 358x315@24,504 | col gap77 p0/0/0/0
+        header | FRA | 358x224@0,0 | col gap12 p0/0/0/0
+          Otta. No Home. MAtthew Muli. Cigotine | TEX | 358x129@0,0 | #3b302a | Sister 41 | "Otta. No Home. MAtthew Muli. Cigotine"
+          Sister Midnight opens its doors in Catford for the first time. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id nisi vitae mi gravida porta at eget ligula. | TEX | 358x83@0,141 | #3b302a | FOSS 21 | "Sister Midnight opens its doors in Catford for the first time. Lorem ipsum dolor"
+        details | FRA | 358x14@0,301 | row gap17 p0/0/0/0
+          23rd March | TEX | 124x14@0,0 | #3b302a | Sister 17 | "23rd March"
+          catford house | TEX | 158x14@200,0 | #3b302a | Sister 17 | "catford house"
+  Newsletter Banner | INS | 1445x266@0,2404 | #3b302a | col gap12 p0/0/0/0 | INST
+    inner | FRA | 1445x266@0,0 | #c4b29f | row gap32 p40/40/40/40
+      01.41 DRAWINGS | INS | 240x240@1089,-1 | INST
+        Group | GRO | 216x129@12,55
+          Frame | FRA | 216x129@12,55 | +1
+      01.41 DRAWINGS | INS | 240x240@1089,-1 | INST
+        Group | GRO | 216x129@12,55
+          Frame | FRA | 216x129@12,55 | +1
+      Frame 1000000916 | FRA | 1317x186@64,40 | col gap207 p0/0/0/0
+        event card text | FRA | 436x128@0,0 | col gap26 p0/0/0/0
+          header | FRA | 436x34@0,0 | col gap12 p0/0/0/0 | +1
+          Sign up to the Sister Midnight newsletter to hear about upcoming events and news. | TEX | 436x37@0,60 | #3b302a | FOSS 21 | "Sign up to the Sister Midnight newsletter to hear about upcoming events and news"
+        Signup form | FRA | 541x58@0,128 | row gap32 p0/0/0/0
+          input | FRA | 308x35@0,23 | row gap12 p6/0/6/0 | +1
+          right | FRA | 201x58@340,0 | col gap12 p0/0/0/0 | +1
+  Footer | INS | 1445x618@0,2670 | #3b302a | col gap40 p24/0/0/0 | INST
+    footer image | FRA | 1445x313@0,24 | col gap12 p0/0/0/0
+      dancing | FRA | 1445x313@0,0
+        shapes | GRO | 1387x319@27,0
+          Subtract | BOO | 165x118@1249,193 | #cfbdad | +4
+          Subtract | BOO | 163x168@27,71 | #cfbdad | +14
+          Vector | VEC | 116x276@664,20 | #cfbdad
+          Vector | VEC | 160x222@832,84 | #cfbdad
+          Subtract | BOO | 178x180@1142,19 | #cfbdad | +2
+          Vector | VEC | 203x188@245,120 | #cfbdad
+          Subtract | BOO | 131x157@509,65 | #cfbdad | +2
+          Vector | VEC | 103x151@990,57 | #cfbdad
+          Subtract | BOO | 90x85@304,226 | #cfbdad | +2
+          Vector | VEC | 117x112@1000,195 | #cfbdad
+          Vector | VEC | 115x105@481,192 | #cfbdad
+          Vector | VEC | 95x98@1061,164 | #cfbdad
+          Vector | VEC | 112x89@469,101 | #cfbdad
+          Vector | VEC | 94x115@803,158 | #cfbdad
+          Vector | VEC | 135x156@275,155 | #cfbdad
+          Vector | VEC | 88x110@569,197 | #cfbdad
+          Subtract | BOO | 61x67@497,50 | #cfbdad | +2
+          Subtract | BOO | 56x56@754,39 | #cfbdad | +2
+          Vector | VEC | 52x56@895,27 | #cfbdad
+          Vector | VEC | 82x88@761,92 | #cfbdad
+          Vector | VEC | 55x57@333,74 | #cfbdad
+          Vector | VEC | 60x120@750,183 | #cfbdad
+          Vector | VEC | 101x82@371,71 | #cfbdad
+          Vector | VEC | 88x118@152,201 | #cfbdad
+          Vector | VEC | 32x101@431,196 | #cfbdad
+          Vector | VEC | 39x80@80,0 | #cfbdad
+          Subtract | BOO | 41x45@1064,139 | #cfbdad | +2
+          Vector | VEC | 22x55@635,58 | #cfbdad
+          Vector | VEC | 40x34@1075,101 | #cfbdad
+          Vector | VEC | 46x59@60,220 | #cfbdad
+          Vector | VEC | 46x60@1345,92 | #cfbdad
+          Vector | VEC | 22x31@641,27 | #cfbdad
+          Vector | VEC | 15x34@239,9 | #cfbdad
+          Vector | VEC | 39x19@247,49 | #cfbdad
+          Vector | VEC | 35x23@1086,134 | #cfbdad
+          Vector | VEC | 23x28@213,14 | #cfbdad
+          Vector | VEC | 36x13@195,36 | #cfbdad
+          Vector | VEC | 12x34@230,58 | #cfbdad
+          Vector | VEC | 28x15@246,30 | #cfbdad
+          Vector | VEC | 14x31@1199,226 | #cfbdad
+          Vector | VEC | 17x26@245,57 | #cfbdad
+          Vector | VEC | 28x17@206,54 | #cfbdad
+          Vector | VEC | 13x13@234,43 | #cfbdad
+          Vector | VEC | 23x12@1210,252 | #cfbdad
+          Vector | VEC | 14x18@1186,230 | #cfbdad
+          Vector | VEC | 22x9@1175,243 | #cfbdad
+          Vector | VEC | 7x22@1197,258 | #cfbdad
+          Vector | VEC | 15x10@1210,240 | #cfbdad
+          Vector | VEC | 10x17@1207,257 | #cfbdad
+          Vector | VEC | 18x10@1181,256 | #cfbdad
+    Footer | FRA | 1443x241@0,377 | col gap34 p0/24/24/24
+      footer top | FRA | 1395x126@24,0 | row gap34 p0/0/0/0
+        menus | FRA | 151x126@0,0 | col gap16 p0/0/0/0
+          links | FRA | 111x92@0,0 | col gap12 p0/0/0/0 | +4
+          Social Links | FRA | 69x18@0,108 | row gap4.987881183624268 p0/0/0/0 | +2
+        location | FRA | 180x107@1215,0 | col gap10 p0/0/0/0
+          Sister Midnight Brookdale Road Catford SE6 4JY | TEX | 180x83@0,0 | #cfbdad | FOSS 21 | "Sister Midnight Brookdale Road Catford SE6 4JY"
+          Frame 21 | FRA | 180x14@0,93 | row gap8 p0/0/0/0 | +2
+      Frame 23 | FRA | 1395x57@24,160 | row gap518 p0/0/0/0
+        Support logos | FRA | 450x57@0,0 | col gap8 p0/0/0/0
+          supported by | TEX | 158x9@0,0 | #cfbdad | FOSS 13 | "supported by"
+          Mask group | GRO | 450x40@0,17 | +2
+        Legal Text | TEX | 616x31@779,26 | #cfbdad | FOSS 13 | "Sister Midnight is a Community Benefit Society, FCA #8598 /  Imprint | Privacy — T"
