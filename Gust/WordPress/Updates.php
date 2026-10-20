@@ -10,14 +10,14 @@ class Updates
         $updatePlugins = (bool) \Gust\Config::get('auto_update_plugins', true);
         $updateCore = (bool) \Gust\Config::get('auto_update_core', true);
 
-        \add_filter('auto_update_theme', fn() => $updateThemes);
-        \add_filter('auto_update_plugin', fn() => $updatePlugins);
+        \add_filter('auto_update_theme', fn () => $updateThemes);
+        \add_filter('auto_update_plugin', fn () => $updatePlugins);
 
         \add_filter('themes_auto_update_enabled', '__return_false');
         \add_filter('plugins_auto_update_enabled', '__return_false');
 
-        \add_filter('allow_major_auto_core_updates', fn() => $updateCore);
-        \add_filter('allow_minor_auto_core_updates', fn() => $updateCore);
+        \add_filter('allow_major_auto_core_updates', fn () => $updateCore);
+        \add_filter('allow_minor_auto_core_updates', fn () => $updateCore);
         \add_filter('allow_dev_auto_core_updates', '__return_false');
 
         /**

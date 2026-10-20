@@ -355,13 +355,13 @@
         <small><code class="dev-kit__code">.color-context-{color}</code> <code class="dev-kit__code">.has-{color}-background-color</code></small>
         <p style="margin: 0.5rem 0;">Sets background color, foreground color, focus color, and link colors based on the color's configuration.</p>
         <div class="dev-kit__demo" style="padding: 0; overflow: hidden;">
-            <?php foreach (['accent', 'brand-2', 'background', 'neutral'] as $context) : ?>
+            <?php foreach (['accent', 'brand-2', 'background', 'neutral'] as $context) { ?>
                 <div class="color-context-<?= $context ?>" style="padding: 1.5rem;">
                     <strong>.color-context-<?= $context ?></strong>
                     <p style="margin: 0.5rem 0;">Text with <a href="#">a link</a> inherits correct colors.</p>
                     <button class="btn btn--small">.btn</button>
                 </div>
-            <?php endforeach; ?>
+            <?php } ?>
         </div>
     </div>
 

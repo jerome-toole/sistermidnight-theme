@@ -67,6 +67,7 @@ class RouterPage
     public static function isActiveRouterPage(int $postId): bool
     {
         $role = static::getRole($postId);
+
         return $role !== null && isset(static::$pages[$role]);
     }
 
