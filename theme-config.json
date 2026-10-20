@@ -122,7 +122,9 @@
                 "foreground": "var(--color-dark-umber)",
                 "properties": {
                     "--color-accent": "var(--color-burnt-sienna)",
-                    "--color-accent--foreground": "var(--color-warm-sand)"
+                    "--color-accent--foreground": "var(--color-warm-sand)",
+                    "--link--color": "var(--color-dark-umber)",
+                    "--link--color-hover": "var(--color-burnt-sienna)"
                 }
             },
             "warm-sand": {

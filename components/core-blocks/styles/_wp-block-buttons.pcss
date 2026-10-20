@@ -53,6 +53,10 @@
     }
 
     &.is-style-link .wp-block-button__link {
+        /* button-primary applied the burnt-sienna context on this element, so
+         * its link colours would win; take the surrounding context's instead. */
+        --link--color: inherit;
+        --link--color-hover: inherit;
         --button--icon-size: 0.9em;
         --base--focus-offset: 3px;
 
