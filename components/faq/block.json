@@ -1,0 +1,28 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "theme/faq",
+    "title": "FAQ",
+    "description": "Heading and a list of questions that open to show their answers.",
+    "category": "theme-blocks",
+    "icon": "editor-help",
+    "keywords": ["faq", "questions", "accordion"],
+    "textdomain": "gust",
+    "acf": {
+        "blockVersion": 3,
+        "mode": "preview",
+        "renderCallback": "Gust\\Components\\Faq::renderBlock"
+    },
+    "supports": {
+        "anchor": true,
+        "align": false,
+        "mode": false,
+        "jsx": false,
+        "html": false,
+        "color": {
+            "background": false,
+            "text": false,
+            "gradients": false
+        }
+    }
+}
