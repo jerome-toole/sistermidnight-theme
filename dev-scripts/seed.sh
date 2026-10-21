@@ -33,6 +33,9 @@ $WP option update page_on_front "$HOME_ID" >/dev/null
 $WP option update page_for_posts 0 >/dev/null # news is the article CPT archive; the News page is its router page
 $WP option update timezone_string Europe/London >/dev/null
 
+echo "Seeding Contact and Membership content..."
+$WP eval-file "$(cd "$(dirname "$0")" && pwd)/seed-pages.php"
+
 echo "Seeding menus..."
 
 menu_reset() { # name location
@@ -116,12 +119,12 @@ foreach ($events as $i => [$title, $presenter, $days, $time, $ticket, $venue]) {
     $poster_key = $events[$i][7] ?? "poster-$n";
     $id = seed_find($key, "event");
     if (!$id) {
-        $id = wp_insert_post(["post_type" => "event", "post_status" => "publish", "post_title" => $title,
+        $id = wp_insert_post(["post_type" => "event", "post_status" => "publish", "post_title" => $title, "post_name" => sanitize_title($title),
             "post_content" => "<!-- wp:paragraph --><p>An evening of music at Sister Midnight. Doors at $time.</p><!-- /wp:paragraph -->",
             "post_excerpt" => $excerpt]);
         update_post_meta($id, "_seed_key", $key);
     } else {
-        wp_update_post(["ID" => $id, "post_title" => $title, "post_excerpt" => $excerpt]);
+        wp_update_post(["ID" => $id, "post_title" => $title, "post_name" => sanitize_title($title), "post_excerpt" => $excerpt]);
     }
     $date = (new DateTime("today", wp_timezone()))->modify(sprintf("%+d days", $days))->format("Y-m-d");
     update_field("presenter", $presenter, $id);
@@ -141,12 +144,19 @@ $news = [
 ];
 foreach ($news as $i => [$title, $excerpt]) {
     $n = $i + 1; $key = "news-$n";
+    // The excerpt is shown in the Article Header, so the body must not repeat it.
+    $body = "<!-- wp:paragraph --><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id nisi vitae mi gravida porta at eget ligula.</p><!-- /wp:paragraph -->";
     $id = seed_find($key, "article");
     if (!$id) {
         $id = wp_insert_post(["post_type" => "article", "post_status" => "publish", "post_title" => $title, "post_excerpt" => $excerpt,
             "post_date" => date("Y-m-d H:i:s", strtotime("-" . ($n * 6) . " days")),
-            "post_content" => "<!-- wp:paragraph --><p>$excerpt</p><!-- /wp:paragraph -->"]);
+            "post_content" => $body]);
         update_post_meta($id, "_seed_key", $key);
+    } else {
+        // Existing install: only strip the old duplicated excerpt paragraph, keep any edited body.
+        $dup = "<!-- wp:paragraph --><p>$excerpt</p><!-- /wp:paragraph -->";
+        $cur = get_post($id)->post_content;
+        if (str_contains($cur, $dup)) wp_update_post(["ID" => $id, "post_content" => wp_slash(trim(str_replace($dup, "", $cur)) ?: $body)]);
     }
     if ($img = seed_image("news-$n", seed_copy("$tmp/news-$n.jpg"), $title)) set_post_thumbnail($id, $img);
 }

@@ -29,8 +29,8 @@ Refinement checklist worked by agents from the spec. One line per item; tick whe
 
 ## Audit (2026-10-21)
 
-- [ ] Contact page (/contact/): legacy layout — no Page Header intro, huge empty header area, old Brevo `[sibwp_form id=1]` shortcode renders an unstyled full-width input with no label (axe `label` critical + `heading-order`) jammed against the Newsletter Banner → rebuild with Page Header intro + Section blocks (General / Radio emails) and drop the Brevo form (the Newsletter Banner already covers signup)
-- [ ] Membership page (/membership/): legacy content (bare paragraphs full width at x30, no intro, no Section layout) linked from the footer → rebuild with Page Header intro + Section/FAQ/Gallery blocks like Support
+- [x] Contact page (/contact/): legacy layout — no Page Header intro, huge empty header area, old Brevo `[sibwp_form id=1]` shortcode renders an unstyled full-width input with no label (axe `label` critical + `heading-order`) jammed against the Newsletter Banner → rebuild with Page Header intro + Section blocks (General / Radio emails) and drop the Brevo form (the Newsletter Banner already covers signup)
+- [x] Membership page (/membership/): legacy content (bare paragraphs full width at x30, no intro, no Section layout) linked from the footer → rebuild with Page Header intro + Section/FAQ/Gallery blocks like Support
 - [ ] [human] Membership page: "Business Plan", "Share Offer Document" and "Society Rules" buttons have no href (dead buttons) → supply the document files/URLs
 - [ ] Footer "Subscribe" (/#newsletter): no element has `id="newsletter"` on any page, so it lands at the top of the home page → give the Newsletter Banner and the front-page "Stay in touch" card `id="newsletter"` and link to the in-page anchor
 - [ ] [human] Membership links are inconsistent: front-page "Become a member" → /support/, Support "Invest in community shares"/"Read more" → old site https://www.sistermidnight.org/invest (301s to the old /membership), footer → /membership/ → pick one destination and point all of them at it
@@ -58,11 +58,11 @@ Refinement checklist worked by agents from the spec. One line per item; tick whe
 - [ ] Venue Page Header: image renders landscape 410×272 at x238 → spec 410×607 portrait crop (object-fit: cover), aligned with the section image below (x223)
 - [ ] Venue: stone-beige "Find us" section runs straight into the stone-beige Newsletter Banner with no break → use the dark-umber banner variant when the last section is stone-beige (as on news singles)
 - [ ] Event header: poster at x102 and copy at x740 → design 154 / 775 (1440)
-- [ ] News single: the excerpt shown in the Article Header is repeated as the first paragraph of the body (all three seeded articles) → remove the duplicate paragraph from the seed content
+- [x] News single: the excerpt shown in the Article Header is repeated as the first paragraph of the body (all three seeded articles) → remove the duplicate paragraph from the seed content
 - [ ] [human] Double signup: /news/ and /support/ show a "Stay in touch" card and the Newsletter Banner → hide the banner on those pages (hide_newsletter) or drop the card
 - [ ] [human] FAQ: design shows the answers expanded; built FAQs are all collapsed → decide whether the first item opens by default
 - [x] What's On list view: still shows the "‹ October 2026 ›" month nav while the list spans several months → hide the month nav in list view (or scope the list to the month)
-- [ ] Event slugs don't match titles (records-rye = "Otta. No Home…", open-mic-night = "Rael. Max Winter…", soul-revue = "Cityscape Ensemble…", radio-takeover = "Sister Midnight FM live…") → regenerate slugs from titles in the seed
+- [x] Event slugs don't match titles (records-rye = "Otta. No Home…", open-mic-night = "Rael. Max Winter…", soul-revue = "Cityscape Ensemble…", radio-takeover = "Sister Midnight FM live…") → regenerate slugs from titles in the seed
 - [ ] [human] Venue "Find us" gives the postcode SE6 4JJ; the footer says SE6 4JY → confirm which is right
 - [ ] [human] Newsletter Banner copy "Sign up for news, events and radio schedules from Sister Midnight." differs from the design's "Sign up to the Sister Midnight newsletter to hear about upcoming events and news." → confirm copy
 - [ ] [human] SEO: no meta description on any page, and og:image only on events → set a default share image and page descriptions in Yoast
