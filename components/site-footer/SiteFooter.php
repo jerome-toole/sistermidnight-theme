@@ -45,11 +45,45 @@ class SiteFooter extends ComponentBase
         $args['site_name'] = \get_bloginfo('name');
         $args['has_menu'] = \has_nav_menu(static::MENU_LOCATION);
         $args['address'] = \get_field('address', 'option');
+        $args['address_lines'] = static::addressLines((string) $args['address']);
         $args['map_link'] = \get_field('map_link', 'option');
         $args['legal_text'] = \get_field('footer_legal_text', 'option');
         $args['supporters'] = static::supporters();
 
         return $args;
+    }
+
+    /**
+     * The address split into display lines at commas and line breaks
+     * ("Sister Midnight, Brookdale Road, Catford, SE6 4JY" becomes four lines).
+     *
+     * @return string[]
+     */
+    protected static function addressLines(string $address): array
+    {
+        $text = preg_replace('#<br\s*/?>|</p>#i', "\n", $address);
+        $lines = preg_split('/\s*[,\n]\s*/', trim(wp_strip_all_tags($text)));
+
+        return array_values(array_filter(array_map('trim', $lines), 'strlen'));
+    }
+
+    /**
+     * Point the "#newsletter" menu item at the in-page anchor when this page has one
+     * (`wp_get_nav_menu_items` filter, added around the footer menu).
+     */
+    public static function localNewsletterLink(array $items): array
+    {
+        if (! NewsletterForm::anchorClaimed()) {
+            return $items;
+        }
+
+        foreach ($items as $item) {
+            if (str_ends_with((string) $item->url, '#'.NewsletterForm::ANCHOR)) {
+                $item->url = '#'.NewsletterForm::ANCHOR;
+            }
+        }
+
+        return $items;
     }
 
     /**

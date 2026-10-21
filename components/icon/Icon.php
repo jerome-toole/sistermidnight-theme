@@ -13,7 +13,8 @@ use Gust\ComponentBase;
  * with visible or visually hidden text.
  *
  * The `arrow` icon is the Figma ↗ (16×15, 3px strokes) used by external
- * links (Link), Button and the radio bar Listen link.
+ * links (Link), Button and the radio bar Listen link. `arrow-right` is the
+ * → used by buttons that act in place (form submit).
  *
  * Usage:
  *   use Gust\Components\Icon;
@@ -24,7 +25,7 @@ class Icon extends ComponentBase
 {
     protected static string $name = 'icon';
 
-    public const NAMES = ['arrow'];
+    public const NAMES = ['arrow', 'arrow-right'];
 
     /** Per-request cache of raw SVG file contents keyed by name. */
     private static array $cache = [];

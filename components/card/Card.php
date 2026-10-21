@@ -109,6 +109,13 @@ class Card extends ComponentBase
 
         $args['form'] = $args['show_newsletter_form'] ? NewsletterForm::make(classes: ['card__form']) : null;
 
+        // The first newsletter block on the page is the target of the footer's Subscribe link
+        if ($args['form'] && empty($args['is_preview']) && empty($args['attributes']['id'])) {
+            if ($anchor = NewsletterForm::claimAnchor()) {
+                $args['attributes']['id'] = $anchor;
+            }
+        }
+
         $args['classes'] = array_merge([
             'card',
             'card--'.$args['size'],

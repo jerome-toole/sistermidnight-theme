@@ -10,6 +10,7 @@
 .site-footer {
     --site-footer--padding: space(16);
     --site-footer--strip-height: space(160);
+    --site-footer--logo-height: space(28);
 
     padding-top: var(--site-footer--padding);
 
@@ -99,6 +100,12 @@
     flex-direction: column;
     align-items: flex-start;
     gap: space(10);
+
+    /* Four stacked lines with "Open map" beneath, right-aligned */
+    @media (width >= theme("screens.md")) {
+        align-items: flex-end;
+        text-align: right;
+    }
 }
 
 .site-footer__address {
@@ -115,6 +122,7 @@
 
 .site-footer__supporters {
     display: flex;
+    min-width: 0;
     flex-direction: column;
     gap: space(8);
 }
@@ -131,7 +139,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: space(16);
+    gap: space(12) space(16);
 }
 
 /* Logos are recoloured to a flat warm-sand mark by an inline SVG filter that
@@ -155,12 +163,12 @@
         display: block;
     }
 
+    /* One row, one height: every logo is the same height and keeps its ratio */
     img {
         display: block;
         width: auto;
-        max-width: space(160);
-        height: auto;
-        max-height: space(40);
+        max-width: none;
+        height: var(--site-footer--logo-height);
         filter: url('#site-footer-logo-tint');
     }
 }

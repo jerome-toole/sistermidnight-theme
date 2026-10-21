@@ -10,6 +10,6 @@ $styled = ! empty($this->variant);
     }
 
 if ($this->arrow) {
-    echo \Gust\Components\Icon::make(name: 'arrow', classes: ['button__icon']);
+    echo \Gust\Components\Icon::make(name: $this->icon, classes: ['button__icon']);
 }
 ?></<?= $tag ?>>

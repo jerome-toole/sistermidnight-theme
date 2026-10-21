@@ -60,6 +60,11 @@ class NewsletterBanner extends ComponentBase
             return null;
         }
 
+        // Dark band after a stone-beige section, so the two don't run together
+        if (\is_singular('article') || (\is_singular() && static::endsOnStoneBeige(\get_post()))) {
+            $classes[] = 'newsletter-banner--dark-umber';
+        }
+
         $form_id = \get_field('newsletter_form_id', 'option');
         $illustration = \get_field('newsletter_illustration', 'option');
 
@@ -73,6 +78,31 @@ class NewsletterBanner extends ComponentBase
         );
     }
 
+    /**
+     * Whether the last block of a post's content is stone-beige (a Section or Image Pair
+     * with a stone-beige background).
+     */
+    protected static function endsOnStoneBeige(?\WP_Post $post): bool
+    {
+        if (! $post) {
+            return false;
+        }
+
+        $blocks = array_values(array_filter(
+            \parse_blocks($post->post_content),
+            fn ($block) => ! empty($block['blockName']),
+        ));
+        $last = end($blocks);
+
+        foreach ((array) ($last['attrs']['data'] ?? []) as $key => $value) {
+            if (is_string($key) && str_ends_with($key, '_background') && $key[0] !== '_') {
+                return $value === 'stone-beige';
+            }
+        }
+
+        return false;
+    }
+
     protected static function validate(array $args): bool
     {
         return NewsletterForm::formExists(NewsletterForm::resolveFormId($args['form_id'] ?? null));
@@ -81,6 +111,12 @@ class NewsletterBanner extends ComponentBase
     protected static function transform(array $args): array
     {
         $args['classes'] = array_merge(['newsletter-banner'], $args['classes'] ?? []);
+        $args['attributes'] ??= [];
+
+        if (empty($args['attributes']['id']) && $anchor = NewsletterForm::claimAnchor()) {
+            $args['attributes']['id'] = $anchor;
+        }
+
         $args['heading'] = trim($args['heading'] ?? '') ?: __('Newsletter', 'gust');
         $args['heading_id'] = \wp_unique_id('newsletter-banner-heading-');
         $args['form'] = NewsletterForm::make(form_id: $args['form_id'] ?? null);

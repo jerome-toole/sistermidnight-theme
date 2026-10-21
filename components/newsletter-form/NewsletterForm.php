@@ -54,6 +54,32 @@ class NewsletterForm extends ComponentBase
         return $args;
     }
 
+    /** Whether a newsletter block on this page already took the `newsletter` anchor. */
+    protected static bool $anchorClaimed = false;
+
+    public const ANCHOR = 'newsletter';
+
+    /**
+     * The `id` for a newsletter block (Card with the form, Newsletter Banner): `newsletter`
+     * for the first one rendered on the page, null for the rest so ids stay unique.
+     * The footer's Subscribe link points at it.
+     */
+    public static function claimAnchor(): ?string
+    {
+        if (static::$anchorClaimed) {
+            return null;
+        }
+
+        static::$anchorClaimed = true;
+
+        return static::ANCHOR;
+    }
+
+    public static function anchorClaimed(): bool
+    {
+        return static::$anchorClaimed;
+    }
+
     /** Renders so far this request, per form ID. */
     protected static array $renders = [];
 
@@ -141,6 +167,7 @@ class NewsletterForm extends ComponentBase
         return (string) Button::make(
             content: esc_html($label),
             variant: 'primary',
+            icon: 'arrow-right',
             type: 'submit',
             classes: ['gform_button'],
             attributes: ['id' => 'gform_submit_button_'.(int) $form['id']],

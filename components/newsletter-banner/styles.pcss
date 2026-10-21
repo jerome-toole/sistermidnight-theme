@@ -1,9 +1,11 @@
 /* ---------------------------------------------------------------------------
  * Newsletter banner
  *
- * Stone-beige band (padding 40, 16 at the sides below md): heading, text and
- * the Newsletter Form on the left, a 240px illustration on the right. Below
- * md the illustration is hidden and the content stacks.
+ * Stone-beige band (padding 40 above and below, 64 at the sides from md, 16
+ * below): heading, text and the Newsletter Form on the left, a 240px
+ * illustration on the right that overhangs the band's padding so it adds no
+ * height (design: 266 tall). Below md the illustration is hidden and the
+ * content stacks.
  * ------------------------------------------------------------------------- */
 
 .newsletter-banner {
@@ -16,7 +18,7 @@
     padding: var(--newsletter-banner--padding) var(--newsletter-banner--padding-x);
 
     @media (width >= theme('screens.md')) {
-        --newsletter-banner--padding-x: var(--newsletter-banner--padding);
+        --newsletter-banner--padding-x: space(64);
     }
 }
 
@@ -36,7 +38,8 @@
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    gap: space(26);
+    /* 20 (design 26/31) keeps the band at the design's 266 with the built line heights */
+    gap: space(20);
     max-width: space(541);
 }
 
@@ -58,5 +61,7 @@
         display: block;
         flex: none;
         width: var(--newsletter-banner--illustration-size);
+        margin-block: calc(var(--newsletter-banner--padding) * -1);
+        margin-inline-end: space(52);
     }
 }

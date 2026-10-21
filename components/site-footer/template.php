@@ -15,12 +15,14 @@ use Gust\Components\SocialIcons;
         <div class="site-footer__top">
             <div class="site-footer__menus">
                 <?php if ($this->has_menu) { ?>
+                    <?php add_filter('wp_get_nav_menu_items', [SiteFooter::class, 'localNewsletterLink']); ?>
                     <?= Menu::make(
                         theme_location: SiteFooter::MENU_LOCATION,
                         max_depth: 1,
                         classes: ['site-footer__nav'],
                         attributes: ['aria-label' => __('Footer', 'gust')],
                     ); ?>
+                    <?php remove_filter('wp_get_nav_menu_items', [SiteFooter::class, 'localNewsletterLink']); ?>
                 <?php } ?>
 
                 <?= SocialIcons::make(
@@ -31,8 +33,8 @@ use Gust\Components\SocialIcons;
 
             <?php if ($this->address || $this->map_link) { ?>
                 <div class="site-footer__location">
-                    <?php if ($this->address) { ?>
-                        <address class="site-footer__address"><?= wp_kses_post($this->address); ?></address>
+                    <?php if ($this->address_lines) { ?>
+                        <address class="site-footer__address"><?= implode('<br>', array_map('esc_html', $this->address_lines)); ?></address>
                     <?php } ?>
 
                     <?php if ($this->map_link) { ?>

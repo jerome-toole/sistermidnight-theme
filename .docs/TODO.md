@@ -32,7 +32,7 @@ Refinement checklist worked by agents from the spec. One line per item; tick whe
 - [x] Contact page (/contact/): legacy layout — no Page Header intro, huge empty header area, old Brevo `[sibwp_form id=1]` shortcode renders an unstyled full-width input with no label (axe `label` critical + `heading-order`) jammed against the Newsletter Banner → rebuild with Page Header intro + Section blocks (General / Radio emails) and drop the Brevo form (the Newsletter Banner already covers signup)
 - [x] Membership page (/membership/): legacy content (bare paragraphs full width at x30, no intro, no Section layout) linked from the footer → rebuild with Page Header intro + Section/FAQ/Gallery blocks like Support
 - [ ] [human] Membership page: "Business Plan", "Share Offer Document" and "Society Rules" buttons have no href (dead buttons) → supply the document files/URLs
-- [ ] Footer "Subscribe" (/#newsletter): no element has `id="newsletter"` on any page, so it lands at the top of the home page → give the Newsletter Banner and the front-page "Stay in touch" card `id="newsletter"` and link to the in-page anchor
+- [x] Footer "Subscribe" (/#newsletter): no element has `id="newsletter"` on any page, so it lands at the top of the home page → give the Newsletter Banner and the front-page "Stay in touch" card `id="newsletter"` and link to the in-page anchor
 - [ ] [human] Membership links are inconsistent: front-page "Become a member" → /support/, Support "Invest in community shares"/"Read more" → old site https://www.sistermidnight.org/invest (301s to the old /membership), footer → /membership/ → pick one destination and point all of them at it
 - [x] /radio/: WP's canonical guess 301s it to the news article "Radio schedule: autumn shows" → redirect /radio/ to https://radio.sistermidnight.org/ (spec: Radio is external, no page)
 - [ ] [human] Leftover public pages: `section-test` (shows in search results), `blog`, `events`/`events-2`, `search`/`search-2`, `404-2`/`404-3` all render as empty published pages → keep only the router pages the Router actually resolves, set the rest to draft
@@ -45,18 +45,18 @@ Refinement checklist worked by agents from the spec. One line per item; tick whe
 - [ ] Section + Page Header: right-column copy with a vertical label sits at x782 (About intro, Objectives, Our Process, event "About the event") while unlabelled ones sit at x740 (front intro, Manifesto/Values, FAQ); design ≈743 throughout → one right-column x for all (1440)
 - [ ] Mobile gutters: vertical-label headings and galleries sit at 16px but body copy, Page Header media and FAQ at 32px → one side gutter for everything (500)
 - [ ] Section vertical padding: dark text-right sections use 126px top/bottom; design uses 78–80 (front intro p80 = 483 tall vs 646 built; Objectives/Our Process/FAQ copy at y78) → match the design padding per section (1440)
-- [ ] "Become a member" link button (front-page intro, About Manifesto): sits 64px below the copy, 21px with an arrow → design is an underlined FOSS 25 link straight under the paragraph (~16px gap), no arrow
+- [x] "Become a member" link button (front-page intro, About Manifesto): sits 64px below the copy, 21px with an arrow → design is an underlined FOSS 25 link straight under the paragraph (~16px gap), no arrow
 - [ ] Gallery masonry: renders 3 columns (511/250/511) with holes in the last row (About 8 images, Venue 7) → design rows of 4 mixed widths (268/533/243/238, 247/247/551/238), 360 tall, dense with no gaps (1440)
 - [ ] Gallery carousel: every slide is cropped to 633×420 → natural widths at 420 tall (278–672 wide in the design), gap 16
 - [ ] Event single "About the event": the long vertical label sets the section height, leaving ~600px of empty dark band under two paragraphs → don't let the label drive the section height (clamp/shorten the label or let it overflow into padding)
 - [x] What's On featured events: meta wraps (date + time on one row, venue on a second); design is one row "23rd March … Catford House"; titles are 50px and wrap to 5 lines vs design Sister 38–47 at ~3 lines; all cards 405 wide vs 416/406/426 (1440)
-- [ ] Footer address: one line "Sister Midnight, Brookdale Road, Catford, SE6 4JY" → design stacks four right-aligned lines with "Open map ↗" beneath (1440)
+- [x] Footer address: one line "Sister Midnight, Brookdale Road, Catford, SE6 4JY" → design stacks four right-aligned lines with "Open map ↗" beneath (1440)
 - [ ] [human] Footer legal line: design reads "Sister Midnight is a Community Benefit Society, FCA #8598 / Imprint | Privacy — Terms ©2025"; built text has no FCA number and no Imprint/Privacy/Terms links (Privacy Policy page is a draft) → confirm the number and pages, then add them
-- [ ] Footer supporters: the Co-operatives UK logo wraps onto its own row and renders 160×35, much bigger than the rest → keep all logos on one row at the same visual height (1440)
-- [ ] Newsletter "Sign up" button (banner + cards): shows the ↗ external arrow though it submits in place → → arrow per spec/design
-- [ ] Newsletter Banner: 320px tall with content inset 40 → design 266 tall, content inset 64 (1440)
+- [x] Footer supporters: the Co-operatives UK logo wraps onto its own row and renders 160×35, much bigger than the rest → keep all logos on one row at the same visual height (1440)
+- [x] Newsletter "Sign up" button (banner + cards): shows the ↗ external arrow though it submits in place → → arrow per spec/design
+- [x] Newsletter Banner: 320px tall with content inset 40 → design 266 tall, content inset 64 (1440)
 - [ ] Venue Page Header: image renders landscape 410×272 at x238 → spec 410×607 portrait crop (object-fit: cover), aligned with the section image below (x223)
-- [ ] Venue: stone-beige "Find us" section runs straight into the stone-beige Newsletter Banner with no break → use the dark-umber banner variant when the last section is stone-beige (as on news singles)
+- [x] Venue: stone-beige "Find us" section runs straight into the stone-beige Newsletter Banner with no break → use the dark-umber banner variant when the last section is stone-beige (as on news singles)
 - [ ] Event header: poster at x102 and copy at x740 → design 154 / 775 (1440)
 - [x] News single: the excerpt shown in the Article Header is repeated as the first paragraph of the body (all three seeded articles) → remove the duplicate paragraph from the seed content
 - [ ] [human] Double signup: /news/ and /support/ show a "Stay in touch" card and the Newsletter Banner → hide the banner on those pages (hide_newsletter) or drop the card
