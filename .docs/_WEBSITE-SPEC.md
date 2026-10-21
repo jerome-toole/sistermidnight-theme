@@ -18,14 +18,14 @@ This spec is the single source of truth for the autonomous build. Agents build f
 - `.docs/design/figma-tree.json` — same, structured
 - `.docs/design/*.jpg` — reference screenshots: `front-page`, `internal-page-about`, `event-detail`, `whats-on`, `news-single`
 - **Reference build**: `/Users/jerometoole/code/clients/peckhamfestival/wp-content/themes/peckham-festival-theme` — the most recent Gust site. When in doubt about an approach, a module pattern, composer/plugin setup or plugin licence keys (`auth.json`, `composer.json` gravity repo, `.env`), copy what that theme does.
-- Radio.co reference implementation: `/Users/jerometoole/code/clients/radio.sistermidnight/smfm-frontend/src/contexts/AudioPlayerContext.tsx`
+- SMFM frontend (radio site) reference: `/Users/jerometoole/code/clients/radio.sistermidnight/smfm-frontend` (its Radio.co code is obsolete; the live API is Radiocult, see Decisions)
 
 ## Decisions (fixed, do not re-ask)
 
 | Topic          | Decision                                                                                                                                                                                                                                                                                           |
 | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Events         | Manual ACF event post type. Calendar and list are **client-rendered** from a cached JSON feed (see Events Calendar). Featured/upcoming cards stay server-rendered.                                                                                                                                 |
-| Radio bar      | Live now-playing from Radio.co station `s35e4926a1`, fetched server-side and cached (transient, 30s). Stream: `https://stream.radio.co/s35e4926a1/listen`. Status: `https://public.radio.co/stations/s35e4926a1/status`. Current track: `https://public.radio.co/api/v2/s35e4926a1/track/current`. |
+| Radio bar | Live now-playing from **Radiocult**: `GET https://api.radiocult.fm/api/station/sister-midnight-fm/schedule/live` (no auth). Response `result.status` is `defaultPlaylist` when off air (show "Off air" or hide the track), otherwise a live show; `result.content.name` is the show/playlist name and `result.metadata.title`/`artist` the current track. Fetched server-side, cached 30s, fail soft. Listen link: https://radio.sistermidnight.org/ (new tab). |
 | Forms          | Gravity Forms (existing module) with the **Brevo add-on** for the newsletter list. Newsletter signup renders a GF form by ID from theme options.                                                                                                                                                   |
 | Mobile         | Inferred from desktop using the rules in each component. Breakpoints: `md` 768, `lg` 1024.                                                                                                                                                                                                         |
 | Old components | Keep and refactor. Rename/replace freely but reuse Gust plumbing.                                                                                                                                                                                                                                  |
@@ -229,7 +229,7 @@ Front page only. Full-width 690px media area on `burnt-sienna`: background video
 ### Radio Bar [Partial]
 
 64px band on `burnt-sienna`: SMFM marque + "SISTER MIDNIGHT FM" wordmark (SVG) left; "Now playing: {track}" centre-right; "Listen ↗" link right.
-**Data:** `RadioService::nowPlaying()` → server-side fetch of Radio.co current track, cached in a transient for 30s, falls back to "Live now" / hidden when station offline (status endpoint). Optional progressive enhancement: a tiny JS module refetches `/wp-json/sm/v1/now-playing` every 60s and swaps text (`aria-live="polite"`).
+**Data:** `RadioService::nowPlaying()` → server-side fetch of the Radiocult live schedule endpoint (see Decisions), cached in a transient for 30s; when `status` is `defaultPlaylist` show "Off air" (no track) and keep the Listen link. Optional progressive enhancement: a tiny JS module refetches `/wp-json/sm/v1/now-playing` every 60s and swaps text (`aria-live="polite"`).
 **Mobile:** two rows, marque + listen on row 1, track on row 2 with overflow ellipsis.
 **A11y:** `<aside aria-label="Sister Midnight FM">`, link opens new tab with "(opens in new tab)" visually hidden text.
 
