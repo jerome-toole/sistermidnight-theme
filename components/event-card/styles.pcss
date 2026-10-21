@@ -5,11 +5,15 @@
  * whole card is one link. Header (presenter, title, excerpt) gap 12; the
  * meta row sits at the bottom, at least 65–77 below the header.
  * `lg` caps the poster at 410 wide (front page); `sm` fills the card
- * (What's On featured). Mobile: full width, poster max-height 70vw.
+ * (What's On featured). Both cap the card at 600 wide, left-aligned in a
+ * wider column. Mobile: full width, poster max-height 70vw.
+ * Hover / focus-visible on the link lightens the whole card slightly (the
+ * display-font title is never underlined).
  * ------------------------------------------------------------------------- */
 
 .event-card {
     --event-card--padding: space(24);
+    --event-card--max-width: space(600);
     --event-card--poster-width: space(410);
     --event-card--meta-gap: spaceFluid(40, 77);
 
@@ -17,6 +21,13 @@
 
     position: relative;
     width: 100%;
+    max-width: var(--event-card--max-width);
+    transition: background-color 150ms ease;
+
+    &:has(.event-card__link:hover),
+    &:has(.event-card__link:focus-visible) {
+        background-color: color-mix(in srgb, var(--color-background) 92%, white);
+    }
 
     /* Inset ring: the context's focus colour is for the paper, not the page around it */
     &:has(.event-card__link:focus-visible) {
@@ -87,15 +98,7 @@
     margin: 0;
     overflow-wrap: break-word;
     hyphens: auto;
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    text-decoration-thickness: 0.06em;
-    text-underline-offset: 0.12em;
-    transition: text-decoration-color 0.2s;
-
-    .event-card__link:hover & {
-        text-decoration-color: currentcolor;
-    }
+    text-decoration: none;
 }
 
 .event-card__excerpt {

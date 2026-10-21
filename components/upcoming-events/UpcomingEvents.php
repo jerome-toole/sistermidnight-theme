@@ -15,7 +15,7 @@ use Theme\Modules\Events\EventRepository;
  *             gaps within a column stay even. An optional announcement Card
  *             comes first and sits at the top of the right column; without
  *             it the right column is pushed down 300px. A large decorative
- *             illustration sits bottom-left after the last card.
+ *             illustration follows the list in normal flow (own row).
  *   featured  What's On: three cards in a row, the middle one offset.
  *
  * The label is an <h2> by default; What's On passes label_level 1 so it is

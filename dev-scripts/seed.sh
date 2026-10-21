@@ -56,6 +56,13 @@ $WP menu item add-post Footer "$SUPPORT_ID" --title="Support Us" >/dev/null
 
 echo "Generating placeholder images..."
 
+# Events 4-7 use the posters from the design; the rest get generated placeholders.
+DESIGN="$(cd "$(dirname "$0")/.." && pwd)/.docs/design/assets"
+cp "$DESIGN/poster_otta.jpg" "$TMP/poster-4.jpg"
+cp "$DESIGN/poster_rael.jpg" "$TMP/poster-5.jpg"
+cp "$DESIGN/poster_cityscape.jpg" "$TMP/poster-6.jpg"
+cp "$DESIGN/poster_rons.jpg" "$TMP/poster-7.jpg"
+
 COLORS=(c2410c 1d4e5f 7c3aed b45309 0f766e be185d 4d7c0f 1e40af)
 for n in 1 2 3 4 5 6 7 8; do
     c=${COLORS[$((n - 1))]}
@@ -91,24 +98,30 @@ function seed_copy(string $src): string { $d = $src . ".upload.jpg"; copy($src, 
 $term = term_exists("Sister Midnight", "location") ?: wp_insert_term("Sister Midnight", "location");
 $term_id = is_array($term) ? (int) $term["term_id"] : (int) $term;
 
+$lorem = "Sister Midnight opens its doors in Catford for the first time. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id nisi vitae mi gravida porta at eget ligula.";
+// title, presenter, days from today, time, ticket type, venue, [excerpt, poster seed key]
 $events = [
   ["Late Night Jazz Jam", "Sister Midnight Presents", -55, "20:00", "buy", "Sister Midnight"],
   ["Dub Sessions", "Sister Midnight Presents", -31, "21:00", "buy", "Sister Midnight"],
   ["Community Choir Evening", "Catford Voices", -9, "18:30", "free", "Sister Midnight"],
-  ["Records & Rye", "Sister Midnight Presents", 4, "19:00", "buy", "Sister Midnight"],
-  ["Open Mic Night", "Sister Midnight Presents", 12, "19:30", "signup", "Sister Midnight"],
-  ["Soul Revue", "Sister Midnight Presents", 24, "20:00", "buy", "Sister Midnight"],
-  ["Radio Takeover", "Sister Midnight Radio", 38, "17:00", "free", "Sister Midnight"],
+  ["Otta. No Home. Matthew Muli. Cigotine", "Sister Midnight Presents", 4, "19:00", "buy", "Sister Midnight", $lorem, "poster-otta"],
+  ["Rael. Max Winter. Isiah Hull", "Sister Midnight Presents", 12, "19:30", "signup", "Sister Midnight", "Another amazing night of music at @piehouse.coop for our monthly Residency.", "poster-rael"],
+  ["Cityscape Ensemble. Julia Biel. Nadeem Din Gabisi", "Sister Midnight Presents", 24, "20:00", "buy", "Sister Midnight", $lorem, "poster-cityscape"],
+  ["Sister Midnight FM live at Rons Coffee House", "Sister Midnight Presents", 38, "17:00", "free", "Sister Midnight", $lorem, "poster-rons"],
   ["Midnight Disco", "Sister Midnight Presents", 52, "22:00", "buy", "Sister Midnight"],
 ];
 foreach ($events as $i => [$title, $presenter, $days, $time, $ticket, $venue]) {
     $n = $i + 1; $key = "event-$n";
+    $excerpt = $events[$i][6] ?? "$title at Sister Midnight.";
+    $poster_key = $events[$i][7] ?? "poster-$n";
     $id = seed_find($key, "event");
     if (!$id) {
         $id = wp_insert_post(["post_type" => "event", "post_status" => "publish", "post_title" => $title,
             "post_content" => "<!-- wp:paragraph --><p>An evening of music at Sister Midnight. Doors at $time.</p><!-- /wp:paragraph -->",
-            "post_excerpt" => "$title at Sister Midnight."]);
+            "post_excerpt" => $excerpt]);
         update_post_meta($id, "_seed_key", $key);
+    } else {
+        wp_update_post(["ID" => $id, "post_title" => $title, "post_excerpt" => $excerpt]);
     }
     $date = (new DateTime("today", wp_timezone()))->modify(sprintf("%+d days", $days))->format("Y-m-d");
     update_field("presenter", $presenter, $id);
@@ -118,7 +131,7 @@ foreach ($events as $i => [$title, $presenter, $days, $time, $ticket, $venue]) {
     update_field("ticket_type", $ticket, $id);
     if ($ticket !== "free") update_field("ticket_link", ["title" => $ticket === "buy" ? "Buy Tickets" : "Sign up", "url" => "https://example.com/tickets/$n", "target" => "_blank"], $id);
     wp_set_object_terms($id, [$term_id], "location");
-    if ($img = seed_image("poster-$n", seed_copy("$tmp/poster-$n.jpg"), "$title poster")) set_post_thumbnail($id, $img);
+    if ($img = seed_image($poster_key, seed_copy("$tmp/poster-$n.jpg"), "$title poster")) set_post_thumbnail($id, $img);
 }
 
 $news = [

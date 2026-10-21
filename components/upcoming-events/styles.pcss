@@ -10,10 +10,13 @@
  *             cards stays 24 whatever the posters' heights (a float sits
  *             directly under the previous float on its side). The right
  *             column starts with the announcement card, or 300px down
- *             without one. A large decorative illustration sits bottom-left
- *             after the last card. Below md: one column, one item per row.
+ *             without one. Items are capped at 600 wide and keep their
+ *             column's edge. A large decorative illustration follows the
+ *             list in normal flow (its own row, left of centre) so it can
+ *             never overlap a card. Below md: one column, one item per row,
+ *             no illustration.
  *   featured  One list: two columns from md, three from lg with the middle
- *             card pushed down 65px.
+ *             card pushed down 65px. Cards centre in a wider column.
  * ------------------------------------------------------------------------- */
 
 .upcoming-events {
@@ -23,8 +26,10 @@
     --upcoming-events--row-gap: space(24);
     --upcoming-events--offset: space(300);
     --upcoming-events--featured-offset: space(65);
+    --upcoming-events--item-max-width: space(600);
     --upcoming-events--illustration-size: space(504);
-    --upcoming-events--illustration-overlap: space(244);
+    --upcoming-events--illustration-gap: spaceFluid(40, 64);
+    --upcoming-events--illustration-inset: 10%;
 
     padding-block: var(--upcoming-events--padding-block);
     padding-inline: var(--container-padding);
@@ -51,7 +56,6 @@
 }
 
 .upcoming-events__body {
-    position: relative;
     min-width: 0;
 }
 
@@ -67,15 +71,17 @@
 }
 
 .upcoming-events__item {
+    width: 100%;
     min-width: 0;
+    max-width: var(--upcoming-events--item-max-width);
 }
 
 /* ---- Grid ---------------------------------------------------------------- */
 
 .upcoming-events--grid {
     @media (width >= theme('screens.md')) {
-        --upcoming-events--left: calc((100% - var(--upcoming-events--column-gap)) * 596 / 1276);
-        --upcoming-events--right: calc((100% - var(--upcoming-events--column-gap)) * 680 / 1276);
+        --upcoming-events--left: min(calc((100% - var(--upcoming-events--column-gap)) * 596 / 1276), var(--upcoming-events--item-max-width));
+        --upcoming-events--right: min(calc((100% - var(--upcoming-events--column-gap)) * 680 / 1276), var(--upcoming-events--item-max-width));
 
         .upcoming-events__list {
             display: flow-root;
@@ -110,12 +116,6 @@
     }
 }
 
-.upcoming-events--illustrated .upcoming-events__body {
-    @media (width >= theme('screens.md')) {
-        padding-bottom: var(--upcoming-events--illustration-overlap);
-    }
-}
-
 .upcoming-events__illustration {
     display: none;
     color: var(--color-foreground);
@@ -125,10 +125,10 @@
         --illustration--size: var(--upcoming-events--illustration-size);
 
         display: block;
-        position: absolute;
-        left: 10%;
-        bottom: 0;
+        clear: both;
         width: min(var(--upcoming-events--illustration-size), 38%);
+        margin-top: var(--upcoming-events--illustration-gap);
+        margin-left: var(--upcoming-events--illustration-inset);
     }
 }
 
@@ -143,6 +143,10 @@
         @media (width >= theme('screens.lg')) {
             grid-template-columns: repeat(3, minmax(0, 1fr));
         }
+    }
+
+    .upcoming-events__item {
+        margin-inline: auto;
     }
 
     .upcoming-events__item:nth-child(2) {
