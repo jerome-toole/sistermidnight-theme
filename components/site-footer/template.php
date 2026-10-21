@@ -36,10 +36,12 @@ use Gust\Components\SocialIcons;
                     <?php } ?>
 
                     <?php if ($this->map_link) { ?>
-                        <a class="site-footer__map-link" href="<?= esc_url($this->map_link) ?>">
-                            <?= esc_html__('Open map', 'gust'); ?>
-                            <span aria-hidden="true">&#8599;</span>
-                        </a>
+                        <?= \Gust\Components\Link::make(
+                            content: esc_html__('Open map', 'gust'),
+                            url: $this->map_link,
+                            target: '_blank',
+                            classes: ['site-footer__map-link'],
+                        ); ?>
                     <?php } ?>
                 </div>
             <?php } ?>
@@ -50,6 +52,12 @@ use Gust\Components\SocialIcons;
                 <?php if (! empty($this->supporters)) { ?>
                     <div class="site-footer__supporters">
                         <p class="site-footer__supporters-label"><?= esc_html__('supported by', 'gust'); ?></p>
+                        <svg class="site-footer__logo-filter" aria-hidden="true" focusable="false" width="0" height="0">
+                            <filter id="site-footer-logo-tint" color-interpolation-filters="sRGB">
+                                <feFlood class="site-footer__logo-flood" />
+                                <feComposite in2="SourceAlpha" operator="in" />
+                            </filter>
+                        </svg>
                         <ul class="site-footer__logos">
                             <?php foreach ($this->supporters as $supporter) { ?>
                                 <li class="site-footer__logo">

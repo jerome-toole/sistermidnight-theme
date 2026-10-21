@@ -13,7 +13,7 @@
 
     padding-top: var(--site-footer--padding);
 
-    @media (width >= theme('screens.md')) {
+    @media (width >= theme("screens.md")) {
         --site-footer--padding: space(24);
         --site-footer--strip-height: auto;
     }
@@ -35,7 +35,7 @@
         max-width: none;
         height: auto;
 
-        @media (width < theme('screens.md')) {
+        @media (width < theme("screens.md")) {
             width: auto;
             height: 100%;
         }
@@ -59,7 +59,7 @@
     flex-direction: column;
     gap: space(34);
 
-    @media (width >= theme('screens.md')) {
+    @media (width >= theme("screens.md")) {
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
@@ -67,7 +67,7 @@
 }
 
 .site-footer__bottom {
-    @media (width >= theme('screens.md')) {
+    @media (width >= theme("screens.md")) {
         align-items: flex-end;
     }
 }
@@ -110,9 +110,6 @@
 .site-footer__map-link {
     @apply type-small link link--2 link--foreground;
 
-    display: inline-flex;
-    align-items: center;
-    gap: space(8);
     min-height: space(24);
 }
 
@@ -137,9 +134,22 @@
     gap: space(16);
 }
 
-/* Logos are flattened to a light silhouette: brightness(0) keeps only the
- * alpha, invert lifts it to white and the opacity settles it towards the
- * warm-sand foreground. Logos need transparent backgrounds. */
+/* Logos are recoloured to a flat warm-sand mark by an inline SVG filter that
+ * floods the context foreground into the image's alpha. A filter (not a CSS
+ * mask) because mask images need CORS and uploads are served cross-origin
+ * locally (BE Media from Production). Logos need transparent backgrounds; a
+ * solid background becomes a filled rectangle. */
+.site-footer__logo-filter {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.site-footer__logo-flood {
+    flood-color: var(--color-foreground);
+}
+
 .site-footer__logo {
     a {
         display: block;
@@ -151,8 +161,7 @@
         max-width: space(160);
         height: auto;
         max-height: space(40);
-        filter: brightness(0) invert(1);
-        opacity: 0.8;
+        filter: url('#site-footer-logo-tint');
     }
 }
 
@@ -161,7 +170,7 @@
 
     max-width: space(616);
 
-    @media (width >= theme('screens.md')) {
+    @media (width >= theme("screens.md")) {
         text-align: right;
     }
 
