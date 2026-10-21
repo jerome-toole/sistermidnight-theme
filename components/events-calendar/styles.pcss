@@ -1,8 +1,9 @@
 /* ---------------------------------------------------------------------------
  * Events Calendar (partial)
  *
+ * Dark mode: sits on dark-umber (#3b302a) with stone-beige header/nav text.
  * Header row: "Calendar // List" toggle left, "< April 2026 >" month nav
- * right, both type-h6 on the page colour. Below it either the month table
+ * right, both type-h6. Below it either the month table
  * or the list; both are drawn by scripts.js into .events-calendar__body,
  * which starts out holding the server-rendered fallback rows.
  *
@@ -25,8 +26,16 @@
     --events-calendar--border: 1px solid var(--color-dark-umber);
     --events-calendar--muted-opacity: 0.85;
 
+    /* Dark mode (Figma "Block" #3b302a): header, nav and list text in stone-beige */
+    @apply color-context-dark-umber;
+
+    --color-foreground: var(--color-stone-beige);
+    --link--color: var(--color-stone-beige);
+    --link--color-hover: var(--color-warm-sand);
+
     padding-block: var(--events-calendar--padding-block);
     padding-inline: var(--container-padding);
+    color: var(--color-foreground);
 }
 
 /* ---- Header -------------------------------------------------------------- */
@@ -86,7 +95,7 @@
     text-decoration: none;
 
     &:hover {
-        color: var(--color-stone-beige);
+        color: var(--color-warm-sand);
     }
 }
 
