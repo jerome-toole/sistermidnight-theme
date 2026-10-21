@@ -1,0 +1,44 @@
+/* Paper texture overlay (Figma "Paper" group).
+ *
+ * Figma stacks a Shadows layer (multiply) and a Lights layer (screen) at
+ * 0.49 × 0.6 opacity. Multiply-by-grey is black at some alpha and screen-by-grey
+ * is white at some alpha, so both collapse into one greyscale+alpha tile with
+ * normal blending — no mix-blend-mode, so the overlay never forces a repaint
+ * of what's under it. The tile's alpha is stretched to full range for better
+ * compression; --paper--opacity restores the Figma strength.
+ *
+ * The tile is 512px seamless, shown at Figma's scale (1810px source over a
+ * 1942px layer), so grain size stays the same at every screen width.
+ *
+ * Applied to body (see 2-base/_base.pcss). Use on any other element that sits
+ * outside the body overlay (e.g. a top-layer dialog). The host must be
+ * positioned; ::after is used. */
+@utility paper {
+    --paper--opacity: 0.294;
+    --paper--size: 549px;
+
+    &::after {
+        position: absolute;
+        z-index: var(--z-index-paper);
+        inset: 0;
+        background-image: url("/images/paper.webp");
+        background-image: image-set(url("/images/paper.avif") type("image/avif"), url("/images/paper.webp") type("image/webp"));
+        background-repeat: repeat;
+        background-size: var(--paper--size);
+        content: "";
+        opacity: var(--paper--opacity);
+        pointer-events: none;
+
+        @media print, (forced-colors: active) {
+            display: none;
+        }
+    }
+}
+
+/* Lift an element above the body overlay so it renders without texture.
+ * Works when the element's ancestors don't form their own stacking context;
+ * otherwise put it on the outermost one. */
+@utility paper-above {
+    position: relative;
+    z-index: calc(var(--z-index-paper) + 1);
+}
