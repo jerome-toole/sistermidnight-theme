@@ -11,6 +11,7 @@
                     <?php } ?>
 
                     <?= \Gust\SVG::get("social/$value.svg"); ?>
+                    <?= \Gust\Components\Link::externalText(); ?>
                 </a>
             </li>
         <?php } ?>

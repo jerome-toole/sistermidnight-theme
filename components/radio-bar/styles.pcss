@@ -7,8 +7,8 @@
  * second with overflow ellipsis.
  *
  *   .radio-bar__brand   marque + wordmark (type-h5, fixed 20px)
- *   .radio-bar__track   "Now playing: …", hidden while offline
- *   .radio-bar__listen  external link, type-h5 (fixed 20px) + arrow
+ *   .radio-bar__track   "Now playing: …", or "Off air"
+ *   .radio-bar__listen  external link to the SMFM site, type-h5 (fixed 20px) + .link-external arrow
  *
  * Brand and Listen are pinned to 20px rather than the fluid 18–20px h5 token:
  * warm-sand on burnt-sienna is 3.47:1, which passes only as bold large text
@@ -73,19 +73,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-
-    &[hidden] {
-        display: none;
-    }
 }
 
 .radio-bar__listen {
     @apply type-h5 link link--2 link--foreground;
 
-    display: inline-flex;
     grid-area: listen;
-    align-items: center;
-    gap: space(6);
     justify-self: end;
     min-height: space(24); /* WCAG 2.5.8 target size */
     font-size: rem(20);
@@ -94,18 +87,5 @@
 
     &:focus {
         @apply focus-base;
-    }
-}
-
-.radio-bar__arrow {
-    flex: 0 0 auto;
-    width: space(14);
-    height: space(14);
-    transition: transition(transform);
-
-    @media (hover: hover) {
-        .radio-bar__listen:hover & {
-            transform: translate(10%, -10%);
-        }
     }
 }

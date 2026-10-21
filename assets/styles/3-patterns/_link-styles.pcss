@@ -47,3 +47,37 @@
     --link--color: var(--color-foreground);
     --link--color-hover: var(--color-foreground);
 }
+
+/* External link (opens in a new tab)
+ *
+ * Added by Gust\Components\Link whenever target="_blank": the label is followed
+ * by a visually hidden "(opens in new tab)" and the ↗ arrow (`.link-external__icon`,
+ * the Button arrow rotated). The icon scales with the font size; the gap and
+ * icon size can be tuned per context.
+ */
+@utility link-external {
+    --link-external--gap: 0.3em;
+    --link-external--icon-size: 0.7em;
+
+    display: inline-flex;
+    align-items: center;
+    gap: var(--link-external--gap);
+
+    .link-external__icon {
+        flex: 0 0 auto;
+        width: var(--link-external--icon-size);
+        height: var(--link-external--icon-size);
+        transition: transition(transform);
+    }
+
+    @media (hover: hover) {
+        &:hover .link-external__icon {
+            transform: translate(10%, -10%);
+        }
+    }
+    @media (hover: none) {
+        &:active .link-external__icon {
+            transform: translate(10%, -10%);
+        }
+    }
+}

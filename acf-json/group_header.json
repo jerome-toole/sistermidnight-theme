@@ -88,7 +88,7 @@
             "label": "Radio URL",
             "name": "radio_url",
             "type": "url",
-            "instructions": "Header link to the radio site.",
+            "instructions": "The SMFM website: where the header Radio item and the radio bar Listen link go (new tab).",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -96,7 +96,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "https://radio.sistermidnight.org",
+            "default_value": "https://radio.sistermidnight.org/",
             "placeholder": ""
         },
         {

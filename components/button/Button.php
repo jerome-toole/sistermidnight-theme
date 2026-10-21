@@ -32,7 +32,7 @@ class Button extends ComponentBase
      * @param  string  $content  Label (HTML allowed).
      * @param  string  $variant  One of self::VARIANTS, or empty for an unstyled control.
      * @param  string|null  $url  Render an <a href> instead of a <button>.
-     * @param  string|null  $target  Link target; `_blank` adds rel="noopener".
+     * @param  string|null  $target  Link target; `_blank` adds rel="noopener" and a hidden "(opens in new tab)".
      * @param  bool|null  $arrow  Show the arrow icon. Defaults to true for styled variants.
      * @param  bool  $screen_reader_text  Visually hide the label.
      * @param  string  $type  Button type attribute (ignored for links).
@@ -90,6 +90,7 @@ class Button extends ComponentBase
 
                 if ($args['target'] === '_blank') {
                     $args['attributes']['rel'][] = 'noopener';
+                    $args['content'] .= Link::externalText();
                 }
             }
         } else {

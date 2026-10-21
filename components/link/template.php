@@ -6,5 +6,6 @@
             ? $filter($this->content)
             : wp_kses_post($this->content ?? '')
     );
+    echo $this->external_markup ?? '';
     ?></a>
 <?php } ?>

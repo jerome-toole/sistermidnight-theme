@@ -2,8 +2,9 @@
 /**
  * Radio Bar Template
  *
- * Marque + wordmark, the now-playing line (hidden while the station is
- * offline; a live region so refreshes are announced) and the Listen link.
+ * Marque + wordmark, the now-playing line (a live region so refreshes are
+ * announced; the "Now playing:" label is hidden while off air) and the Listen
+ * link to the SMFM site (standard external-link treatment via Link).
  *
  * @var \Gust\Components\RadioBar $this
  */
@@ -14,14 +15,15 @@
         <span class="radio-bar__wordmark"><?= esc_html__('Sister Midnight FM', 'gust') ?></span>
     </p>
 
-    <p class="radio-bar__track" aria-live="polite" data-radio-bar-track <?= $this->online ? '' : 'hidden' ?>>
-        <span class="radio-bar__track-label"><?= esc_html__('Now playing:', 'gust') ?></span>
+    <p class="radio-bar__track" aria-live="polite" data-radio-bar-track>
+        <span class="radio-bar__track-label" data-radio-bar-label <?= $this->online ? '' : 'hidden' ?>><?= esc_html__('Now playing:', 'gust') ?></span>
         <span class="radio-bar__track-title" data-radio-bar-title><?= esc_html($this->track) ?></span>
     </p>
 
-    <a class="radio-bar__listen" href="<?= esc_url($this->listen_url) ?>" target="_blank" rel="noopener">
-        <?= esc_html__('Listen', 'gust') ?>
-        <span class="screen-reader-text"><?= esc_html__('(opens in new tab)', 'gust') ?></span>
-        <svg class="radio-bar__arrow" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 13 13 3M5 3h8v8" /></svg>
-    </a>
+    <?= \Gust\Components\Link::make(
+        content: esc_html__('Listen', 'gust'),
+        url: $this->listen_url,
+        target: '_blank',
+        classes: ['radio-bar__listen'],
+    ); ?>
 </aside>

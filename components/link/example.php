@@ -18,7 +18,7 @@ use Gust\Components\Link;
 
 <section class="component-example-section">
     <h2 class="component-example-section__title">Link with Target</h2>
-    <p class="component-example-section__description">Links that open in new tab (automatically adds rel="noopener").</p>
+    <p class="component-example-section__description">Links that open in a new tab get rel="noopener", the <code>.link-external</code> arrow and a visually hidden "(opens in new tab)".</p>
     <div class="component-example-section__preview">
         <?= Link::make(
             title: 'Opens in new tab',

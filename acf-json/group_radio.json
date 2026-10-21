@@ -11,7 +11,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -22,39 +22,23 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_radio_station_id",
-            "label": "Radio.co Station ID",
-            "name": "station_id",
+            "key": "field_radio_station_slug",
+            "label": "Radiocult station slug",
+            "name": "station_slug",
             "type": "text",
-            "instructions": "",
+            "instructions": "From the Radiocult station URL, e.g. sister-midnight-fm.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
-            "default_value": "s35e4926a1",
-            "placeholder": "",
+            "default_value": "sister-midnight-fm",
+            "placeholder": "sister-midnight-fm",
             "prepend": "",
             "append": "",
             "maxlength": ""
-        },
-        {
-            "key": "field_radio_listen_url",
-            "label": "Listen URL",
-            "name": "listen_url",
-            "type": "url",
-            "instructions": "Defaults to the Radio.co stream for the station when empty.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "33",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "https://stream.radio.co/s35e4926a1/listen"
         }
     ],
     "location": [

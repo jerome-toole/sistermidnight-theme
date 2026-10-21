@@ -15,15 +15,15 @@ use Gust\Components\RadioBar;
     <h2 class="component-example-section__title">Radio Bar - Now playing</h2>
     <p class="component-example-section__description">Station online with a track. Resize below md for the two-row layout.</p>
     <div class="component-example-section__preview">
-        <?= RadioBar::make(online: true, title: 'Moonbeam Levels w/ Amar Patel', enabled: true, refresh: false); ?>
+        <?= RadioBar::make(online: true, show: 'Moonbeam Levels w/ Amar Patel', enabled: true, refresh: false); ?>
     </div>
 </section>
 
 <section class="component-example-section">
-    <h2 class="component-example-section__title">Radio Bar - Artist and long title</h2>
-    <p class="component-example-section__description">Artist and title joined with an en dash; overflow is clipped with an ellipsis.</p>
+    <h2 class="component-example-section__title">Radio Bar - Show with track</h2>
+    <p class="component-example-section__description">Show, artist and title joined with en dashes; overflow is clipped with an ellipsis.</p>
     <div class="component-example-section__preview">
-        <?= RadioBar::make(online: true, artist: 'Social Records Society', title: 'A very long show title that keeps going to show the ellipsis in action on narrow screens', enabled: true, refresh: false); ?>
+        <?= RadioBar::make(online: true, show: 'Social Records Society', artist: 'Amar Patel', title: 'A very long track title that keeps going to show the ellipsis in action on narrow screens', enabled: true, refresh: false); ?>
     </div>
 </section>
 
@@ -36,8 +36,8 @@ use Gust\Components\RadioBar;
 </section>
 
 <section class="component-example-section">
-    <h2 class="component-example-section__title">Radio Bar - Offline</h2>
-    <p class="component-example-section__description">The track line is hidden; brand and Listen remain.</p>
+    <h2 class="component-example-section__title">Radio Bar - Off air</h2>
+    <p class="component-example-section__description">The default playlist is playing: the line reads "Off air"; brand and Listen remain.</p>
     <div class="component-example-section__preview">
         <?= RadioBar::make(online: false, enabled: true, refresh: false); ?>
     </div>
@@ -45,7 +45,7 @@ use Gust\Components\RadioBar;
 
 <section class="component-example-section">
     <h2 class="component-example-section__title">Radio Bar - Live</h2>
-    <p class="component-example-section__description">What the front page renders: RadioService data, refreshed every 60s. Nothing renders when radio_enabled is off.</p>
+    <p class="component-example-section__description">What the front page renders: Radiocult data via RadioService, refreshed every 60s. Nothing renders when radio_enabled is off.</p>
     <div class="component-example-section__preview">
         <?= RadioBar::fromService(); ?>
     </div>
