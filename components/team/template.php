@@ -3,9 +3,11 @@
  * Team Template
  *
  * Vertical label and a horizontal snapping list of portraits. Each caption
- * is a disclosure button (aria-expanded / aria-controls) in front of its
- * panel; CSS shows the panel on hover and :focus-within, scripts.js toggles
- * it on click. Members without a full name or bio get a plain caption.
+ * is placed on its portrait by the member's CSS custom properties (set on
+ * the <li>) and is a disclosure button (aria-expanded / aria-controls) for
+ * the panel that follows it; CSS shows the panel on hover and :focus-within,
+ * scripts.js toggles it on click and moves it with the pointer on hover.
+ * Members without a full name or bio get a plain caption.
  * In an editor preview the label is always printed (placeholder) and the
  * members open from an inline toolbar on the list.
  *
@@ -24,26 +26,28 @@
             <?php } else { ?>
                 <ul class="team__track">
                     <?php foreach ($this->members as $member) { ?>
-                        <li class="<?= classes('team__member', 'team__member--'.$member['position']) ?>">
+                        <li class="team__member" style="<?= esc_attr($member['style']) ?>">
                             <?php if ($member['image']) { ?>
                                 <?= $member['image'] ?>
                             <?php } else { ?>
                                 <div class="team__img team__img--empty"></div>
                             <?php } ?>
 
-                            <div class="team__caption">
-                                <?php if ($member['has_panel']) { ?>
+                            <?php if ($member['has_panel']) { ?>
+                                <div class="team__caption">
                                     <button type="button" class="team__toggle" aria-expanded="false" aria-controls="<?= esc_attr($member['panel_id']) ?>"><?= esc_html($member['first_name']) ?></button>
-                                    <div class="team__panel" id="<?= esc_attr($member['panel_id']) ?>">
-                                        <p class="team__name"><?= esc_html($member['full_name']) ?></p>
-                                        <?php if ($member['bio'] !== '') { ?>
-                                            <p class="team__bio"><?= esc_html($member['bio']) ?></p>
-                                        <?php } ?>
-                                    </div>
-                                <?php } else { ?>
+                                </div>
+                                <div class="team__panel" id="<?= esc_attr($member['panel_id']) ?>" data-team-panel>
+                                    <p class="team__name"><?= esc_html($member['full_name']) ?></p>
+                                    <?php if ($member['bio'] !== '') { ?>
+                                        <p class="team__bio"><?= esc_html($member['bio']) ?></p>
+                                    <?php } ?>
+                                </div>
+                            <?php } else { ?>
+                                <div class="team__caption">
                                     <span class="team__toggle team__toggle--static"><?= esc_html($member['first_name']) ?></span>
-                                <?php } ?>
-                            </div>
+                                </div>
+                            <?php } ?>
                         </li>
                     <?php } ?>
                 </ul>

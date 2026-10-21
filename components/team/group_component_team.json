@@ -44,25 +44,55 @@
                     "instructions": "The caption on the portrait.",
                     "required": 1,
                     "wrapper": {
-                        "width": "50"
+                        "width": "100"
                     },
                     "parent_repeater": "field_team_members"
                 },
                 {
-                    "key": "field_team_member_caption_position",
-                    "label": "Caption position",
-                    "name": "caption_position",
-                    "type": "select",
-                    "choices": {
-                        "top-left": "Top left",
-                        "top-right": "Top right",
-                        "bottom-left": "Bottom left",
-                        "bottom-right": "Bottom right"
-                    },
-                    "default_value": "top-left",
-                    "return_format": "value",
+                    "key": "field_team_member_name_x",
+                    "label": "Name position X",
+                    "name": "name_x",
+                    "type": "number",
+                    "instructions": "Left edge of the name as a percentage of the portrait width (0 = left edge, 100 = right edge).",
+                    "default_value": 8,
+                    "min": 0,
+                    "max": 100,
+                    "step": 0.1,
+                    "append": "%",
                     "wrapper": {
-                        "width": "50"
+                        "width": "33"
+                    },
+                    "parent_repeater": "field_team_members"
+                },
+                {
+                    "key": "field_team_member_name_y",
+                    "label": "Name position Y",
+                    "name": "name_y",
+                    "type": "number",
+                    "instructions": "Top edge of the name as a percentage of the portrait height (0 = top, 100 = bottom).",
+                    "default_value": 8,
+                    "min": 0,
+                    "max": 100,
+                    "step": 0.1,
+                    "append": "%",
+                    "wrapper": {
+                        "width": "33"
+                    },
+                    "parent_repeater": "field_team_members"
+                },
+                {
+                    "key": "field_team_member_name_rotation",
+                    "label": "Name rotation",
+                    "name": "name_rotation",
+                    "type": "number",
+                    "instructions": "Degrees, turned around the name's top-left corner. Positive turns clockwise, negative anticlockwise.",
+                    "default_value": 0,
+                    "min": -90,
+                    "max": 90,
+                    "step": 0.1,
+                    "append": "°",
+                    "wrapper": {
+                        "width": "34"
                     },
                     "parent_repeater": "field_team_members"
                 },
@@ -104,5 +134,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1792840000
+    "modified": 1792900000
 }

@@ -7,10 +7,14 @@
  * horizontal scroller with snap points, 260×340, gap 16, bleeding to the
  * right edge of the viewport.
  *
- * Each caption sits in one of the four corners of its portrait. The caption
- * is a button; its panel (burnt-sienna, cool-grey text) opens below a top
- * caption or above a bottom caption, on hover, focus-within or when the
- * button is expanded (scripts.js).
+ * Each caption is placed on its portrait by the member's custom properties
+ * (--team--name-x / -y in percent, --team--name-rotation in degrees, set
+ * inline from the CMS) and turned around its top-left corner. The caption
+ * is a button; its panel (burnt-sienna, cool-grey text, 262 wide) opens on
+ * hover, focus-within or when the button is expanded (scripts.js). On hover
+ * with a pointer scripts.js fixes the panel next to the cursor
+ * (.team__panel--cursor); when focused or pinned open it sits anchored to
+ * the bottom of the portrait instead.
  * ------------------------------------------------------------------------- */
 
 .team {
@@ -19,9 +23,9 @@
     --team--member-width: space(260);
     --team--member-ratio: 260 / 340;
     --team--track-gap: space(16);
-    --team--caption-inset: space(24);
     --team--caption-padding: space(8);
-    --team--panel-gap: space(4);
+    --team--panel-inset: space(12);
+    --team--panel-width: space(262);
     --team--panel-padding: space(10) space(6) space(8);
 
     padding-block: var(--team--padding-top) 0;
@@ -97,6 +101,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+
+    /* The portraits are cut-outs on white: multiply drops the white into the stone-beige */
+    mix-blend-mode: multiply;
 }
 
 .team__img--empty {
@@ -108,27 +115,11 @@
 
 .team__caption {
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: calc(100% - 2 * var(--team--caption-inset));
-    inset-inline: var(--team--caption-inset);
-
-    .team__member--top-left &,
-    .team__member--top-right & {
-        top: var(--team--caption-inset);
-    }
-
-    .team__member--bottom-left &,
-    .team__member--bottom-right & {
-        flex-direction: column-reverse;
-        bottom: var(--team--caption-inset);
-    }
-
-    .team__member--top-right &,
-    .team__member--bottom-right & {
-        align-items: flex-end;
-    }
+    top: var(--team--name-y, 8%);
+    left: var(--team--name-x, 8%);
+    width: max-content;
+    rotate: var(--team--name-rotation, 0deg);
+    transform-origin: 0 0;
 }
 
 .team__toggle {
@@ -145,6 +136,7 @@
     font: inherit;
     font-weight: 700;
     text-align: inherit;
+    white-space: nowrap;
     cursor: pointer;
 
     &:focus {
@@ -159,22 +151,19 @@
 .team__panel {
     @apply color-context-burnt-sienna;
 
+    position: absolute;
+    z-index: 1;
     display: none;
-    width: 100%;
-    margin-block-start: calc(var(--team--panel-gap) + var(--team--caption-padding));
+    inset-inline: var(--team--panel-inset);
+    inset-block-end: var(--team--panel-inset);
+    width: min(var(--team--panel-width), calc(100% - 2 * var(--team--panel-inset)));
     padding: var(--team--panel-padding);
     color: var(--color-cool-grey);
-
-    .team__member--bottom-left &,
-    .team__member--bottom-right & {
-        margin-block-start: 0;
-        margin-block-end: calc(var(--team--panel-gap) + var(--team--caption-padding));
-    }
 
     /* Open: hover or keyboard focus (no JS needed), or expanded by scripts.js */
     .team__member:hover &,
     .team__member:focus-within &,
-    .team__toggle[aria-expanded='true'] + & {
+    .team__member:has(.team__toggle[aria-expanded='true']) & {
         display: block;
     }
 
@@ -185,7 +174,7 @@
         }
 
         .team__member:focus-within &,
-        .team__toggle[aria-expanded='true'] + & {
+        .team__member:has(.team__toggle[aria-expanded='true']) & {
             display: block;
         }
     }
@@ -193,6 +182,17 @@
     /* Escape closed it while the toggle still has focus (scripts.js) */
     .team__member[data-dismissed] & {
         display: none;
+    }
+
+    /* Following the pointer (scripts.js sets --team--panel-x/-y in viewport px) */
+    &.team__panel--cursor {
+        position: fixed;
+        z-index: calc(var(--z-index-paper) - 1);
+        inset: auto;
+        top: var(--team--panel-y, 0);
+        left: var(--team--panel-x, 0);
+        width: min(var(--team--panel-width), calc(100vw - 2 * var(--container-padding)));
+        pointer-events: none;
     }
 }
 

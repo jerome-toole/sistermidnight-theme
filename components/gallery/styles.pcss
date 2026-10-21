@@ -7,7 +7,11 @@
  *   masonry   dense 5-column grid, 360px rows (fluid), gap 12; landscape
  *             images span two columns. Two equal columns below md.
  *   carousel  native horizontal scroller 420px tall, natural widths, gap 16,
- *             bleeding to the right edge; prev/next arrows top right.
+ *             bleeding to the right edge; prev/next arrows top right. From md
+ *             the arrows sit absolutely above the strip (in the section's top
+ *             padding, centred on the label's first line as in the design) so
+ *             the strip's top lines up with the label; below md they are an
+ *             ordinary row above the strip.
  *             Blossom's own stylesheet handles the scroller basics.
  * ------------------------------------------------------------------------- */
 
@@ -22,6 +26,7 @@
     --gallery--carousel-height: spaceFluid(260, 420);
     --gallery--arrow-size: space(44);
     --gallery--arrow-icon-size: space(24);
+    --gallery--nav-gap: space(16);
 
     padding-block: var(--gallery--padding-block);
     padding-inline: var(--container-padding);
@@ -93,6 +98,7 @@
 /* ---- Carousel ------------------------------------------------------------ */
 
 .gallery__carousel {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: var(--gallery--gap);
@@ -104,8 +110,15 @@
 .gallery__nav {
     display: flex;
     justify-content: flex-end;
-    gap: space(8);
+    gap: space(4);
     padding-inline-end: var(--container-padding);
+
+    /* Above the strip, in the section padding: the strip top stays level with the label */
+    @media (width >= theme('screens.md')) {
+        position: absolute;
+        inset-block-end: calc(100% + var(--gallery--nav-gap));
+        inset-inline-end: 0;
+    }
 }
 
 .gallery__arrow {

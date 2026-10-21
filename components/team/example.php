@@ -3,39 +3,47 @@
 /**
  * Team Component Examples
  *
- * Six members using the latest portrait images in the media library, one
- * caption in each corner, one member without a tooltip.
+ * Five members using the design's portraits (by file name) when they are in
+ * the media library, otherwise the latest images; captions placed and turned
+ * as in the design, one member without a tooltip.
  */
 
 use Gust\Components\Team;
 
-$images = get_posts([
+$members = [
+    ['first_name' => 'Alex', 'full_name' => 'Alex Morgan', 'bio' => 'Alex is Co-Founding director of Sister Midnight and looks after the venue build.', 'name_x' => 11.9, 'name_y' => 49.2, 'name_rotation' => -75.6],
+    ['first_name' => 'Keilah', 'full_name' => 'Keilah Brown', 'bio' => 'Keilah runs the radio station and the Thursday residencies.', 'name_x' => 89.9, 'name_y' => 84.1, 'name_rotation' => 38.2],
+    ['first_name' => 'Sophie', 'full_name' => 'Sophie Farrell', 'bio' => 'Sophie is Co-Founding director of Sister Midnight, SMFM and Social Records Society.', 'name_x' => 27.2, 'name_y' => 32.3, 'name_rotation' => -30],
+    ['first_name' => 'Cleo', 'full_name' => 'Cleo Adams', 'bio' => 'Cleo books the live programme and leads the community outreach.', 'name_x' => 85.2, 'name_y' => 41.3, 'name_rotation' => 65.6],
+    ['first_name' => 'Lenny', 'name_x' => 33.8, 'name_y' => 7.6, 'name_rotation' => -26.2],
+];
+
+$fallback = get_posts([
     'post_type' => 'attachment',
     'post_mime_type' => 'image',
-    'posts_per_page' => 6,
+    'posts_per_page' => count($members),
     'orderby' => 'date',
     'order' => 'DESC',
     'fields' => 'ids',
 ]);
 
-$members = [
-    ['first_name' => 'Alex', 'full_name' => 'Alex Morgan', 'bio' => 'Alex is Co-Founding director of Sister Midnight and looks after the venue build.', 'caption_position' => 'top-left'],
-    ['first_name' => 'Keilah', 'full_name' => 'Keilah Brown', 'bio' => 'Keilah runs the radio station and the Thursday residencies.', 'caption_position' => 'bottom-right'],
-    ['first_name' => 'Sophie', 'full_name' => 'Sophie Farrell', 'bio' => 'Sophie is Co-Founding director of Sister Midnight, SMFM and Social Records Society.', 'caption_position' => 'top-right'],
-    ['first_name' => 'Cleo', 'full_name' => 'Cleo Adams', 'bio' => 'Cleo books the live programme and leads the community outreach.', 'caption_position' => 'bottom-left'],
-    ['first_name' => 'Lenny', 'full_name' => 'Lenny Okafor', 'bio' => 'Lenny keeps the bar, the books and the members informed.', 'caption_position' => 'top-left'],
-    ['first_name' => 'Dams', 'caption_position' => 'bottom-right'],
-];
-
 foreach ($members as $index => &$member) {
-    $member['image'] = $images[$index] ?? null;
+    $portrait = get_posts([
+        'post_type' => 'attachment',
+        'post_mime_type' => 'image',
+        'name' => strtolower($member['first_name']),
+        'posts_per_page' => 1,
+        'fields' => 'ids',
+    ]);
+
+    $member['image'] = $portrait[0] ?? $fallback[$index] ?? null;
 }
 unset($member);
 ?>
 
 <section class="component-example-section">
     <h2 class="component-example-section__title">Team</h2>
-    <p class="component-example-section__description">Label, six portraits in a snapping scroll row; hover, focus or click a caption for the tooltip. The last member has no tooltip.</p>
+    <p class="component-example-section__description">Label, five portraits in a snapping scroll row; hover a portrait for the panel at the cursor, focus or tap a caption for it anchored to the portrait. The last member has no panel.</p>
     <div class="component-example-section__preview">
         <?= Team::make(label: 'The Team', members: $members); ?>
     </div>

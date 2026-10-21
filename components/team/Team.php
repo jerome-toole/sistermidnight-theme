@@ -8,23 +8,30 @@ use Gust\ComponentBase;
  * Team Component (ACF block `theme/team`)
  *
  * Stone-beige section with a vertical label and a horizontal, snapping row
- * of portraits. Each portrait carries a first-name caption in one of its
- * four corners; the caption is a <button aria-expanded> that reveals a
- * tooltip-style panel with the full name and bio. CSS reveals the panel on
- * hover and :focus-within; scripts.js keeps it open on click/tap.
+ * of portraits. Each portrait carries a first-name caption placed and
+ * rotated per member (name_x / name_y as a percentage of the portrait,
+ * name_rotation in degrees, rendered as CSS custom properties); the caption
+ * is a <button aria-expanded> that reveals a panel with the full name and
+ * bio. CSS reveals the panel on hover and :focus-within; scripts.js keeps it
+ * open on click/tap and makes it follow the pointer on hover.
  *
  * Usage:
  *   use Gust\Components\Team;
  *
  *   echo Team::make(label: 'The Team', members: [
- *       ['image' => 12, 'first_name' => 'Sophie', 'full_name' => 'Sophie Farrell', 'bio' => '…', 'caption_position' => 'top-left'],
+ *       ['image' => 12, 'first_name' => 'Sophie', 'full_name' => 'Sophie Farrell', 'bio' => '…', 'name_x' => 27, 'name_y' => 32, 'name_rotation' => -30],
  *   ]);
  */
 class Team extends ComponentBase
 {
     protected static string $name = 'team';
 
-    public const POSITIONS = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+    /** Caption defaults when a member has no position saved (percent, percent, degrees). */
+    public const NAME_X = 8.0;
+
+    public const NAME_Y = 8.0;
+
+    public const NAME_ROTATION = 0.0;
 
     protected static function getDefaults(): array
     {
@@ -38,7 +45,7 @@ class Team extends ComponentBase
      * Create a new Team component.
      *
      * @param  string  $label  Vertical gutter label, rendered as the <h2>. Optional.
-     * @param  array  $members  Rows of image (ACF image array or ID), first_name, full_name, bio, caption_position.
+     * @param  array  $members  Rows of image (ACF image array or ID), first_name, full_name, bio, name_x, name_y, name_rotation.
      * @return static|null Null when there are no members (outside the editor).
      */
     public static function make(
@@ -99,7 +106,6 @@ class Team extends ComponentBase
 
             $image = $member['image'] ?? null;
             $image_id = is_array($image) ? (int) ($image['ID'] ?? $image['id'] ?? 0) : (int) $image;
-            $position = $member['caption_position'] ?? null;
             $full_name = trim((string) ($member['full_name'] ?? ''));
             $bio = trim((string) ($member['bio'] ?? ''));
 
@@ -109,7 +115,12 @@ class Team extends ComponentBase
                 'bio' => $bio,
                 'has_panel' => $bio !== '' || ($full_name !== '' && $full_name !== $first_name),
                 'panel_id' => "{$prefix}-".($index + 1),
-                'position' => in_array($position, self::POSITIONS, true) ? $position : self::POSITIONS[0],
+                'style' => sprintf(
+                    '--team--name-x: %s%%; --team--name-y: %s%%; --team--name-rotation: %sdeg;',
+                    static::number($member['name_x'] ?? null, self::NAME_X, 0, 100),
+                    static::number($member['name_y'] ?? null, self::NAME_Y, 0, 100),
+                    static::number($member['name_rotation'] ?? null, self::NAME_ROTATION, -90, 90),
+                ),
                 'image' => $image_id > 0 && \wp_attachment_is_image($image_id)
                     ? Image::make(
                         id: $image_id,
@@ -122,6 +133,14 @@ class Team extends ComponentBase
         }
 
         return $clean;
+    }
+
+    /** A numeric field value clamped to its range, or the default when empty or not numeric. Formatted for CSS. */
+    protected static function number(mixed $value, float $default, float $min, float $max): string
+    {
+        $number = is_numeric($value) ? (float) $value : $default;
+
+        return rtrim(rtrim(number_format(max($min, min($max, $number)), 2, '.', ''), '0'), '.');
     }
 
     /** Block fields are prefixed (team_label…) so their names stay unique for inline editing. */
