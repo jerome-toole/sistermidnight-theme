@@ -29,7 +29,7 @@ Refinement checklist worked by agents from the spec. One line per item; tick whe
 
 ## Backlog
 
-- [ ] Update the calendar to use the dark mode that's in the figma.
+- [x] Update the calendar to use the dark mode that's in the figma.
 - [ ] The names of the team members shouldn't get cut off if they are a bit above the top of the image. Add some padding? (but keep the spacing as per design)
 - [ ] Add mobile support for the team hover items.
 - [ ] Do a full run throught of the site and identify any design inconsistencies, missing elements, or other issues that need to be fixed. write them into the todos.
