@@ -16,6 +16,7 @@
 import dynamicElements from '../../assets/scripts/helpers/dynamicElements.js';
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const noHover = window.matchMedia('(hover: none)');
 
 const CURSOR_CLASS = 'team__panel--cursor';
 const OFFSET = 12;
@@ -32,6 +33,8 @@ function team(root) {
     toggles.forEach((toggle) => {
         const member = toggle.closest('.team__member');
         const panel = member.querySelector('[data-team-panel]');
+
+        let pressed = false;
 
         const anchored = () => isOpen(toggle) || member.contains(document.activeElement);
 
@@ -64,7 +67,18 @@ function team(root) {
         member.addEventListener('pointermove', follow);
         member.addEventListener('pointerleave', unfollow);
 
+        toggle.addEventListener('pointerdown', () => {
+            pressed = true;
+        });
+
+        // Touch: the whole portrait is the tap target (the button stays the accessible control)
+        member.addEventListener('click', (event) => {
+            if (!noHover.matches || toggle.contains(event.target) || panel.contains(event.target)) return;
+            toggle.click();
+        });
+
         toggle.addEventListener('click', () => {
+            pressed = false;
             const open = !isOpen(toggle);
             delete member.dataset.dismissed;
             closeAll(toggle);
@@ -74,7 +88,9 @@ function team(root) {
 
         toggle.addEventListener('focus', () => {
             unfollow();
-            if ('dismissed' in member.dataset) return;
+            const fromPointer = pressed;
+            pressed = false;
+            if (fromPointer || 'dismissed' in member.dataset) return;
             closeAll(toggle);
             set(toggle, true);
         });

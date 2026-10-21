@@ -11,7 +11,8 @@
  * (--team--name-x / -y in percent, --team--name-rotation in degrees, set
  * inline from the CMS) and turned around its top-left corner. The caption
  * is a button; its panel (burnt-sienna, cool-grey text, 262 wide) opens on
- * hover, focus-within or when the button is expanded (scripts.js). On hover
+ * hover, focus-within or when the button is expanded (scripts.js); on touch
+ * (hover: none) a tap anywhere on the portrait toggles it. On hover
  * with a pointer scripts.js fixes the panel next to the cursor
  * (.team__panel--cursor); when focused or pinned open it sits anchored to
  * the bottom of the portrait instead.
@@ -67,9 +68,19 @@
     gap: var(--team--track-gap);
     margin: 0;
 
+    /*
+     * Captions rotated up past the top of a portrait would be cut off by the
+     * scroller (overflow-x forces overflow-y to clip). Pad the top by the
+     * section's top padding and pull it back with a negative margin, so the
+     * portraits stay where the design puts them and the names can spill
+     * into the section padding.
+     */
+    margin-block-start: calc(-1 * var(--team--padding-top));
+
     /* Runs to the right edge of the viewport */
     margin-inline-end: calc(-1 * var(--container-padding));
     padding: 0;
+    padding-block-start: var(--team--padding-top);
     padding-inline-end: var(--container-padding);
     scroll-padding-inline-end: var(--container-padding);
     list-style: none;
@@ -168,12 +179,17 @@
     }
 
     @media (hover: none) {
-        /* Touch: tap to open only, so a tap never has to fight a sticky hover */
-        .team__member:hover & {
+        /*
+         * Touch: a tap on the portrait or name toggles the panel (scripts.js).
+         * Neither sticky hover nor the focus a tap leaves behind keeps it
+         * open, so a second tap closes it; keyboard focus still opens it.
+         */
+        .team__member:hover &,
+        .team__member:focus-within & {
             display: none;
         }
 
-        .team__member:focus-within &,
+        .team__member:has(.team__toggle:focus-visible) &,
         .team__member:has(.team__toggle[aria-expanded='true']) & {
             display: block;
         }
