@@ -2,8 +2,9 @@
  * Event header (partial)
  *
  * Event single top on the page colour, 48–78 padding above and below: the
- * poster (496×626, 3px stone-beige border) in the left half of the content
- * layout, the text (590 wide) in the right half.
+ * poster (496×626, 3px stone-beige border) then the text (590 wide), 125
+ * apart, in the design's 1211 frame at x154 (1440): from md the frame sits
+ * 39.5px right of centre and stays inside the gutter on narrower screens.
  * Text: eyebrow / title / meta (gap 16, 15) then, 52 below, the excerpt and
  * the CTA (gap 32). Below md the poster comes first at full width.
  * ------------------------------------------------------------------------- */
@@ -15,6 +16,9 @@
     --event-header--poster-ratio: 496 / 626;
     --event-header--poster-border: 3px;
     --event-header--gap: spaceFluid(32, 52);
+    --event-header--frame: space(1211);
+    --event-header--frame-shift: space(39.5);
+    --event-header--column-gap: spaceFluid(32, 125);
 
     padding-block: var(--event-header--padding-block);
     padding-inline: var(--container-padding);
@@ -22,6 +26,13 @@
 
 .event-header__inner {
     align-items: start;
+
+    @media (width >= theme('screens.md')) {
+        max-width: var(--event-header--frame);
+        margin-inline: clamp(0px, (100% - var(--event-header--frame)) / 2 + var(--event-header--frame-shift), 100% - var(--event-header--frame)) 0;
+        column-gap: var(--event-header--column-gap);
+        grid-template-columns: minmax(0, 496fr) minmax(0, 590fr);
+    }
 }
 
 .event-header__poster {

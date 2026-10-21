@@ -15,12 +15,14 @@
     --page-header--illustration-size: spaceFluid(240, 420);
     --page-header--image-width: space(410);
     --page-header--image-ratio: 410 / 607;
+    --page-header--image-align-width: space(440); /* Section's left-half image: the header image shares its left edge */
 
     padding-block: var(--page-header--padding-block);
     padding-inline: var(--container-padding);
 }
 
 .page-header__inner {
+    container-type: inline-size; /* content-layout--beside-label measures the text column from it */
     display: grid;
     gap: var(--page-header--gap);
     grid-template-columns: minmax(0, 1fr);
@@ -72,6 +74,13 @@
     }
 }
 
+.page-header--image .page-header__media {
+    @media (width >= theme('screens.md')) {
+        justify-content: flex-start;
+        padding-inline-start: max(0px, (100% - var(--page-header--image-align-width)) / 2);
+    }
+}
+
 .page-header--illustration .page-header__media {
     @media (width < theme('screens.md')) {
         justify-content: flex-start;
@@ -95,4 +104,9 @@
     height: auto;
     aspect-ratio: var(--page-header--image-ratio);
     object-fit: cover;
+
+    /* Spec: full width below md */
+    @media (width < theme('screens.md')) {
+        max-width: none;
+    }
 }

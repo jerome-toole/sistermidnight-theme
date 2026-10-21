@@ -11,6 +11,9 @@ use Gust\Components\Illustration;
  *
  * @var \Gust\Components\Section $this
  */
+// In the editor the label is always rendered (inline-editable placeholder).
+$labelled = $this->label !== '' || $this->is_preview;
+
 $content_classes = ['content-section__content', 'content-section__content--'.$this->layout];
 
 if ($this->layout === 'text-right') {
@@ -32,12 +35,12 @@ $inner_blocks = function () use ($content_classes) {
 ?>
 <section class="<?= classes($this->classes) ?>" <?= attributes($this->attributes) ?>>
     <div class="content-section__inner">
-        <?php if ($this->label !== '' || $this->is_preview) { ?>
+        <?php if ($labelled) { ?>
             <h2 class="content-section__label" <?= $this->inlineText('label', __('Section label', 'gust')) ?>><?= esc_html($this->label) ?></h2>
         <?php } ?>
 
         <?php if ($this->layout === 'text-right') { ?>
-            <div class="content-section__body content-layout">
+            <div class="<?= classes(['content-section__body', 'content-layout', $labelled ? 'content-layout--beside-label' : '']) ?>">
                 <?php if ($this->illustration || $this->image) { ?>
                     <div class="content-section__media content-layout__media content-layout__media--always" <?= $this->inlineToolbar(['media', 'illustration', 'image'], __('Media', 'gust')) ?>>
                         <?php if ($this->illustration) { ?>

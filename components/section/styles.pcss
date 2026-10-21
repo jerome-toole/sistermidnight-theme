@@ -9,6 +9,14 @@
  *   two-column   inner blocks (two groups) side by side from md.
  *   scatter      cards in two staggered columns, decorative illustrations
  *                around them (hidden below md); single column below md.
+ *
+ * Padding: text-right sections use the design's 78 (Objectives, Our Process,
+ * FAQ, front intro); two-column and scatter keep 126.
+ * The inner wrapper is an inline-size container so a labelled text-right body
+ * (content-layout--beside-label) keeps its text column at the same x as an
+ * unlabelled one. From md the vertical label adds no height to the row: a
+ * long label ("About the event") runs on into the padding below instead of
+ * stretching the band under short copy.
  * ------------------------------------------------------------------------- */
 
 .content-section {
@@ -24,7 +32,12 @@
     padding-inline: var(--container-padding);
 }
 
+.content-section--text-right {
+    --content-section--padding-block: spaceFluid(48, 78);
+}
+
 .content-section__inner {
+    container-type: inline-size;
     display: grid;
     gap: var(--content-section--gap);
     grid-template-columns: minmax(0, 1fr);
@@ -42,6 +55,16 @@
     @apply vertical-label;
 
     margin: 0;
+
+    /* Zero inline size (= height in vertical-lr): the row is sized by the body
+     * and the single nowrap line overflows downwards */
+    @media (width >= theme('screens.md')) {
+        position: relative;
+        z-index: 1;
+        height: 0;
+        max-height: none;
+        overflow: visible;
+    }
 }
 
 .content-section__body {
@@ -100,6 +123,19 @@
     @media (width >= theme('screens.md')) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         align-items: start;
+    }
+
+    /* Beside a label the columns follow content-layout--beside-label: the
+     * second group starts at the same x as text-right copy */
+    .content-section--labelled & {
+        @media (width >= theme('screens.md')) {
+            width: auto;
+            max-width: none;
+            margin-inline: 0 max(0px, (100cqi - var(--container-content)) / 2);
+            grid-template-columns:
+                minmax(0, 1fr)
+                calc((min(var(--container-content), 100cqi) - var(--content-section--column-gap)) / 2);
+        }
     }
 
     /* Groups fill their column: the group block's own content-grid would inset

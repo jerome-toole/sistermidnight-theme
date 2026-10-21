@@ -150,7 +150,7 @@ class PageHeader extends ComponentBase
                     id: $id,
                     size: 'large',
                     sizes: '(min-width: 768px) 410px, 100vw',
-                    classes: ['page-header__img'],
+                    attributes: ['class' => 'page-header__img'],
                 );
                 $args['classes'][] = 'page-header--image';
             }

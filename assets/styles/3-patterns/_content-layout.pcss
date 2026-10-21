@@ -12,13 +12,24 @@
  *   </div>
  *
  * content-layout--reverse swaps the halves from md.
+ *
+ * content-layout--beside-label keeps the text column on the page grid when
+ * a vertical label takes a column to the left (Section, Page Header): the
+ * text half has the same x and width as in an unlabelled layout (page centre
+ * + half the gap) and the media half shrinks instead. Needs an inline-size
+ * container on the element whose width matches an unlabelled layout's box
+ * (the component's inner wrapper).
+ *
+ * The layout always sits inside a padded box (the component carries the page
+ * gutter), so its max-width caps at 100% of that box rather than subtracting
+ * the gutter again (which inset mobile copy to 2× the gutter).
  */
 /* --------------------------------------------------- */
 
 @layer base {
     :root {
         --content-layout--gap: spaceFluid(20, 40);
-        --content-layout--max-width: var(--width-fluid-content);
+        --content-layout--max-width: min(var(--container-content), 100%);
     }
 }
 
@@ -44,6 +55,17 @@
         @media (width >= theme("screens.md")) {
             grid-column: 2;
             grid-row: 1;
+        }
+    }
+
+    &.content-layout--beside-label {
+        @media (width >= theme("screens.md")) {
+            width: auto;
+            max-width: none;
+            margin-inline: 0 max(0px, (100cqi - var(--container-content)) / 2);
+            grid-template-columns:
+                minmax(0, 1fr)
+                calc((min(var(--container-content), 100cqi) - var(--content-layout--gap)) / 2);
         }
     }
 

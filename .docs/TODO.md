@@ -42,22 +42,22 @@ Refinement checklist worked by agents from the spec. One line per item; tick whe
 - [ ] [human] Cookie consent: component renders nothing (no consent text in options) and still uses the old `has-accent-background-color` styling; it also outputs before the skip link → decide whether it's needed (Brevo "mailin"/WonderPush plugin is active); if yes, add copy, restyle in the palette and move it after the skip link
 - [ ] [human] Brevo "mailin" plugin writes `[DEBUG] Updating application cache` lines to debug.log on page loads and only serves the old Contact form/push notifications → decide whether to deactivate it (newsletter runs through Gravity Forms)
 - [ ] [human] Images: every About/Venue/Membership section, image-pair and gallery image has `alt=""` → add alt text in the media library (spec: gallery alt comes from the library)
-- [ ] Section + Page Header: right-column copy with a vertical label sits at x782 (About intro, Objectives, Our Process, event "About the event") while unlabelled ones sit at x740 (front intro, Manifesto/Values, FAQ); design ≈743 throughout → one right-column x for all (1440)
-- [ ] Mobile gutters: vertical-label headings and galleries sit at 16px but body copy, Page Header media and FAQ at 32px → one side gutter for everything (500)
-- [ ] Section vertical padding: dark text-right sections use 126px top/bottom; design uses 78–80 (front intro p80 = 483 tall vs 646 built; Objectives/Our Process/FAQ copy at y78) → match the design padding per section (1440)
+- [x] Section + Page Header: right-column copy with a vertical label sits at x782 (About intro, Objectives, Our Process, event "About the event") while unlabelled ones sit at x740 (front intro, Manifesto/Values, FAQ); design ≈743 throughout → one right-column x for all (1440)
+- [x] Mobile gutters: vertical-label headings and galleries sit at 16px but body copy, Page Header media and FAQ at 32px → one side gutter for everything (500)
+- [x] Section vertical padding: dark text-right sections use 126px top/bottom; design uses 78–80 (front intro p80 = 483 tall vs 646 built; Objectives/Our Process/FAQ copy at y78) → match the design padding per section (1440)
 - [x] "Become a member" link button (front-page intro, About Manifesto): sits 64px below the copy, 21px with an arrow → design is an underlined FOSS 25 link straight under the paragraph (~16px gap), no arrow
 - [x] Gallery masonry: renders 3 columns (511/250/511) with holes in the last row (About 8 images, Venue 7) → design rows of 4 mixed widths (268/533/243/238, 247/247/551/238), 360 tall, dense with no gaps (1440)
 - [x] Gallery carousel: every slide is cropped to 633×420 → natural widths at 420 tall (278–672 wide in the design), gap 16
-- [ ] Event single "About the event": the long vertical label sets the section height, leaving ~600px of empty dark band under two paragraphs → don't let the label drive the section height (clamp/shorten the label or let it overflow into padding)
+- [x] Event single "About the event": the long vertical label sets the section height, leaving ~600px of empty dark band under two paragraphs → don't let the label drive the section height (clamp/shorten the label or let it overflow into padding)
 - [x] What's On featured events: meta wraps (date + time on one row, venue on a second); design is one row "23rd March … Catford House"; titles are 50px and wrap to 5 lines vs design Sister 38–47 at ~3 lines; all cards 405 wide vs 416/406/426 (1440)
 - [x] Footer address: one line "Sister Midnight, Brookdale Road, Catford, SE6 4JY" → design stacks four right-aligned lines with "Open map ↗" beneath (1440)
 - [ ] [human] Footer legal line: design reads "Sister Midnight is a Community Benefit Society, FCA #8598 / Imprint | Privacy — Terms ©2025"; built text has no FCA number and no Imprint/Privacy/Terms links (Privacy Policy page is a draft) → confirm the number and pages, then add them
 - [x] Footer supporters: the Co-operatives UK logo wraps onto its own row and renders 160×35, much bigger than the rest → keep all logos on one row at the same visual height (1440)
 - [x] Newsletter "Sign up" button (banner + cards): shows the ↗ external arrow though it submits in place → → arrow per spec/design
 - [x] Newsletter Banner: 320px tall with content inset 40 → design 266 tall, content inset 64 (1440)
-- [ ] Venue Page Header: image renders landscape 410×272 at x238 → spec 410×607 portrait crop (object-fit: cover), aligned with the section image below (x223)
+- [x] Venue Page Header: image renders landscape 410×272 at x238 → spec 410×607 portrait crop (object-fit: cover), aligned with the section image below (x223)
 - [x] Venue: stone-beige "Find us" section runs straight into the stone-beige Newsletter Banner with no break → use the dark-umber banner variant when the last section is stone-beige (as on news singles)
-- [ ] Event header: poster at x102 and copy at x740 → design 154 / 775 (1440)
+- [x] Event header: poster at x102 and copy at x740 → design 154 / 775 (1440)
 - [x] News single: the excerpt shown in the Article Header is repeated as the first paragraph of the body (all three seeded articles) → remove the duplicate paragraph from the seed content
 - [ ] [human] Double signup: /news/ and /support/ show a "Stay in touch" card and the Newsletter Banner → hide the banner on those pages (hide_newsletter) or drop the card
 - [ ] [human] FAQ: design shows the answers expanded; built FAQs are all collapsed → decide whether the first item opens by default

@@ -12,7 +12,7 @@ use Gust\Components\Illustration;
     <div class="page-header__inner">
         <h1 class="page-header__label"><?= esc_html($this->label) ?></h1>
 
-        <div class="page-header__layout content-layout">
+        <div class="page-header__layout content-layout content-layout--beside-label">
             <?php if ($this->illustration || $this->image) { ?>
                 <div class="page-header__media content-layout__media content-layout__media--always">
                     <?php if ($this->illustration) { ?>
