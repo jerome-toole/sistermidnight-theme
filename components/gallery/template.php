@@ -2,7 +2,9 @@
 /**
  * Gallery Template
  *
- * Masonry: a dense grid list. Carousel: a region with prev/next buttons and
+ * Masonry: a justified-rows list. Each item carries its aspect ratio; an
+ * aria-hidden break item ends each row (rows picked in Gallery::markRowEnds).
+ * Carousel: a region with prev/next buttons and
  * a natively scrollable, focusable list that scripts.js hands to Blossom.
  * In an editor preview the label is always printed (placeholder) and the
  * images open from an inline toolbar on the body.
@@ -39,8 +41,11 @@ $chevron = staticUrl('images/icons/chevron-right.svg');
                 </div>
             <?php } else { ?>
                 <ul class="gallery__grid">
-                    <?php foreach ($this->images as $item) { ?>
-                        <li class="<?= classes('gallery__item', $item['landscape'] ? 'gallery__item--wide' : null) ?>"><?= $item['image'] ?></li>
+                    <?php foreach ($this->images as $index => $item) { ?>
+                        <li class="gallery__item" style="--gallery--ratio: <?= esc_attr((string) $item['ratio']) ?>"><?= $item['image'] ?></li>
+                        <?php if (! empty($item['row_end']) && $index < count($this->images) - 1) { ?>
+                            <li class="gallery__break" aria-hidden="true"></li>
+                        <?php } ?>
                     <?php } ?>
                 </ul>
             <?php } ?>

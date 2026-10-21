@@ -46,8 +46,8 @@ Refinement checklist worked by agents from the spec. One line per item; tick whe
 - [ ] Mobile gutters: vertical-label headings and galleries sit at 16px but body copy, Page Header media and FAQ at 32px → one side gutter for everything (500)
 - [ ] Section vertical padding: dark text-right sections use 126px top/bottom; design uses 78–80 (front intro p80 = 483 tall vs 646 built; Objectives/Our Process/FAQ copy at y78) → match the design padding per section (1440)
 - [x] "Become a member" link button (front-page intro, About Manifesto): sits 64px below the copy, 21px with an arrow → design is an underlined FOSS 25 link straight under the paragraph (~16px gap), no arrow
-- [ ] Gallery masonry: renders 3 columns (511/250/511) with holes in the last row (About 8 images, Venue 7) → design rows of 4 mixed widths (268/533/243/238, 247/247/551/238), 360 tall, dense with no gaps (1440)
-- [ ] Gallery carousel: every slide is cropped to 633×420 → natural widths at 420 tall (278–672 wide in the design), gap 16
+- [x] Gallery masonry: renders 3 columns (511/250/511) with holes in the last row (About 8 images, Venue 7) → design rows of 4 mixed widths (268/533/243/238, 247/247/551/238), 360 tall, dense with no gaps (1440)
+- [x] Gallery carousel: every slide is cropped to 633×420 → natural widths at 420 tall (278–672 wide in the design), gap 16
 - [ ] Event single "About the event": the long vertical label sets the section height, leaving ~600px of empty dark band under two paragraphs → don't let the label drive the section height (clamp/shorten the label or let it overflow into padding)
 - [x] What's On featured events: meta wraps (date + time on one row, venue on a second); design is one row "23rd March … Catford House"; titles are 50px and wrap to 5 lines vs design Sister 38–47 at ~3 lines; all cards 405 wide vs 416/406/426 (1440)
 - [x] Footer address: one line "Sister Midnight, Brookdale Road, Catford, SE6 4JY" → design stacks four right-aligned lines with "Open map ↗" beneath (1440)

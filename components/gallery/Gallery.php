@@ -9,8 +9,9 @@ use Gust\ComponentBase;
  *
  * A vertical gutter label and a set of images, in one of two block styles:
  *
- *   masonry   (default) dense CSS grid, 360px rows; landscape images span
- *             two columns. Two equal columns below md.
+ *   masonry   (default) justified rows: a fixed row height (360 at 1440),
+ *             each image grows by its aspect ratio so every row, the last
+ *             included, is filled edge to edge with mixed widths.
  *   carousel  horizontal native scroller 420px tall, natural widths, with
  *             prev/next arrows. Blossom carousel is loaded by scripts.js only
  *             when a carousel is on the page.
@@ -83,6 +84,10 @@ class Gallery extends ComponentBase
 
         $args['style'] = $style;
         $args['images'] = static::images($args['images'] ?? [], $style);
+
+        if ($style === 'masonry') {
+            $args['images'] = static::markRowEnds($args['images']);
+        }
         $args['classes'] = array_merge(['gallery', 'gallery--'.$style, 'alignfull'], $classes);
 
         if ($args['label'] !== '' || ! empty($args['is_preview'])) {
@@ -95,8 +100,8 @@ class Gallery extends ComponentBase
     /**
      * Normalise the images to rendered Image components.
      *
-     * Accepts the ACF gallery return formats (arrays with ID/id, or IDs). In
-     * the masonry style landscape images span two columns.
+     * Accepts the ACF gallery return formats (arrays with ID/id, or IDs).
+     * `ratio` (width / height) drives the masonry row layout.
      */
     protected static function images(mixed $images, string $style = 'masonry'): array
     {
@@ -114,21 +119,75 @@ class Gallery extends ComponentBase
             }
 
             $meta = \wp_get_attachment_metadata($id) ?: [];
-            $landscape = ! empty($meta['width']) && ! empty($meta['height']) && $meta['width'] > $meta['height'];
+            $ratio = ! empty($meta['width']) && ! empty($meta['height']) ? $meta['width'] / $meta['height'] : 1;
 
             $clean[] = [
                 'id' => $id,
-                'landscape' => $landscape,
+                'ratio' => round($ratio, 4),
                 'image' => Image::make(
                     id: $id,
                     size: 'large',
-                    sizes: $style === 'carousel' ? '(min-width: 768px) 50vw, 100vw' : '(min-width: 768px) 25vw, 50vw',
+                    sizes: $style === 'carousel' ? '(min-width: 768px) 50vw, 100vw' : '(min-width: 768px) 40vw, 70vw',
                     attributes: ['class' => 'gallery__img'],
                 ),
             ];
         }
 
         return $clean;
+    }
+
+    /** Masonry row geometry at the design width (1440): row width, row height, gap. */
+    protected const ROW_WIDTH = 1296;
+
+    protected const ROW_HEIGHT = 360;
+
+    protected const ROW_GAP = 12;
+
+    /**
+     * Split the images into justified rows and flag the last item of each.
+     *
+     * Every row is stretched to the full width at a fixed height, so each
+     * image is scaled away from its natural width by the row's fill factor
+     * (and cover-cropped). A small dynamic programme picks the breaks that
+     * keep that factor closest to 1 summed over the rows, the last row
+     * included, so no row is left with a couple of over-stretched images.
+     */
+    protected static function markRowEnds(array $images): array
+    {
+        $count = count($images);
+
+        if ($count === 0) {
+            return $images;
+        }
+
+        // $best[$i] = [cost, start of last row] for the first $i images.
+        $best = [0 => [0.0, 0]];
+
+        for ($end = 1; $end <= $count; $end++) {
+            $best[$end] = [INF, 0];
+            $ratios = 0.0;
+
+            for ($start = $end - 1; $start >= 0; $start--) {
+                $ratios += $images[$start]['ratio'];
+                $fill = (self::ROW_WIDTH - ($end - $start - 1) * self::ROW_GAP) / ($ratios * self::ROW_HEIGHT);
+
+                if ($fill <= 0.4) {
+                    break;
+                }
+
+                $cost = $best[$start][0] + log($fill) ** 2;
+
+                if ($cost < $best[$end][0]) {
+                    $best[$end] = [$cost, $start];
+                }
+            }
+        }
+
+        for ($end = $count; $end > 0; $end = $best[$end][1]) {
+            $images[$end - 1]['row_end'] = true;
+        }
+
+        return $images;
     }
 
     /** Block fields are prefixed (gallery_label…) so their names stay unique for inline editing. */

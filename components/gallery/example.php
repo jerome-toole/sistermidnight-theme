@@ -20,7 +20,7 @@ $images = get_posts([
 
 <section class="component-example-section">
     <h2 class="component-example-section__title">Masonry (default)</h2>
-    <p class="component-example-section__description">Dense grid, landscape images span two columns; two equal columns below md.</p>
+    <p class="component-example-section__description">Justified rows at a fixed height; widths follow each image's aspect ratio and every row is filled.</p>
     <div class="component-example-section__preview">
         <?= Gallery::make(label: 'Gallery', images: $images); ?>
     </div>
