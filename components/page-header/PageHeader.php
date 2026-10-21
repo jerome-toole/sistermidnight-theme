@@ -20,6 +20,7 @@ use Gust\Router;
  *   echo PageHeader::fromPage($post);                           // a page's own fields
  *   echo PageHeader::make(label: 'About us', intro: '<p>…</p>', media: 'stars');
  *   echo PageHeader::make(label: 'Venue', media: ['ID' => 12]); // image array or attachment ID
+ *   echo PageHeader::fromObject($object, after_intro: (string) Card::make(…)); // extra content under the intro
  */
 class PageHeader extends ComponentBase
 {
@@ -31,12 +32,14 @@ class PageHeader extends ComponentBase
      * @param  string  $label  Page title, rendered as the <h1>.
      * @param  string  $intro  Intro copy (HTML).
      * @param  string|int|array|null  $media  Illustration name, image array / attachment ID, or null.
+     * @param  string  $after_intro  Rendered component HTML placed under the intro in the right column (not escaped).
      * @return static|null Returns null without a label.
      */
     public static function make(
         string $label = '',
         string $intro = '',
         string|int|array|null $media = null,
+        string $after_intro = '',
         array $classes = [],
         array $attributes = [],
         ...$others
@@ -50,7 +53,7 @@ class PageHeader extends ComponentBase
      * without the fields just get their title. `$intro` is the fallback
      * when the page has no intro_text.
      */
-    public static function fromPage(?\WP_Post $post, string $intro = '', array $classes = [], array $attributes = []): ?static
+    public static function fromPage(?\WP_Post $post, string $intro = '', array $classes = [], array $attributes = [], string $after_intro = ''): ?static
     {
         if (! $post) {
             return null;
@@ -73,6 +76,7 @@ class PageHeader extends ComponentBase
             label: $post->post_title,
             intro: $intro,
             media: $media,
+            after_intro: $after_intro,
             classes: $classes,
             attributes: $attributes,
         );
@@ -82,12 +86,12 @@ class PageHeader extends ComponentBase
      * Build for the current request from the queried object. Routes with a
      * backing router page (search, 404, archives) use that page's fields.
      */
-    public static function fromObject(?object $object = null, array $classes = [], array $attributes = []): ?static
+    public static function fromObject(?object $object = null, array $classes = [], array $attributes = [], string $after_intro = ''): ?static
     {
         $object ??= \Gust\WordPress\PageObject::get();
 
         if ($object instanceof \WP_Post) {
-            return static::fromPage($object, classes: $classes, attributes: $attributes);
+            return static::fromPage($object, classes: $classes, attributes: $attributes, after_intro: $after_intro);
         }
 
         $label = '';
@@ -112,10 +116,10 @@ class PageHeader extends ComponentBase
         }
 
         if ($page = Router::getPage()) {
-            return static::fromPage($page, $intro, $classes, $attributes);
+            return static::fromPage($page, $intro, $classes, $attributes, $after_intro);
         }
 
-        return static::make(label: $label, intro: $intro, classes: $classes, attributes: $attributes);
+        return static::make(label: $label, intro: $intro, after_intro: $after_intro, classes: $classes, attributes: $attributes);
     }
 
     protected static function validate(array $args): bool
@@ -127,6 +131,7 @@ class PageHeader extends ComponentBase
     {
         $args['label'] = trim($args['label']);
         $args['intro'] = trim($args['intro'] ?? '');
+        $args['after_intro'] = trim($args['after_intro'] ?? '');
         $args['classes'] = array_merge(['page-header', 'alignfull'], $args['classes'] ?? []);
         $args['attributes'] ??= [];
 

@@ -20,9 +20,9 @@ Refinement checklist worked by agents from the spec. One line per item; tick whe
 - [ ] is-style-type-large is used in the first text block on the homepage but doesn't match the design sizing.
 - [ ] vertical section labels are rotated the wrong way. They shouldn't need a rotate because they have writing-mode: vertical-lr applied to them. The text is upside down.
 - [ ] sister midnight font headings shouldn't get underlines when they are links. For card links, let's slightly lighten the card background color
-- [ ] Let's find a way of positioning the illustration at the end of upcoming-events so that it never overlaps the event cards.
-- [ ] Event cards should be max-width 600px
+- [x] Let's find a way of positioning the illustration at the end of upcoming-events so that it never overlaps the event cards.
+- [x] Event cards should be max-width 600px
 - [ ] The slider nav buttons should be positioned absolute so that the images align with the top of the section heading.
 - [ ] Import the images from the figma file for the team section. The hover text should follow the cursor. The person's name should be controlled inthe CMS with position and rotation and you should set it up to match the design.
-- [ ] Replace some event images with the ones used in the design. Make sure the event header matches the design. There's padding missing.
-- [ ] Improve the news page with intro text and a newsletter signup at the top.
+- [x] Replace some event images with the ones used in the design. Make sure the event header matches the design. There's padding missing.
+- [x] Improve the news page with intro text and a newsletter signup at the top.

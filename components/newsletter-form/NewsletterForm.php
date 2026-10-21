@@ -17,6 +17,10 @@ use Gust\ComponentBase;
  *
  *   echo NewsletterForm::make();            // form from options
  *   echo NewsletterForm::make(form_id: 2);  // explicit
+ *
+ * The same form can appear twice on a page (the News archive's Card and the
+ * Newsletter Banner): every render after the first gets its ids suffixed so
+ * ids stay unique and each label still points at its own input.
  */
 class NewsletterForm extends ComponentBase
 {
@@ -48,6 +52,50 @@ class NewsletterForm extends ComponentBase
         $args['classes'] = array_merge(['newsletter-form'], $args['classes'] ?? []);
 
         return $args;
+    }
+
+    /** Renders so far this request, per form ID. */
+    protected static array $renders = [];
+
+    /**
+     * The Gravity Forms markup. Repeat renders of the same form get `-{n}`
+     * appended to every id and to the attributes / fragments that point at them.
+     */
+    public function formHtml(): string
+    {
+        $html = (string) gravity_form(
+            $this->form_id,
+            display_title: false,
+            display_description: false,
+            display_inactive: false,
+            field_values: null,
+            ajax: false,
+            tabindex: 0,
+            echo: false,
+        );
+
+        $count = static::$renders[$this->form_id] = (static::$renders[$this->form_id] ?? 0) + 1;
+
+        return $count > 1 ? static::suffixIds($html, '-'.$count) : $html;
+    }
+
+    protected static function suffixIds(string $html, string $suffix): string
+    {
+        preg_match_all('/\bid=([\'"])([^\'"]+)\1/', $html, $matches);
+
+        foreach (array_unique($matches[2]) as $id) {
+            $quoted = preg_quote($id, '/');
+            $html = preg_replace(
+                [
+                    '/\b((?:id|for|aria-describedby|aria-labelledby|aria-controls)=([\'"])(?:[^\'"]*\s)?)'.$quoted.'(?=[\s\'"])/',
+                    '/#'.$quoted.'(?![\w-])/',
+                ],
+                ['${1}'.$id.$suffix, '#'.$id.$suffix],
+                $html,
+            );
+        }
+
+        return $html;
     }
 
     /**

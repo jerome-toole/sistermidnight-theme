@@ -45,7 +45,7 @@ class NewsletterBanner extends ComponentBase
 
     /**
      * The banner for the current request from the Newsletter options, or null on
-     * the front page and on pages with `hide_newsletter` checked.
+     * the front page and on pages (or an archive's router page) with `hide_newsletter` checked.
      */
     public static function fromOptions(array $classes = [], array $attributes = []): ?static
     {
@@ -53,7 +53,10 @@ class NewsletterBanner extends ComponentBase
             return null;
         }
 
-        if (\is_singular() && \get_field('hide_newsletter', \get_queried_object_id())) {
+        // Archives and other routed requests use their router page's setting.
+        $page_id = \is_singular() ? \get_queried_object_id() : \Gust\Router::getPage()?->ID;
+
+        if ($page_id && \get_field('hide_newsletter', $page_id)) {
             return null;
         }
 

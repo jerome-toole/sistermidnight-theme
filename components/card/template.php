@@ -21,7 +21,7 @@ use Gust\Components\Illustration;
 
     <div class="card__inner">
         <?php if ($this->heading !== '' || $this->is_preview) { ?>
-            <h3 class="card__heading" <?= $this->inlineText('heading', __('Card heading', 'gust')) ?>><?= esc_html($this->heading) ?></h3>
+            <h<?= $this->heading_level ?> class="card__heading" <?= $this->inlineText('heading', __('Card heading', 'gust')) ?>><?= esc_html($this->heading) ?></h<?= $this->heading_level ?>>
         <?php } ?>
 
         <?php if ($this->text !== '' || $this->is_preview) { ?>

@@ -23,9 +23,15 @@ use Gust\Components\Illustration;
                 </div>
             <?php } ?>
 
-            <?php if ($this->intro) { ?>
-                <div class="page-header__intro content-layout__text">
-                    <?= wp_kses_post($this->intro) ?>
+            <?php if ($this->intro || $this->after_intro) { ?>
+                <div class="page-header__text content-layout__text flex flex-col gap-(--page-header--gap)">
+                    <?php if ($this->intro) { ?>
+                        <div class="page-header__intro">
+                            <?= wp_kses_post($this->intro) ?>
+                        </div>
+                    <?php } ?>
+
+                    <?= $this->after_intro ?>
                 </div>
             <?php } ?>
         </div>

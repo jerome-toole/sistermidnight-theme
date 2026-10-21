@@ -7,7 +7,10 @@ $object = \Gust\WordPress\PageObject::get();
 site_main_open(object: $object);
 
 // What's On draws its own vertical <h1> beside the featured cards (EventsModule::renderArchive).
-if (! is_post_type_archive('event')) {
+if (is_post_type_archive('article')) {
+    // News: the newsletter Card sits under the intro (NewsController::renderHeader).
+    echo \Theme\Controllers\NewsController::renderHeader($object);
+} elseif (! is_post_type_archive('event')) {
     echo \Gust\Components\PageHeader::fromObject($object);
 }
 

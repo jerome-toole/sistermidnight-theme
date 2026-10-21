@@ -45,6 +45,7 @@ class Card extends ComponentBase
      * @param  string|null  $illustration  Illustration name, shown small in the top-right corner.
      * @param  bool|null  $show_newsletter_form  Render the Newsletter Form under the text.
      * @param  string|null  $size  One of self::SIZES.
+     * @param  int  $heading_level  Heading element level (2–6), 3 by default.
      * @return static|null Null when there is nothing to show (outside the editor).
      */
     public static function make(
@@ -54,6 +55,7 @@ class Card extends ComponentBase
         ?string $illustration = null,
         ?bool $show_newsletter_form = null,
         ?string $size = null,
+        int $heading_level = 3,
         bool $is_preview = false,
         array $classes = [],
         array $attributes = [],
@@ -80,6 +82,7 @@ class Card extends ComponentBase
         $args['text'] = trim((string) ($args['text'] ?? ''));
         $args['show_newsletter_form'] = ! empty($args['show_newsletter_form']);
         $args['attributes'] ??= [];
+        $args['heading_level'] = min(6, max(2, (int) ($args['heading_level'] ?? 3)));
 
         if (! in_array($args['size'], self::SIZES, true)) {
             $args['size'] = 'lg';
