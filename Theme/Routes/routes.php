@@ -31,7 +31,7 @@ Router::decoratePostType('event', EventsModule::class)
     ->withPage('events')
     ->withSlot('template-content', [EventsModule::class, 'renderArchive']);
 
-// News archive (the posts page)
-Router::decoratePostType('post', NewsController::class)
+// News archive (article CPT, /news/)
+Router::decoratePostType('article', NewsController::class)
     ->withPage('news')
     ->withSlot('template-content', [NewsController::class, 'renderLoop']);

@@ -8,7 +8,7 @@ use Gust\Components\Pagination;
 use Gust\WordPress\PageObject;
 
 /**
- * News archive (/news/, the posts page): the router page's header and
+ * News archive (/news/, the article post type archive): the router page's header and
  * content (index.php), then a two-column grid of News Cards and pagination.
  */
 class NewsController

@@ -13,7 +13,7 @@ class ObjectMeta
 
             $taxonomies = [];
 
-            if ($object->post_type === 'post') {
+            if (in_array($object->post_type, ['post', 'article'], true)) {
                 $taxonomies[] = 'category';
             }
         }

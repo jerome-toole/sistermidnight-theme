@@ -30,7 +30,7 @@ CONTACT_ID=$(page_id contact "Contact")
 
 $WP option update show_on_front page >/dev/null
 $WP option update page_on_front "$HOME_ID" >/dev/null
-$WP option update page_for_posts "$NEWS_ID" >/dev/null
+$WP option update page_for_posts 0 >/dev/null # news is the article CPT archive; the News page is its router page
 $WP option update timezone_string Europe/London >/dev/null
 
 echo "Seeding menus..."
@@ -45,8 +45,8 @@ menu_reset Primary header
 $WP menu item add-post Primary "$ABOUT_ID" --title="About" >/dev/null
 $WP menu item add-custom Primary "Events" "/whats-on/" >/dev/null
 $WP menu item add-post Primary "$VENUE_ID" --title="Venue" >/dev/null
-$WP menu item add-custom Primary "Radio" "https://radio.sistermidnight.org" >/dev/null
 $WP menu item add-post Primary "$SUPPORT_ID" --title="Support" >/dev/null
+$WP menu item add-custom Primary "Radio" "https://radio.sistermidnight.org/" --target=_blank >/dev/null
 
 menu_reset Footer footer-1
 $WP menu item add-post Footer "$CONTACT_ID" --title="Contact us" >/dev/null
@@ -128,9 +128,9 @@ $news = [
 ];
 foreach ($news as $i => [$title, $excerpt]) {
     $n = $i + 1; $key = "news-$n";
-    $id = seed_find($key, "post");
+    $id = seed_find($key, "article");
     if (!$id) {
-        $id = wp_insert_post(["post_type" => "post", "post_status" => "publish", "post_title" => $title, "post_excerpt" => $excerpt,
+        $id = wp_insert_post(["post_type" => "article", "post_status" => "publish", "post_title" => $title, "post_excerpt" => $excerpt,
             "post_date" => date("Y-m-d H:i:s", strtotime("-" . ($n * 6) . " days")),
             "post_content" => "<!-- wp:paragraph --><p>$excerpt</p><!-- /wp:paragraph -->"]);
         update_post_meta($id, "_seed_key", $key);
@@ -143,8 +143,8 @@ update_field("footer_legal_text", "<p>Sister Midnight Ltd is a registered Commun
 update_field("newsletter_heading", "Newsletter", "option");
 update_field("newsletter_text", "Sign up for news, events and radio schedules from Sister Midnight.", "option");
 update_field("radio_enabled", 1, "option");
-update_field("station_id", "s35e4926a1", "option");
-update_field("listen_url", "https://stream.radio.co/s35e4926a1/listen", "option");
+update_field("station_slug", "sister-midnight-fm", "option");
+update_field("radio_url", "https://radio.sistermidnight.org/", "option");
 ' 
 
 echo "Newsletter form..."

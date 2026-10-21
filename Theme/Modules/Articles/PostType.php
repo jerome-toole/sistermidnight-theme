@@ -4,7 +4,10 @@ namespace Theme\Modules\Articles;
 
 class PostType
 {
-    protected const SLUG = 'article';
+    public const SLUG = 'article';
+
+    /** News lives at /news/ and /news/{slug}/ (the spec's URLs). */
+    public const ARCHIVE_SLUG = 'news';
 
     public static function init(): void
     {
@@ -20,7 +23,8 @@ class PostType
 
         \register_extended_post_type(self::SLUG, [
             'public' => true,
-            'has_archive' => true,
+            'has_archive' => self::ARCHIVE_SLUG,
+            'rewrite' => ['slug' => self::ARCHIVE_SLUG, 'with_front' => false],
             'hierarchical' => false,
             'show_in_rest' => true,
             'menu_position' => 5,
@@ -74,8 +78,8 @@ class PostType
             ],
         ], [
             'singular' => __('Article', 'gust'),
-            'plural' => __('Articles', 'gust'),
-            'slug' => 'articles',
+            'plural' => __('News', 'gust'),
+            'slug' => self::ARCHIVE_SLUG,
         ]);
     }
 
