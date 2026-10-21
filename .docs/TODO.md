@@ -11,7 +11,7 @@ Refinement checklist worked by agents from the spec. One line per item; tick whe
 - [x] Footer supporter logos render in warm-sand (the context foreground colour)
 - [x] Events calendar matches the What's On design (cells, colours, type, month nav, toggle)
 
-## Backlog
+## Done
 
 - [x] Remove the illustration from the homepage hero video
 - [x] Fix the icon in the radio bar. It's in the figma file.
@@ -26,3 +26,10 @@ Refinement checklist worked by agents from the spec. One line per item; tick whe
 - [x] Import the images from the figma file for the team section. The hover text should follow the cursor. The person's name should be controlled inthe CMS with position and rotation and you should set it up to match the design.
 - [x] Replace some event images with the ones used in the design. Make sure the event header matches the design. There's padding missing.
 - [x] Improve the news page with intro text and a newsletter signup at the top.
+
+## Backlog
+
+- [ ] Update the calendar to use the dark mode that's in the figma.
+- [ ] The names of the team members shouldn't get cut off if they are a bit above the top of the image. Add some padding? (but keep the spacing as per design)
+- [ ] Add mobile support for the team hover items.
+- [ ] Do a full run throught of the site and identify any design inconsistencies, missing elements, or other issues that need to be fixed. write them into the todos.
