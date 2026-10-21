@@ -200,10 +200,32 @@ class Menu extends ComponentBase
 
         if ($item_url && in_array($item_url, $matches, true)) {
             return true;
+        } elseif ($item_url && static::isPostTypeArchiveUrl(str_starts_with($item_url, '/') ? \home_url($item_url) : $item_url)) {
+            // A custom link to the current post type's archive stays current on
+            // its query-string variants (?view=, ?month=) and on its singles.
+            return true;
         } elseif (\is_front_page() && $item_url === \home_url()) {
             return true;
         }
 
         return false;
+    }
+
+    /**
+     * Whether the normalised URL is the archive of the current request's post
+     * type (on its archive or on one of its singles).
+     */
+    protected static function isPostTypeArchiveUrl(string $item_url): bool
+    {
+        $post_type = \is_singular() ? \get_post_type() : (\is_post_type_archive() ? \get_query_var('post_type') : null);
+        $post_type = is_array($post_type) ? ($post_type[0] ?? null) : $post_type;
+
+        if (! $post_type) {
+            return false;
+        }
+
+        $archive = \get_post_type_archive_link($post_type);
+
+        return $archive && \set_url_scheme(\untrailingslashit($archive)) === \set_url_scheme(\untrailingslashit($item_url));
     }
 }

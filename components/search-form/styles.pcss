@@ -1,0 +1,42 @@
+/* ---------------------------------------------------------------------------
+ * Search form
+ *
+ * Underline input (visible label above) with the primary "Search" button
+ * beside it; wraps below ~md. Colours come from the surrounding colour context.
+ * ------------------------------------------------------------------------- */
+
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: space(16) space(32);
+}
+
+.search-form__field {
+    flex: 1 1 space(200);
+    max-width: space(308);
+}
+
+.search-form__label {
+    @apply type-base;
+
+    display: block;
+    margin-bottom: space(4);
+}
+
+.search-form__input {
+    @apply type-base;
+
+    width: 100%;
+    padding: space(6) 0;
+    color: var(--color-foreground);
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid var(--color-foreground);
+    border-radius: 0;
+
+    &:focus-visible {
+        outline: 2px solid var(--focus--color);
+        outline-offset: 4px;
+    }
+}

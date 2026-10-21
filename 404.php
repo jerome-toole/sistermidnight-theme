@@ -6,7 +6,7 @@ $object = \Gust\WordPress\PageObject::get();
 
 site_main_open(object: $object);
 
-echo \Gust\Components\PageHeader::fromObject($object);
+echo \Gust\Components\PageHeader::fromObject($object, after_intro: \Theme\Controllers\NotFoundController::renderContent());
 
 $routerPage = \Gust\Router::getPage();
 

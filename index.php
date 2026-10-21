@@ -10,6 +10,8 @@ site_main_open(object: $object);
 if (is_post_type_archive('article')) {
     // News: the newsletter Card sits under the intro (NewsController::renderHeader).
     echo \Theme\Controllers\NewsController::renderHeader($object);
+} elseif (is_search()) {
+    echo \Gust\Components\PageHeader::fromObject($object, after_intro: \Theme\Controllers\SearchController::renderForm());
 } elseif (! is_post_type_archive('event')) {
     echo \Gust\Components\PageHeader::fromObject($object);
 }
