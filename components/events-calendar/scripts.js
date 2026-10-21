@@ -28,6 +28,8 @@ import {
 } from './scripts/dates.js';
 
 const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+// Column headings as the design abbreviates them ("Thur", not "Thu")
+const WEEKDAY_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 const VIEWS = ['calendar', 'list'];
 const small = window.matchMedia('(max-width: 767.98px)');
 
@@ -153,8 +155,8 @@ function eventsCalendar(root) {
                 h(
                     'tr',
                     {},
-                    ...WEEKDAYS.map((name) =>
-                        h('th', { class: 'events-calendar__heading', scope: 'col', 'aria-label': name }, name.slice(0, 3))
+                    ...WEEKDAYS.map((name, index) =>
+                        h('th', { class: 'events-calendar__heading', scope: 'col', 'aria-label': name }, WEEKDAY_SHORT[index])
                     )
                 )
             ),

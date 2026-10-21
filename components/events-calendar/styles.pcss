@@ -6,11 +6,13 @@
  * or the list; both are drawn by scripts.js into .events-calendar__body,
  * which starts out holding the server-rendered fallback rows.
  *
- * Table: 7 equal columns, Sun–Sat headings (type-h6), cells ~155px tall
- * separated by a 2px gap that shows the page colour. Day number top-left
- * ("April 1" on the 1st), event titles + presenter bottom-left. Cell colour
- * contexts: stone-beige (no events), clay-beige (has events), burnt-sienna
- * (today). Past and adjacent-month days are muted.
+ * Table: 7 equal columns with collapsed 1px dark-umber borders (no gaps),
+ * Sun–Sat heading row (type-h6 on clay-beige, 31px), cells ~155px tall. Day
+ * number top-left ("April 1" on the 1st), event titles + presenter
+ * bottom-left (type-small, title clamped to 2 lines + 1 line of presenter).
+ * Cell colour contexts: stone-beige (no events, or past), clay-beige (has
+ * events), burnt-sienna (today). Past and adjacent-month days are muted as
+ * far as 4.5:1 contrast allows (opacity 0.85 of dark-umber on stone-beige).
  *
  * Below md the toggle is hidden and the script only renders the list.
  * ------------------------------------------------------------------------- */
@@ -19,8 +21,8 @@
     --events-calendar--padding-block: spaceFluid(48, 126);
     --events-calendar--header-gap: space(24);
     --events-calendar--cell-height: space(155);
-    --events-calendar--cell-padding: space(10) space(8);
-    --events-calendar--cell-gap: 2px;
+    --events-calendar--cell-padding: space(8) space(10);
+    --events-calendar--border: 1px solid var(--color-dark-umber);
     --events-calendar--muted-opacity: 0.85;
 
     padding-block: var(--events-calendar--padding-block);
@@ -91,30 +93,35 @@
 /* ---- Table --------------------------------------------------------------- */
 
 .events-calendar__table {
-    width: calc(100% + var(--events-calendar--cell-gap) * 2);
-    margin: 0 calc(var(--events-calendar--cell-gap) * -1);
-    border-collapse: separate;
-    border-spacing: var(--events-calendar--cell-gap);
+    width: 100%;
+    border-collapse: collapse;
     table-layout: fixed;
 }
 
+/* dark-umber (the context foreground) is 4.1:1 on clay-beige; black passes */
 .events-calendar__heading {
-    @apply type-h6;
+    @apply type-h6 color-context-clay-beige;
 
-    padding: space(6) space(8);
+    height: space(31);
+    padding: space(5) space(10);
+    border: var(--events-calendar--border);
+    color: var(--color-black);
     text-align: left;
+    vertical-align: middle;
     line-height: 1.2;
 }
 
 .events-calendar__cell {
     @apply color-context-stone-beige;
 
+    height: var(--events-calendar--cell-height);
     padding: 0;
+    border: var(--events-calendar--border);
     vertical-align: top;
 }
 
-/* dark-umber (the context foreground) is 4.1:1 on clay-beige; black passes, muted too */
-.events-calendar__cell--has-events {
+/* Past days stay stone-beige and muted, whatever they held */
+.events-calendar__cell--has-events:not(.events-calendar__cell--past) {
     @apply color-context-clay-beige;
 
     --color-foreground: var(--color-black);
@@ -138,8 +145,11 @@
     flex-direction: column;
     justify-content: space-between;
     gap: space(12);
-    min-height: var(--events-calendar--cell-height);
+    min-height: calc(var(--events-calendar--cell-height) - 1px);
     padding: var(--events-calendar--cell-padding);
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
 }
 
 .events-calendar__day {

@@ -8,6 +8,6 @@ Refinement checklist worked by agents from the spec. One line per item; tick whe
 - [x] Header "Radio" is the last nav item, opens in a new tab with the arrow; one standard external-link style (arrow icon + visually hidden "(opens in new tab)") used everywhere a link opens a new tab
 - [x] Favicon set built from the moon illustration in the palette (SVG + PNG + apple-touch + manifest if enabled)
 - [x] Footer supporter logos render in warm-sand (the context foreground colour)
-- [ ] Events calendar matches the What's On design (cells, colours, type, month nav, toggle)
+- [x] Events calendar matches the What's On design (cells, colours, type, month nav, toggle)
 
 ## Backlog
