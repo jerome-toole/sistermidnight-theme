@@ -10,7 +10,7 @@ use Gust\ComponentBase;
  * Renders a <button>, or an <a> when `url` is given. The base `.button` class
  * is unstyled so toggles (accordion, sub-menu) can use it as a plain control.
  * Styled variants:
- *   primary  burnt-sienna fill, 200×58, label + inline arrow SVG
+ *   primary  burnt-sienna fill, 200×58, label + the ↗ arrow (Icon)
  *   link     underlined text + arrow
  *
  * Usage:

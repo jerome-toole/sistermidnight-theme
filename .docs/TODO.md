@@ -13,10 +13,10 @@ Refinement checklist worked by agents from the spec. One line per item; tick whe
 
 ## Backlog
 
-- [ ] Remove the illustration from the homepage hero video
-- [ ] Fix the icon in the radio bar. It's in the figma file.
-- [ ] Now playing/off air text in the radio bar should be centered
-- [ ] Import the arrow from the figma file for the external link icon
+- [x] Remove the illustration from the homepage hero video
+- [x] Fix the icon in the radio bar. It's in the figma file.
+- [x] Now playing/off air text in the radio bar should be centered
+- [x] Import the arrow from the figma file for the external link icon
 - [ ] is-style-type-large is used in the first text block on the homepage but doesn't match the design sizing.
 - [ ] vertical section labels are rotated the wrong way. They shouldn't need a rotate because they have writing-mode: vertical-lr applied to them. The text is upside down.
 - [ ] sister midnight font headings shouldn't get underlines when they are links. For card links, let's slightly lighten the card background color

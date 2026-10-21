@@ -2,10 +2,11 @@
 /**
  * Hero Template
  *
- * Poster image first (LCP), then the optional video and its toggle, then the
- * illustration. The <video> has no poster attribute: the <img> is the poster,
- * so the browser does not download the full-size image a second time. The toggle starts hidden and is revealed by scripts.js once
- * it can control the video; aria-pressed="true" means the video is paused.
+ * Poster image first (LCP), then the optional video and its toggle. The
+ * <video> has no poster attribute: the <img> is the poster, so the browser
+ * does not download the full-size image a second time. The toggle starts
+ * hidden and is revealed by scripts.js once it can control the video;
+ * aria-pressed="true" means the video is paused.
  *
  * @var \Gust\Components\Hero $this
  */
@@ -29,9 +30,5 @@
             <svg class="hero__icon hero__icon--pause" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false"><rect x="5" y="4" width="5" height="16" /><rect x="14" y="4" width="5" height="16" /></svg>
             <svg class="hero__icon hero__icon--play" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7 4l13 8-13 8z" /></svg>
         </button>
-    <?php } ?>
-
-    <?php if ($this->illustration) { ?>
-        <?= \Gust\Components\Illustration::make(name: $this->illustration, size: 'lg', classes: ['hero__illustration']); ?>
     <?php } ?>
 </div>

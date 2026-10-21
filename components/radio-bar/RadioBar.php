@@ -9,7 +9,7 @@ use Theme\Modules\Radio\RadioService;
  * Radio Bar Component
  *
  * 64px band on burnt-sienna under the front-page Hero: SMFM marque and
- * wordmark left, "Now playing: {show}" centre-right, "Listen" link right
+ * wordmark left, "Now playing: {show}" centred between them and the "Listen" link right
  * (the SMFM site, in a new tab). Data comes from RadioService::nowPlaying()
  * (Radiocult, server-side, cached 30s). scripts.js re-fetches
  * `sm/v1/now-playing` every 60s and swaps the text (aria-live="polite").
@@ -28,6 +28,9 @@ class RadioBar extends ComponentBase
     protected static string $name = 'radio-bar';
 
     protected const REFRESH_INTERVAL = 60;
+
+    /** Per-request cache of the brand SVGs keyed by file name. */
+    private static array $svgCache = [];
 
     /**
      * Create a new RadioBar component.
@@ -90,6 +93,31 @@ class RadioBar extends ComponentBase
         $parts = array_filter(array_map('trim', [$show, $artist, $title]));
 
         return $parts ? implode(' – ', $parts) : __('Live now', 'gust');
+    }
+
+    /**
+     * Inline SVG from assets/static/images (the Figma SMFM marque / logotype
+     * exports, SVGO'd, fills stripped so they take currentColor).
+     */
+    public static function brandSvg(string $file, array $classes = []): string
+    {
+        if (! array_key_exists($file, self::$svgCache)) {
+            $path = \get_theme_file_path("assets/static/images/{$file}.svg");
+            $contents = is_readable($path) ? file_get_contents($path) : false;
+            self::$svgCache[$file] = $contents === false ? '' : trim($contents);
+        }
+
+        if (self::$svgCache[$file] === '') {
+            return '';
+        }
+
+        $attributes = \attributes([
+            'class' => \classes($classes),
+            'aria-hidden' => 'true',
+            'focusable' => 'false',
+        ]);
+
+        return preg_replace('/^<svg\b/', '<svg '.$attributes, self::$svgCache[$file], 1);
     }
 
     protected static function validate(array $args): bool

@@ -4,8 +4,8 @@
  * Full-width media banner on burnt-sienna, 690px tall (70vh below md). The
  * poster fills it; the video sits on top and fades in once it has started
  * playing (data-hero-started, set by scripts.js), so the poster is the LCP
- * element. Illustration bottom-right from md up; the pause/play toggle is a
- * 44×44 burnt-sienna square bottom-right at every width.
+ * element. The pause/play toggle is a 44×44 burnt-sienna square bottom-right
+ * at every width.
  *
  * The site header (hero variant) is absolutely positioned over this.
  * ------------------------------------------------------------------------- */
@@ -43,19 +43,6 @@
 
     .hero[data-hero-started] & {
         opacity: 1;
-    }
-}
-
-/* Nested under .hero: .illustration sets display: block later in the bundle. */
-.hero .hero__illustration {
-    position: absolute;
-    right: var(--hero--inset);
-    bottom: 0;
-    display: none;
-    color: var(--color-foreground);
-
-    @media (width >= theme('screens.md')) {
-        display: block;
     }
 }
 

@@ -10,7 +10,7 @@ use Gust\ComponentBase;
  *
  * Links with `target: '_blank'` get the standard external-link treatment:
  * rel="noopener", the `.link-external` class, a visually hidden
- * "(opens in new tab)" and the ↗ arrow icon (see Link::externalMarkup()).
+ * "(opens in new tab)" and the ↗ arrow icon (Icon 'arrow', see Link::externalMarkup()).
  * Pass `external_icon: false` to keep the hidden text but drop the arrow
  * (icon-only links).
  *
@@ -61,11 +61,11 @@ class Link extends ComponentBase
     }
 
     /**
-     * The ↗ arrow icon: the Button arrow rotated 45° anticlockwise.
+     * The ↗ arrow icon (the Figma arrow, shared with Button via Icon).
      */
     public static function externalIcon(): string
     {
-        return '<svg class="link-external__icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M8 5h11v11" /></svg>';
+        return (string) Icon::make(name: 'arrow', classes: ['link-external__icon']);
     }
 
     /**

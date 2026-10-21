@@ -1,18 +1,18 @@
 /* ---------------------------------------------------------------------------
  * Radio bar
  *
- * 64px band on burnt-sienna. From md up: brand in the left 40%, the now-playing
- * line and Listen link share the right 60% (track grows, Listen stays at the
- * right edge). Below md: two rows, brand + Listen on the first, track on the
+ * 64px band on burnt-sienna. From md up: brand left, Listen right, and the
+ * now-playing line centred in the space between them (as in the design).
+ * Below md: two rows, brand + Listen on the first, track centred on the
  * second with overflow ellipsis.
  *
- *   .radio-bar__brand   marque + wordmark (type-h5, fixed 20px)
- *   .radio-bar__track   "Now playing: …", or "Off air"
- *   .radio-bar__listen  external link to the SMFM site, type-h5 (fixed 20px) + .link-external arrow
+ *   .radio-bar__brand     marque (28px) + logotype (19px tall, shrinks on narrow screens), inline SVGs
+ *   .radio-bar__track     "Now playing: …", or "Off air"
+ *   .radio-bar__listen    external link to the SMFM site, type-h5 (fixed 20px) + .link-external arrow
  *
- * Brand and Listen are pinned to 20px rather than the fluid 18–20px h5 token:
- * warm-sand on burnt-sienna is 3.47:1, which passes only as bold large text
- * (>= 19px), so the size must not drop below that at narrow widths.
+ * Listen is pinned to 20px rather than the fluid 18–20px h5 token: warm-sand
+ * on burnt-sienna is 3.47:1, which passes only as bold large text (>= 19px),
+ * so the size must not drop below that at narrow widths.
  * ------------------------------------------------------------------------- */
 
 .radio-bar {
@@ -32,24 +32,21 @@
         --radio-bar--padding: space(24);
 
         grid-template-areas: 'brand track listen';
-        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) auto;
+        grid-template-columns: auto minmax(0, 1fr) auto;
         min-height: space(64);
         padding-block: 0;
     }
 }
 
 .radio-bar__brand {
-    @apply type-h5;
-
     display: flex;
     grid-area: brand;
     align-items: center;
-    gap: space(6);
+    gap: space(4);
     min-width: 0;
     margin: 0;
-    font-size: rem(20);
-    line-height: 1;
-    text-transform: uppercase;
+    color: var(--color-foreground);
+    line-height: 0;
 }
 
 .radio-bar__marque {
@@ -58,10 +55,14 @@
     height: space(28);
 }
 
+/* 240×19 in the design; `width: 100%` + max-width lets it shrink with the row. */
 .radio-bar__wordmark {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: space(218);
+    min-width: 0;
+    height: auto;
+    aspect-ratio: 241 / 21;
 }
 
 .radio-bar__track {
@@ -71,6 +72,7 @@
     min-width: 0;
     margin: 0;
     overflow: hidden;
+    text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
 }

@@ -5,13 +5,14 @@
  *   .button--primary  burnt-sienna fill, 200×58, label left + arrow right
  *   .button--link     underlined text + arrow, follows the link colour
  *
- * The arrow is an inline SVG (`.button__icon`) so it takes `currentColor`.
+ * The arrow is the shared ↗ Icon (`.button__icon`, 16×15 viewBox) so it takes
+ * `currentColor`; it nudges up-right on hover.
  */
 /* --------------------------------------------------- */
 
 .button {
     --button--gap: space(12);
-    --button--icon-size: space(20);
+    --button--icon-size: space(16);
 
     @apply button-reset;
 
@@ -23,18 +24,20 @@
         flex: 0 0 auto;
         width: var(--button--icon-size);
         height: var(--button--icon-size);
-        transform: translateX(0);
+        aspect-ratio: 16 / 15;
+        height: auto;
+        transform: translate(0, 0);
         transition: transition(transform);
     }
 
     @media (hover: hover) {
         &:hover .button__icon {
-            transform: translateX(15%);
+            transform: translate(10%, -10%);
         }
     }
     @media (hover: none) {
         &:active .button__icon {
-            transform: translateX(15%);
+            transform: translate(10%, -10%);
         }
     }
 }
@@ -120,6 +123,6 @@
     @apply button-link;
 
     .button__icon {
-        stroke-width: 2.25;
+        stroke-width: 2.5;
     }
 }

@@ -54,28 +54,6 @@
             "mime_types": ""
         },
         {
-            "key": "field_header_hero_illustration",
-            "label": "Hero Illustration",
-            "name": "hero_illustration",
-            "type": "select",
-            "instructions": "Choices are loaded from the Illustration component.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": {},
-            "default_value": false,
-            "allow_null": 1,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
             "key": "field_header_tab_links",
             "label": "Links",
             "name": "",
