@@ -1,7 +1,7 @@
 /* ---------------------------------------------------------------------------
  * Page header
  *
- * Vertical page title in the left gutter, then the two-half content layout:
+ * Vertical page title in the left gutter (top-to-bottom from md), then the two-half content layout:
  * illustration (420px) or image (410×607) in the left half, intro copy in
  * the right half. No background of its own: it sits on the page colour.
  *
@@ -33,15 +33,9 @@
 
 .page-header__label {
     @apply type-h2;
+    @apply vertical-label;
 
     margin: 0;
-
-    /* Rotated, reading bottom to top; the glyph box stays a single line */
-    @media (width >= theme('screens.md')) {
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
-        white-space: nowrap;
-    }
 }
 
 .page-header__layout {

@@ -17,9 +17,9 @@ Refinement checklist worked by agents from the spec. One line per item; tick whe
 - [x] Fix the icon in the radio bar. It's in the figma file.
 - [x] Now playing/off air text in the radio bar should be centered
 - [x] Import the arrow from the figma file for the external link icon
-- [ ] is-style-type-large is used in the first text block on the homepage but doesn't match the design sizing.
-- [ ] vertical section labels are rotated the wrong way. They shouldn't need a rotate because they have writing-mode: vertical-lr applied to them. The text is upside down.
-- [ ] sister midnight font headings shouldn't get underlines when they are links. For card links, let's slightly lighten the card background color
+- [x] is-style-type-large is used in the first text block on the homepage but doesn't match the design sizing.
+- [x] vertical section labels are rotated the wrong way. They shouldn't need a rotate because they have writing-mode: vertical-lr applied to them. The text is upside down.
+- [x] sister midnight font headings shouldn't get underlines when they are links. For card links, let's slightly lighten the card background color
 - [x] Let's find a way of positioning the illustration at the end of upcoming-events so that it never overlaps the event cards.
 - [x] Event cards should be max-width 600px
 - [ ] The slider nav buttons should be positioned absolute so that the images align with the top of the section heading.

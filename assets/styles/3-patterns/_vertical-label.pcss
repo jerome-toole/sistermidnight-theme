@@ -1,9 +1,10 @@
 /* --------------------------------------------------- */
 /* Vertical label
  *
- * Section label in the left gutter ("About us", "Objectives").
- * Horizontal below md; from md it runs bottom-to-top.
- * CSS rotation only: DOM and reading order are unchanged.
+ * Section label in the left gutter ("Upcoming", "About us", "Objectives").
+ * Horizontal below md; from md it runs top-to-bottom (writing-mode only,
+ * no rotation: the first letter sits at the top, as in the design).
+ * DOM and reading order are unchanged.
  */
 /* --------------------------------------------------- */
 
@@ -15,8 +16,7 @@
     @media (width >= theme("screens.md")) {
         max-width: none;
         max-height: 100%;
-        rotate: 180deg;
         text-wrap: nowrap;
-        writing-mode: vertical-rl;
+        writing-mode: vertical-lr;
     }
 }

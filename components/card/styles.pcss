@@ -19,6 +19,12 @@
     position: relative;
     width: 100%;
     padding: var(--card--padding);
+    transition: transition(background-color);
+
+    /* Lighten the paper while the "Read more" link is hovered or focused */
+    &:has(.card__link:hover, .card__link:focus-visible) {
+        background-color: var(--card--background-hover);
+    }
 }
 
 .card--sm {

@@ -3,7 +3,8 @@
  *
  * Paper card on stone-beige, padding 24, 32 between image and text, like the
  * Event Card. Landscape image (531×351, as in the Article Header), then
- * date / title / excerpt (gap 12). The title link is stretched over the card.
+ * date / title / excerpt (gap 12). The title link is stretched over the card;
+ * hovering lightens the paper (--card--background-hover).
  * ------------------------------------------------------------------------- */
 
 .news-card {
@@ -18,6 +19,13 @@
     gap: space(32);
     width: 100%;
     padding: var(--news-card--padding);
+    transition: transition(background-color);
+
+    /* Whole-card link: lighten the paper, no title underline */
+    &:hover,
+    &:has(.news-card__link:focus-visible) {
+        background-color: var(--card--background-hover);
+    }
 
     /* Inset ring: the context's focus colour is for the paper, not the page around it */
     &:has(.news-card__link:focus-visible) {
@@ -56,11 +64,7 @@
 
 .news-card__link {
     color: inherit;
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    text-decoration-thickness: 0.06em;
-    text-underline-offset: 0.12em;
-    transition: text-decoration-color 0.2s;
+    text-decoration: none;
 
     &::after {
         content: '';
@@ -70,10 +74,6 @@
 
     &:focus-visible {
         outline: none;
-    }
-
-    .news-card:hover & {
-        text-decoration-color: currentcolor;
     }
 }
 
