@@ -44,3 +44,7 @@ Key features include:
 ## Sister Midnight Website
 
 Spec: @.docs/\_WEBSITE-SPEC.md
+
+### Refinement workflow (post-build, branch `build/new-site`)
+
+The site was built autonomously from the spec (report: `.docs/BUILD-REPORT.md`, decisions log: `.docs/BUILD-DECISIONS.md`, design references and exported assets: `.docs/design/`). Refinements are tracked in `.docs/TODO.md` ("Backlog" section). To work them: group independent items by file ownership, spawn one subagent per group in parallel using the template in `.docs/AGENT-BRIEF.md`, then verify and report. Don't re-plan; don't re-read Figma unless an asset is missing (export via the figma-console MCP into `.docs/design/assets/`). Don't merge to `develop` or deploy unless asked.
