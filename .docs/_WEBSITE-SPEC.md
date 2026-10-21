@@ -118,7 +118,7 @@ Figma overlays a "Paper" group on every page. Implement as a single small tiled 
         - **ticket_link** (link) - Button URL; label from ticket_type: "Buy Tickets" / "Sign up" / none
         - **is_past** derived, not stored: `start < now`
 
-- **post** - News (exists in `Theme/Modules/Articles`)
+- **article** - News (exists in `Theme/Modules/Articles`; core `post` stays disabled to avoid WordPress post oddities)
     - URL: /news/%postname%/
     - Supports: title, editor, excerpt, thumbnail
     - Archive: /news/
@@ -178,7 +178,7 @@ Figma overlays a "Paper" group on every page. Implement as a single small tiled 
 ### News archive (/news/)
 
 - Template: Listing
-- Route: decorate:post_type:post
+- Route: decorate:post_type:article
 - Not designed. Render a 2-column grid of News Cards (image, date, title, excerpt). Log decision.
 
 ### News Single (/news/{slug}/)
