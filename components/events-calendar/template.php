@@ -19,7 +19,7 @@
             <a class="events-calendar__view" href="<?= esc_url($this->view_urls['list']) ?>" data-events-calendar-view="list" <?= $this->view === 'list' ? 'aria-current="page"' : '' ?>><?= esc_html__('List', 'gust') ?></a>
         </nav>
 
-        <nav class="events-calendar__months" aria-label="<?= esc_attr__('Month', 'gust') ?>">
+        <nav class="events-calendar__months" data-events-calendar-months <?= $this->view === 'list' ? 'hidden' : '' ?> aria-label="<?= esc_attr__('Month', 'gust') ?>">
             <a class="events-calendar__month-link" href="<?= esc_url($this->prev_url) ?>" data-events-calendar-prev aria-label="<?= esc_attr__('Previous month', 'gust') ?>"><span aria-hidden="true">&lt;</span></a>
             <span class="events-calendar__month" data-events-calendar-month aria-live="polite"><?= esc_html($this->month_label) ?></span>
             <a class="events-calendar__month-link" href="<?= esc_url($this->next_url) ?>" data-events-calendar-next aria-label="<?= esc_attr__('Next month', 'gust') ?>"><span aria-hidden="true">&gt;</span></a>

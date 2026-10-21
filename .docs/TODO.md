@@ -49,7 +49,7 @@ Refinement checklist worked by agents from the spec. One line per item; tick whe
 - [ ] Gallery masonry: renders 3 columns (511/250/511) with holes in the last row (About 8 images, Venue 7) → design rows of 4 mixed widths (268/533/243/238, 247/247/551/238), 360 tall, dense with no gaps (1440)
 - [ ] Gallery carousel: every slide is cropped to 633×420 → natural widths at 420 tall (278–672 wide in the design), gap 16
 - [ ] Event single "About the event": the long vertical label sets the section height, leaving ~600px of empty dark band under two paragraphs → don't let the label drive the section height (clamp/shorten the label or let it overflow into padding)
-- [ ] What's On featured events: meta wraps (date + time on one row, venue on a second); design is one row "23rd March … Catford House"; titles are 50px and wrap to 5 lines vs design Sister 38–47 at ~3 lines; all cards 405 wide vs 416/406/426 (1440)
+- [x] What's On featured events: meta wraps (date + time on one row, venue on a second); design is one row "23rd March … Catford House"; titles are 50px and wrap to 5 lines vs design Sister 38–47 at ~3 lines; all cards 405 wide vs 416/406/426 (1440)
 - [ ] Footer address: one line "Sister Midnight, Brookdale Road, Catford, SE6 4JY" → design stacks four right-aligned lines with "Open map ↗" beneath (1440)
 - [ ] [human] Footer legal line: design reads "Sister Midnight is a Community Benefit Society, FCA #8598 / Imprint | Privacy — Terms ©2025"; built text has no FCA number and no Imprint/Privacy/Terms links (Privacy Policy page is a draft) → confirm the number and pages, then add them
 - [ ] Footer supporters: the Co-operatives UK logo wraps onto its own row and renders 160×35, much bigger than the rest → keep all logos on one row at the same visual height (1440)
@@ -61,7 +61,7 @@ Refinement checklist worked by agents from the spec. One line per item; tick whe
 - [ ] News single: the excerpt shown in the Article Header is repeated as the first paragraph of the body (all three seeded articles) → remove the duplicate paragraph from the seed content
 - [ ] [human] Double signup: /news/ and /support/ show a "Stay in touch" card and the Newsletter Banner → hide the banner on those pages (hide_newsletter) or drop the card
 - [ ] [human] FAQ: design shows the answers expanded; built FAQs are all collapsed → decide whether the first item opens by default
-- [ ] What's On list view: still shows the "‹ October 2026 ›" month nav while the list spans several months → hide the month nav in list view (or scope the list to the month)
+- [x] What's On list view: still shows the "‹ October 2026 ›" month nav while the list spans several months → hide the month nav in list view (or scope the list to the month)
 - [ ] Event slugs don't match titles (records-rye = "Otta. No Home…", open-mic-night = "Rael. Max Winter…", soul-revue = "Cityscape Ensemble…", radio-takeover = "Sister Midnight FM live…") → regenerate slugs from titles in the seed
 - [ ] [human] Venue "Find us" gives the postcode SE6 4JJ; the footer says SE6 4JY → confirm which is right
 - [ ] [human] Newsletter Banner copy "Sign up for news, events and radio schedules from Sister Midnight." differs from the design's "Sign up to the Sister Midnight newsletter to hear about upcoming events and news." → confirm copy

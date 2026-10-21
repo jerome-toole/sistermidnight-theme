@@ -39,6 +39,17 @@
 .event-card--sm {
     --event-card--poster-width: 100%;
     --event-card--meta-gap: spaceFluid(40, 65);
+
+    /* Design: Sister 38–47 (~3 lines at 405 wide) */
+    .event-card__title {
+        font-size: spaceFluid(32, 38);
+        line-height: 1;
+    }
+
+    /* One row like the design ("23rd March … Catford House"): the time lives on the event page */
+    .event-card__time {
+        display: none;
+    }
 }
 
 .event-card__link {
@@ -113,8 +124,25 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: space(8) space(17);
+    gap: space(4) space(17);
     line-height: 1.2;
     margin: 0;
     margin-top: auto;
+}
+
+/* Date and time stay together; the venue sits opposite and only drops under on very narrow cards */
+.event-card__when {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0 space(8);
+}
+
+.event-card__date,
+.event-card__time,
+.event-card__venue {
+    white-space: nowrap;
+}
+
+.event-card__venue {
+    margin-left: auto;
 }

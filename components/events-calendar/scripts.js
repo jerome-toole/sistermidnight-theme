@@ -59,6 +59,7 @@ function eventsCalendar(root) {
     const label = root.querySelector('[data-events-calendar-month]');
     const prev = root.querySelector('[data-events-calendar-prev]');
     const next = root.querySelector('[data-events-calendar-next]');
+    const months = root.querySelector('[data-events-calendar-months]');
     const toggles = [...root.querySelectorAll('[data-events-calendar-view]')];
     const current = parseMonth(root.dataset.month);
 
@@ -226,6 +227,15 @@ function eventsCalendar(root) {
         }
 
         root.dataset.eventsCalendarView = view;
+
+        // The list spans several months, so the month nav only belongs to the calendar
+        if (months) {
+            if (view === 'list' && months.contains(document.activeElement)) {
+                body.setAttribute('tabindex', '-1');
+                body.focus({ preventScroll: true });
+            }
+            months.hidden = view === 'list';
+        }
         body.replaceChildren(view === 'list' ? renderList() : renderCalendar());
     };
 

@@ -30,10 +30,12 @@
             <?php if ($this->date !== '' || $this->venue !== '') { ?>
                 <p class="event-card__meta">
                     <?php if ($this->date !== '') { ?>
-                        <time class="event-card__date" datetime="<?= esc_attr($this->datetime) ?>"><?= esc_html($this->date) ?></time>
-                        <?php if ($this->time !== '') { ?>
-                            <span class="event-card__time"><?= esc_html($this->time) ?></span>
-                        <?php } ?>
+                        <span class="event-card__when">
+                            <time class="event-card__date" datetime="<?= esc_attr($this->datetime) ?>"><?= esc_html($this->date) ?></time>
+                            <?php if ($this->time !== '') { ?>
+                                <span class="event-card__time"><?= esc_html($this->time) ?></span>
+                            <?php } ?>
+                        </span>
                     <?php } ?>
                     <?php if ($this->venue !== '') { ?>
                         <span class="event-card__venue"><?= esc_html($this->venue) ?></span>
