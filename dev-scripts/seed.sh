@@ -120,19 +120,19 @@ foreach ($events as $i => [$title, $presenter, $days, $time, $ticket, $venue]) {
     $id = seed_find($key, "event");
     if (!$id) {
         $id = wp_insert_post(["post_type" => "event", "post_status" => "publish", "post_title" => $title, "post_name" => sanitize_title($title),
-            "post_content" => "<!-- wp:paragraph --><p>An evening of music at Sister Midnight. Doors at $time.</p><!-- /wp:paragraph -->",
+            "post_content" => serialize_block(["blockName" => "theme/event-details", "attrs" => \Theme\Modules\Events\EventDetailsBlock::attributes(), "innerBlocks" => [], "innerHTML" => "", "innerContent" => []]) . "\n\n<!-- wp:paragraph --><p>An evening of music at Sister Midnight. Doors at $time.</p><!-- /wp:paragraph -->",
             "post_excerpt" => $excerpt]);
         update_post_meta($id, "_seed_key", $key);
     } else {
         wp_update_post(["ID" => $id, "post_title" => $title, "post_name" => sanitize_title($title), "post_excerpt" => $excerpt]);
     }
     $date = (new DateTime("today", wp_timezone()))->modify(sprintf("%+d days", $days))->format("Y-m-d");
-    update_field("presenter", $presenter, $id);
-    update_field("start", "$date $time:00", $id);
-    update_field("end_label", "late", $id);
-    update_field("venue_name", $venue, $id);
-    update_field("ticket_type", $ticket, $id);
-    if ($ticket !== "free") update_field("ticket_link", ["title" => $ticket === "buy" ? "Buy Tickets" : "Sign up", "url" => "https://example.com/tickets/$n", "target" => "_blank"], $id);
+    update_field("field_event_presenter", $presenter, $id);
+    update_field("field_event_start", "$date $time:00", $id);
+    update_field("field_event_end_label", "late", $id);
+    update_field("field_event_venue_name", $venue, $id);
+    update_field("field_event_ticket_type", $ticket, $id);
+    if ($ticket !== "free") update_field("field_event_ticket_link", ["title" => $ticket === "buy" ? "Buy Tickets" : "Sign up", "url" => "https://example.com/tickets/$n", "target" => "_blank"], $id);
     wp_set_object_terms($id, [$term_id], "location");
     if ($img = seed_image($poster_key, seed_copy("$tmp/poster-$n.jpg"), "$title poster")) set_post_thumbnail($id, $img);
 }

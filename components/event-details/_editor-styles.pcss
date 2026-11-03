@@ -1,0 +1,146 @@
+/* ---------------------------------------------------------------------------
+ * Event Details (block, editor only)
+ *
+ * Styled as WordPress admin UI, not the theme, so editors read it as data
+ * rather than page content. The admin stylesheets don't load inside the
+ * editor iframe, so the values below copy the WordPress components defaults
+ * (system font, 13px, #1e1e1e / #757575 / #ddd, admin theme colour).
+ * A rule and a gap below the block separate it from the post content.
+ * Changes require `pnpm run build`.
+ * ------------------------------------------------------------------------- */
+
+.editor-styles-wrapper .wp-block[data-type='theme/event-details'] {
+    padding-block-end: 32px;
+    margin-block-end: 48px;
+    border-block-end: 1px solid #ddd;
+}
+
+.editor-styles-wrapper .event-details {
+    --event-details--theme: var(--wp-admin-theme-color, #3858e9);
+    --event-details--text: #1e1e1e;
+    --event-details--muted: #757575;
+    --event-details--border: #ddd;
+
+    padding: 16px 24px 20px;
+    border: 1px solid var(--event-details--border);
+    border-radius: 2px;
+    background: #fff;
+    color: var(--event-details--text);
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1.5;
+    text-transform: none;
+
+    &:hover {
+        border-color: var(--event-details--theme);
+    }
+
+    .event-details__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-block-end: 12px;
+        margin-block-end: 8px;
+        border-block-end: 1px solid var(--event-details--border);
+        gap: 16px;
+    }
+
+    .event-details__heading {
+        margin: 0;
+        font: inherit;
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    /* Looks like a secondary button; the click is handled on the whole box */
+    .event-details__edit-all {
+        padding: 4px 12px;
+        border-radius: 2px;
+        box-shadow: inset 0 0 0 1px var(--event-details--theme);
+        color: var(--event-details--theme);
+        font-weight: 500;
+    }
+
+    .event-details__list {
+        display: grid;
+        margin: 0;
+        grid-template-columns: max-content 1fr;
+    }
+
+    .event-details__row {
+        display: grid;
+        align-items: center;
+        padding-block: 4px;
+        column-gap: 24px;
+        grid-column: 1 / -1;
+        grid-template-columns: subgrid;
+
+        & + & {
+            border-block-start: 1px solid #f0f0f0;
+        }
+    }
+
+    .event-details__label {
+        color: var(--event-details--muted);
+        font: inherit;
+    }
+
+    .event-details__value {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        font: inherit;
+        gap: 12px;
+    }
+
+    .event-details__row.is-inactive .event-details__input {
+        color: var(--event-details--muted);
+    }
+
+    .event-details__note {
+        color: var(--event-details--muted);
+        font-size: 12px;
+    }
+
+    /* Each value looks like a quiet input until hovered or edited */
+    .event-details__input {
+        display: inline-block;
+        min-width: 12em;
+        padding: 4px 8px;
+        border-radius: 2px;
+        box-shadow: inset 0 0 0 1px transparent;
+        cursor: text;
+        overflow-wrap: anywhere;
+
+        &:hover,
+        &:focus {
+            box-shadow: inset 0 0 0 1px #949494;
+            outline: none;
+        }
+
+        &[role='button'] {
+            cursor: pointer;
+        }
+
+        &.is-empty {
+            color: var(--event-details--muted);
+            font-style: italic;
+        }
+    }
+
+    .event-details__hint {
+        margin: 12px 0 0;
+        color: var(--event-details--muted);
+        font: inherit;
+        font-size: 12px;
+
+        strong {
+            color: #cc1818;
+            font-weight: 500;
+        }
+    }
+}

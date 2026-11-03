@@ -44,6 +44,7 @@ class PostType
                 'location',
             ],
             'template' => [
+                EventDetailsBlock::templateEntry(),
                 [
                     'core/paragraph',
                     [

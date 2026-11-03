@@ -1,0 +1,42 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "theme/event-details",
+    "title": "Event Details",
+    "description": "Date, time, venue and tickets for this event. Shown in the editor only; the event header displays them on the page.",
+    "category": "theme-blocks",
+    "icon": "calendar-alt",
+    "keywords": [
+        "event",
+        "date",
+        "tickets",
+        "venue"
+    ],
+    "textdomain": "gust",
+    "acf": {
+        "blockVersion": 3,
+        "mode": "preview",
+        "usePostMeta": true,
+        "postTypes": [
+            "event"
+        ],
+        "renderCallback": "Gust\\Components\\EventDetails::renderBlock",
+        "hideFieldsInSidebar": true,
+        "expandedEditorButtonText": "Edit all details"
+    },
+    "supports": {
+        "anchor": false,
+        "align": false,
+        "mode": false,
+        "jsx": false,
+        "html": false,
+        "multiple": false,
+        "reusable": false,
+        "lock": false,
+        "color": {
+            "background": false,
+            "text": false,
+            "gradients": false
+        }
+    }
+}

@@ -2,6 +2,10 @@
 
 - `PostType` / `LocationTaxonomy` register the `event` post type and `location` taxonomy.
 - `Event` wraps an event post and its ACF fields; `EventRepository` queries events by start date.
+- `EventDetailsBlock` pins the `theme/event-details` block (components/event-details) to the top of every event.
+  Its ACF fields save to post meta (`usePostMeta`), so `start`, `venue_name` etc. are ordinary meta. Outside a
+  block (seeds, scripts) write them with field keys, e.g. `update_field('field_event_start', …)`: the field group's
+  location is the block, so lookups by name don't find it.
 - `Feed` writes the calendar feed to `wp-content/uploads/events/feed.json`.
 
 ## Events feed

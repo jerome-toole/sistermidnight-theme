@@ -12,6 +12,7 @@ class EventsModule
         PostType::init();
         LocationTaxonomy::init();
         Feed::init();
+        EventDetailsBlock::init();
 
         \add_filter('acf/settings/load_json', [__CLASS__, 'loadACFJson']);
         \add_filter('document_title_parts', [__CLASS__, 'filterArchiveTitleParts']);
