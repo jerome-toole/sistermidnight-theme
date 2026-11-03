@@ -6,7 +6,9 @@ use DateTimeImmutable;
 
 /**
  * Static events feed (uploads/events/feed.json) for the client-rendered calendar:
- * every upcoming event plus the past PAST_MONTHS calendar months. Older events
+ * every upcoming event plus the past PAST_MONTHS calendar months, with repeating
+ * events expanded up to Schedule::HORIZON_MONTHS ahead (the daily cron moves
+ * that window along). Older events
  * stay published (their pages still work) but drop out of the calendar here.
  *
  * Changes only flag the feed as stale; it is rebuilt once at shutdown so bulk
@@ -152,13 +154,14 @@ class Feed
 
         $end = $event->end();
 
+        // Occurrences of a repeating event share a post, so their ids add the date.
         return [
-            'id' => $event->id(),
+            'id' => $event->isRepeating() ? $event->id().'-'.$start->format('Ymd') : $event->id(),
             'title' => \html_entity_decode($event->title(), ENT_QUOTES, 'UTF-8'),
             'url' => $event->url(),
             'start' => $start->format('c'),
             'end_time' => $end ? $end->format('c') : null,
-            'end_label' => $event->endLabel(),
+            'time_override' => $event->timeOverride() ?: null,
             'venue' => $event->venue(),
             'presenter' => $event->presenter(),
             'excerpt' => self::excerpt($event),

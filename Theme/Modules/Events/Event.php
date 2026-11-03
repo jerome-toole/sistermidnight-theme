@@ -3,6 +3,7 @@
 namespace Theme\Modules\Events;
 
 use DateTimeImmutable;
+use DateTimeInterface;
 use DateTimeZone;
 use WP_Post;
 
@@ -18,6 +19,13 @@ class Event
     ];
 
     protected ?array $fields = null;
+
+    /** Set on the copies withStart() makes for a repeating event's occurrences. */
+    protected ?DateTimeImmutable $occurrence = null;
+
+    protected ?DateTimeImmutable $defaultStart = null;
+
+    protected Schedule|null|false $schedule = false;
 
     public function __construct(public readonly WP_Post $post) {}
 
@@ -42,9 +50,14 @@ class Event
         return \get_the_title($this->post);
     }
 
+    /**
+     * Permalink; an occurrence of a repeating event adds its ?date=Y-m-d.
+     */
     public function url(): string
     {
-        return (string) \get_permalink($this->post);
+        $url = (string) \get_permalink($this->post);
+
+        return $this->occurrence ? \add_query_arg('date', $this->occurrence->format('Y-m-d'), $url) : $url;
     }
 
     public function presenter(): string
@@ -52,7 +65,30 @@ class Event
         return (string) $this->field('presenter');
     }
 
+    /**
+     * The start this event shows: the chosen occurrence (withStart()), otherwise
+     * for a repeating event its next occurrence (or the last, once it has ended),
+     * otherwise the start field.
+     */
     public function start(): ?DateTimeImmutable
+    {
+        if ($this->occurrence) {
+            return $this->occurrence;
+        }
+
+        $schedule = $this->schedule();
+
+        if ($schedule) {
+            return $this->defaultStart ??= $schedule->next(self::now()) ?? $schedule->last() ?? $schedule->first;
+        }
+
+        return $this->firstStart();
+    }
+
+    /**
+     * The start field: for a repeating event, its first occurrence.
+     */
+    public function firstStart(): ?DateTimeImmutable
     {
         $raw = (string) ($this->field('start') ?: \get_post_meta($this->id(), PostType::START_META_KEY, true));
 
@@ -63,6 +99,73 @@ class Event
         $start = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $raw, self::timezone());
 
         return $start ?: null;
+    }
+
+    /**
+     * Repeat rule, or null for a one-off event.
+     */
+    public function schedule(): ?Schedule
+    {
+        if ($this->schedule === false) {
+            $first = $this->firstStart();
+            $this->schedule = $first ? Schedule::make(
+                $first,
+                (string) $this->field('repeat'),
+                $this->field('repeat_days') ?: [],
+                (string) $this->field('repeat_until'),
+                $this->field('repeat_skip') ?: [],
+            ) : null;
+        }
+
+        return $this->schedule;
+    }
+
+    public function isRepeating(): bool
+    {
+        return $this->schedule() !== null;
+    }
+
+    /**
+     * A copy of this event for one occurrence.
+     */
+    public function withStart(DateTimeImmutable $start): static
+    {
+        $occurrence = clone $this;
+        $occurrence->occurrence = $start;
+
+        return $occurrence;
+    }
+
+    /**
+     * Occurrences starting in [$from, $to), capped at the listing horizon.
+     * A one-off event returns itself when its start is in range.
+     *
+     * @return static[]
+     */
+    public function occurrencesBetween(DateTimeInterface $from, DateTimeInterface $to): array
+    {
+        $schedule = $this->schedule();
+
+        if (! $schedule) {
+            $start = $this->firstStart();
+
+            return $start && $start >= $from && $start < $to ? [$this] : [];
+        }
+
+        return array_map(
+            fn (DateTimeImmutable $start) => $this->withStart($start),
+            $schedule->between($from, min(DateTimeImmutable::createFromInterface($to), Schedule::horizon()))
+        );
+    }
+
+    /**
+     * The occurrence on a 'Y-m-d' date (e.g. from ?date=), or this event unchanged.
+     */
+    public function onDate(string $date): static
+    {
+        $start = $this->schedule()?->on($date);
+
+        return $start ? $this->withStart($start) : $this;
     }
 
     /**
@@ -85,34 +188,33 @@ class Event
     }
 
     /**
-     * "22:00" when an end time is set, otherwise the free-text label ("late").
+     * Free text shown instead of the start and end times, e.g. "19:00 till late".
      */
-    public function endLabel(): string
+    public function timeOverride(): string
     {
-        $end = $this->end();
-
-        if ($end) {
-            return $end->format('H:i');
-        }
-
-        return (string) $this->field('end_label');
+        return trim((string) $this->field('time_override'));
     }
 
     /**
-     * "17:00 – late" or "17:00 – 22:00"; just "17:00" when nothing follows.
+     * The time override, or "17:00 – 22:00"; just "17:00" without an end time.
      */
     public function timeLabel(): string
     {
+        $override = $this->timeOverride();
+
+        if ($override !== '') {
+            return $override;
+        }
+
         $start = $this->start();
 
         if (! $start) {
             return '';
         }
 
-        $label = $start->format('H:i');
-        $end = $this->endLabel();
+        $end = $this->end();
 
-        return $end !== '' ? "{$label} – {$end}" : $label;
+        return $end ? $start->format('H:i').' – '.$end->format('H:i') : $start->format('H:i');
     }
 
     public function dateLabel(string $format = 'D j M'): string
@@ -186,6 +288,9 @@ class Event
         return $this->ticketCtaLabel() !== null && $this->ticketUrl() !== '' && ! $this->isPast();
     }
 
+    /**
+     * A repeating event is past once it has no occurrences left.
+     */
     public function isPast(): bool
     {
         $start = $this->start();

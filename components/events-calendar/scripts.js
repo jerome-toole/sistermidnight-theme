@@ -366,7 +366,7 @@ function eventsCalendar(root) {
 
     const row = (event) => {
         const { year, month, day } = parseDay(event.key);
-        const time = timeLabel(event.start, state.timeZone);
+        const time = event.time_override || timeLabel(event.start, state.timeZone);
 
         return h(
             'li',

@@ -129,7 +129,7 @@ foreach ($events as $i => [$title, $presenter, $days, $time, $ticket, $venue]) {
     $date = (new DateTime("today", wp_timezone()))->modify(sprintf("%+d days", $days))->format("Y-m-d");
     update_field("field_event_presenter", $presenter, $id);
     update_field("field_event_start", "$date $time:00", $id);
-    update_field("field_event_end_label", "late", $id);
+    update_field("field_event_time_override", "$time – late", $id);
     update_field("field_event_venue_name", $venue, $id);
     update_field("field_event_ticket_type", $ticket, $id);
     if ($ticket !== "free") update_field("field_event_ticket_link", ["title" => $ticket === "buy" ? "Buy Tickets" : "Sign up", "url" => "https://example.com/tickets/$n", "target" => "_blank"], $id);

@@ -111,8 +111,13 @@ Figma overlays a "Paper" group on every page. Implement as a single small tiled 
     - ACF fields (group `event`):
         - **presenter** (text) - Eyebrow, e.g. "Sister Midnight Presents"
         - **start** (date_time_picker, required) - Start date and time
-        - **end_time** (time_picker) - Optional; shown as "17:00 – late" when empty use `end_label`
-        - **end_label** (text) - Free text override e.g. "late"
+        - **end_time** (time_picker) - Optional; shown as "17:00 – 22:00"
+        - **time_override** (text) - Optional free text shown instead of the times, e.g. "19:00 till late"
+        - **repeat** (select) - Doesn't repeat / weekly / fortnightly / monthly (same weekday position as the start, e.g. first Friday; a 5th weekday means last)
+        - **repeat_days** (checkbox, weekly/fortnightly) - Weekdays; empty = the start's weekday
+        - **repeat_until** (date_picker) - Optional last date
+        - **repeat_skip** (repeater of `date`) - Dates the event doesn't run
+        - Occurrences are computed (`Schedule`), never stored, and listed only up to 2 months ahead (`Schedule::HORIZON_MONTHS`). `start` is the first occurrence.
         - **venue_name** (text) - Display venue, falls back to location term name
         - **ticket_type** (select: buy, signup, free) - Controls CTA label
         - **ticket_link** (link) - Button URL; label from ticket_type: "Buy Tickets" / "Sign up" / none
@@ -322,7 +327,7 @@ News single top (padding 0/104/80): image left (531×351), right: date (`type-h6
 Header row: view toggle "Calendar // List" (links with `aria-current`), month nav "‹ April 2026 ›" (links to `?month=`). Grid: `<table>` with 7 columns Sun–Sat, header row (`type-h6`), 5–6 week rows (cells 183×~155px). Cell: day number top-left (`type-h6`; "April 1" on the 1st; leading/trailing days of adjacent months in muted text); event titles bottom-left (`type-small`, 2 lines) + promoter. Cell background: `stone-beige` no events, `clay-beige` has events, `burnt-sienna` today. Past days muted ("A Past Event"). Cell links to the event (if one) or lists multiple.
 List view: chronological list grouped by month, each row = date, title, venue, link (reuse Event Card `sm` or a simple row).
 **Rendering:** client-side from a JSON feed. The server outputs the header row, an empty `<div data-events-calendar data-feed="…">` and a `<noscript>`/initial fallback: a plain server-rendered list of the next 10 events (cheap query, keeps the page useful without JS and gives crawlers something). A ~4KB vanilla module fetches the feed, builds the table/list in the DOM, handles month nav (`history.replaceState` to `?month=`), the view toggle, and "today"/"past" states using the browser date with the site timezone offset from the feed.
-**Feed:** `wp-content/uploads/events/feed.json`, regenerated on `save_post_event` / trash / term change and by a daily cron as a safety net. Contents: `{ generated, timezone, events: [{ id, title, url, start, end_time, end_label, venue, presenter, excerpt, poster: {src, srcset, alt} }] }` for all future events plus the past 2 calendar months; older events stay published but aren't in the calendar. Served with long cache headers; the module appends `?v=generated` from a small inline value.
+**Feed:** `wp-content/uploads/events/feed.json`, regenerated on `save_post_event` / trash / term change and by a daily cron as a safety net. Contents: `{ generated, timezone, events: [{ id, title, url, start, end_time, time_override, venue, presenter, excerpt, poster: {src, srcset, alt} }] }` for all future events (repeating events expanded up to 2 months ahead, ids `{post}-{Ymd}`, urls with `?date=Y-m-d`) plus the past 2 calendar months; older events stay published but aren't in the calendar. Served with long cache headers; the module appends `?v=generated` from a small inline value.
 **Mobile:** the list view is forced below `md`.
 **A11y:** `<table>` with `<caption>` "Events in April 2026", `<th scope="col">`, each day cell `<td>` with the day in a visually-hidden full date; month nav links have "Previous month / Next month" names.
 

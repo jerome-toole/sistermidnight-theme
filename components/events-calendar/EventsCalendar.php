@@ -114,7 +114,7 @@ class EventsCalendar extends ComponentBase
             'url' => $event->url(),
             'date' => $event->dateLabel('D j M'),
             'datetime' => $start ? $start->format('c') : '',
-            'time' => $start ? $start->format('H:i') : '',
+            'time' => $event->timeOverride() ?: ($start ? $start->format('H:i') : ''),
             'venue' => $event->venue(),
         ];
     }

@@ -5,11 +5,12 @@ namespace Gust\Components;
 use DateTimeImmutable;
 use Gust\ComponentBase;
 use Theme\Modules\Events\Event;
+use Theme\Modules\Events\Schedule;
 
 /**
  * Event Details Component (ACF block `theme/event-details`)
  *
- * The event's structured fields (presenter, start, end, venue, tickets),
+ * The event's structured fields (presenter, start, end, repeat rule, venue, tickets),
  * edited through a block pinned to the top of every event. The block uses
  * ACF's usePostMeta, so the values are saved to post meta under the same
  * keys as before (`start`, `venue_name`…) rather than in the post content,
@@ -54,6 +55,9 @@ class EventDetails extends ComponentBase
         $ticket_type = (string) ($args['ticket_type'] ?? '');
         $ticket_type = array_key_exists($ticket_type, Event::TICKET_LABELS) ? $ticket_type : 'buy';
         $ticket_link = is_array($args['ticket_link'] ?? null) ? $args['ticket_link'] : [];
+        $repeat = (string) ($args['repeat'] ?? '');
+        $schedule = $start ? Schedule::make($start, $repeat, $args['repeat_days'] ?? [], static::parseDate((string) ($args['repeat_until'] ?? '')), $args['repeat_skip'] ?? []) : null;
+        $until = $schedule?->until;
         $ticket_choices = \function_exists('acf_get_field') ? (acf_get_field('field_event_ticket_type')['choices'] ?? []) : [];
 
         // One row per field, in field group order. Text fields are typed in
@@ -77,11 +81,30 @@ class EventDetails extends ComponentBase
                 'toolbar' => 'end_time',
             ],
             [
-                'label' => __('End label', 'gust'),
-                'value' => trim((string) ($args['end_label'] ?? '')),
-                'text' => 'end_label',
-                'placeholder' => __('late', 'gust'),
-                'inactive' => $end_time !== '' ? __('Not shown while an end time is set', 'gust') : '',
+                'label' => __('Time override', 'gust'),
+                'value' => trim((string) ($args['time_override'] ?? '')),
+                'text' => 'time_override',
+                'placeholder' => __('Shown instead of the times, e.g. 19:00 till late', 'gust'),
+            ],
+            [
+                'label' => __('Repeats', 'gust'),
+                'value' => $schedule ? $schedule->summary() : ($repeat === '' ? __("Doesn't repeat", 'gust') : ''),
+                'toolbar' => ['repeat', 'repeat_days'],
+            ],
+            [
+                'label' => __('Repeat until', 'gust'),
+                'value' => $until ? \wp_date('l j F Y', $until->getTimestamp(), Event::timezone()) : ($schedule ? __('No end date', 'gust') : ''),
+                'toolbar' => 'repeat_until',
+                'inactive' => $schedule ? '' : __('Only for repeating events', 'gust'),
+            ],
+            [
+                // Repeaters can't be edited inline: a click opens the expanded editor.
+                'label' => __('Skip dates', 'gust'),
+                'value' => implode(', ', array_map(
+                    fn (string $date) => \wp_date('j M Y', strtotime($date), Event::timezone()),
+                    $schedule?->skip ?? []
+                )),
+                'inactive' => $schedule ? '' : __('Only for repeating events', 'gust'),
             ],
             [
                 'label' => __('Venue name', 'gust'),
@@ -122,6 +145,14 @@ class EventDetails extends ComponentBase
         return null;
     }
 
+    /** Date pickers return "Y-m-d"; the expanded editor preview can send "Ymd". */
+    protected static function parseDate(string $raw): string
+    {
+        $date = DateTimeImmutable::createFromFormat('!Ymd', $raw) ?: DateTimeImmutable::createFromFormat('!Y-m-d', $raw);
+
+        return $date ? $date->format('Y-m-d') : '';
+    }
+
     /** ACF inline editing attributes for a row: contenteditable for text fields, otherwise the inline toolbar. */
     public function inlineAttributes(array $row): string
     {
@@ -130,7 +161,7 @@ class EventDetails extends ComponentBase
         }
 
         if (! empty($row['toolbar']) && \function_exists('acf_inline_toolbar_editing_attrs')) {
-            return (string) \acf_inline_toolbar_editing_attrs([$row['toolbar']], ['toolbar_title' => $row['label']]);
+            return (string) \acf_inline_toolbar_editing_attrs((array) $row['toolbar'], ['toolbar_title' => $row['label']]);
         }
 
         return '';

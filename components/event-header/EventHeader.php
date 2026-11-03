@@ -49,6 +49,12 @@ class EventHeader extends ComponentBase
     {
         $event = static::toEvent($args['event']);
 
+        // A repeating event shows the occurrence linked from the calendar (?date=), else its next one.
+        $date = \sanitize_text_field(\wp_unslash($_GET['date'] ?? ''));
+        if (is_string($date) && $date !== '') {
+            $event = $event->onDate($date);
+        }
+
         $args['title'] = $event->title();
         $args['presenter'] = trim($event->presenter());
         $args['excerpt'] = has_excerpt($event->post) ? trim(get_the_excerpt($event->post)) : '';
