@@ -61,9 +61,9 @@ class EventDetails extends ComponentBase
         $ticket_choices = \function_exists('acf_get_field') ? (acf_get_field('field_event_ticket_type')['choices'] ?? []) : [];
 
         // One row per field, in field group order. Text fields are typed in
-        // place; the rest open in ACF's inline toolbar popover. `inactive`
-        // notes a field that is ignored because of another one.
-        $args['rows'] = [
+        // place; the rest open in ACF's inline toolbar popover. Rows whose
+        // field ACF hides by conditional logic are dropped (visibleRows).
+        $args['rows'] = static::visibleRows([
             [
                 'label' => __('Presenter', 'gust'),
                 'value' => trim((string) ($args['presenter'] ?? '')),
@@ -95,16 +95,15 @@ class EventDetails extends ComponentBase
                 'label' => __('Repeat until', 'gust'),
                 'value' => $until ? \wp_date('l j F Y', $until->getTimestamp(), Event::timezone()) : ($schedule ? __('No end date', 'gust') : ''),
                 'toolbar' => 'repeat_until',
-                'inactive' => $schedule ? '' : __('Only for repeating events', 'gust'),
             ],
             [
                 // Repeaters can't be edited inline: a click opens the expanded editor.
                 'label' => __('Skip dates', 'gust'),
+                'field' => 'repeat_skip',
                 'value' => implode(', ', array_map(
                     fn (string $date) => \wp_date('j M Y', strtotime($date), Event::timezone()),
                     $schedule?->skip ?? []
                 )),
-                'inactive' => $schedule ? '' : __('Only for repeating events', 'gust'),
             ],
             [
                 'label' => __('Venue name', 'gust'),
@@ -121,9 +120,8 @@ class EventDetails extends ComponentBase
                 'label' => __('Ticket link', 'gust'),
                 'value' => (string) ($ticket_link['url'] ?? ''),
                 'toolbar' => 'ticket_link',
-                'inactive' => $ticket_type === 'free' ? __('Not used for free events', 'gust') : '',
             ],
-        ];
+        ], $args);
         $args['missing_start'] = $start === null;
         $args['classes'] = array_merge(['event-details'], $args['classes'] ?? []);
         $args['attributes'] ??= [];
@@ -151,6 +149,67 @@ class EventDetails extends ComponentBase
         $date = DateTimeImmutable::createFromFormat('!Ymd', $raw) ?: DateTimeImmutable::createFromFormat('!Y-m-d', $raw);
 
         return $date ? $date->format('Y-m-d') : '';
+    }
+
+    /** Rows whose field passes its ACF conditional logic for the current values (by field name). */
+    protected static function visibleRows(array $rows, array $values): array
+    {
+        return array_values(array_filter($rows, fn (array $row) => static::conditionsMet(static::rowField($row), $values)));
+    }
+
+    /** The field a row represents: `field`, else its inline text field, else its first toolbar field. */
+    protected static function rowField(array $row): string
+    {
+        return (string) ($row['field'] ?? $row['text'] ?? ((array) ($row['toolbar'] ?? []))[0] ?? '');
+    }
+
+    /** ACF conditional logic: rule groups are OR'd, rules within a group AND'd. */
+    protected static function conditionsMet(string $name, array $values): bool
+    {
+        $field = $name !== '' && \function_exists('acf_get_field') ? \acf_get_field($name) : null;
+        $groups = $field['conditional_logic'] ?? 0;
+
+        if (! is_array($groups) || $groups === []) {
+            return true;
+        }
+
+        foreach ($groups as $rules) {
+            $met = true;
+
+            foreach ($rules as $rule) {
+                $other = \acf_get_field($rule['field'] ?? '');
+
+                if (! static::ruleMet($rule, $values[$other['name'] ?? ''] ?? null)) {
+                    $met = false;
+                    break;
+                }
+            }
+
+            if ($met) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /** One ACF rule against a value (scalar or array, e.g. a checkbox). */
+    protected static function ruleMet(array $rule, mixed $value): bool
+    {
+        $values = array_map('strval', array_filter((array) $value, fn ($v) => $v !== null && $v !== ''));
+        $target = (string) ($rule['value'] ?? '');
+        $joined = implode(' ', $values);
+
+        return match ($rule['operator'] ?? '') {
+            '==empty' => $values === [],
+            '!=empty' => $values !== [],
+            '==' => in_array($target, $values, true),
+            '!=' => ! in_array($target, $values, true),
+            '==contains' => str_contains($joined, $target),
+            '!=contains' => ! str_contains($joined, $target),
+            '==pattern' => (bool) preg_match('/'.str_replace('/', '\/', $target).'/', $joined),
+            default => true,
+        };
     }
 
     /** ACF inline editing attributes for a row: contenteditable for text fields, otherwise the inline toolbar. */

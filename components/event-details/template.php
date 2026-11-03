@@ -17,16 +17,13 @@
 
     <dl class="event-details__list">
         <?php foreach ($this->rows as $row) { ?>
-            <div class="event-details__row <?= ! empty($row['inactive']) ? 'is-inactive' : '' ?>">
+            <div class="event-details__row">
                 <dt class="event-details__label"><?= esc_html($row['label']) ?></dt>
                 <dd class="event-details__value">
                     <?php if (! empty($row['text'])) { ?>
                         <span class="event-details__input" <?= $this->inlineAttributes($row) ?>><?= esc_html($row['value']) ?></span>
                     <?php } else { ?>
                         <span class="event-details__input <?= $row['value'] === '' ? 'is-empty' : '' ?>" <?= $this->inlineAttributes($row) ?>><?= esc_html($row['value'] !== '' ? $row['value'] : __('Not set', 'gust')) ?></span>
-                    <?php } ?>
-                    <?php if (! empty($row['inactive'])) { ?>
-                        <span class="event-details__note"><?= esc_html($row['inactive']) ?></span>
                     <?php } ?>
                 </dd>
             </div>
