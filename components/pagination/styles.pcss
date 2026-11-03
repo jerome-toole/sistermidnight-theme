@@ -34,16 +34,7 @@
     }
 
     > a.page-numbers {
-        @apply color-context-stone-beige;
-
-        text-decoration: underline;
-        text-decoration-color: transparent;
-        text-underline-offset: 0.15em;
-        transition: text-decoration-color 0.2s;
-
-        &:hover {
-            text-decoration-color: currentcolor;
-        }
+        @apply color-context-stone-beige display-link;
 
         &:focus-visible {
             outline: var(--base--focus-width, 2px) solid var(--focus--color);

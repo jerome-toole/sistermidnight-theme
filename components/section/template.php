@@ -36,7 +36,9 @@ $inner_blocks = function () use ($content_classes) {
 <section class="<?= classes($this->classes) ?>" <?= attributes($this->attributes) ?>>
     <div class="content-section__inner">
         <?php if ($labelled) { ?>
-            <h2 class="content-section__label" <?= $this->inlineText('label', __('Section label', 'gust')) ?>><?= esc_html($this->label) ?></h2>
+            <div class="content-section__label-track">
+                <h2 class="content-section__label" <?= $this->inlineText('label', __('Section label', 'gust')) ?>><?= esc_html($this->label) ?></h2>
+            </div>
         <?php } ?>
 
         <?php if ($this->layout === 'text-right') { ?>

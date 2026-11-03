@@ -9,7 +9,7 @@ use WP_Post;
 /**
  * Event Header Component (partial)
  *
- * Top of the event single: the poster (496×626, 3px stone-beige border) in
+ * Top of the event single: the poster (496 wide, natural ratio, 3px stone-beige border) in
  * the left half; presenter eyebrow, <h1> title, meta row (date, time,
  * venue), excerpt and the ticket CTA in the right half. Past events show a
  * "This event has passed" note in place of the button. Below md the poster
@@ -83,7 +83,7 @@ class EventHeader extends ComponentBase
             ])
             : '';
 
-        $args['classes'] = array_merge(['event-header', 'alignfull'], $args['classes'] ?? []);
+        $args['classes'] = array_merge(['event-header', 'alignfull', 'has-background'], $args['classes'] ?? []);
         $args['attributes'] ??= [];
 
         if ($args['is_past']) {

@@ -53,6 +53,33 @@
     text-decoration: none;
 }
 
+/* Display-font link (wordmark, nav, calendar titles, pagination): Sister Midnight
+ * type is never underlined. Hover / active fade the text toward the background;
+ * add .is-current (or aria-current) for the faded resting state. */
+@utility display-link {
+    --display-link--color: var(--color-foreground);
+    --display-link--color-faded: color-mix(in oklab, var(--display-link--color) 55%, transparent);
+
+    color: var(--display-link--color);
+    text-decoration: none;
+    transition: transition(color);
+
+    @media (hover: hover) {
+        &:hover {
+            color: var(--display-link--color-faded);
+        }
+    }
+    @media (hover: none) {
+        &:active {
+            color: var(--display-link--color-faded);
+        }
+    }
+
+    &:is([aria-current], .is-current) {
+        color: var(--display-link--color-faded);
+    }
+}
+
 @utility link--foreground {
     --link--color: var(--color-foreground);
     --link--color-hover: var(--color-foreground);

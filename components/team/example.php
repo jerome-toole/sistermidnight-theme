@@ -11,11 +11,11 @@
 use Gust\Components\Team;
 
 $members = [
-    ['first_name' => 'Alex', 'full_name' => 'Alex Morgan', 'bio' => 'Alex is Co-Founding director of Sister Midnight and looks after the venue build.', 'name_x' => 11.9, 'name_y' => 49.2, 'name_rotation' => -75.6],
-    ['first_name' => 'Keilah', 'full_name' => 'Keilah Brown', 'bio' => 'Keilah runs the radio station and the Thursday residencies.', 'name_x' => 89.9, 'name_y' => 84.1, 'name_rotation' => 38.2],
+    ['first_name' => 'Alex', 'name_x' => 11.9, 'name_y' => 49.2, 'name_rotation' => -75.6],
+    ['first_name' => 'Keilah', 'name_x' => 89.9, 'name_y' => 84.1, 'name_rotation' => 38.2],
     ['first_name' => 'Sophie', 'full_name' => 'Sophie Farrell', 'bio' => 'Sophie is Co-Founding director of Sister Midnight, SMFM and Social Records Society.', 'name_x' => 27.2, 'name_y' => 32.3, 'name_rotation' => -30],
-    ['first_name' => 'Cleo', 'full_name' => 'Cleo Adams', 'bio' => 'Cleo books the live programme and leads the community outreach.', 'name_x' => 85.2, 'name_y' => 41.3, 'name_rotation' => 65.6],
-    ['first_name' => 'Lenny', 'name_x' => 33.8, 'name_y' => 7.6, 'name_rotation' => -26.2],
+    ['first_name' => 'Cleo', 'name_x' => 85.2, 'name_y' => 41.3, 'name_rotation' => 65.6],
+    ['first_name' => 'Lenny', 'full_name' => 'Lenny Watson', 'bio' => 'Lenny is a co-founder of Sister Midnight.', 'name_x' => 33.8, 'name_y' => 7.6, 'name_rotation' => -26.2],
 ];
 
 $fallback = get_posts([

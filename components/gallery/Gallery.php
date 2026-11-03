@@ -88,7 +88,7 @@ class Gallery extends ComponentBase
         if ($style === 'masonry') {
             $args['images'] = static::markRowEnds($args['images']);
         }
-        $args['classes'] = array_merge(['gallery', 'gallery--'.$style, 'alignfull'], $classes);
+        $args['classes'] = array_merge(['gallery', 'gallery--'.$style, 'alignfull', 'has-background'], $classes);
 
         if ($args['label'] !== '' || ! empty($args['is_preview'])) {
             $args['classes'][] = 'gallery--labelled';

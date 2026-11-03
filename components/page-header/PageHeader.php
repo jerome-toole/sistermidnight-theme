@@ -132,7 +132,7 @@ class PageHeader extends ComponentBase
         $args['label'] = trim($args['label']);
         $args['intro'] = trim($args['intro'] ?? '');
         $args['after_intro'] = trim($args['after_intro'] ?? '');
-        $args['classes'] = array_merge(['page-header', 'alignfull'], $args['classes'] ?? []);
+        $args['classes'] = array_merge(['page-header', 'alignfull', 'has-background'], $args['classes'] ?? []);
         $args['attributes'] ??= [];
 
         $media = $args['media'] ?? null;

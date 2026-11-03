@@ -50,20 +50,27 @@
     }
 }
 
-.content-section__label {
-    @apply type-h2;
-    @apply vertical-label;
-
-    margin: 0;
-
-    /* Zero inline size (= height in vertical-lr): the row is sized by the body
-     * and the single nowrap line overflows downwards */
+/* From md the track adds no height to the row (height 0) but stretches to it
+ * afterwards (min-height resolves against the grid area), so the row is sized
+ * by the body and the label sticks within it. A label longer than the body
+ * runs on into the padding below, unstuck. */
+.content-section__label-track {
     @media (width >= theme('screens.md')) {
         position: relative;
         z-index: 1;
         height: 0;
+        min-height: 100%;
+    }
+}
+
+.content-section__label {
+    @apply type-h2;
+    @apply vertical-label sticky-label;
+
+    margin: 0;
+
+    @media (width >= theme('screens.md')) {
         max-height: none;
-        overflow: visible;
     }
 }
 

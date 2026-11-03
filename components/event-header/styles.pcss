@@ -2,7 +2,7 @@
  * Event header (partial)
  *
  * Event single top on the page colour, 48–78 padding above and below: the
- * poster (496×626, 3px stone-beige border) then the text (590 wide), 125
+ * poster (496 wide, natural ratio, 3px stone-beige border) then the text (590 wide), 125
  * apart, in the design's 1211 frame at x154 (1440): from md the frame sits
  * 39.5px right of centre and stays inside the gutter on narrower screens.
  * Text: eyebrow / title / meta (gap 16, 15) then, 52 below, the excerpt and
@@ -13,7 +13,6 @@
     --event-header--padding-block: spaceFluid(48, 78);
     --event-header--content-width: space(590);
     --event-header--poster-width: space(496);
-    --event-header--poster-ratio: 496 / 626;
     --event-header--poster-border: 3px;
     --event-header--gap: spaceFluid(32, 52);
     --event-header--frame: space(1211);
@@ -44,9 +43,7 @@
     display: block;
     width: 100%;
     max-width: var(--event-header--poster-width);
-    height: auto;
-    aspect-ratio: var(--event-header--poster-ratio);
-    object-fit: cover;
+    height: auto; /* natural ratio: posters are never cropped */
     border: var(--event-header--poster-border) solid var(--color-stone-beige);
     background-color: var(--color-stone-beige);
 }

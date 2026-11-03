@@ -58,7 +58,7 @@
    heading-one); the link inside, or the wordmark itself elsewhere, is the link */
 a.site-header__wordmark,
 .site-header__wordmark-link {
-    @apply link link--2 link--foreground;
+    @apply display-link;
 
     display: inline-block;
 }
@@ -80,14 +80,14 @@ a.site-header__wordmark,
 .site-header__nav,
 .site-header__menu {
     a {
-        @apply link link--2 link--foreground;
+        @apply display-link;
 
         display: inline-flex;
         align-items: center;
     }
 
     .menu-item--current > .menu-item__wrap a {
-        --link--text-decoration: underline;
+        color: var(--display-link--color-faded);
     }
 }
 

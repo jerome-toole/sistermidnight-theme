@@ -20,3 +20,12 @@
         writing-mode: vertical-lr;
     }
 }
+
+/* Sticks below the viewport top (and admin bar) from md while its grid area
+ * scrolls past. The grid item needs align-self: start (the grids do). */
+@utility sticky-label {
+    @media (width >= theme("screens.md")) {
+        position: sticky;
+        top: calc(var(--wp-admin--admin-bar--height, 0px) + spaceFluid(24, 40));
+    }
+}
