@@ -3,13 +3,11 @@
 namespace Theme\Modules\Events;
 
 use DateTimeImmutable;
-use WP_Error;
-use WP_REST_Request;
-use WP_REST_Response;
 
 /**
- * Static events feed (uploads/events/feed.json) for the client-rendered calendar,
- * plus a REST route for months older than the feed window.
+ * Static events feed (uploads/events/feed.json) for the client-rendered calendar:
+ * every upcoming event plus the past PAST_MONTHS calendar months. Older events
+ * stay published (their pages still work) but drop out of the calendar here.
  *
  * Changes only flag the feed as stale; it is rebuilt once at shutdown so bulk
  * edits and term assignments during a save trigger a single write.
@@ -20,12 +18,8 @@ class Feed
 
     public const GENERATED_OPTION = 'sm_events_feed_generated';
 
-    /** Months of past events kept in the static feed (and per REST chunk). */
-    public const PAST_MONTHS = 3;
-
-    protected const REST_NAMESPACE = 'sm/v1';
-
-    protected const CACHE_TTL = HOUR_IN_SECONDS;
+    /** Calendar months of past events kept in the feed, before the current one. */
+    public const PAST_MONTHS = 2;
 
     protected static bool $stale = false;
 
@@ -40,8 +34,6 @@ class Feed
         \add_action(self::CRON_HOOK, [__CLASS__, 'regenerate']);
         \add_action('init', [__CLASS__, 'scheduleCron']);
         \add_action('switch_theme', [__CLASS__, 'unscheduleCron']);
-
-        \add_action('rest_api_init', [__CLASS__, 'registerRoute']);
     }
 
     public static function markStale(): void
@@ -128,50 +120,6 @@ class Feed
         return (int) \get_option(self::GENERATED_OPTION, 0);
     }
 
-    public static function registerRoute(): void
-    {
-        \register_rest_route(self::REST_NAMESPACE, '/events', [
-            'methods' => 'GET',
-            'callback' => [__CLASS__, 'handleBefore'],
-            'permission_callback' => '__return_true',
-            'args' => [
-                'before' => [
-                    'required' => true,
-                    'type' => 'string',
-                    'pattern' => '^\d{4}-(0[1-9]|1[0-2])$',
-                ],
-            ],
-        ]);
-    }
-
-    /**
-     * Events in the PAST_MONTHS months before ?before=YYYY-MM (exclusive).
-     */
-    public static function handleBefore(WP_REST_Request $request): WP_REST_Response|WP_Error
-    {
-        $before = (string) $request->get_param('before');
-        $end = DateTimeImmutable::createFromFormat('!Y-m', $before, Event::timezone());
-
-        if (! $end) {
-            return new WP_Error('sm_events_bad_month', 'before must be YYYY-MM', ['status' => 400]);
-        }
-
-        // Keyed on the feed version so a regeneration invalidates every chunk.
-        $key = 'sm_events_before_'.$before.'_'.self::generated();
-        $data = \get_transient($key);
-
-        if (! is_array($data)) {
-            $events = EventRepository::between($end->modify('-'.self::PAST_MONTHS.' months'), $end);
-            $data = self::payload($events, self::generated());
-            \set_transient($key, $data, self::CACHE_TTL);
-        }
-
-        $response = new WP_REST_Response($data);
-        $response->header('Cache-Control', 'public, max-age='.self::CACHE_TTL);
-
-        return $response;
-    }
-
     /**
      * @param  Event[]  $events
      * @return array<string,mixed>
@@ -213,8 +161,21 @@ class Feed
             'end_label' => $event->endLabel(),
             'venue' => $event->venue(),
             'presenter' => $event->presenter(),
+            'excerpt' => self::excerpt($event),
             'poster' => self::poster($event),
         ];
+    }
+
+    /**
+     * Manual excerpt, or the opening words of the description, for the calendar's hover card.
+     */
+    protected static function excerpt(Event $event): string
+    {
+        $text = \has_excerpt($event->post)
+            ? \get_the_excerpt($event->post)
+            : \wp_trim_words(\excerpt_remove_blocks(\strip_shortcodes($event->post->post_content)), 30);
+
+        return trim(\html_entity_decode(\wp_strip_all_tags($text), ENT_QUOTES, 'UTF-8'));
     }
 
     /**

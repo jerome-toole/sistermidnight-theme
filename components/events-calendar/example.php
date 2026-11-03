@@ -10,7 +10,7 @@ use Gust\Components\EventsCalendar;
 
 <section class="component-example-section">
     <h2 class="component-example-section__title">Calendar (current month)</h2>
-    <p class="component-example-section__description">Server HTML holds the header and the fallback list; the script draws the month table from the feed. Below md the list is forced.</p>
+    <p class="component-example-section__description">Server HTML holds the header and the fallback list; the script draws a week-snapping scroller from the feed (hover an event for its card; tap on touch for the swipeable sheet). Below md the list is forced.</p>
     <div class="component-example-section__preview">
         <?= EventsCalendar::make(); ?>
     </div>

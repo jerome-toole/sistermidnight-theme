@@ -6,6 +6,8 @@
 
 const MONTH_PATTERN = /^(\d{4})-(0[1-9]|1[0-2])$/;
 
+const DAY = 86_400_000;
+
 const pad = (number) => String(number).padStart(2, '0');
 
 /** "2026-04" → { year: 2026, month: 4 }, or null when malformed. */
@@ -44,6 +46,37 @@ export function parseDay(key) {
     return { year, month, day };
 }
 
+/** One grid cell for a UTC midnight timestamp. */
+function cellAt(time) {
+    const date = new Date(time);
+    const year = date.getUTCFullYear();
+    const month = date.getUTCMonth() + 1;
+    const day = date.getUTCDate();
+
+    return { year, month, day, key: `${year}-${pad(month)}-${pad(day)}`, weekday: date.getUTCDay() };
+}
+
+/**
+ * Continuous weeks, Sunday to Saturday, from the week holding the 1st of
+ * `from` to the week holding the last day of `to` (inclusive). Each week
+ * appears once, so a week that straddles two months is shared by both.
+ *
+ * Each cell: { year, month, day, key, weekday }.
+ */
+export function weeksBetween(from, to) {
+    const first = Date.UTC(from.year, from.month - 1, 1);
+    const start = first - new Date(first).getUTCDay() * DAY;
+    const last = Date.UTC(to.year, to.month - 1, daysInMonth(to));
+    const end = last + (6 - new Date(last).getUTCDay()) * DAY;
+    const rows = [];
+
+    for (let week = start; week <= end; week += 7 * DAY) {
+        rows.push(Array.from({ length: 7 }, (_, weekday) => cellAt(week + weekday * DAY)));
+    }
+
+    return rows;
+}
+
 /**
  * The weeks of a month as rows of seven cells, Sunday to Saturday, padded
  * with the adjacent months' days. 5 or 6 rows depending on the month.
@@ -51,34 +84,9 @@ export function parseDay(key) {
  * Each cell: { year, month, day, key, inMonth, weekday }.
  */
 export function monthGrid({ year, month }) {
-    const first = Date.UTC(year, month - 1, 1);
-    const firstWeekday = new Date(first).getUTCDay();
-    const weeks = Math.ceil((firstWeekday + daysInMonth({ year, month })) / 7);
-    const rows = [];
-
-    for (let week = 0; week < weeks; week++) {
-        const cells = [];
-
-        for (let weekday = 0; weekday < 7; weekday++) {
-            const date = new Date(Date.UTC(year, month - 1, 1 - firstWeekday + week * 7 + weekday));
-            const cellYear = date.getUTCFullYear();
-            const cellMonth = date.getUTCMonth() + 1;
-            const day = date.getUTCDate();
-
-            cells.push({
-                year: cellYear,
-                month: cellMonth,
-                day,
-                key: `${cellYear}-${pad(cellMonth)}-${pad(day)}`,
-                inMonth: cellMonth === month && cellYear === year,
-                weekday,
-            });
-        }
-
-        rows.push(cells);
-    }
-
-    return rows;
+    return weeksBetween({ year, month }, { year, month }).map((week) =>
+        week.map((cell) => ({ ...cell, inMonth: cell.month === month && cell.year === year }))
+    );
 }
 
 /**
@@ -108,6 +116,14 @@ export function monthLabel({ year, month }, locale = 'en-GB') {
 /** { year, month, day } → "Wednesday 1 April 2026" (or a custom option set). */
 export function dayLabel({ year, month, day }, options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }, locale = 'en-GB') {
     return new Intl.DateTimeFormat(locale, { ...options, timeZone: 'UTC' }).format(new Date(Date.UTC(year, month - 1, day)));
+}
+
+/** { year, month, day } → "13th November", like the Event Card's PHP 'jS F'. */
+export function ordinalDayLabel({ year, month, day }, locale = 'en-GB') {
+    const suffix = day % 10 === 1 && day !== 11 ? 'st' : day % 10 === 2 && day !== 12 ? 'nd' : day % 10 === 3 && day !== 13 ? 'rd' : 'th';
+    const name = new Intl.DateTimeFormat(locale, { month: 'long', timeZone: 'UTC' }).format(new Date(Date.UTC(year, month - 1, day)));
+
+    return `${day}${suffix} ${name}`;
 }
 
 /** Instant → "19:30" in the site's time zone. */

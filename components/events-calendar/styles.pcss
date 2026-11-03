@@ -7,13 +7,22 @@
  * or the list; both are drawn by scripts.js into .events-calendar__body,
  * which starts out holding the server-rendered fallback rows.
  *
- * Table: 7 equal columns with collapsed 1px dark-umber borders (no gaps),
- * Sun–Sat heading row (type-h6 on clay-beige, 31px), cells ~155px tall. Day
+ * Table (Figma dark What's On): one continuous run of weeks in a scroller
+ * that snaps to week rows (6 rows tall, cells shrink from 155px on short
+ * viewports). 7 equal dark-umber columns with 2px stone-beige lines (no
+ * gaps), sticky Sunday–Saturday heading row (type-base on a 20% stone-beige
+ * tint, 31px). Days outside the month at the top are muted. Edge bubbles
+ * slide in when a buffer month (no events beyond it) scrolls in; "Back to
+ * today" (burnt-sienna, bottom right) shows while today is out of view. Day
  * number top-left ("April 1" on the 1st), event titles + presenter
  * bottom-left (type-small, title clamped to 2 lines + 1 line of presenter).
- * Cell colour contexts: stone-beige (no events, or past), clay-beige (has
- * events), burnt-sienna (today). Past and adjacent-month days are muted as
- * far as 4.5:1 contrast allows (opacity 0.85 of dark-umber on stone-beige).
+ * Cells: dark-umber (no events, or past), stone-beige tint (has events),
+ * burnt-sienna (today), all with stone-beige text. Muting is lighter than
+ * Figma's 0.3–0.4 opacity, which would fall well under AA contrast.
+ *
+ * Mouse hover over an event shows .events-calendar__preview (fixed, trails
+ * the cursor); touch opens .events-calendar__sheet, a dialog that swipes
+ * through the events. Both live on <body>, outside the section.
  *
  * Below md the toggle is hidden and the script only renders the list.
  * ------------------------------------------------------------------------- */
@@ -21,10 +30,17 @@
 .events-calendar {
     --events-calendar--padding-block: spaceFluid(48, 126);
     --events-calendar--header-gap: space(24);
-    --events-calendar--cell-height: space(155);
+    --events-calendar--heading-height: space(31);
+    --events-calendar--rows: 6;
+    /* Six weeks fit the viewport under the site header, between 110 and 155 tall */
+    --events-calendar--cell-height: clamp(space(110), (100svh - space(180)) / var(--events-calendar--rows), space(155));
     --events-calendar--cell-padding: space(8) space(10);
-    --events-calendar--border: 1px solid var(--color-dark-umber);
-    --events-calendar--muted-opacity: 0.85;
+    --events-calendar--border: 2px solid var(--color-stone-beige);
+    /* Day numbers are large bold text (3:1); event text needs 4.5:1 */
+    --events-calendar--muted-opacity: 0.65;
+    --events-calendar--muted-text-opacity: 0.85;
+    /* Figma's 19% tint; 16% keeps stone-beige text at 4.5:1 */
+    --events-calendar--tint: color-mix(in srgb, var(--color-stone-beige) 16%, var(--color-dark-umber));
 
     /* Dark mode (Figma "Block" #3b302a): header, nav and list text in stone-beige */
     @apply color-context-dark-umber;
@@ -65,15 +81,19 @@
     display: inline-flex;
     align-items: center;
     min-height: space(24); /* WCAG 2.5.8 target size */
-    color: var(--color-foreground);
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    text-underline-offset: 0.25em;
-    transition: text-decoration-color 0.2s;
+    @apply display-link;
 
-    &:hover,
+    /* A view toggle: the inactive view is faded, the current one full strength */
+    &:not([aria-current]) {
+        color: var(--display-link--color-faded);
+
+        &:hover {
+            color: var(--display-link--color);
+        }
+    }
+
     &[aria-current] {
-        text-decoration-color: currentcolor;
+        color: var(--display-link--color);
     }
 }
 
@@ -101,46 +121,92 @@
     &:hover {
         color: var(--color-warm-sand);
     }
+
+    /* First or last month of the scroll range */
+    &[aria-disabled="true"] {
+        opacity: 0.35;
+        pointer-events: none;
+    }
 }
 
 /* ---- Table --------------------------------------------------------------- */
 
-.events-calendar__table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
+.events-calendar__viewport {
+    position: relative;
 }
 
-/* dark-umber (the context foreground) is 4.1:1 on clay-beige; black passes */
-.events-calendar__heading {
-    @apply type-h6 color-context-clay-beige;
+.events-calendar__scroller {
+    height: calc(var(--events-calendar--heading-height) + var(--events-calendar--rows) * var(--events-calendar--cell-height));
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: var(--events-calendar--heading-height);
+    scrollbar-color: var(--color-stone-beige) transparent;
+    scrollbar-width: thin;
 
-    height: space(31);
+    &:focus-visible {
+        outline-offset: 2px;
+    }
+}
+
+/*
+ * Rows are grids rather than table rows so each week can be a snap target;
+ * the elements keep table semantics through explicit roles (scripts.js).
+ * Borders: right + bottom on every cell, left on each row's first, top on
+ * the headings, which reads as one collapsed 1px grid.
+ */
+.events-calendar__table,
+.events-calendar__table thead,
+.events-calendar__table tbody {
+    display: block;
+    width: 100%;
+}
+
+.events-calendar__head {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.events-calendar__week {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    scroll-snap-align: start;
+
+    > :first-child {
+        border-left: var(--events-calendar--border);
+    }
+}
+
+.events-calendar__heading {
+    @apply type-base;
+
+    display: flex;
+    align-items: center;
+    height: var(--events-calendar--heading-height);
     padding: space(5) space(10);
-    border: var(--events-calendar--border);
-    color: var(--color-black);
+    border-top: var(--events-calendar--border);
+    border-right: var(--events-calendar--border);
+    border-bottom: var(--events-calendar--border);
+    background: var(--events-calendar--tint);
+    color: var(--color-stone-beige);
     text-align: left;
-    vertical-align: middle;
     line-height: 1.2;
 }
 
 .events-calendar__cell {
-    @apply color-context-stone-beige;
-
+    display: block;
     height: var(--events-calendar--cell-height);
     padding: 0;
-    border: var(--events-calendar--border);
-    vertical-align: top;
+    overflow: hidden;
+    border-right: var(--events-calendar--border);
+    border-bottom: var(--events-calendar--border);
+    background: var(--color-dark-umber);
+    color: var(--color-stone-beige);
 }
 
-/* Past days stay stone-beige and muted, whatever they held */
+/* Past days stay dark and muted, whatever they held */
 .events-calendar__cell--has-events:not(.events-calendar__cell--past) {
-    @apply color-context-clay-beige;
-
-    --color-foreground: var(--color-black);
-    --focus--color: var(--color-black);
-
-    color: var(--color-foreground);
+    background: var(--events-calendar--tint);
 }
 
 /* warm-sand (the context foreground) is under 4.5:1 on burnt-sienna; cool-grey passes */
@@ -158,7 +224,7 @@
     flex-direction: column;
     justify-content: space-between;
     gap: space(12);
-    min-height: calc(var(--events-calendar--cell-height) - 1px);
+    height: 100%;
     padding: var(--events-calendar--cell-padding);
     overflow-wrap: normal;
     word-break: normal;
@@ -169,6 +235,7 @@
     @apply type-h6;
 
     line-height: 1.2;
+    transition: opacity 0.2s;
 
     .events-calendar__cell--past &,
     .events-calendar__cell--outside & {
@@ -185,7 +252,7 @@
     list-style: none;
 
     .events-calendar__cell--past & {
-        opacity: var(--events-calendar--muted-opacity);
+        opacity: var(--events-calendar--muted-text-opacity);
     }
 }
 
@@ -222,6 +289,309 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+/* ---- Edge bubbles ------------------------------------------------------ */
+
+/* Hidden just past their edge; they slide in when a buffer month shows */
+.events-calendar__edge {
+    @apply type-small color-context-burnt-sienna;
+
+    --color-foreground: var(--color-cool-grey);
+
+    position: absolute;
+    left: 50%;
+    z-index: 2;
+    margin: 0;
+    padding: space(8) space(16);
+    border-radius: 999px;
+    color: var(--color-foreground);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+        opacity 0.25s;
+
+    &.is-visible {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+.events-calendar__edge--start {
+    top: calc(var(--events-calendar--heading-height) + space(16));
+    transform: translate(-50%, space(-24));
+}
+
+.events-calendar__edge--end {
+    bottom: space(16);
+    transform: translate(-50%, space(24));
+}
+
+/* Same burnt-sienna (and cool-grey text) as today's cell */
+.events-calendar__today {
+    @apply type-label color-context-burnt-sienna;
+
+    --color-foreground: var(--color-cool-grey);
+    --focus--color: var(--color-cool-grey);
+
+    position: absolute;
+    right: space(16);
+    bottom: space(16);
+    z-index: 2;
+    min-height: space(44);
+    padding: space(10) space(20);
+    color: var(--color-foreground);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(space(12));
+    transition:
+        transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+        opacity 0.2s,
+        background-color 0.15s;
+
+    &.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+    }
+
+    &:hover {
+        background-color: color-mix(in srgb, var(--color-burnt-sienna) 88%, white);
+    }
+}
+
+/* ---- Hover card and touch sheet ---------------------------------------- */
+
+.events-calendar__preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 60;
+    width: space(320);
+    max-width: calc(100vw - space(16));
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    will-change: transform;
+
+    .events-calendar__card {
+        transform: scale(0.96);
+        transform-origin: top left;
+        transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    &.is-visible {
+        opacity: 1;
+
+        .events-calendar__card {
+            transform: none;
+        }
+    }
+}
+
+/* Compact Event Card (sm): same paper, type and layout, at about 70% scale */
+.events-calendar__card {
+    @apply color-context-stone-beige;
+
+    display: flex;
+    flex-direction: column;
+    gap: space(18);
+    padding: space(16);
+    color: var(--color-foreground);
+}
+
+/* Natural aspect ratio, left-aligned, up to the card width and 250 tall */
+.events-calendar__card-poster {
+    display: block;
+    align-self: flex-start;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: space(250);
+}
+
+.events-calendar__card-body {
+    display: flex;
+    flex-direction: column;
+    gap: space(24);
+    min-width: 0;
+}
+
+.events-calendar__card-header {
+    display: flex;
+    flex-direction: column;
+    gap: space(8);
+}
+
+.events-calendar__card-presenter,
+.events-calendar__card-meta {
+    @apply type-h6;
+
+    margin: 0;
+    font-size: space(14);
+    line-height: 1.2;
+}
+
+.events-calendar__card-title {
+    @apply display-heading-attributes;
+
+    margin: 0;
+    font-size: space(26);
+    line-height: 1;
+    overflow-wrap: break-word;
+}
+
+.events-calendar__card-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.events-calendar__card-excerpt {
+    @apply type-small;
+
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
+
+/* Date left, venue opposite */
+.events-calendar__card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: space(4) space(12);
+}
+
+.events-calendar__card-when,
+.events-calendar__card-venue {
+    white-space: nowrap;
+}
+
+.events-calendar__card-venue {
+    margin-left: auto;
+}
+
+/* Sheet card: full-size poster, room for more text */
+.events-calendar__card--sheet {
+    height: 100%;
+    padding: 0 space(20) space(24);
+
+    /* Natural ratio, never cropped */
+    .events-calendar__card-poster {
+        max-height: 45svh;
+    }
+
+    .events-calendar__card-title {
+        font-size: spaceFluid(28, 34);
+    }
+
+    .events-calendar__card-excerpt {
+        -webkit-line-clamp: 6;
+        line-clamp: 6;
+    }
+
+    .events-calendar__card-cta {
+        align-self: flex-start;
+        margin-top: space(-8);
+    }
+}
+
+html:has(.events-calendar__sheet[open]) {
+    overflow: hidden;
+}
+
+.events-calendar__sheet {
+    @apply color-context-stone-beige;
+
+    width: min(space(480), 100vw - space(32));
+    max-width: none;
+    max-height: calc(100svh - space(32));
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    color: var(--color-foreground);
+
+    &[open] {
+        display: flex;
+        flex-direction: column;
+        animation: events-calendar-sheet-in 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    &::backdrop {
+        background: rgb(0 0 0 / 0.6);
+    }
+}
+
+@keyframes events-calendar-sheet-in {
+    from {
+        opacity: 0;
+        transform: translateY(space(32));
+    }
+}
+
+.events-calendar__sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: space(12);
+    padding: space(8) space(12) space(8) space(20);
+}
+
+.events-calendar__sheet-count {
+    @apply type-h6;
+
+    margin: 0;
+}
+
+.events-calendar__sheet-actions {
+    display: flex;
+}
+
+.events-calendar__sheet-nav,
+.events-calendar__sheet-close {
+    @apply type-h5;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: space(44);
+    height: space(44);
+    color: var(--color-foreground);
+    line-height: 1;
+
+    &:disabled {
+        opacity: 0.35;
+    }
+}
+
+.events-calendar__sheet-track {
+    display: flex;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    list-style: none;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.events-calendar__sheet-slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    overflow-y: auto;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 /* ---- List ---------------------------------------------------------------- */
@@ -269,16 +639,7 @@
 .events-calendar__row-title {
     @apply type-h4;
 
-    color: var(--color-foreground);
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    text-decoration-thickness: 0.06em;
-    text-underline-offset: 0.12em;
-    transition: text-decoration-color 0.2s;
-
-    &:hover {
-        text-decoration-color: currentcolor;
-    }
+    @apply display-link;
 }
 
 .events-calendar__row-venue {

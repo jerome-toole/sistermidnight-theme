@@ -53,4 +53,7 @@
             <p class="events-calendar__empty"><?= esc_html__('No upcoming events', 'gust') ?></p>
         <?php } ?>
     </div>
+
+    <?php // Arrow for the touch sheet's "View event" links, cloned by scripts.js?>
+    <template data-events-calendar-icon><?= \Gust\Components\Icon::make(name: 'arrow', classes: ['button__icon']) ?></template>
 </section>

@@ -12,7 +12,9 @@ import {
     formatMonth,
     monthGrid,
     monthLabel,
+    ordinalDayLabel,
     parseMonth,
+    weeksBetween,
 } from './dates.js';
 
 describe('parseMonth / formatMonth', () => {
@@ -103,5 +105,38 @@ describe('monthLabel', () => {
     it('formats a month in words', () => {
         assert.equal(monthLabel({ year: 2026, month: 4 }), 'April 2026');
         assert.equal(monthLabel({ year: 2027, month: 1 }), 'January 2027');
+    });
+});
+
+describe('weeksBetween', () => {
+    it('spans whole weeks from the 1st of the first month to the end of the last', () => {
+        // July 2026 starts on a Wednesday; January 2027 ends on a Sunday
+        const weeks = weeksBetween({ year: 2026, month: 7 }, { year: 2027, month: 1 });
+
+        assert.equal(weeks[0][0].key, '2026-06-28');
+        assert.equal(weeks.at(-1)[0].key, '2027-01-31');
+        assert.equal(weeks.at(-1)[6].key, '2027-02-06');
+        assert.ok(weeks.every((week) => week.length === 7 && week[0].weekday === 0));
+    });
+
+    it('never repeats a week where months meet', () => {
+        const keys = weeksBetween({ year: 2026, month: 3 }, { year: 2026, month: 5 }).flat().map((cell) => cell.key);
+
+        assert.equal(new Set(keys).size, keys.length);
+    });
+});
+
+describe('ordinalDayLabel', () => {
+    it('adds English ordinals, teens included', () => {
+        const label = (day) => ordinalDayLabel({ year: 2026, month: 11, day });
+
+        assert.equal(label(1), '1st November');
+        assert.equal(label(2), '2nd November');
+        assert.equal(label(3), '3rd November');
+        assert.equal(label(11), '11th November');
+        assert.equal(label(12), '12th November');
+        assert.equal(label(13), '13th November');
+        assert.equal(label(21), '21st November');
+        assert.equal(label(23), '23rd November');
     });
 });

@@ -85,21 +85,17 @@ class EventsCalendar extends ComponentBase
         ];
 
         $args['feed_url'] = Feed::url();
-        $args['rest_url'] = \rest_url('sm/v1/events');
         $args['timezone'] = \wp_timezone_string();
-        $args['feed_from'] = $now->modify('first day of this month')->modify('-'.Feed::PAST_MONTHS.' months')->format('Y-m');
 
         $count = (int) ($args['count'] ?? 10);
         $args['events'] = array_map([static::class, 'row'], EventRepository::upcoming($count > 0 ? $count : 10));
 
-        $args['classes'] = array_merge(['events-calendar', 'alignfull'], $args['classes'] ?? []);
+        $args['classes'] = array_merge(['events-calendar', 'alignfull', 'has-background'], $args['classes'] ?? []);
         $args['attributes'] = array_merge([
             'data-events-calendar' => '',
             'data-feed' => $args['feed_url'],
-            'data-rest' => $args['rest_url'],
             'data-month' => $month,
             'data-view' => $view,
-            'data-from' => $args['feed_from'],
             'data-timezone' => $args['timezone'],
         ], $args['attributes'] ?? []);
 

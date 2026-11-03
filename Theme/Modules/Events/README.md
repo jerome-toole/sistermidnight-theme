@@ -12,19 +12,18 @@
 
 Rebuilt once per request (at shutdown) after `save_post_event`, trash/untrash/delete of an event,
 or a term change on an event, and daily by the `sm_events_feed_regenerate` cron as a safety net.
-It holds all future events plus the past 3 months:
+It holds all future events plus the past 2 calendar months (`Feed::PAST_MONTHS`). Older events stay published but leave the calendar:
 
 ```json
 { "generated": 1760000000, "timezone": "Europe/London", "events": [
   { "id": 1, "title": "", "url": "", "start": "2026-04-01T19:00:00+01:00", "end_time": "2026-04-01T22:00:00+01:00",
-    "end_label": "22:00", "venue": "", "presenter": "", "poster": { "src": "", "srcset": "", "alt": "" } }
+    "end_label": "22:00", "venue": "", "presenter": "", "excerpt": "", "poster": { "src": "", "srcset": "", "alt": "" } }
 ] }
 ```
 
 `end_time` and `poster` are `null` when not set. `Feed::url()` returns the file URL with `?v={generated}`.
 
-Older months: `GET /wp-json/sm/v1/events?before=YYYY-MM` returns the same shape for the 3 months
-before that month (exclusive), cached in a transient for 1 hour and invalidated on regeneration.
+`excerpt` is the manual excerpt, or the first 30 words of the description.
 
 Regenerate manually:
 
